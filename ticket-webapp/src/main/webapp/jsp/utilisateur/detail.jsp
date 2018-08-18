@@ -5,7 +5,8 @@
 <head>
     <%@include file="../_include/head.jsp"%>
 </head>
-<body><h1>Détails Utilisateur</h1>
+<body>
+<h1>Détails Utilisateur</h1>
 
 
 <ul>

@@ -5,7 +5,8 @@
 <head>
     <%@include file="../_include/head.jsp"%>
 </head>
-<body><h1>Liste Utilisateur</h1>
+<body>
+<h1>Liste Utilisateur</h1>
 
 <s:iterator value="listUtilisateur">
     <ul>

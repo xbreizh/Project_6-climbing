@@ -18,9 +18,11 @@ public class ManagerFactoryImpl implements ManagerFactory {
     private ProjetManager projetManager;
     @Override
     public ProjetManager getProjetManager() {
+
         return this.projetManager;
     }
     public void setProjetManager(ProjetManager pProjetManager) {
+
         projetManager = pProjetManager;
     }
 
@@ -29,6 +31,7 @@ public class ManagerFactoryImpl implements ManagerFactory {
     private UtilisateurManager utilisateurManager;
     @Override
     public UtilisateurManager getUtilisateurManager() {
+
         return this.utilisateurManager;
     }
     public void setTicketManager(UtilisateurManager pUtilisateurManager) {

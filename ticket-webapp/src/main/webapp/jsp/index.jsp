@@ -1,16 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="s" uri="/struts-tags"%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-   <%@include file="_include/head.jsp"%>
-</head>
-<body>
+
+<%@include file="_include/header.jsp"%>
 <h1><s:text name="home.welcome"/></h1>
 
-<s:a action="projet_list">
-   <s:text name="nav.listProjet"/>
-</s:a>
-<br>
+
 <s:a action="utilisateur_list">
     <s:text name="nav.listUtilisateur"/>
 </s:a>

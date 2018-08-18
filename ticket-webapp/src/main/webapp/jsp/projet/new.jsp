@@ -1,12 +1,9 @@
-<%@ taglib prefix="s" uri="/struts-tags" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <%@include file="../_include/head.jsp"%>
-</head>
-<body>
-<s:actionerror/>
-<s:actionmessage/>
+<%@taglib prefix="s" uri="/struts-tags"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<%@include file="../_include/header.jsp"%>
+<meta charset="UTF-8">
+
 
 
 <h2>Création d'un projet</h2>
