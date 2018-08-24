@@ -8,7 +8,7 @@
     <!-- =============================================================== -->
     <!-- ===== Informations Maven ===== -->
     <groupId>org.example.demo</groupId>
-    <artifactId>ticket</artifactId>
+    <artifactId>climb</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -16,7 +16,7 @@
     <name>${projectName}</name>
     <url>http://example.org</url>
     <description>
-        Le super projet de gestion de tickets d'incident et de demandes d'évolution !
+        Le super projet de gestion de climbs d'incident et de demandes d'évolution !
     </description>
 
     <organization>
@@ -39,7 +39,7 @@
     <!-- Propriétés -->
     <!-- =============================================================== -->
     <properties>
-        <projectName>Ticket</projectName>
+        <projectName>climb</projectName>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -52,11 +52,11 @@
     <!-- Modules -->
     <!-- =============================================================== -->
     <modules>
-        <module>ticket-webapp</module>
-        <module>ticket-business</module>
-        <module>ticket-consumer</module>
-        <module>ticket-model</module>
-        <module>ticket-technical</module>
+        <module>climb-webapp</module>
+        <module>climb-business</module>
+        <module>climb-consumer</module>
+        <module>climb-model</module>
+        <module>climb-technical</module>
     </modules>
 
 
@@ -68,27 +68,27 @@
             <!-- ===== Modules ===== -->
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>ticket-webapp</artifactId>
+                <artifactId>climb-webapp</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>ticket-business</artifactId>
+                <artifactId>climb-business</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>ticket-consumer</artifactId>
+                <artifactId>climb-consumer</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>ticket-model</artifactId>
+                <artifactId>climb-model</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>ticket-technical</artifactId>
+                <artifactId>climb-technical</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -176,6 +176,12 @@
                 <artifactId>log4j-jcl</artifactId>
                 <version>2.9.1</version>
                 <scope>runtime</scope>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>42.2.4</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-bom -->
             <dependency>
