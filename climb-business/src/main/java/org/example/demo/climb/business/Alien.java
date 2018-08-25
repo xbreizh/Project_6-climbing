@@ -1,10 +1,12 @@
-/*import javax.persistence.Entity;
+package org.example.demo.climb.business;
+
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity*/
+@Entity
 public class Alien {
 
-/*    @Id
+    @Id
     private int aid;
     private AlienName name;
     private String tech;
@@ -42,5 +44,5 @@ public class Alien {
                 ", name='" + name + '\'' +
                 ", tech='" + tech + '\'' +
                 '}';
-    }*/
+    }
 }

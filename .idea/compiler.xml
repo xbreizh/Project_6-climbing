@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="climb-business" />
+        <module name="climb-consumer" />
+        <module name="climb-model" />
+        <module name="climb-technical" />
+        <module name="climb-webapp" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="climb" target="1.8" />
+      <module name="climb-business" target="1.8" />
+      <module name="climb-consumer" target="1.8" />
+      <module name="climb-model" target="1.8" />
+      <module name="climb-technical" target="1.8" />
+      <module name="climb-webapp" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

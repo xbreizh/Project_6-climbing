@@ -3,8 +3,12 @@ package org.example.demo.climb.business.impl.manager;
 
 import org.apache.commons.lang3.StringUtils;
 import org.example.demo.climb.business.contract.manager.UtilisateurManager;
+import org.example.demo.climb.model.bean.Student;
 import org.example.demo.climb.model.bean.utilisateur.Utilisateur;
 import org.example.demo.climb.model.exception.NotFoundException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 import javax.inject.Named;
 import java.util.ArrayList;
@@ -13,7 +17,7 @@ import java.util.List;
 @Named
 public class UtilisateurManagerImpl extends AbstractManager implements UtilisateurManager {
 
-
+    private Utilisateur vUtilisateur = null;
 
 
 
@@ -23,16 +27,25 @@ public class UtilisateurManagerImpl extends AbstractManager implements Utilisate
         if (pId < 0) {
             throw new NotFoundException("Utilisateur non trouvé : ID=" + pId);
         }
-        Utilisateur vUtilisateur = newUtilisateur(pId);
+        vUtilisateur = newUtilisateur(pId);
         return vUtilisateur;
     }
 
 
     @Override
     public Utilisateur getUtilisateur(String pLogin, String pPassword) throws NotFoundException {
+        Configuration conf = new Configuration().configure().addAnnotatedClass(Student.class);
+        SessionFactory sf = conf.buildSessionFactory();
+        /*Student stu = null;*/
+        Session session = sf.openSession();
+        session.beginTransaction();
 
-
-        if (StringUtils.equals(pLogin, "joe") && StringUtils.equals(pPassword, "joe")) {
+        Student stu = session.get(Student.class, 1);
+        session.getTransaction().commit();
+        session.close();
+        String name = stu.getName();
+        System.out.println(name);
+        if (StringUtils.equals(pLogin, name) && StringUtils.equals(pPassword, "joe")) {
             return newUtilisateur(0);
         }
         /*System.out.println("plok: "+ u.getNom());*/
@@ -61,7 +74,7 @@ public class UtilisateurManagerImpl extends AbstractManager implements Utilisate
         final String[] vPrenoms = {
             "Joe", "William", "Jack", "Averell"
         };
-        Utilisateur vUtilisateur = new Utilisateur(pId);
+        vUtilisateur = new Utilisateur(pId);
         vUtilisateur.setPrenom(vPrenoms[Math.abs(pId) % vPrenoms.length]);
         vUtilisateur.setNom("Dalton");
         return vUtilisateur;
