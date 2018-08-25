@@ -7,8 +7,8 @@
 <h1><s:text name="home.welcome"/></h1>
 
 
-<s:a action="utilisateur_list">
-    <s:text name="nav.listUtilisateur"/>
+<s:a action="member_list">
+    <s:text name="nav.listMember"/>
 </s:a>
 
 test

@@ -18,6 +18,15 @@
           <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
         </webroots>
       </configuration>
+      <facet type="Struts2" name="Struts 2">
+        <configuration>
+          <fileset id="s2fileset" name="My Fileset " removed="false">
+            <file>file://$MODULE_DIR$/src/main/resources/struts.xml</file>
+            <file>jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-core/2.5.16/struts2-core-2.5.16.jar!/struts-default.xml</file>
+          </fileset>
+          <propertiesKeys disabled="false" />
+        </configuration>
+      </facet>
     </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
@@ -31,6 +40,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="climb-business" />
+    <orderEntry type="module" module-name="climb-consumer" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.bval:bval-jsr:1.1.2" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.bval:bval-core:1.1.2" level="project" />
     <orderEntry type="library" name="Maven: org.postgresql:postgresql:42.2.4" level="project" />

@@ -2,10 +2,10 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <header>
-    <s:if test="#session.user">
+    <s:if test="#session.member">
         Utilisateur connecté :
-        <s:property value="#session.user.prenom" />
-        <s:property value="#session.user.nom" />
+        <s:property value="#session.member.prenom"/>
+        <s:property value="#session.member.nom"/>
 
         <s:a action="logout">Déconnexion</s:a>
     </s:if>
@@ -14,13 +14,13 @@
     </s:else>
 </header>
 
-<nav>
+<%--<nav>
     <s:a action="projet_list">
         <s:text name="nav.listProjet" />
     </s:a>
 
     <s:a action="projet_new">Créer un nouveau projet</s:a>
-</nav>
+</nav>--%>
 
 <s:actionerror/>
 <s:actionmessage/>

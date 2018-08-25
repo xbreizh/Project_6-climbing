@@ -1,28 +1,27 @@
 package org.example.demo.climb.business.impl.manager;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import org.example.demo.climb.business.contract.manager.MemberManager;
+import org.example.demo.climb.business.contract.manager.ProjetManager;
+import org.example.demo.climb.model.bean.projet.Projet;
+import org.example.demo.climb.model.bean.projet.Version;
+import org.example.demo.climb.model.exception.FunctionalException;
+import org.example.demo.climb.model.exception.NotFoundException;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
-
-import org.example.demo.climb.business.contract.manager.ProjetManager;
-import org.example.demo.climb.business.contract.manager.UtilisateurManager;
-import org.example.demo.climb.model.bean.projet.Projet;
-import org.example.demo.climb.model.bean.projet.Version;
-import org.example.demo.climb.model.exception.FunctionalException;
-import org.example.demo.climb.model.exception.NotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 
 @Named
 public class ProjetManagerImpl extends AbstractManager implements ProjetManager {
 
     @Inject
-    private UtilisateurManager utilisateurManager;
+    private MemberManager memberManager;
 
     // Je stocke les projets en mémoire car je n'ai pas codé de persistance
     private final List<Projet> listProjet = new ArrayList<>();
@@ -52,19 +51,19 @@ public class ProjetManagerImpl extends AbstractManager implements ProjetManager 
      */
     @PostConstruct
     private void initListProjet() {
-        for (int vId = 0; vId < 9; vId++) {
+        /*for (int vId = 0; vId < 9; vId++) {
             Projet vProjet = new Projet(vId);
             vProjet.setNom("Projet n°" + vId);
             vProjet.setCloture(false);
             vProjet.setDateCreation(new Date());
             try {
-                vProjet.setResponsable(utilisateurManager.getUtilisateur(vId % 4));
+                vProjet.setResponsable(memberManager.getMember(vId % 4));
             } catch (NotFoundException vEx) {
                 vProjet.setResponsable(null);
             }
 
             this.listProjet.add(vProjet);
-        }
+        }*/
     }
 
 

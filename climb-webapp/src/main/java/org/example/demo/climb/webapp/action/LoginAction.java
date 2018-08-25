@@ -3,10 +3,12 @@ package org.example.demo.climb.webapp.action;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.interceptor.SessionAware;
-import org.example.demo.climb.model.bean.utilisateur.Utilisateur;
+import org.example.demo.climb.business.contract.ManagerFactory;
+import org.example.demo.climb.model.bean.Member;
 import org.example.demo.climb.model.exception.NotFoundException;
 import org.example.demo.climb.webapp.WebappHelper;
 
+import javax.inject.Inject;
 import java.util.Map;
 
 public class LoginAction extends ActionSupport implements SessionAware {
@@ -14,7 +16,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
     private String login;
     private String pwd;
     private Map<String, Object> session;
-
+    @Inject
+    private ManagerFactory managerFactory;
     public String getLogin() {
         return login;
     }
@@ -38,8 +41,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
         String vResult=ActionSupport.INPUT;
         if(!StringUtils.isAllEmpty(login, pwd)){
             try {
-                Utilisateur vUtilisateur = WebappHelper.getManagerFactory().getUtilisateurManager().getUtilisateur(login, pwd);
-                this.session.put("user", vUtilisateur);
+                Member vMember = WebappHelper.getManagerFactory().getMemberManager().getMember(login, pwd);
+                this.session.put("user", vMember);
                 vResult = ActionSupport.SUCCESS;
             } catch (NotFoundException e) {
                 this.addActionError("Identifiant ou mot de passe invalide");

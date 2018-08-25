@@ -1,10 +1,10 @@
 package org.example.demo.climb.model.bean.projet;
 
-import java.util.Date;
+import org.example.demo.climb.model.bean.member.Utilisateur;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import org.example.demo.climb.model.bean.utilisateur.Utilisateur;
+import java.util.Date;
 
 
 /**

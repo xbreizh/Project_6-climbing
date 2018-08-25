@@ -1,7 +1,6 @@
 package org.example.demo.climb.business.contract;
 
-import org.example.demo.climb.business.contract.manager.ProjetManager;
-import org.example.demo.climb.business.contract.manager.UtilisateurManager;
+import org.example.demo.climb.business.contract.manager.MemberManager;
 
 
 /**
@@ -9,7 +8,7 @@ import org.example.demo.climb.business.contract.manager.UtilisateurManager;
  */
 public interface ManagerFactory {
 
-    ProjetManager getProjetManager();
+    /* ProjetManager getProjetManager();*/
 
-    UtilisateurManager getUtilisateurManager();
+    MemberManager getMemberManager();
 }

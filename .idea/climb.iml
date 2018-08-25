@@ -6,6 +6,7 @@
         <datasource-map>
           <unit-entry name="hibernate.cfg.xml" />
           <unit-entry name="hibernateDemo:target:classes:hibernate.cfg.xml" value="0bb2e696-6a5b-478e-bd30-afbd6bc97906" />
+          <unit-entry name="oldhibernate.cfg.xml" />
         </datasource-map>
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/climb-business/src/main/java/hibernate.cfg.xml" />

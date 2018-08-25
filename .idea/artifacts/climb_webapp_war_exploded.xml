@@ -10,6 +10,9 @@
           <element id="archive" name="climb-business-1.0-SNAPSHOT.jar">
             <element id="module-output" name="climb-business" />
           </element>
+          <element id="archive" name="climb-consumer-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="climb-consumer" />
+          </element>
           <element id="library" level="project" name="Maven: org.apache.bval:bval-jsr:1.1.2" />
           <element id="library" level="project" name="Maven: org.apache.bval:bval-core:1.1.2" />
           <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.2.4" />

@@ -1,11 +1,11 @@
 package org.example.demo.climb.business.impl;
 
+import org.example.demo.climb.business.contract.ManagerFactory;
+import org.example.demo.climb.business.contract.manager.MemberManager;
+import org.example.demo.climb.business.contract.manager.ProjetManager;
+
 import javax.inject.Inject;
 import javax.inject.Named;
-
-import org.example.demo.climb.business.contract.ManagerFactory;
-import org.example.demo.climb.business.contract.manager.ProjetManager;
-import org.example.demo.climb.business.contract.manager.UtilisateurManager;
 
 
 /**
@@ -16,7 +16,11 @@ public class ManagerFactoryImpl implements ManagerFactory {
 
     @Inject
     private ProjetManager projetManager;
-    @Override
+    @Inject
+    private MemberManager memberManager;
+
+
+    /*@Override*/
     public ProjetManager getProjetManager() {
 
         return this.projetManager;
@@ -27,14 +31,14 @@ public class ManagerFactoryImpl implements ManagerFactory {
     }
 
 
-    @Inject
-    private UtilisateurManager utilisateurManager;
-    @Override
-    public UtilisateurManager getUtilisateurManager() {
 
-        return this.utilisateurManager;
+    @Override
+    public MemberManager getMemberManager() {
+
+        return this.memberManager;
     }
-    public void setclimbManager(UtilisateurManager pUtilisateurManager) {
-        utilisateurManager = pUtilisateurManager;
+
+    public void setclimbManager(MemberManager pMemberManager) {
+        memberManager = pMemberManager;
     }
 }

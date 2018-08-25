@@ -1,14 +1,9 @@
 package org.example.demo.climb.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-import org.example.demo.climb.webapp.WebappHelper;
+import org.example.demo.climb.model.bean.member.Utilisateur;
 import org.example.demo.climb.model.bean.projet.Projet;
-import org.example.demo.climb.model.bean.utilisateur.Utilisateur;
-import org.example.demo.climb.model.exception.FunctionalException;
-import org.example.demo.climb.model.exception.NotFoundException;
-import org.example.demo.climb.model.exception.TechnicalException;
 
-import java.util.Date;
 import java.util.List;
 
 public class GestionProjetAction extends ActionSupport {
@@ -49,12 +44,12 @@ public class GestionProjetAction extends ActionSupport {
     /*Methodes*/
 
     public String doList(){
-        listProjet = WebappHelper.getManagerFactory().getProjetManager().getListProjet();
+        /* listProjet = WebappHelper.getManagerFactory().getProjetManager().getListProjet();*/
         return ActionSupport.SUCCESS;
     }
 
     public String doDetail(){
-        if(id == null){
+       /* if(id == null){
             this.addActionError("vous devez indiquer un id de projet");
         }else {
             try {
@@ -62,19 +57,19 @@ public class GestionProjetAction extends ActionSupport {
             } catch (NotFoundException e) {
                 this.addActionError("Projet non trouvé: "+id);
             }
-        }
+        }*/
         return(this.hasErrors()) ? ActionSupport.ERROR : ActionSupport.SUCCESS;
     }
 
     public String doCreate(){
         String vResult = ActionSupport.INPUT;
-        if(this.projet != null){
+        /*if(this.projet != null){
             if(this.projet.getResponsable() == null ||
             this.projet.getResponsable().getId()==null){
                 this.addFieldError("projet.responsable.id", "ne doit pas être vide");
             }else{
                 try {
-                    Utilisateur vUtilisateur = WebappHelper.getManagerFactory().getUtilisateurManager().getUtilisateur(this.projet.getResponsable().getId());
+                    Utilisateur vUtilisateur = WebappHelper.getManagerFactory().getManager().getMember(this.projet.getResponsable().getId());
                     this.projet.setResponsable(vUtilisateur);
                 } catch (NotFoundException e) {
                    this.addFieldError("projet.responsable.id", e.getMessage());
@@ -96,8 +91,8 @@ public class GestionProjetAction extends ActionSupport {
             }
         }
         if(vResult.equals(ActionSupport.INPUT)){
-            this.listUtilisateur = WebappHelper.getManagerFactory().getUtilisateurManager().getListUtilisateur();
-        }
+            this.listUtilisateur = WebappHelper.getManagerFactory().getManager().getListMember();
+        }*/
 
         return vResult;
     }
