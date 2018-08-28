@@ -38,4 +38,6 @@ public interface MemberManager {
      * @throws NotFoundException Si l'Utilisateur n'est pas trouvé
      */
     Member getMember(String pLogin, String pPassword) throws NotFoundException;
+
+    void addMember(Member member);
 }

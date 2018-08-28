@@ -9,7 +9,7 @@ public interface MemberDao {
 
     //CREATE
 
-    void addMember(String login, String pwd);
+    void addMember(Member member);
 
     //READ
     Member getmemberById(int i);

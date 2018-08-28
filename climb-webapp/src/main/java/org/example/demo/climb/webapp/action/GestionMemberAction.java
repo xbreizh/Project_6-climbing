@@ -1,9 +1,8 @@
 package org.example.demo.climb.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-import org.example.demo.climb.business.contract.ManagerFactory;
+import org.example.demo.climb.business.contract.manager.MemberManager;
 import org.example.demo.climb.model.bean.Member;
-import org.example.demo.climb.webapp.WebappHelper;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -14,7 +13,7 @@ public class GestionMemberAction extends ActionSupport {
     private Member member;
     private List<Member> listMember;
     @Inject
-    private ManagerFactory managerFactory;
+    private MemberManager memberManager;
 
 
     /*Getters / Setters*/
@@ -26,8 +25,12 @@ public class GestionMemberAction extends ActionSupport {
         return id;
     }
 
-    public Member getUtilisateur() {
+    public Member getMember() {
         return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
     }
 
     public void setId(Integer id) {
@@ -37,10 +40,24 @@ public class GestionMemberAction extends ActionSupport {
     /*Méthodes*/
 
     public String doList(){
-        listMember = WebappHelper.getManagerFactory().getMemberManager().getListMember();
+        listMember = memberManager.getListMember();
         return ActionSupport.SUCCESS;
     }
 
+    public String doCreate() {
+        String vResult = ActionSupport.INPUT;
+
+        if (this.member != null) {
+            member.setId(59);
+            memberManager.addMember(member);
+            vResult = ActionSupport.SUCCESS;
+
+        }
+        if (this.hasErrors()) {
+            vResult = ActionSupport.ERROR;
+        }
+        return vResult;
+    }
 
     // ==================== Méthodes ====================
     /**

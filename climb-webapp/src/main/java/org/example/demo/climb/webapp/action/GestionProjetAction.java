@@ -1,9 +1,11 @@
 package org.example.demo.climb.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import org.example.demo.climb.business.contract.ManagerFactory;
 import org.example.demo.climb.model.bean.member.Utilisateur;
 import org.example.demo.climb.model.bean.projet.Projet;
 
+import javax.inject.Inject;
 import java.util.List;
 
 public class GestionProjetAction extends ActionSupport {
@@ -15,6 +17,9 @@ public class GestionProjetAction extends ActionSupport {
     private Projet projet;
 
     private List<Utilisateur> listUtilisateur;
+
+    @Inject
+    private ManagerFactory managerFactory;
 
     /*Getters / Setters*/
     public List<Utilisateur> getListUtilisateur() {
@@ -44,7 +49,7 @@ public class GestionProjetAction extends ActionSupport {
     /*Methodes*/
 
     public String doList(){
-        /* listProjet = WebappHelper.getManagerFactory().getProjetManager().getListProjet();*/
+        /* listProjet = managerFactory.getProjetManager().getListProjet();*/
         return ActionSupport.SUCCESS;
     }
 
@@ -53,7 +58,7 @@ public class GestionProjetAction extends ActionSupport {
             this.addActionError("vous devez indiquer un id de projet");
         }else {
             try {
-                projet = WebappHelper.getManagerFactory().getProjetManager().getProjet(id);
+                projet = managerFactory.getProjetManager().getProjet(id);
             } catch (NotFoundException e) {
                 this.addActionError("Projet non trouvé: "+id);
             }
@@ -69,7 +74,7 @@ public class GestionProjetAction extends ActionSupport {
                 this.addFieldError("projet.responsable.id", "ne doit pas être vide");
             }else{
                 try {
-                    Utilisateur vUtilisateur = WebappHelper.getManagerFactory().getManager().getMember(this.projet.getResponsable().getId());
+                    Utilisateur vUtilisateur = managerFactory.getManager().getMember(this.projet.getResponsable().getId());
                     this.projet.setResponsable(vUtilisateur);
                 } catch (NotFoundException e) {
                    this.addFieldError("projet.responsable.id", e.getMessage());
@@ -79,7 +84,7 @@ public class GestionProjetAction extends ActionSupport {
 
             if(!this.hasErrors()){
                 try {
-                    WebappHelper.getManagerFactory().getProjetManager().insertProjet(this.projet);
+                    managerFactory.getProjetManager().insertProjet(this.projet);
                     vResult=ActionSupport.SUCCESS;
                     this.addActionMessage("Projet ajouté avec succès");
                 } catch (FunctionalException e) {
@@ -91,7 +96,7 @@ public class GestionProjetAction extends ActionSupport {
             }
         }
         if(vResult.equals(ActionSupport.INPUT)){
-            this.listUtilisateur = WebappHelper.getManagerFactory().getManager().getListMember();
+            this.listUtilisateur = managerFactory.getManager().getListMember();
         }*/
 
         return vResult;

@@ -10,10 +10,9 @@ import org.example.demo.climb.model.exception.NotFoundException;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.ArrayList;
 import java.util.List;
 
-@Named
+@Named("memberManager")
 public class MemberManagerImpl extends AbstractManager implements MemberManager {
 
     private Member vMember = null;
@@ -23,12 +22,12 @@ public class MemberManagerImpl extends AbstractManager implements MemberManager 
 
 
     @Override
-    public Member getMember(Integer pId) throws NotFoundException {
-        // Je n'ai pas codé la DAO, je mets juste un code pour le cours...
-        if (pId < 0) {
+    public Member getMember(Integer pId) {
+        memberDao.getmemberById(pId);
+        /*if (pId < 0) {
             throw new NotFoundException("Utilisateur non trouvé : ID=" + pId);
         }
-        vMember = newMember(pId);
+        vMember = newMember(pId);*/
         return vMember;
     }
 
@@ -36,7 +35,7 @@ public class MemberManagerImpl extends AbstractManager implements MemberManager 
     @Override
     public Member getMember(String pLogin, String pPassword) throws NotFoundException {
 
-        String name = memberDao.getmemberById(1).getName();
+        String name = memberDao.getmemberById(4).getLogin();
         /*String password = memberDao.getmemberById(1).*/
         if (StringUtils.equals(pLogin, name) && StringUtils.equals(pPassword, "joe")) {
             return newMember(0);
@@ -45,12 +44,17 @@ public class MemberManagerImpl extends AbstractManager implements MemberManager 
         throw new NotFoundException("Aucun utilisateur correspondant au couple login/password fourni.");
     }
 
+    @Override
+    public void addMember(Member member) {
+        memberDao.addMember(member);
+    }
+
 
     @Override
     public List<Member> getListMember() {
 
-        List<Member> vList = new ArrayList<>();
-        vList = memberDao.getMemberList();
+        /* List<Member> vList = new ArrayList<>();*/
+        List<Member> vList = memberDao.getMemberList();
         /*for (int vI = 0; vI < 9; vI++) {
             Member vMember = newMember(vI);
             vList.add(vMember);

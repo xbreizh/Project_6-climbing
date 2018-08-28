@@ -14,7 +14,18 @@ public class MemberDaoImpl implements MemberDao {
 
 
     @Override
-    public void addMember(String login, String pwd) {
+    public void addMember(Member member) {
+        Configuration conf = new Configuration().configure().addAnnotatedClass(Member.class);
+
+        SessionFactory sf = conf.buildSessionFactory();
+
+
+        Session session = sf.openSession();
+        session.beginTransaction();
+
+        session.save(member);
+        session.getTransaction().commit();
+        session.close();
 
     }
 
@@ -30,6 +41,7 @@ public class MemberDaoImpl implements MemberDao {
 
         Member stu = session.get(Member.class, i);
         session.getTransaction().commit();
+        session.flush();
         session.close();
 
         return stu;
@@ -52,6 +64,7 @@ public class MemberDaoImpl implements MemberDao {
 
         List<Member> stu = session.createQuery("from Member").list();
         session.getTransaction().commit();
+        session.flush();
         session.close();
 
         return stu;

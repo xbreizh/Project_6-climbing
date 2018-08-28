@@ -10,9 +10,9 @@
 
 <s:iterator value="listMember">
     <ul>
-        <li>id: <s:property value="id"/></li>
-        <li>nom: <s:property value="name"/></li>
-            <%--<li>prenom: <s:property value="prenom"/></li>--%>
+        <li>Id: <s:property value="id"/></li>
+        <li>Login: <s:property value="login"/></li>
+        <li>Description: <s:property value="description"/></li>
     </ul>
 </s:iterator>
 

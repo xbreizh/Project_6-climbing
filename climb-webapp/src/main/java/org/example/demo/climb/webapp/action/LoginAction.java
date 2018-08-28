@@ -6,7 +6,6 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.example.demo.climb.business.contract.ManagerFactory;
 import org.example.demo.climb.model.bean.Member;
 import org.example.demo.climb.model.exception.NotFoundException;
-import org.example.demo.climb.webapp.WebappHelper;
 
 import javax.inject.Inject;
 import java.util.Map;
@@ -18,6 +17,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
     private Map<String, Object> session;
     @Inject
     private ManagerFactory managerFactory;
+
     public String getLogin() {
         return login;
     }
@@ -41,7 +41,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
         String vResult=ActionSupport.INPUT;
         if(!StringUtils.isAllEmpty(login, pwd)){
             try {
-                Member vMember = WebappHelper.getManagerFactory().getMemberManager().getMember(login, pwd);
+                Member vMember = managerFactory.getMemberManager().getMember(login, pwd);
                 this.session.put("user", vMember);
                 vResult = ActionSupport.SUCCESS;
             } catch (NotFoundException e) {

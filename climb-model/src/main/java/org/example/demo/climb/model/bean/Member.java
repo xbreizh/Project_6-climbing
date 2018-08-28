@@ -11,8 +11,13 @@ public class Member {
 
     @Id
     private int id;
-    private String name;
+    private String login;
     private String password;
+    private String description;
+
+    public Member() {
+    }
+
     /*@ManyToMany(mappedBy = "studentList", fetch = FetchType.EAGER)*/
    /* private List<Laptop> laptop = new ArrayList<Laptop>();
 
@@ -32,21 +37,36 @@ public class Member {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getLogin() {
+        return login;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
     @Override
     public String toString() {
         return "Member{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }
