@@ -15,22 +15,33 @@ public class MemberDaoImpl implements MemberDao {
 
     @Override
     public void addMember(Member member) {
-        Configuration conf = new Configuration().configure().addAnnotatedClass(Member.class);
-
-        SessionFactory sf = conf.buildSessionFactory();
-
-
-        Session session = sf.openSession();
-        session.beginTransaction();
-
+        Session session = openTransaction();
         session.save(member);
-        session.getTransaction().commit();
-        session.close();
+        closeTransaction(session);
 
     }
 
     @Override
-    public Member getmemberById(int i) {
+    public Member getmemberById(int id) {
+        Session session = openTransaction();
+
+        Member member = session.get(Member.class, id);
+        closeTransaction(session);
+
+        return member;
+    }
+
+    @Override
+    public Member getMemberByLogin(String login) {
+        Session session = openTransaction();
+
+        Member member = session.get(Member.class, login);
+        closeTransaction(session);
+
+        return member;
+    }
+
+    public Session openTransaction() {
         Configuration conf = new Configuration().configure().addAnnotatedClass(Member.class);
 
         SessionFactory sf = conf.buildSessionFactory();
@@ -38,45 +49,42 @@ public class MemberDaoImpl implements MemberDao {
 
         Session session = sf.openSession();
         session.beginTransaction();
-
-        Member stu = session.get(Member.class, i);
-        session.getTransaction().commit();
-        session.flush();
-        session.close();
-
-        return stu;
-    }
-
-    @Override
-    public Member getMemberByName(String name) {
-        return null;
+        return session;
     }
 
     @Override
     public List<Member> getMemberList() {
-        Configuration conf = new Configuration().configure().addAnnotatedClass(Member.class);
-
-        SessionFactory sf = conf.buildSessionFactory();
-
-
-        Session session = sf.openSession();
-        session.beginTransaction();
+        Session session = openTransaction();
 
         List<Member> stu = session.createQuery("from Member").list();
-        session.getTransaction().commit();
-        session.flush();
-        session.close();
+        closeTransaction(session);
 
         return stu;
     }
 
+    public void closeTransaction(Session session) {
+        session.getTransaction().commit();
+        session.close();
+    }
+
     @Override
     public boolean updateMember(Member member) {
-        return false;
+        Session session = openTransaction();
+        Member m = session.get(Member.class, member.getLogin());
+        m.setPassword(member.getPassword());
+        m.setDescription(member.getDescription());
+        session.update(m);
+        closeTransaction(session);
+        return true;
     }
 
     @Override
     public boolean deleteMember(int i) {
+        return false;
+    }
+
+    @Override
+    public boolean connect(String login, String password) {
         return false;
     }
 }

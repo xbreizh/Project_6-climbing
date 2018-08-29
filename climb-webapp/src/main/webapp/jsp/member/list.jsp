@@ -13,8 +13,22 @@
         <li>Id: <s:property value="id"/></li>
         <li>Login: <s:property value="login"/></li>
         <li>Description: <s:property value="description"/></li>
+        <li>
+            <s:a action="member_detail">
+            <s:property value="nom"/>
+            <s:param name="id" value="id"/>
+            <s:param name="login" value="login"/>
+            <s:param name="description" value="description"/>
+            Details
+        </li>
+        </s:a>
     </ul>
 </s:iterator>
+
+<%--<s:a action="projet_detail" >
+    <s:property value="nom"/>
+    <s:param name="id" value="id"/>
+</s:a>--%>
 
 
 

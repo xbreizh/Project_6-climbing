@@ -13,7 +13,8 @@
         Responsable
         <s:a action="utilisateur_detail">
             <s:param name="id" value="responsable.id" />
-            <s:property value="responsable.prenom"/> <s:property value="responsable.nom"/>
+            <s:property value="responsable.prenom"/>
+            <s:property value="responsable.nom"/>
         </s:a>
     </li>
 </s:iterator>

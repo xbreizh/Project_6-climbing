@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -9,11 +8,21 @@
 <h1>Détails Utilisateur</h1>
 
 
-<ul>
-    <li>ID: <s:property value="utilisateur.id"/></li>
-    <li>nom: <s:property value="utilisateur.nom"/></li>
-    <li>prenom:  <s:property value="utilisateur.prenom"/></li>
-</ul>
+<lu>
+    <li>Id: <s:property value="id"/></li>
+    <li>Login: <s:property value="login"/></li>
+    <li>Description: <s:property value="description"/></li>
+    <li>
+        <s:a action="member_update">
+        <s:property value="nom"/>
+        <s:param name="id" value="id"/>
+        <s:param name="login" value="login"/>
+        <s:param name="description" value="description"/>
+        Details
+    </li>
+    </s:a>
+</lu>
+
 
 </body>
 </html>

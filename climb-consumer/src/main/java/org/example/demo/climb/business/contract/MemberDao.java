@@ -14,7 +14,7 @@ public interface MemberDao {
     //READ
     Member getmemberById(int i);
 
-    Member getMemberByName(String name);
+    Member getMemberByLogin(String name);
 
     List<Member> getMemberList();
 
@@ -25,6 +25,8 @@ public interface MemberDao {
     //DELETE
 
     boolean deleteMember(int i);
+
+    boolean connect(String login, String password);
 
 
 }

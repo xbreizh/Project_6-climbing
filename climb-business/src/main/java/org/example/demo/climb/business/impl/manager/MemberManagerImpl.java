@@ -6,7 +6,6 @@ import org.example.demo.climb.business.contract.MemberDao;
 import org.example.demo.climb.business.contract.manager.MemberManager;
 import org.example.demo.climb.model.bean.Member;
 import org.example.demo.climb.model.bean.member.Utilisateur;
-import org.example.demo.climb.model.exception.NotFoundException;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -31,22 +30,54 @@ public class MemberManagerImpl extends AbstractManager implements MemberManager 
         return vMember;
     }
 
+    @Override
+    public Member getMember(String pLogin) {
+        return null;
+    }
 
     @Override
-    public Member getMember(String pLogin, String pPassword) throws NotFoundException {
+    public boolean updateMember(Member member) {
+        try {
+            memberDao.updateMember(member);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean deleteMember(Member member) {
+        return false;
+    }
+
+
+    @Override
+    public boolean connect(String pLogin, String pPassword) {
 
         String name = memberDao.getmemberById(4).getLogin();
         /*String password = memberDao.getmemberById(1).*/
         if (StringUtils.equals(pLogin, name) && StringUtils.equals(pPassword, "joe")) {
-            return newMember(0);
+            return true;
+        } else {
+            /*System.out.println("plok: "+ u.getNom());*/
+            System.out.println("Aucun utilisateur correspondant au couple login/password fourni.");
+            return false;
         }
-        /*System.out.println("plok: "+ u.getNom());*/
-        throw new NotFoundException("Aucun utilisateur correspondant au couple login/password fourni.");
     }
 
     @Override
-    public void addMember(Member member) {
-        memberDao.addMember(member);
+    public boolean disconnect(String login) {
+        return false;
+    }
+
+    @Override
+    public boolean addMember(Member member) {
+        try {
+            memberDao.addMember(member);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
 
