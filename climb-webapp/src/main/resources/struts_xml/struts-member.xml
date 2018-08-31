@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+
+    <package name="Member" extends="struts-default">
+
+        <!-- &lt;!&ndash;Action par défaut&ndash;&gt;
+         <default-action-ref name="index"/>
+
+         &lt;!&ndash;Resultats Globaux&ndash;&gt;
+         <global-results>
+             <result name="error">/jsp/error.jsp</result>
+         </global-results>
+
+         &lt;!&ndash;Action index&ndash;&gt;
+         <action name="index">
+             <result>/jsp/index.jsp</result>
+         </action>-->
+
+
+        <!--Action listant les utilisateurs-->
+        <action name="member_list"
+                class="org.example.demo.climb.webapp.action.GestionMemberAction"
+                method="doList">
+            <result>/jsp/member/list.jsp</result>
+
+        </action>
+
+        <!--Detail du membre-->
+        <action name="member_detail"
+                class="org.example.demo.climb.webapp.action.GestionMemberAction"
+                method="doDetail">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+
+            <result name="success">jsp/member/detail.jsp</result>
+        </action>
+
+
+        <!--Création utilisateurs-->
+        <action name="member_new"
+                class="org.example.demo.climb.webapp.action.GestionMemberAction"
+                method="doCreate">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+            <result name="input">/jsp/member/new.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">member_list</param>
+            </result>
+        </action>
+
+        <!--Modification Utilisateur-->
+        <action name="member_update"
+                class="org.example.demo.climb.webapp.action.GestionMemberAction"
+                method="doUpdate">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+            <result name="input">/jsp/member/update.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">member_list</param>
+            </result>
+        </action>
+
+        <!--Edition Membre-->
+        <action name="member_edit"
+                class="org.example.demo.climb.webapp.action.GestionMemberAction"
+                method="doEdit">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+            <result name="success">/jsp/member/update.jsp</result>
+        </action>
+
+
+        <!--Suppression du membre-->
+        <action name="member_delete"
+                class="org.example.demo.climb.webapp.action.GestionMemberAction"
+                method="doDelete">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+
+            <result name="success" type="redirectAction">
+                <param name="actionName">member_list</param>
+            </result>
+        </action>
+
+        <!--Action listant les détails d'un projet-->
+        <!-- <action name="projet_detail"
+        class="org.example.demo.climb.webapp.action.GestionProjetAction"
+        method="doDetail">
+        <interceptor-ref name="store">
+        <param name="operationMode">RETRIEVE</param>
+    </interceptor-ref>
+        <interceptor-ref name="defaultStack" />
+
+        <result name="success">jsp/projet/detail.jsp</result>
+    </action>-->
+
+
+        <!--Action listant les détails d'un projet-->
+        <!-- <action name="projet_detail"
+        class="org.example.demo.climb.webapp.action.GestionProjetAction"
+        method="doDetail">
+        <interceptor-ref name="store">
+        <param name="operationMode">RETRIEVE</param>
+    </interceptor-ref>
+        <interceptor-ref name="defaultStack" />
+
+        <result name="success">jsp/projet/detail.jsp</result>
+    </action>-->
+
+
+        <!--Action listant les projets-->
+        <!--<action name="projet_list"
+        class="org.example.demo.climb.webapp.action.GestionProjetAction"
+        method="doList">
+        <result>jsp/projet/list.jsp</result>
+
+    </action>-->
+
+
+        <!--Action permettant de créer un projet-->
+        <!--        <action name="projet_new"
+                        class="org.example.demo.climb.webapp.action.GestionProjetAction"
+                        method="doCreate">
+                    <interceptor-ref name="store">
+                        <param name="operationMode">RETRIEVE</param>
+                    </interceptor-ref>
+                    <interceptor-ref name="defaultStack"/>
+
+                    <result name="input">/jsp/projet/new.jsp</result>
+                    <result name="success" type="redirectAction">
+                        <param name="actionName">projet_detail</param>
+                        <param name="id">${projet.id}</param>
+
+                    </result>
+                </action>-->
+        <!-- Action listant les détails d'un utilisateur
+          <action name="utilisateur_detail"
+                  class="org.example.demo.climb.webapp.action.GestionMemberAction"
+                  method="doDetail">
+              <result name="success">jsp/utilisateur/detail.jsp</result>
+          </action>-->
+
+        <!--Actions Login / Logout-->
+        <action name="login"
+                class="org.example.demo.climb.webapp.action.LoginAction"
+                method="doLogin">
+            <result name="input">/jsp/login.jsp</result>
+            <result name="success" type="redirectAction">index</result>
+        </action>
+        <action name="logout" class="org.example.demo.climb.webapp.action.LoginAction"
+                method="doLogout">
+            <result type="redirectAction">index</result>
+        </action>
+
+    </package>
+    <include file="struts_xml/struts-default.xml"/>
+</struts>
