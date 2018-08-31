@@ -29,7 +29,7 @@ public interface MemberManager {
 
     //Delete
 
-    boolean deleteMember(Member member);
+    boolean deleteMember(int id);
 
     //Connect
 

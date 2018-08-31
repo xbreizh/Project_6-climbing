@@ -23,6 +23,7 @@ public class MemberDaoImpl implements MemberDao {
 
     @Override
     public Member getmemberById(int id) {
+
         Session session = openTransaction();
 
         Member member = session.get(Member.class, id);
@@ -41,7 +42,7 @@ public class MemberDaoImpl implements MemberDao {
         return member;
     }
 
-    public Session openTransaction() {
+    private Session openTransaction() {
         Configuration conf = new Configuration().configure().addAnnotatedClass(Member.class);
 
         SessionFactory sf = conf.buildSessionFactory();
@@ -62,25 +63,40 @@ public class MemberDaoImpl implements MemberDao {
         return stu;
     }
 
-    public void closeTransaction(Session session) {
+    private void closeTransaction(Session session) {
         session.getTransaction().commit();
         session.close();
     }
 
     @Override
     public boolean updateMember(Member member) {
+        System.out.println("DAO, member received: " + member);
         Session session = openTransaction();
-        Member m = session.get(Member.class, member.getLogin());
+        // Getting member from the dbb
+        Member m = session.get(Member.class, member.getId());
+        System.out.println("DAO, member from dbb: " + m);
+
+        session.evict(m);
         m.setPassword(member.getPassword());
         m.setDescription(member.getDescription());
+        System.out.println("DAO, member updated: " + m);
+
         session.update(m);
         closeTransaction(session);
         return true;
     }
 
     @Override
-    public boolean deleteMember(int i) {
-        return false;
+    public boolean deleteMember(int id) {
+        System.out.println("DAO, member id received: " + id);
+        Session session = openTransaction();
+        Member m = session.get(Member.class, id);
+        System.out.println("DAO, member from dbb: " + m);
+        session.delete(m);
+        System.out.println("Member has been deleted");
+        closeTransaction(session);
+
+        return true;
     }
 
     @Override

@@ -1,10 +1,9 @@
-
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
-<head>
-    <%@include file="../_include/head.jsp"%>
-</head>
+
+<%@include file="../_include/head.jsp" %>
+
 <body>
 <h1>Liste Membres</h1>
 
@@ -14,23 +13,12 @@
         <li>Login: <s:property value="login"/></li>
         <li>Description: <s:property value="description"/></li>
         <li>
-            <s:a action="member_detail">
-            <s:property value="nom"/>
-            <s:param name="id" value="id"/>
-            <s:param name="login" value="login"/>
-            <s:param name="description" value="description"/>
-            Details
+            <s:a action="member_detail">Details
+                <s:param name="id" value="id"/>
+            </s:a>
         </li>
-        </s:a>
     </ul>
 </s:iterator>
-
-<%--<s:a action="projet_detail" >
-    <s:property value="nom"/>
-    <s:param name="id" value="id"/>
-</s:a>--%>
-
-
 
 
 </body>

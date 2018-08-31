@@ -12,7 +12,7 @@ public interface MemberDao {
     void addMember(Member member);
 
     //READ
-    Member getmemberById(int i);
+    Member getmemberById(int id);
 
     Member getMemberByLogin(String name);
 
@@ -24,7 +24,7 @@ public interface MemberDao {
 
     //DELETE
 
-    boolean deleteMember(int i);
+    boolean deleteMember(int id);
 
     boolean connect(String login, String password);
 

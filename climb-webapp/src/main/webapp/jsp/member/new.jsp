@@ -1,8 +1,10 @@
-<%@taglib prefix="s" uri="/struts-tags" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 
-<%@include file="../_include/header.jsp" %>
-<meta charset="UTF-8">
+<html>
+
+<%@include file="../_include/head.jsp" %>
+
+<body>
 
 
 <h2>Création d'un membre</h2>

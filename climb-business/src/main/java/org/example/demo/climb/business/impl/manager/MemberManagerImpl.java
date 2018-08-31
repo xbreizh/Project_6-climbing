@@ -22,7 +22,8 @@ public class MemberManagerImpl extends AbstractManager implements MemberManager 
 
     @Override
     public Member getMember(Integer pId) {
-        memberDao.getmemberById(pId);
+        vMember = memberDao.getmemberById(pId);
+        System.out.println("Member mgmt :" + vMember);
         /*if (pId < 0) {
             throw new NotFoundException("Utilisateur non trouvé : ID=" + pId);
         }
@@ -38,6 +39,7 @@ public class MemberManagerImpl extends AbstractManager implements MemberManager 
     @Override
     public boolean updateMember(Member member) {
         try {
+            System.out.println("member mgmt: " + member);
             memberDao.updateMember(member);
         } catch (Exception e) {
             return false;
@@ -46,8 +48,14 @@ public class MemberManagerImpl extends AbstractManager implements MemberManager 
     }
 
     @Override
-    public boolean deleteMember(Member member) {
-        return false;
+    public boolean deleteMember(int id) {
+        try {
+            System.out.println("member mgmt id: " + id);
+            memberDao.deleteMember(id);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
 
@@ -83,13 +91,13 @@ public class MemberManagerImpl extends AbstractManager implements MemberManager 
 
     @Override
     public List<Member> getListMember() {
-
         /* List<Member> vList = new ArrayList<>();*/
         List<Member> vList = memberDao.getMemberList();
         /*for (int vI = 0; vI < 9; vI++) {
             Member vMember = newMember(vI);
             vList.add(vMember);
         }*/
+        System.out.println("Size of the list: " + vList.size());
         return vList;
     }
 
