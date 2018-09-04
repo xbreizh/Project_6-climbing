@@ -1,6 +1,6 @@
 package org.example.demo.climb.business.contract.manager;
 
-import org.example.demo.climb.model.bean.Member;
+import org.example.demo.climb.model.bean.member.Member;
 import org.example.demo.climb.model.exception.NotFoundException;
 
 import java.util.List;

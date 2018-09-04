@@ -4,7 +4,7 @@ package org.example.demo.climb.business.impl.manager;
 import org.apache.commons.lang3.StringUtils;
 import org.example.demo.climb.business.contract.MemberDao;
 import org.example.demo.climb.business.contract.manager.MemberManager;
-import org.example.demo.climb.model.bean.Member;
+import org.example.demo.climb.model.bean.member.Member;
 import org.example.demo.climb.model.bean.member.Utilisateur;
 
 import javax.inject.Inject;

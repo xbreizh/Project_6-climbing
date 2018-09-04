@@ -1,16 +1,21 @@
 package org.example.demo.climb.business.impl;
 
 import org.example.demo.climb.business.contract.MemberDao;
-import org.example.demo.climb.model.bean.Member;
+import org.example.demo.climb.model.bean.TransactionCreation;
+import org.example.demo.climb.model.bean.member.Member;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 
 @Named
 public class MemberDaoImpl implements MemberDao {
+
+    @Inject
+    private TransactionCreation tx;
 
 
     @Override

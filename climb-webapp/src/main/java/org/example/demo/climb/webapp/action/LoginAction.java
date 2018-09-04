@@ -1,8 +1,11 @@
 package org.example.demo.climb.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.interceptor.SessionAware;
 import org.example.demo.climb.business.contract.ManagerFactory;
+import org.example.demo.climb.model.bean.member.Member;
+import org.example.demo.climb.model.exception.NotFoundException;
 
 import javax.inject.Inject;
 import java.util.Map;
@@ -36,7 +39,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
     public String doLogin(){
         String vResult=ActionSupport.INPUT;
-        /*if(!StringUtils.isAllEmpty(login, pwd)){
+        if (!StringUtils.isAllEmpty(login, pwd)) {
             try {
                 Member vMember = managerFactory.getMemberManager().getMember(login);
                 this.session.put("user", vMember);
@@ -44,7 +47,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
             } catch (NotFoundException e) {
                 this.addActionError("Identifiant ou mot de passe invalide");
             }
-        }*/
+        }
         return vResult;
     }
 

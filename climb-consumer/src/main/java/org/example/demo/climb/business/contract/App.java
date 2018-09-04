@@ -1,32 +1,27 @@
 package org.example.demo.climb.business.contract;
 
 
-import org.example.demo.climb.model.bean.Member;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import org.example.demo.climb.model.bean.Zone;
 
-import java.util.List;
 
 public class App {
 
     public static void main(String[] args) {
 
-        Configuration conf = new Configuration().configure().addAnnotatedClass(Member.class);
+        ZoneDaoImpl dao = new ZoneDaoImpl();
 
-        SessionFactory sf = conf.buildSessionFactory();
+        Zone zone = new Zone();
+        zone.setId(44);
+        zone.setName("frfrfr");
+        zone.setCountry("Germany");
+        zone.setRegion("frfrf");
+        zone.setType("varappe");
+
+        /*dao.delete(44);*/
+        Zone z = (Zone) dao.findOne(33);
+        dao.delete(z);
 
 
-        Session session = sf.openSession();
-        session.beginTransaction();
-
-        List<Member> stu = session.createQuery("from Member").list();
-        session.getTransaction().commit();
-        session.close();
-
-        for (Member m : stu) {
-            System.out.println(m);
-        }
     }
 
 

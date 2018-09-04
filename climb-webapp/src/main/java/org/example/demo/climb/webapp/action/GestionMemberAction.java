@@ -2,7 +2,7 @@ package org.example.demo.climb.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.example.demo.climb.business.contract.manager.MemberManager;
-import org.example.demo.climb.model.bean.Member;
+import org.example.demo.climb.model.bean.member.Member;
 import org.example.demo.climb.model.exception.NotFoundException;
 
 import javax.inject.Inject;
@@ -10,13 +10,15 @@ import java.util.List;
 
 public class GestionMemberAction extends ActionSupport {
 
-    //
     private Member member;
     private List<Member> listMember;
+    private int id;
     @Inject
     private MemberManager memberManager;
+
+    // Getters - Setters
     /* private String login;*/
-    private int id;
+
    /* private String password;
     private String description;
 
@@ -28,6 +30,13 @@ public class GestionMemberAction extends ActionSupport {
     public void setPassword(String password) {
         this.password = password;
     }*/
+   public Member getMember() {
+       return member;
+   }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
 
     public int getId() {
         return id;
@@ -35,6 +44,10 @@ public class GestionMemberAction extends ActionSupport {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public List<Member> getListMember() {
+        return listMember;
     }/*
 
     public String getDescription() {
@@ -54,12 +67,10 @@ public class GestionMemberAction extends ActionSupport {
     }
     *//*Getters / Setters*/
 
-    public List<Member> getListMember() {
-        return listMember;
-    }
     /*public Integer getId() {
         return id;
     }*/
+
     public String doDetail() throws NotFoundException {
         String vResult = ActionSupport.SUCCESS;
         System.out.println("Member mgmt: " + member);
@@ -73,7 +84,6 @@ public class GestionMemberAction extends ActionSupport {
         }
         return vResult;
     }
-
     public String doEdit() {
         String vResult = ActionSupport.SUCCESS;
         try {
@@ -85,13 +95,6 @@ public class GestionMemberAction extends ActionSupport {
             vResult = ActionSupport.ERROR;
         }
         return vResult;
-    }
-    public Member getMember() {
-        return member;
-    }
-
-    public void setMember(Member member) {
-        this.member = member;
     }
 
 

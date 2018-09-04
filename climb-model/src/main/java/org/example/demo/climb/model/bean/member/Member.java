@@ -1,7 +1,9 @@
-package org.example.demo.climb.model.bean;
+package org.example.demo.climb.model.bean.member;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 /*@Table(name="student")*/
@@ -11,8 +13,16 @@ public class Member {
 
     @Id
     private int id;
+
+    @NotNull
+    @Size(min = 3, max = 100)
     private String login;
+
+    @NotNull
+    @Size(min = 5, max = 100)
     private String password;
+    @NotNull
+    @Size(min = 1, max = 1000)
     private String description;
 
     public Member() {
@@ -60,6 +70,7 @@ public class Member {
     public void setDescription(String description) {
         this.description = description;
     }
+
     @Override
     public String toString() {
         return "Member{" +

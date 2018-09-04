@@ -6,75 +6,71 @@
 
 <struts>
 
-
-    <package name="Member" extends="struts-default">
-
+    <package name="Zone" extends="struts-default">
 
         <!-- CREATE-->
-        <action name="member_new"
-                class="org.example.demo.climb.webapp.action.GestionMemberAction"
+        <action name="zone_new"
+                class="org.example.demo.climb.webapp.action.GestionZoneAction"
                 method="doCreate">
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
-            <result name="input">/jsp/member/form/new.jsp</result>
+            <result name="input">/jsp/zone/form/new.jsp</result>
             <result name="success" type="redirectAction">
-                <param name="actionName">member_list</param>
+                <param name="actionName">zone_list</param>
             </result>
         </action>
-
-
         <!-- READ ALL -->
-        <action name="member_list"
-                class="org.example.demo.climb.webapp.action.GestionMemberAction"
+        <action name="zone_list"
+                class="org.example.demo.climb.webapp.action.GestionZoneAction"
                 method="doList">
-            <result>/jsp/member/list.jsp</result>
+            <result>/jsp/zone/list.jsp</result>
 
         </action>
 
         <!--READ ONE -->
-        <action name="member_detail"
-                class="org.example.demo.climb.webapp.action.GestionMemberAction"
+        <action name="zone_detail"
+                class="org.example.demo.climb.webapp.action.GestionZoneAction"
                 method="doDetail">
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
 
-            <result name="success">jsp/member/detail.jsp</result>
+            <result name="success">jsp/zone/detail.jsp</result>
         </action>
 
 
         <!-- UPDATE -->
-        <action name="member_update"
-                class="org.example.demo.climb.webapp.action.GestionMemberAction"
+        <action name="zone_update"
+                class="org.example.demo.climb.webapp.action.GestionZoneAction"
                 method="doUpdate">
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
-            <result name="input">/jsp/member/form/update.jsp</result>
+            <result name="input">/jsp/zone/form/update.jsp</result>
             <result name="success" type="redirectAction">
-                <param name="actionName">member_list</param>
+                <param name="actionName">zone_list</param>
             </result>
         </action>
 
         <!-- EDIT -->
-        <action name="member_edit"
-                class="org.example.demo.climb.webapp.action.GestionMemberAction"
+        <action name="zone_edit"
+                class="org.example.demo.climb.webapp.action.GestionZoneAction"
                 method="doEdit">
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
-            <result name="success">/jsp/member/form/update.jsp</result>
+            <result name="success">/jsp/zone/form/update.jsp</result>
         </action>
 
 
         <!-- DELETE -->
-        <action name="member_delete"
-                class="org.example.demo.climb.webapp.action.GestionMemberAction"
+        <action name="zone_delete"
+                class="org.example.demo.climb.webapp.action.GestionZoneAction"
                 method="doDelete">
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
@@ -82,11 +78,10 @@
             <interceptor-ref name="defaultStack"/>
 
             <result name="success" type="redirectAction">
-                <param name="actionName">member_list</param>
+                <param name="actionName">zone_list</param>
             </result>
         </action>
 
 
     </package>
-    <include file="struts_xml/struts-default.xml"/>
 </struts>
