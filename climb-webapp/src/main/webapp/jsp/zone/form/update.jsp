@@ -1,9 +1,8 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>Update zone</title>
-</head>
+
+<%@include file="../../_include/head.jsp" %>
+
 <body>
 
 <s:form action="zone_update">

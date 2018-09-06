@@ -6,9 +6,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-/*@Table(name="student")*/
-/*@Cacheable
-@Cache(usage= CacheConcurrencyStrategy.READ_ONLY)*/
+
 public class Member {
 
     @Id

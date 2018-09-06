@@ -14,8 +14,8 @@ Création<br>
 <s:a action="member_new">
     <s:text name="nav.newMember"/>
 </s:a><br>
-<s:a action="topo_new">
-    <s:text name="nav.listTopo"/>
+<s:a action="spot_new">
+    <s:text name="nav.newSpot"/>
 </s:a><br>
 <s:a action="zone_new">
     <s:text name="nav.newZone"/>
@@ -29,21 +29,21 @@ Listes<br>
 <s:a action="zone_list">
     <s:text name="nav.listZone"/>
 </s:a><br>
-<s:a action="topo_list">
-    <s:text name="nav.listTopo"/>
+<s:a action="spot_list">
+    <s:text name="nav.listSpot"/>
 </s:a><br><br><br>
 
 Détails<br>
 
-<s:a action="member_details">
+<s:a action="member_detail">
     <s:text name="nav.detailMember"/>
 </s:a><br>
-<s:a action="zone_details">
+<s:a action="zone_detail">
     <s:text name="nav.detailZone"/>
 </s:a><br>
 
-<s:a action="topo_details">
-    <s:text name="nav.detailTopo"/>
+<s:a action="spot_detail">
+    <s:text name="nav.detailSpot"/>
 </s:a><br>
 
 </body>

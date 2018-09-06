@@ -6,6 +6,7 @@
         <fileset id="fileset" name="Spring Application Context" removed="false">
           <file>file://$MODULE_DIR$/src/main/resources/org/example/demo/climb/webapp/webappContext.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/bootstrapContext.xml</file>
+          <file>file://$MODULE_DIR$/../climb-consumer/src/main/resources/applicationContext.xml</file>
         </fileset>
       </configuration>
     </facet>
@@ -30,6 +31,7 @@
             <file>file://$MODULE_DIR$/src/main/resources/struts_xml/struts-zone.xml</file>
             <file>file://$MODULE_DIR$/src/main/resources/struts_xml/struts-default.xml</file>
             <file>file://$MODULE_DIR$/src/main/resources/struts_xml/struts-session.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/struts_xml/struts-spot.xml</file>
           </fileset>
           <propertiesKeys disabled="false" />
         </configuration>
@@ -48,17 +50,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="climb-business" />
     <orderEntry type="module" module-name="climb-consumer" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.0.8.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-jpa:1.0.0.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons-core:1.1.0.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-orm:5.0.8.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:5.0.8.RELEASE" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: org.slf4j:jcl-over-slf4j:1.6.1" level="project" />
-    <orderEntry type="library" name="Maven: org.aspectj:aspectjrt:1.6.8" level="project" />
-    <orderEntry type="library" name="Maven: com.googlecode.genericdao:dao-hibernate:1.2.0" level="project" />
-    <orderEntry type="library" name="Maven: com.googlecode.genericdao:dao:1.2.0" level="project" />
-    <orderEntry type="library" name="Maven: com.googlecode.genericdao:search:1.2.0" level="project" />
-    <orderEntry type="library" name="Maven: com.googlecode.genericdao:search-hibernate:1.2.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.bval:bval-jsr:1.1.2" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.bval:bval-core:1.1.2" level="project" />
     <orderEntry type="library" name="Maven: org.postgresql:postgresql:42.2.4" level="project" />
@@ -78,6 +69,10 @@
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.6.1" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate:hibernate-ehcache:5.3.5.Final" level="project" />
     <orderEntry type="library" name="Maven: net.sf.ehcache:ehcache:2.10.3" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.0.8.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-context:5.0.8.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.0.8.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.0.8.RELEASE" level="project" />
     <orderEntry type="module" module-name="climb-model" />
     <orderEntry type="library" name="Maven: javax.validation:validation-api:1.1.0.Final" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final" level="project" />
@@ -90,9 +85,6 @@
     <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.2" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.logging.log4j:log4j-core:2.9.1" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.logging.log4j:log4j-jcl:2.9.1" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-context:5.0.8.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.0.8.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.0.8.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: javax.annotation:javax.annotation-api:1.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:javax.servlet-api:3.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-web:5.0.8.RELEASE" level="project" />

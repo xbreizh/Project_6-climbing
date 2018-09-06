@@ -1,22 +1,22 @@
 package org.example.demo.climb.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-import org.example.demo.climb.consumer.contract.manager.ZoneManager;
-import org.example.demo.climb.model.bean.Zone;
+import org.example.demo.climb.consumer.contract.manager.SpotManager;
+import org.example.demo.climb.model.bean.climb.Spot;
 import org.example.demo.climb.model.exception.NotFoundException;
 
 import javax.inject.Inject;
 import java.util.List;
 
-public class GestionZoneAction extends ActionSupport {
+public class GestionSpotAction extends ActionSupport {
 
-    private Zone zone;
-    private List<Zone> listZone;
+    private Spot spot;
+    private List<Spot> listSpot;
 
     private int id;
 
     @Inject
-    private ZoneManager zoneManager;
+    private SpotManager spotManager;
 
     // Getters & Setters
 
@@ -28,30 +28,30 @@ public class GestionZoneAction extends ActionSupport {
         this.id = id;
     }
 
-    public Zone getZone() {
-        return zone;
+    public Spot getSpot() {
+        return spot;
     }
 
-    public void setZone(Zone zone) {
-        this.zone = zone;
+    public void setSpot(Spot spot) {
+        this.spot = spot;
     }
 
-    public List<Zone> getListZone() {
-        return listZone;
+    public List<Spot> getListSpot() {
+        return listSpot;
     }
 
-    public void setListZone(List<Zone> listZone) {
-        this.listZone = listZone;
+    public void setListSpot(List<Spot> listSpot) {
+        this.listSpot = listSpot;
     }
 
 
     public String doCreate() {
         String vResult = ActionSupport.INPUT;
 
-        if (this.zone != null) {
-            zoneManager.addZone(zone);
+        if (this.spot != null) {
+            spotManager.addSpot(spot);
             vResult = ActionSupport.SUCCESS;
-            System.out.println("Action: " + zone);
+            System.out.println("Action: " + spot);
         }
         if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;
@@ -61,11 +61,11 @@ public class GestionZoneAction extends ActionSupport {
 
     public String doDetail() throws NotFoundException {
         String vResult = ActionSupport.SUCCESS;
-        System.out.println("Zone mgmt: " + zone);
+        System.out.println("Spot mgmt: " + spot);
         System.out.println("Id: " + id);
 
-        zone = zoneManager.getZone(id);
-        System.out.println("Member from doDetail: " + zone);
+        spot = spotManager.getSpot(id);
+        System.out.println("Member from doDetail: " + spot);
 
         if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;
@@ -76,7 +76,8 @@ public class GestionZoneAction extends ActionSupport {
     public String doEdit() {
         String vResult = ActionSupport.SUCCESS;
         try {
-            zone = zoneManager.getZone(id);
+            spot = spotManager.getSpot(id);
+            System.out.println("doedit: " + id);
         } catch (NotFoundException e) {
             this.addActionError(e.toString());
         }
@@ -87,23 +88,23 @@ public class GestionZoneAction extends ActionSupport {
     }
 
     public String doList() {
-        System.out.println("zone");
-        listZone = zoneManager.getListZone();
-        System.out.println("size: " + listZone.size());
+        System.out.println("spot");
+        listSpot = spotManager.getListSpot();
+        System.out.println("size: " + listSpot.size());
         return ActionSupport.SUCCESS;
     }
 
     public String doUpdate() {
         String vResult = ActionSupport.INPUT;
 
-        if (this.zone != null) {
-            zoneManager.updateZone(zone);
+        if (this.spot != null) {
+            spotManager.updateSpot(spot);
             vResult = ActionSupport.SUCCESS;
-            System.out.println("Zone: " + zone);
+            System.out.println("Spot: " + spot);
 
         }
         if (this.hasErrors()) {
-            System.out.println("Zone is null");
+            System.out.println("Spot is null");
             vResult = ActionSupport.ERROR;
         }
         return vResult;
@@ -114,7 +115,7 @@ public class GestionZoneAction extends ActionSupport {
         System.out.println("delete id: " + id);
 
 
-        zoneManager.deleteZone(id);
+        spotManager.deleteSpot(id);
 
         if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;
@@ -122,6 +123,5 @@ public class GestionZoneAction extends ActionSupport {
         return vResult;
 
     }
-
 
 }
