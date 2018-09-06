@@ -5,7 +5,7 @@
 
 <body>
 
-<s:form action="spot_update">
+<s:form action="spot_update" method="POST">
     <%--Id: <s:property value="spot.id"/><br>--%>
 
     <s:hidden name="spot.id" value="%{id}"/>

@@ -17,21 +17,7 @@ public class GestionMemberAction extends ActionSupport {
     @Inject
     private MemberManager memberManager;
 
-    // Getters - Setters
-    /* private String login;*/
-
-   /* private String password;
-    private String description;
-
-    // Getters and Setters
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }*/
-   public Member getMember() {
+    public Member getMember() {
        return member;
    }
 
@@ -49,36 +35,13 @@ public class GestionMemberAction extends ActionSupport {
 
     public List<Member> getListMember() {
         return listMember;
-    }/*
-
-    public String getDescription() {
-        return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-    *//*Getters / Setters*/
-
-    /*public Integer getId() {
-        return id;
-    }*/
+    /* Méthodes */
 
     public String doDetail() throws NotFoundException {
         String vResult = ActionSupport.SUCCESS;
-        System.out.println("Member mgmt: " + member);
-        System.out.println("Id: " + id);
-
         member = memberManager.getMember(id);
-        System.out.println("Member from doDetail: " + member);
 
         if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;
@@ -86,24 +49,10 @@ public class GestionMemberAction extends ActionSupport {
         return vResult;
     }
     public String doEdit() {
-        String vResult = ActionSupport.SUCCESS;
-        try {
-            member = memberManager.getMember(id);
-        } catch (NotFoundException e) {
-            this.addActionError(e.toString());
-        }
-        if (this.hasErrors()) {
-            vResult = ActionSupport.ERROR;
-        }
-        return vResult;
+
+        return ActionSupport.SUCCESS;
     }
 
-
-    /*public void setId(Integer id) {
-        this.id = id;
-    }*/
-
-    /* Méthodes */
 
     public String doCreate() {
         String vResult = ActionSupport.INPUT;
@@ -141,7 +90,6 @@ public class GestionMemberAction extends ActionSupport {
 
     public String doDelete() {
         String vResult = ActionSupport.SUCCESS;
-        System.out.println("delete id: " + id);
 
 
         memberManager.deleteMember(id);
@@ -156,19 +104,4 @@ public class GestionMemberAction extends ActionSupport {
 
 
 
-
-    /*public String doDetail() {
-        if (id == null) {
-            this.addActionError(getText("error.user.missing.id"));
-        } else {
-            try {
-                member = managerFactory.getManager().getMember(id);
-            } catch (NotFoundException pE) {
-                this.addActionError(getText("error.user.notfound", Collections.singletonList(id)) );
-            }
-        }
-
-        return (this.hasErrors()) ? ActionSupport.ERROR : ActionSupport.SUCCESS;
-
-    }*/
 }

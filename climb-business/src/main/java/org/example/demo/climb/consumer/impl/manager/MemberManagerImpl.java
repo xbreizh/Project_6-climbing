@@ -48,6 +48,11 @@ public class MemberManagerImpl extends AbstractManager implements MemberManager 
     @Override
     public void updateMember(Member member) {
         setDaoClass();
+
+        int id = member.getId();
+        Member m = (Member) dao.getById(id);
+        member.setLogin(m.getLogin());
+        dao.update(member);
     }
 
     @Override

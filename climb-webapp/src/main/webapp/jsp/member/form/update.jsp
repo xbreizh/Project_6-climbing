@@ -6,7 +6,7 @@
 
 <body>
 
-<s:form action="member_update">
+<s:form action="member_update" method="POST">
     <%--Id: <s:property value="member.id"/><br>--%>
     id: <s:property value="%{id}"/>
     <s:hidden name="member.id" value="%{id}"/>

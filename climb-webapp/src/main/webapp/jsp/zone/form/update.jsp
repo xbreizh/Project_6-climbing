@@ -5,7 +5,7 @@
 
 <body>
 
-<s:form action="zone_update">
+<s:form action="zone_update" method="POST">
     <%--Id: <s:property value="zone.id"/><br>--%>
 
     <s:hidden name="zone.id" value="%{id}"/>

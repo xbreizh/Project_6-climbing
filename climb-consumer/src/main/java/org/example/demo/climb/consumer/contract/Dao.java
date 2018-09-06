@@ -17,7 +17,7 @@ public interface Dao {
 
     void delete(int id);
 
-    void update(Object o, int id);
+    void update(Object o);
 
 
 }

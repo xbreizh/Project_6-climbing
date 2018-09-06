@@ -65,11 +65,12 @@ public class DaoImpl implements Dao {
     }
 
     @Override
-    public void update(Object o, int id) {
+    public void update(Object o) {
         transactionManager.setCl(cl);
         session = transactionManager.createTransaction();
         tx = session.beginTransaction();
-        System.out.println(o.getClass().getModifiers());
+        session.saveOrUpdate(cl.getName(), o);
+        tx.commit();
 
     }
 }
