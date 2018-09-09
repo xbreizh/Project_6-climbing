@@ -6,7 +6,6 @@
         <fileset id="fileset" name="Spring Application Context" removed="false">
           <file>file://$MODULE_DIR$/src/main/resources/org/example/demo/climb/webapp/webappContext.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/bootstrapContext.xml</file>
-          <file>file://$MODULE_DIR$/../climb-consumer/src/main/resources/applicationContext.xml</file>
         </fileset>
       </configuration>
     </facet>

@@ -1,7 +1,7 @@
 package org.example.demo.climb.consumer.impl.manager;
 
 
-import org.example.demo.climb.consumer.contract.Dao;
+import org.example.demo.climb.consumer.contract.MemberDao;
 import org.example.demo.climb.consumer.contract.manager.MemberManager;
 import org.example.demo.climb.model.bean.member.Member;
 
@@ -14,19 +14,16 @@ public class MemberManagerImpl extends AbstractManager implements MemberManager 
 
     private Member member = null;
     @Inject
-    private Dao dao;
-    private Class cl = Member.class;
+    private MemberDao memberDao;
 
     @Override
     public List<Member> getListMember() {
-        dao.setCl(cl);
-        return dao.getAll();
+        return memberDao.getAll();
     }
 
     @Override
     public void addMember(Member member) {
-        setDaoClass();
-        dao.add(member);
+        memberDao.add(member);
     }
 
     @Override
@@ -36,8 +33,7 @@ public class MemberManagerImpl extends AbstractManager implements MemberManager 
 
     @Override
     public Member getMember(Integer pId) {
-        setDaoClass();
-        return (Member) dao.getById(pId);
+        return (Member) memberDao.getById(pId);
     }
 
     @Override
@@ -47,22 +43,16 @@ public class MemberManagerImpl extends AbstractManager implements MemberManager 
 
     @Override
     public void updateMember(Member member) {
-        setDaoClass();
 
         int id = member.getId();
-        Member m = (Member) dao.getById(id);
+        Member m = (Member) memberDao.getById(id);
         member.setLogin(m.getLogin());
-        dao.update(member);
+        memberDao.update(member);
     }
 
     @Override
     public void deleteMember(int id) {
-        setDaoClass();
-        dao.delete(id);
-    }
-
-    public void setDaoClass() {
-        dao.setCl(cl);
+        memberDao.delete(id);
     }
 
 

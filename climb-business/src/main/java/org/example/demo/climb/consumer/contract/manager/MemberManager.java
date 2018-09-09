@@ -39,5 +39,5 @@ public interface MemberManager {
 
     boolean disconnect(String login);
 
-    void setDaoClass();
+
 }

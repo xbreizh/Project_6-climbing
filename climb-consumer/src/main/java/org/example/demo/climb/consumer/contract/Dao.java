@@ -1,23 +1,24 @@
 package org.example.demo.climb.consumer.contract;
 
-
 import javax.inject.Named;
 import java.util.List;
 
 @Named
 public interface Dao {
 
-    void setCl(Class cl);
-
-    List getAll();
-
+    // Create
     void add(Object o);
+
+    // Read
+    List getAll();
 
     Object getById(int id);
 
-    void delete(int id);
-
+    // Update
     void update(Object o);
+
+    // Delete
+    void delete(int id);
 
 
 }

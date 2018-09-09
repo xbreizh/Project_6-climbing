@@ -4,6 +4,17 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@NamedQueries({
+        @NamedQuery(
+                name = "findAllMembers",
+                /*query = "from Member m where m.login != :name"*/
+                query = "from Member"
+        ),
+        @NamedQuery(
+                name = "findByLogin",
+                query = "from Member m where m.login = :login"
+        )
+})
 @Entity
 
 public class Member {
