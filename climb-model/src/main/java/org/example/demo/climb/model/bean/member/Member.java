@@ -1,8 +1,13 @@
 package org.example.demo.climb.model.bean.member;
 
+import org.example.demo.climb.model.bean.Spot;
+import org.example.demo.climb.model.bean.Zone;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @NamedQueries({
         @NamedQuery(
@@ -16,7 +21,6 @@ import javax.validation.constraints.Size;
         )
 })
 @Entity
-
 public class Member {
 
     @Id
@@ -34,20 +38,22 @@ public class Member {
     @NotNull
     @Size(min = 1, max = 1000)
     private String description;
+    @OneToMany(mappedBy = "creatorSpot")
+    private List<Spot> spotList= new ArrayList<>();
+    @OneToMany(mappedBy = "creatorZone")
+    private List<Zone> zoneList= new ArrayList<>();
 
     public Member() {
     }
 
-    /*@ManyToMany(mappedBy = "studentList", fetch = FetchType.EAGER)*/
-   /* private List<Laptop> laptop = new ArrayList<Laptop>();
-
-    public List<Laptop> getLaptop() {
-        return laptop;
+    public List<Spot> getSpotList() {
+        return spotList;
     }
 
-    public void setLaptop(List<Laptop> laptop) {
-        this.laptop = laptop;
-    }*/
+    public void addSpot(Spot spot) {
+        this.spotList.add(spot);
+    }
+
 
     public int getId() {
         return id;
@@ -88,6 +94,7 @@ public class Member {
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", description='" + description + '\'' +
+                ", spotList=" + spotList +
                 '}';
     }
 }

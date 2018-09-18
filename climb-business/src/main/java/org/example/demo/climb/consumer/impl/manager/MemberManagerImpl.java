@@ -3,12 +3,14 @@ package org.example.demo.climb.consumer.impl.manager;
 
 import org.example.demo.climb.consumer.contract.MemberDao;
 import org.example.demo.climb.consumer.contract.manager.MemberManager;
+import org.example.demo.climb.model.bean.Zone;
 import org.example.demo.climb.model.bean.member.Member;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
-
+@Transactional
 @Named("memberManager")
 public class MemberManagerImpl extends AbstractManager implements MemberManager {
 
@@ -18,6 +20,7 @@ public class MemberManagerImpl extends AbstractManager implements MemberManager 
 
     @Override
     public List<Member> getListMember() {
+
         return memberDao.getAll();
     }
 

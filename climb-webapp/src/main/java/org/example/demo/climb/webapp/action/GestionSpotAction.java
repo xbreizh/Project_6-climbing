@@ -2,7 +2,7 @@ package org.example.demo.climb.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.example.demo.climb.consumer.contract.manager.SpotManager;
-import org.example.demo.climb.model.bean.climb.Spot;
+import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.exception.NotFoundException;
 
 import javax.inject.Inject;

@@ -1,6 +1,6 @@
 package org.example.demo.climb.consumer.contract.manager;
 
-import org.example.demo.climb.model.bean.climb.Spot;
+import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.exception.NotFoundException;
 
 import java.util.List;
@@ -11,12 +11,11 @@ import java.util.List;
  */
 public interface SpotManager {
 
+    //Create
+    void addSpot(Spot zone);
+
     //Get list
     List<Spot> getListSpot();
-
-    //Create
-
-    void addSpot(Spot zone);
 
     //Read
     Spot getSpot(Integer pId) throws NotFoundException;
@@ -24,14 +23,9 @@ public interface SpotManager {
     Spot getSpot(String name) throws NotFoundException;
 
     //Update
-
     void updateSpot(Spot zone);
 
     //Delete
-
     void deleteSpot(int id);
-
-    void setDaoClass();
-
 
 }

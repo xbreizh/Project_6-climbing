@@ -11,12 +11,11 @@ import java.util.List;
  */
 public interface ZoneManager {
 
+    //Create
+    void addZone(Zone zone);
+
     //Get list
     List<Zone> getListZone();
-
-    //Create
-
-    void addZone(Zone zone);
 
     //Read
     Zone getZone(Integer pId) throws NotFoundException;
@@ -24,14 +23,10 @@ public interface ZoneManager {
     Zone getZone(String name) throws NotFoundException;
 
     //Update
-
     void updateZone(Zone zone);
 
     //Delete
-
     void deleteZone(int id);
-
-    void setDaoClass();
 
 
 }

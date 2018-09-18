@@ -13,13 +13,5 @@
         <module name="climb-webapp" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="climb" target="1.8" />
-      <module name="climb-business" target="1.8" />
-      <module name="climb-consumer" target="1.8" />
-      <module name="climb-model" target="1.8" />
-      <module name="climb-technical" target="1.8" />
-      <module name="climb-webapp" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="f530f8ea-efdd-48b0-a076-a1e60b64932a">
+    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="c2916590-e41b-4b6a-b819-bd541d3b6dbb">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
       <remarks>Hibernate
 
-E:/openClassrooms/Project_6-climbing/projet/climb/climb-business/src/main/resources/hibernate.cfg.xml</remarks>
-      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/test</jdbc-url>
-    </data-source>
-    <data-source source="LOCAL" name="hibernateDemo:target:classes:hibernate.cfg.xml/Hibernate" uuid="0bb2e696-6a5b-478e-bd30-afbd6bc97906">
-      <driver-ref>postgresql</driver-ref>
-      <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>Hibernate
-
-E:/openClassrooms/Project_6-climbing/projet/climb/hibernateDemo/target/classes/hibernate.cfg.xml</remarks>
+C:/Users/xavier.lamourec/Documents/openClassrooms/Project_6-climbing/climb/climb-consumer/src/main/resources/hibernate.cfg.xml</remarks>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1:5432/test</jdbc-url>
     </data-source>
