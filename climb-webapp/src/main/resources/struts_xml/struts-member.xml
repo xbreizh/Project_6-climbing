@@ -86,7 +86,6 @@
             </result>
         </action>
 
-
     </package>
-    <include file="struts_xml/struts-default.xml"/>
+    <include file="struts_xml/struts-default2.xml"/>
 </struts>

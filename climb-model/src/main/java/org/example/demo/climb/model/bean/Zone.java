@@ -1,9 +1,22 @@
 package org.example.demo.climb.model.bean;
 
+import org.example.demo.climb.model.bean.member.Member;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@NamedQueries({
+        @NamedQuery(
+                name = "findAllZones",
+                /*query = "from Member m where m.login != :name"*/
+                query = "from Zone"
+        ),
+        @NamedQuery(
+                name = "findByZoneName",
+                query = "from Zone m where m.name = :name"
+        )
+})
 @Entity
 public class Zone {
 
@@ -24,8 +37,21 @@ public class Zone {
     @NotNull
     @Size(min = 1, max = 50)
     private String type;
+    @ManyToOne
+    private Member creatorZone;
+
+ /*   @OneToMany
+    private List<Spot> spotList = new ArrayList<>();*/
 
     public Zone() {
+    }
+
+    public Member getCreatorZone() {
+        return creatorZone;
+    }
+
+    public void setCreatorZone(Member creatorZone) {
+        this.creatorZone = creatorZone;
     }
 
     public int getId() {

@@ -1,28 +1,39 @@
 package org.example.demo.climb.consumer.impl;
 
+import org.example.demo.climb.consumer.contract.MemberDao;
+import org.example.demo.climb.consumer.contract.ZoneDao;
+import org.example.demo.climb.consumer.contract.manager.ZoneManager;
+import org.example.demo.climb.model.bean.Zone;
+import org.example.demo.climb.model.bean.member.Member;
+
+import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.List;
 
 @Named("zoneManager")
-public class ZoneManagerImpl /*implements ZoneManager */ {
+public class ZoneManagerImpl implements ZoneManager {
 
-  /*  @Inject
-    private Dao dao;*/
-    /*private Class cl = Zone.class;
+    @Inject
+    private ZoneDao zoneDao;
     private Zone zone;
+    @Inject
+    private MemberDao memberDao;
 
     @Override
     public List<Zone> getListZone() {
-        return dao.getAll();
+        return zoneDao.getAll();
     }
 
     @Override
     public void addZone(Zone zone) {
-        dao.add(zone);
+        Member m = (Member) memberDao.getById(1);
+        zone.setCreatorZone(m);
+        zoneDao.add(zone);
     }
 
     @Override
     public Zone getZone(Integer pId) {
-        return (Zone) dao.getById(pId);
+        return (Zone) zoneDao.getById(pId);
     }
 
     @Override
@@ -37,8 +48,7 @@ public class ZoneManagerImpl /*implements ZoneManager */ {
 
     @Override
     public void deleteZone(int id) {
-        dao.delete(id);
+        zoneDao.delete(id);
     }
-*/
 
 }

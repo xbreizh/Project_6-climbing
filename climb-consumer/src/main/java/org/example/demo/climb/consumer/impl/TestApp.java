@@ -1,4 +1,6 @@
-package org.example.demo.climb.consumer.contract;
+package org.example.demo.climb.consumer.impl;
+
+import org.example.demo.climb.consumer.contract.MemberDao;
 
 import javax.inject.Inject;
 

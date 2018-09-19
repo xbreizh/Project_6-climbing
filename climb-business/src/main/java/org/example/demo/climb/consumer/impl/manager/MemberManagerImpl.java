@@ -2,6 +2,7 @@ package org.example.demo.climb.consumer.impl.manager;
 
 
 import org.example.demo.climb.consumer.contract.MemberDao;
+import org.example.demo.climb.consumer.contract.ZoneDao;
 import org.example.demo.climb.consumer.contract.manager.MemberManager;
 import org.example.demo.climb.model.bean.Zone;
 import org.example.demo.climb.model.bean.member.Member;
@@ -26,6 +27,10 @@ public class MemberManagerImpl extends AbstractManager implements MemberManager 
 
     @Override
     public void addMember(Member member) {
+        member.setActive(true);
+        System.out.println("Login saved: "+member.getLogin());
+        member.setLogin2(member.getLogin());
+        System.out.println("Login2 saved: "+member.getLogin2());
         memberDao.add(member);
     }
 
@@ -46,10 +51,27 @@ public class MemberManagerImpl extends AbstractManager implements MemberManager 
 
     @Override
     public void updateMember(Member member) {
-
         int id = member.getId();
         Member m = (Member) memberDao.getById(id);
-        member.setLogin(m.getLogin());
+        System.out.println("login: "+m.getLogin());
+        System.out.println(m);
+        if(!member.isActive()){
+            member.setLogin2(member.getLogin());
+            member.setLogin("Inactive Member");
+           /* member.setLogin2(m.getLogin2());*/
+            System.out.println("disabling member!.new login: "+member.getLogin());
+        }else{
+            System.out.println("restoring original login: "+m.getLogin2());
+            if(!member.getLogin().equals("")){
+                member.setLogin2(member.getLogin());
+            }else {
+                member.setLogin2(m.getLogin2());
+                member.setLogin(m.getLogin2());
+            }
+        }
+        if(member.getPassword().equals("")){
+            member.setPassword(m.getPassword());
+        }
         memberDao.update(member);
     }
 

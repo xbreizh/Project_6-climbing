@@ -79,11 +79,11 @@
 
 
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-ehcache -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-ehcache</artifactId>
-            <!-- <version>${hibernate.version}</version>-->
-        </dependency>
+            &lt;!&ndash; <version>${hibernate.version}</version>&ndash;&gt;
+        </dependency>-->
         <dependency>
             <groupId>org.apache.bval</groupId>
             <artifactId>bval-jsr</artifactId>

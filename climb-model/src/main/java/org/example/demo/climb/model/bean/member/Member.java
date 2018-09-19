@@ -23,6 +23,7 @@ import java.util.List;
 @Entity
 public class Member {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", updatable = false, nullable = false)
@@ -33,17 +34,51 @@ public class Member {
     private String login;
 
     @NotNull
-    @Size(min = 5, max = 100)
-    private String password;
+    private String login2;
+
     @NotNull
-    @Size(min = 1, max = 1000)
+    private boolean active;
+
+    @NotNull
+    @Size(min = 3, max = 8)
+    private String password;
+
+    @Size( max = 255)
     private String description;
+
     @OneToMany(mappedBy = "creatorSpot")
     private List<Spot> spotList= new ArrayList<>();
     @OneToMany(mappedBy = "creatorZone")
     private List<Zone> zoneList= new ArrayList<>();
 
     public Member() {
+    }
+
+    public String getLogin2() {
+        return login2;
+    }
+
+    public void setLogin2(String login2) {
+        this.login2 = login2;
+    }
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public void setSpotList(List<Spot> spotList) {
+        this.spotList = spotList;
+    }
+
+    public List<Zone> getZoneList() {
+        return zoneList;
+    }
+
+    public void setZoneList(List<Zone> zoneList) {
+        this.zoneList = zoneList;
     }
 
     public List<Spot> getSpotList() {
