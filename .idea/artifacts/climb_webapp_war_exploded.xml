@@ -63,6 +63,7 @@
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.9.1" />
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-jcl:2.9.1" />
           <element id="library" level="project" name="Maven: javax.annotation:javax.annotation-api:1.2" />
+          <element id="library" level="project" name="Maven: org.apache.struts:struts-taglib:unknown" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:5.0.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.0.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.apache.struts:struts2-core:2.5.16" />

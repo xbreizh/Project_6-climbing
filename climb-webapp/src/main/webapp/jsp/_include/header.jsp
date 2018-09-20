@@ -13,7 +13,7 @@
         <s:a action="login">Connexion</s:a>
     </s:else>
 </header>
-
+<%@include file="navbar.jsp"%>
 <%--<nav>
     <s:a action="projet_list">
         <s:text name="nav.listProjet" />

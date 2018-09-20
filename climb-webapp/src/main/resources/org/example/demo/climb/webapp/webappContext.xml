@@ -11,4 +11,5 @@
           <property name="targetMethod" value="setManagerFactory"/>
           <property name="arguments" ref="managerFactory"/>
       </bean>-->
+
 </beans>

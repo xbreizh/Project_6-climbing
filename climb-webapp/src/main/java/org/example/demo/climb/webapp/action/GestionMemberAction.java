@@ -58,10 +58,18 @@ public class GestionMemberAction extends ActionSupport {
     public String doCreate() {
         String vResult = ActionSupport.INPUT;
 
+        vResult = validDoCreate(vResult);
+        if (this.hasErrors()) {
+            vResult = ActionSupport.INPUT;
+        }
+        return vResult;
+    }
+
+    private String validDoCreate(String vResult) {
         if (this.member != null) {
             if (this.member.getLogin().equals("")) {
                 this.addFieldError("member.login", "is empty");
-            } else if (this.member.getPassword().length() < 3) {
+            } else if (this.member.getPassword().length() < 3 || this.member.getPassword().length() > 8) {
                 this.addFieldError("member.password", "must be between 3 and 8 characters");
             } else {
                 try {
@@ -74,9 +82,6 @@ public class GestionMemberAction extends ActionSupport {
             }
         }else{
             this.addActionError("No member found");
-            vResult = ActionSupport.INPUT;
-        }
-        if (this.hasErrors()) {
             vResult = ActionSupport.INPUT;
         }
         return vResult;

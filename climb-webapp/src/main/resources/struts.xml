@@ -6,19 +6,26 @@
 
 <struts>
 
+
     <!--<include file="struts-member.xml" />
     <include file="Admin.xml" />
     <include file="User.xml" />
     <include file="Product.xml" />-->
 
+
     <package name="default" extends="struts-default">
     </package>
+
 
     <include file="struts_xml/struts-session.xml"/>
     <include file="struts_xml/struts-member.xml"/>
     <include file="struts_xml/struts-zone.xml"/>
     <include file="struts_xml/struts-site.xml"/>
     <include file="struts_xml/struts-spot.xml"/>
+
+
+
+
     <!--&lt;!&ndash;Action par défaut&ndash;&gt;
     <default-action-ref name="index"/>
 

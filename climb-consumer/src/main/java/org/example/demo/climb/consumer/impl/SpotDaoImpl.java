@@ -2,6 +2,7 @@ package org.example.demo.climb.consumer.impl;
 import org.example.demo.climb.consumer.contract.Dao;
 import org.example.demo.climb.consumer.contract.SpotDao;
 import org.example.demo.climb.model.bean.Spot;
+import org.example.demo.climb.model.bean.member.Member;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -20,15 +21,19 @@ public class SpotDaoImpl implements SpotDao {
     private SessionFactory sf;
 
     private Session getSession() {
-        if(sf==null) {
+        if(this.sf==null) {
+            System.out.println("creation of session factory");
             Configuration conf = new Configuration().configure().addAnnotatedClass(Spot.class);
-            sf = conf.buildSessionFactory();
-            return session = sf.openSession();
-        }else if (session == null){
-            return session = sf.openSession();
-        }else{
-            return   session = sf.getCurrentSession();
-        }
+            this.sf = conf.buildSessionFactory();
+            System.out.println("creation session and opening");
+            return this.session = this.sf.openSession();
+        }else {
+            System.out.println("creation session and opening");
+            return this.session = this.sf.openSession();
+        }/*else{
+            System.out.println("getting current session");
+            return   this.session = this.sf.getCurrentSession();
+        }*/
     }
 
     @Override

@@ -22,14 +22,19 @@ public class ZoneDaoImpl implements ZoneDao {
     private SessionFactory sf;
 
     private Session getSession() {
-        if(session!=null){
-            session.flush();
-        }
-        if(sf==null) {
+        if(this.sf==null) {
+            System.out.println("creation of session factory");
             Configuration conf = new Configuration().configure().addAnnotatedClass(Zone.class);
-            sf = conf.buildSessionFactory();
-        }
-            return session = sf.openSession();
+            this.sf = conf.buildSessionFactory();
+            System.out.println("creation session and opening");
+            return this.session = this.sf.openSession();
+        }else {
+            System.out.println("creation session and opening");
+            return this.session = this.sf.openSession();
+        }/*else{
+            System.out.println("getting current session");
+            return   this.session = this.sf.getCurrentSession();
+        }*/
     }
 
     @Override
