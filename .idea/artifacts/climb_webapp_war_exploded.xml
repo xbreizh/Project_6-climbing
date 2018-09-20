@@ -19,6 +19,8 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:5.0.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.6.1" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.6.8" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-dbcp:9.0.1" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-juli:9.0.1" />
           <element id="library" level="project" name="Maven: com.googlecode.genericdao:dao-hibernate:1.2.0" />
           <element id="library" level="project" name="Maven: com.googlecode.genericdao:dao:1.2.0" />
           <element id="library" level="project" name="Maven: com.googlecode.genericdao:search:1.2.0" />

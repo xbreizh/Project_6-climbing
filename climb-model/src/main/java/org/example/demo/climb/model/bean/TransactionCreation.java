@@ -8,11 +8,11 @@ import org.hibernate.cfg.Configuration;
 
 import javax.inject.Named;
 
-
-@Named
+/*
+@Named*/
 public class TransactionCreation {
 
-    public Transaction getTransaction(Object object) {
+   /* public Transaction getTransaction(Object object) {
         object = Member.class;
         Configuration conf = new Configuration().configure().addAnnotatedClass(Object.class);
         SessionFactory sf = conf.buildSessionFactory();
@@ -21,5 +21,5 @@ public class TransactionCreation {
         Transaction tx = session.getTransaction();
 
         return tx;
-    }
+    }*/
 }

@@ -10,8 +10,8 @@ import org.example.demo.climb.model.exception.NotFoundException;
 import javax.inject.Inject;
 import java.util.Map;
 
-public class LoginAction extends ActionSupport implements SessionAware {
-
+public class LoginAction /*extends ActionSupport implements SessionAware*/ {
+/*
     private String login;
     private String pwd;
     private Map<String, Object> session;
@@ -22,7 +22,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
         return login;
     }
 
-    /*Getters / Setters*/
+    *//*Getters / Setters*//*
     public void setLogin(String login) {
         this.login = login;
     }
@@ -35,7 +35,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
         this.pwd = pwd;
     }
 
-    /*Méthodes*/
+    *//*Méthodes*//*
 
     public String doLogin(){
         String vResult=ActionSupport.INPUT;
@@ -59,5 +59,5 @@ public class LoginAction extends ActionSupport implements SessionAware {
     @Override
     public void setSession(Map<String, Object> session) {
         this.session = session;
-    }
+    }*/
 }

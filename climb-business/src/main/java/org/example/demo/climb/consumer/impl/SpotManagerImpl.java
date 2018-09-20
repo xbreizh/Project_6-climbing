@@ -14,9 +14,9 @@ import java.util.List;
 
 @Transactional
 @Named("spotManager")
-public class SpotManagerImpl implements SpotManager {
+public class SpotManagerImpl /*implements SpotManager*/ {
 
-
+/*
     private Spot spot;
     @Inject
     private SpotDao spotDao;
@@ -30,7 +30,7 @@ public class SpotManagerImpl implements SpotManager {
 
     @Override
     public void addSpot(Spot spot) {
-        Member m = (Member) memberDao.getById(1);
+        Member m = (Member) memberDao.findOne(1);
         spot.setCreator(m);
         spotDao.add(spot);
     }
@@ -57,7 +57,7 @@ public class SpotManagerImpl implements SpotManager {
     @Override
     public void deleteSpot(int id) {
         spotDao.delete(id);
-    }
+    }*/
 
 
 }

@@ -8,61 +8,57 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 
 @Named
-public class MemberDaoImpl implements MemberDao {
+public class MemberDaoImpl  /*implements MemberDao*/ {
 
-    /*@Inject
-    TransactionManager transactionManager;*/
+   /* *//*@Inject
+    TransactionManager transactionManager;*//*
     private Class cl = Member.class;
     private Transaction tx;
-    private SessionFactory sf;
-    private Session session;
+   *//* private SessionFactory sf;
+    private Session session;*//*
+   *//* @Inject
+    createConfigMember sess;*//*
+   *//* @Autowired
+    private SessionFactory sess;*//*
 
-    private Session getSession() {
-        if(this.sf==null) {
-            System.out.println("creation of session factory");
-            Configuration conf = new Configuration().configure().addAnnotatedClass(Member.class);
-            this.sf = conf.buildSessionFactory();
-            System.out.println("creation session and opening");
-            return this.session = this.sf.openSession();
-        }else {
-            System.out.println("creation session and opening");
-            return this.session = this.sf.openSession();
-        }/*else{
-            System.out.println("getting current session");
-            return   this.session = this.sf.getCurrentSession();
-        }*/
-    }
+
+
 
 
     @Override
     public void add(Object o) {
-        /* createSession();*/
-        /*session= transactionBeanMember.createFactory().openSession();*/
-        getSession();
-        tx = session.beginTransaction();
+        *//* createSession();*//*
+        *//*session= transactionBeanMember.createFactory().openSession();*//*
+        *//*getSession();*//*
+        tx = sess.getCurrentSession().beginTransaction();
         System.out.println("transaction starting with object: " + o);
-        session.saveOrUpdate(cl.getName(), o);
+        sess.getSession().saveOrUpdate(cl.getName(), o);
         tx.commit();
         System.out.println("Object added!");
     }
 
     @Override
     public List getAll() {
-        /*createSession();*/
+        *//*createSession();*//*
         System.out.println("creation de la transaction");
 
 
-        /*session= transactionBeanMember.createFactory().openSession();*/
-        getSession();
-        System.out.println("Session: "+session.toString());
-        /*tx = session.beginTransaction();*/
-        Query query = session.getNamedQuery("findAllMembers");
+        *//*session= transactionBeanMember.createFactory().openSession();*//*
+        *//*getSession();*//*
+        System.out.println("Session: "+sess.getSession().toString());
+        *//*tx = session.beginTransaction();*//*
+        Query query = sess.getSession().getNamedQuery("findAllMembers");
         return query.getResultList();
 
     }
@@ -70,33 +66,34 @@ public class MemberDaoImpl implements MemberDao {
 
     @Override
     public Object getById(int id) {
-        /*createSession();*/
-        /*session= transactionBeanMember.createFactory().openSession();*/
-        getSession();
-        tx = session.beginTransaction();
-        return session.get(cl, id);
+        *//*createSession();*//*
+        *//*session= transactionBeanMember.createFactory().openSession();*//*
+      *//*  getSession();*//*
+        tx = sess.getSession().beginTransaction();
+        return sess.getSession().get(cl, id);
     }
 
     @Override
     public void update(Object o) {
-        /*createSession();*/
-        /*session= transactionBeanMember.createFactory().openSession();*/
-        getSession();
-        tx = session.beginTransaction();
-        session.saveOrUpdate(cl.getName(), o);
+        *//*createSession();*//*
+        *//*session= transactionBeanMember.createFactory().openSession();*//*
+      *//*  getSession();*//*
+        tx = sess.getSession().beginTransaction();
+        sess.getSession().saveOrUpdate(cl.getName(), o);
         tx.commit();
-        session.close();
+        sess.getSession().close();
         System.out.println("Update done!");
     }
 
     @Override
+    @Transactional
     public void delete(int id) {
-       /* createSession();*/
-        /*session= transactionBeanMember.createFactory().openSession();*/
-        getSession();
-        tx = session.beginTransaction();
-        session.remove(session.get(cl, id));
-        tx.commit();
-        session.close();
-    }
+       *//* createSession();*//*
+        *//*session= transactionBeanMember.createFactory().openSession();*//*
+       *//* getSession();*//*
+        *//*tx = sess.getSession().beginTransaction();*//*
+        sess.getSession().remove(sess.getSession().get(cl, id));
+       *//* tx.commit();
+        sess.getSession().close();*//*
+    }*/
 }

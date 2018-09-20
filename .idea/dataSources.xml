@@ -11,5 +11,35 @@ C:/Users/xavier.lamourec/Documents/openClassrooms/Project_6-climbing/climb/climb
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1:5432/test</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="sessionFactory/Hibernate" uuid="b0b9d050-e6ef-40dd-8e73-24f689fa11fe">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+C:/Users/xavier.lamourec/Documents/openClassrooms/Project_6-climbing/climb/climb-webapp/src/main/resources/org/example/demo/climb/webapp/webappContext.xml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/test</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="src:hibernate.cfg.xml/Hibernate" uuid="5539e0b9-c4d1-4a8f-8903-5d62ebd15a2a">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+C:/Users/xavier.lamourec/Documents/openClassrooms/Project_6-climbing/climb/src/hibernate.cfg.xml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/test</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="sessionFactory/Hibernate" uuid="4f630eb4-2bb5-4589-ad5d-784b33d44cd8">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+C:/Users/xavier.lamourec/Documents/openClassrooms/Project_6-climbing/climb/climb-webapp/src/main/resources/org/example/demo/climb/webapp/webappContext.xml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/test</jdbc-url>
+    </data-source>
   </component>
 </project>

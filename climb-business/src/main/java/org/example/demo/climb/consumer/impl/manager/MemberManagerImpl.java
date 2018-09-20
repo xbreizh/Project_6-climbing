@@ -1,28 +1,34 @@
 package org.example.demo.climb.consumer.impl.manager;
-
-
-import org.example.demo.climb.consumer.contract.MemberDao;
-import org.example.demo.climb.consumer.contract.ZoneDao;
 import org.example.demo.climb.consumer.contract.manager.MemberManager;
-import org.example.demo.climb.model.bean.Zone;
 import org.example.demo.climb.model.bean.member.Member;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.transaction.annotation.Transactional;
+
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 @Transactional
 @Named("memberManager")
-public class MemberManagerImpl extends AbstractManager implements MemberManager {
+public class MemberManagerImpl /*extends  HibernateTemplate*/ implements MemberManager {
 
-    private Member member = null;
+    /*private Member member = null;*/
+    private Class cl=Member.class;
+    /*@Inject
+    private MemberDao memberDao;*/
     @Inject
-    private MemberDao memberDao;
+    private SessionFactory sessionFactory;
 
     @Override
     public List<Member> getListMember() {
-
-        return memberDao.getAll();
+        Session session = sessionFactory.openSession();
+        String hql = "select * FROM Member";
+        Query query = session.createNativeQuery(hql);
+        List results = query.list();
+        return results;
+        /*return null;*/
     }
 
     @Override
@@ -31,7 +37,8 @@ public class MemberManagerImpl extends AbstractManager implements MemberManager 
         System.out.println("Login saved: "+member.getLogin());
         member.setLogin2(member.getLogin());
         System.out.println("Login2 saved: "+member.getLogin2());
-        memberDao.add(member);
+        sessionFactory.getCurrentSession().persist(member);
+        /*memberDao.save(member);*/
     }
 
     @Override
@@ -41,7 +48,7 @@ public class MemberManagerImpl extends AbstractManager implements MemberManager 
 
     @Override
     public Member getMember(Integer pId) {
-        return (Member) memberDao.getById(pId);
+        return (Member) sessionFactory.getCurrentSession().get(cl, pId);
     }
 
     @Override
@@ -52,7 +59,7 @@ public class MemberManagerImpl extends AbstractManager implements MemberManager 
     @Override
     public void updateMember(Member member) {
         int id = member.getId();
-        Member m = (Member) memberDao.getById(id);
+        Member m = (Member) sessionFactory.getCurrentSession().get(cl, id);
         System.out.println("login: "+m.getLogin());
         System.out.println(m);
         if(!member.isActive()){
@@ -72,12 +79,12 @@ public class MemberManagerImpl extends AbstractManager implements MemberManager 
         if(member.getPassword().equals("")){
             member.setPassword(m.getPassword());
         }
-        memberDao.update(member);
+        sessionFactory.getCurrentSession().persist(member);
     }
 
     @Override
     public void deleteMember(int id) {
-        memberDao.delete(id);
+        sessionFactory.getCurrentSession().delete(id);
     }
 
 
@@ -85,7 +92,6 @@ public class MemberManagerImpl extends AbstractManager implements MemberManager 
     public boolean connect(String pLogin, String pPassword) {
         return false;
     }
-
 
 
 

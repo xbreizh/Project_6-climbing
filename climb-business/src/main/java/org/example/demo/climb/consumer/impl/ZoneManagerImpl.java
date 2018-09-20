@@ -11,29 +11,29 @@ import javax.inject.Named;
 import java.util.List;
 
 @Named("zoneManager")
-public class ZoneManagerImpl implements ZoneManager {
-
+public class ZoneManagerImpl/* implements ZoneManager */{
+/*
     @Inject
     private ZoneDao zoneDao;
     private Zone zone;
-    @Inject
-    private MemberDao memberDao;
+   *//* @Inject
+    private MemberDao memberDao;*//*
 
     @Override
     public List<Zone> getListZone() {
-        return zoneDao.getAll();
+        return zoneDao.findAll();
     }
 
     @Override
     public void addZone(Zone zone) {
-        Member m = (Member) memberDao.getById(1);
+        Member m = (Member) memberDao.findOne(1);
         zone.setCreatorZone(m);
-        zoneDao.add(zone);
+        zoneDao.save(zone);
     }
 
     @Override
     public Zone getZone(Integer pId) {
-        return (Zone) zoneDao.getById(pId);
+        return (Zone) zoneDao.findOne(pId);
     }
 
     @Override
@@ -49,6 +49,6 @@ public class ZoneManagerImpl implements ZoneManager {
     @Override
     public void deleteZone(int id) {
         zoneDao.delete(id);
-    }
+    }*/
 
 }

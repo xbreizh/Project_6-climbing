@@ -1,4 +1,7 @@
 package org.example.demo.climb.consumer.contract;
 
-public interface ZoneDao extends Dao {
+import org.example.demo.climb.model.bean.Zone;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ZoneDao extends JpaRepository<Zone, Integer> {
 }

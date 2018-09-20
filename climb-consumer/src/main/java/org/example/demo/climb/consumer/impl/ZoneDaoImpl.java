@@ -14,9 +14,9 @@ import javax.inject.Named;
 import java.util.List;
 
 @Named
-public class ZoneDaoImpl implements ZoneDao {
+public class ZoneDaoImpl /*implements ZoneDao*/ {
 
-    private Class cl = Zone.class;
+    /*private Class cl = Zone.class;
     private Transaction tx;
     private Session session;
     private SessionFactory sf;
@@ -31,15 +31,15 @@ public class ZoneDaoImpl implements ZoneDao {
         }else {
             System.out.println("creation session and opening");
             return this.session = this.sf.openSession();
-        }/*else{
+        }*//*else{
             System.out.println("getting current session");
             return   this.session = this.sf.getCurrentSession();
-        }*/
+        }*//*
     }
 
     @Override
     public void add(Object o) {
-        /*session= transactionBeanMember.createFactory().openSession();*/
+        *//*session= transactionBeanMember.createFactory().openSession();*//*
         getSession();
         tx = session.beginTransaction();
         System.out.println("transaction starting with object: " + o);
@@ -51,7 +51,7 @@ public class ZoneDaoImpl implements ZoneDao {
 
     @Override
     public List getAll() {
-        /*session= transactionBeanMember.createFactory().openSession();*/
+        *//*session= transactionBeanMember.createFactory().openSession();*//*
         getSession();
         Query query = session.getNamedQuery("findAllZones");
         return query.getResultList();
@@ -59,7 +59,7 @@ public class ZoneDaoImpl implements ZoneDao {
 
     @Override
     public Object getById(int id) {
-        /*session= transactionBeanMember.createFactory().openSession();*/
+        *//*session= transactionBeanMember.createFactory().openSession();*//*
         getSession();
         tx = session.beginTransaction();
         return session.get(cl, id);
@@ -68,7 +68,7 @@ public class ZoneDaoImpl implements ZoneDao {
     @Override
     public void update(Object o) {
         System.out.println("trying to update");
-        /*session= transactionBeanMember.createFactory().openSession();*/
+        *//*session= transactionBeanMember.createFactory().openSession();*//*
         getSession();
         tx = session.beginTransaction();
         session.saveOrUpdate(cl.getName(), o);
@@ -78,7 +78,7 @@ public class ZoneDaoImpl implements ZoneDao {
 
     @Override
     public void delete(int id) {
-        /*session= transactionBeanMember.createFactory().openSession();*/
+        *//*session= transactionBeanMember.createFactory().openSession();*//*
         getSession();
         tx = session.beginTransaction();
         session.remove(session.get(cl, id));
@@ -86,5 +86,5 @@ public class ZoneDaoImpl implements ZoneDao {
         session.close();
         System.out.println("Zone has been deleted!");
 
-    }
+    }*/
 }
