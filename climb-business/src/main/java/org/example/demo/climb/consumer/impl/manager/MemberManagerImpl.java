@@ -37,7 +37,8 @@ public class MemberManagerImpl  implements MemberManager {
     public void addMember(Member member) {
         gettingSession();
         member.setActive(true);//activating user
-        member.setLogin2(member.getLogin());//setting backup login
+        member.setLogin2(member.getLogin().toUpperCase());//setting backup login
+        member.setLogin(member.getLogin().toUpperCase());//setting upper case login
         member.setDate(new Date());
         session.persist(member);
     }
@@ -52,7 +53,7 @@ public class MemberManagerImpl  implements MemberManager {
         gettingSession();
         for (Member m : getListMember()
         ) {
-            if (m.getLogin().equals(login)) {
+            if (m.getLogin().equals(login.toUpperCase())) {
                 return true;
             }
         }

@@ -14,7 +14,7 @@ public class GestionMemberAction extends ActionSupport {
     private List<Member> listMember;
     private int id;
 
-/*    public String getPassword_check() {
+    public String getPassword_check() {
         return password_check;
     }
 
@@ -22,7 +22,7 @@ public class GestionMemberAction extends ActionSupport {
         this.password_check = password_check;
     }
 
-    private String password_check;*/
+    private String password_check;
 
 /*    public String getDescription() {
         return description;
@@ -79,7 +79,10 @@ public class GestionMemberAction extends ActionSupport {
             }
             else if (this.member.getPassword().length() < 3 || this.member.getPassword().length() > 8) {
                 this.addFieldError("member.password", "must be between 3 and 8 characters");
-            } else {
+            }
+            else if(!this.member.getPassword().equals(password_check)){
+                this.addFieldError("member.password", "password mismatch");
+            }else {
                 try {
                     memberManager.addMember(member);
                     vResult = ActionSupport.SUCCESS;
