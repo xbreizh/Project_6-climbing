@@ -19,9 +19,7 @@
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
             <result name="input">/jsp/member/form/new.jsp</result>
-            <result name="success" type="redirectAction">
-                <param name="actionName">member_list</param>
-            </result>
+            <result name="success">/jsp/member/creationok.jsp</result>
         </action>
 
 

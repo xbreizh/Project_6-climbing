@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @NamedQueries({
@@ -46,12 +47,23 @@ public class Member {
     @Size( max = 255)
     private String description;
 
+    @NotNull
+    private Date date;
+
     @OneToMany(mappedBy = "creatorSpot")
     private List<Spot> spotList= new ArrayList<>();
     @OneToMany(mappedBy = "creatorZone")
     private List<Zone> zoneList= new ArrayList<>();
 
     public Member() {
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getLogin2() {

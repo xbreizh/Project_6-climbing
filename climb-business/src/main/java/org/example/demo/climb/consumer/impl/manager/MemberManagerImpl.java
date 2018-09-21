@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.Date;
 import java.util.List;
 @Transactional
 @Named("memberManager")
@@ -37,6 +38,7 @@ public class MemberManagerImpl  implements MemberManager {
         gettingSession();
         member.setActive(true);//activating user
         member.setLogin2(member.getLogin());//setting backup login
+        member.setDate(new Date());
         session.persist(member);
     }
 
