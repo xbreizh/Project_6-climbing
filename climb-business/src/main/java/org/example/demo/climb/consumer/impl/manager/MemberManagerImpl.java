@@ -35,25 +35,26 @@ public class MemberManagerImpl  implements MemberManager {
     @Override
     public void addMember(Member member) {
         gettingSession();
-      /*  if(sessionFactory == null){
-            System.out.println("session factory is null");
-        }
-
-        session = sessionFactory.getCurrentSession();
-        if(session == null){
-            System.out.println("session  is null");
-        }*/
-        member.setActive(true);
-        /*System.out.println("Login saved: "+member.getLogin());*/
-        member.setLogin2(member.getLogin());
-       /* System.out.println("Login2 saved: "+member.getLogin2());*/
+        member.setActive(true);//activating user
+        member.setLogin2(member.getLogin());//setting backup login
         session.persist(member);
-        /*memberDao.save(member);*/
     }
 
     @Override
     public boolean disconnect(String login) {
         return false;
+    }
+
+    @Override //checks if the login passed is already in use
+    public boolean exists(String login) {
+        gettingSession();
+        for (Member m : getListMember()
+        ) {
+            if (m.getLogin().equals(login)) {
+                return true;
+            }
+        }
+            return false;
     }
 
     @Override
@@ -63,7 +64,14 @@ public class MemberManagerImpl  implements MemberManager {
     }
 
     @Override
-    public Member getMember(String pLogin) {
+    public Member getMember(String login) {
+        gettingSession();
+        for (Member m : getListMember()
+        ) {
+            if (m.getLogin().equals(login)) {
+                return m;
+            }
+        }
         return null;
     }
 

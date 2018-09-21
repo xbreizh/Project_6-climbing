@@ -40,5 +40,9 @@ public interface MemberManager  {
 
     boolean disconnect(String login);
 
+    // Check if existing
+
+    boolean exists(String login);
+
 
 }

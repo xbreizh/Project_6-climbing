@@ -14,7 +14,7 @@ public class GestionMemberAction extends ActionSupport {
     private List<Member> listMember;
     private int id;
 
-    public String getPassword_check() {
+/*    public String getPassword_check() {
         return password_check;
     }
 
@@ -22,13 +22,13 @@ public class GestionMemberAction extends ActionSupport {
         this.password_check = password_check;
     }
 
-    private String password_check;
+    private String password_check;*/
 
-    public String getDescription() {
+/*    public String getDescription() {
         return description;
     }
 
-    private String description;
+    private String description;*/
 
     @Inject
     private MemberManager memberManager;
@@ -66,10 +66,18 @@ public class GestionMemberAction extends ActionSupport {
     }
 
     private String validDoCreate(String vResult) {
+
+
         if (this.member != null) {
+            boolean exist= memberManager.exists(this.member.getLogin());
             if (this.member.getLogin().equals("")) {
                 this.addFieldError("member.login", "is empty");
-            } else if (this.member.getPassword().length() < 3 || this.member.getPassword().length() > 8) {
+            }
+            if(exist){
+                System.out.println("Login1: "+member.getLogin()+ "exists: "+exist);
+                this.addFieldError("member.login", "Login already exists! Pick another one!");
+            }
+            else if (this.member.getPassword().length() < 3 || this.member.getPassword().length() > 8) {
                 this.addFieldError("member.password", "must be between 3 and 8 characters");
             } else {
                 try {
