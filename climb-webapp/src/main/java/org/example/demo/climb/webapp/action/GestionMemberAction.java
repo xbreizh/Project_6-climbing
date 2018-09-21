@@ -9,10 +9,22 @@ import javax.inject.Inject;
 import java.util.List;
 
 public class GestionMemberAction extends ActionSupport {
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     private Member member;
     private List<Member> listMember;
     private int id;
+    private String login;
+    private String password;
 
     public String getPassword_check() {
         return password_check;
@@ -65,6 +77,26 @@ public class GestionMemberAction extends ActionSupport {
         return vResult;
     }
 
+    public String doReset(){
+        String vResult = ActionSupport.INPUT;
+        if(login !=null || password!=null || password_check !=null) {
+            if (login.equals("")) {
+                this.addFieldError("login", "you must provide a login");
+            } else if (this.password.length() < 3 || this.password.length() > 8) {
+                this.addFieldError("password", "must be between 3 and 8 characters");
+            } else if (!this.password.equals(password_check)) {
+                this.addFieldError("password", "password mismatch");
+                return vResult;
+            }
+            if (memberManager.updatePassword(login, password)) {
+                vResult = ActionSupport.SUCCESS;
+            } else {
+                this.addFieldError("login", "this login doesn't exist");
+            }
+        }
+
+        return vResult;
+    }
     private String validDoCreate(String vResult) {
 
 

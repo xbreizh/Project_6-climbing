@@ -30,7 +30,11 @@ public class MemberManagerImpl  implements MemberManager {
     }
 
     private void gettingSession() {
-        this.session= sessionFactory.getCurrentSession();
+        if (this.session == null) {
+            this.session = sessionFactory.openSession();
+        } else {
+            this.session = sessionFactory.getCurrentSession();
+        }
     }
 
     @Override
@@ -121,8 +125,19 @@ public class MemberManagerImpl  implements MemberManager {
         return false;
     }
 
-
-
+    @Override
+    public boolean updatePassword(String login, String password){
+        System.out.println("trying to update pwd");
+        gettingSession();
+        if(exists(login.toUpperCase())){
+            Member m = getMember(login.toUpperCase());
+            m.setPassword(password);
+        session.update(cl.getName(), m);
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 
 }

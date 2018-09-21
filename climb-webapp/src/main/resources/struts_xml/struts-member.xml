@@ -19,7 +19,20 @@
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
             <result name="input">/jsp/member/form/new.jsp</result>
-            <result name="success">/jsp/member/creationok.jsp</result>
+            <result name="success">/jsp/member/creationOk.jsp</result>
+        </action>
+
+        <!--PASSWORD RESET-->
+
+        <action name="pwd_reset"
+                class="org.example.demo.climb.webapp.action.GestionMemberAction"
+                method="doReset">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+            <result name="input">/jsp/member/form/password_reset.jsp</result>
+            <result name="success">/jsp/member/resetOk.jsp</result>
         </action>
 
 

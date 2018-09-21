@@ -9,6 +9,10 @@
 <%@include file="_include/header.jsp"%>
 <h1><s:text name="home.welcome"/></h1>
 
+<s:a action="pwd_reset">
+    Password Reset
+</s:a>
+
 
 
 </body>
