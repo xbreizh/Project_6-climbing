@@ -12,7 +12,7 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(
                 name = "findAllMembers",
-                /*query = "from Member m where m.login != :name"*/
+               /* query = "from Member m where m.login != :name"*/
                 query = "from Member"
         ),
         @NamedQuery(

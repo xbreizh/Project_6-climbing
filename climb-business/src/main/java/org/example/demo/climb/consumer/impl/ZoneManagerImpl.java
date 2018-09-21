@@ -1,54 +1,87 @@
 package org.example.demo.climb.consumer.impl;
-
-import org.example.demo.climb.consumer.contract.MemberDao;
-import org.example.demo.climb.consumer.contract.ZoneDao;
 import org.example.demo.climb.consumer.contract.manager.ZoneManager;
 import org.example.demo.climb.model.bean.Zone;
-import org.example.demo.climb.model.bean.member.Member;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 
+@Transactional
 @Named("zoneManager")
-public class ZoneManagerImpl/* implements ZoneManager */{
-/*
+public class ZoneManagerImpl  implements ZoneManager {
+
+
+    private Class cl=Zone.class;
+
     @Inject
-    private ZoneDao zoneDao;
-    private Zone zone;
-   *//* @Inject
-    private MemberDao memberDao;*//*
+    private SessionFactory sessionFactory;
+    private Session session;
 
     @Override
     public List<Zone> getListZone() {
-        return zoneDao.findAll();
+        System.out.println("trying to get Zone list");
+        gettingSession();
+        return session.createQuery("from Zone ").list();
+
+    }
+
+    private void gettingSession() {
+        this.session= sessionFactory.getCurrentSession();
     }
 
     @Override
     public void addZone(Zone zone) {
-        Member m = (Member) memberDao.findOne(1);
-        zone.setCreatorZone(m);
-        zoneDao.save(zone);
+        gettingSession();
+        session.persist(zone);
     }
 
     @Override
     public Zone getZone(Integer pId) {
-        return (Zone) zoneDao.findOne(pId);
+        gettingSession();
+        return (Zone) session.get(cl, pId);
     }
 
     @Override
-    public Zone getZone(String name) {
+    public Zone getZone(String pLogin) {
         return null;
     }
 
     @Override
     public void updateZone(Zone zone) {
-
+        gettingSession();
+        int id = zone.getId();
+        Zone z = (Zone) session.get(cl.getName(), id);
+        if(zone.getName() != null){
+            z.setName(zone.getName());
+        }
+        if(zone.getCountry() != null){
+            z.setCountry(zone.getCountry());
+        }
+        if(zone.getRegion() != null){
+            z.setRegion(zone.getRegion());
+        }
+        if(zone.getType() != null){
+            z.setType(zone.getType());
+        }
+        session.update(z);
     }
 
     @Override
     public void deleteZone(int id) {
-        zoneDao.delete(id);
-    }*/
+        gettingSession();
+        System.out.println("trying to delete zone: "+id);
+        Zone m= (Zone) session.get(cl, id);
+        session.delete(cl.getName(), m);
+    }
+
+
+
+
+
+
+
 
 }

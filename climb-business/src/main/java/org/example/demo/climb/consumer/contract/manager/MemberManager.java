@@ -2,6 +2,7 @@ package org.example.demo.climb.consumer.contract.manager;
 
 import org.example.demo.climb.model.bean.member.Member;
 import org.example.demo.climb.model.exception.NotFoundException;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
 /**
  * Manager du package « utilisateur »
  */
-public interface MemberManager {
+public interface MemberManager  {
 
     //Get list
     List<Member> getListMember();

@@ -16,8 +16,8 @@ import javax.validation.constraints.Size;
                 query = "from Spot m where m.name = :name"
         )
 })
-@Entity
-public class Spot {
+    @Entity
+    public class Spot {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

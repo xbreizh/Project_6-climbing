@@ -3,7 +3,6 @@ import org.example.demo.climb.consumer.contract.manager.MemberManager;
 import org.example.demo.climb.model.bean.member.Member;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 
@@ -12,7 +11,7 @@ import javax.inject.Named;
 import java.util.List;
 @Transactional
 @Named("memberManager")
-public class MemberManagerImpl /*extends  HibernateTemplate*/ implements MemberManager {
+public class MemberManagerImpl  implements MemberManager {
 
     /*private Member member = null;*/
     private Class cl=Member.class;
@@ -20,24 +19,35 @@ public class MemberManagerImpl /*extends  HibernateTemplate*/ implements MemberM
     private MemberDao memberDao;*/
     @Inject
     private SessionFactory sessionFactory;
+    private Session session;
 
     @Override
     public List<Member> getListMember() {
-        Session session = sessionFactory.openSession();
-        String hql = "select * FROM Member";
-        Query query = session.createNativeQuery(hql);
-        List results = query.list();
-        return results;
-        /*return null;*/
+        gettingSession();
+        return session.createQuery("from Member ").list();
+
+    }
+
+    private void gettingSession() {
+        this.session= sessionFactory.getCurrentSession();
     }
 
     @Override
     public void addMember(Member member) {
+        gettingSession();
+      /*  if(sessionFactory == null){
+            System.out.println("session factory is null");
+        }
+
+        session = sessionFactory.getCurrentSession();
+        if(session == null){
+            System.out.println("session  is null");
+        }*/
         member.setActive(true);
-        System.out.println("Login saved: "+member.getLogin());
+        /*System.out.println("Login saved: "+member.getLogin());*/
         member.setLogin2(member.getLogin());
-        System.out.println("Login2 saved: "+member.getLogin2());
-        sessionFactory.getCurrentSession().persist(member);
+       /* System.out.println("Login2 saved: "+member.getLogin2());*/
+        session.persist(member);
         /*memberDao.save(member);*/
     }
 
@@ -48,7 +58,8 @@ public class MemberManagerImpl /*extends  HibernateTemplate*/ implements MemberM
 
     @Override
     public Member getMember(Integer pId) {
-        return (Member) sessionFactory.getCurrentSession().get(cl, pId);
+        gettingSession();
+        return (Member) session.get(cl, pId);
     }
 
     @Override
@@ -58,33 +69,39 @@ public class MemberManagerImpl /*extends  HibernateTemplate*/ implements MemberM
 
     @Override
     public void updateMember(Member member) {
+        gettingSession();
         int id = member.getId();
-        Member m = (Member) sessionFactory.getCurrentSession().get(cl, id);
+        Member m = (Member) session.get(cl, id);
         System.out.println("login: "+m.getLogin());
         System.out.println(m);
         if(!member.isActive()){
-            member.setLogin2(member.getLogin());
-            member.setLogin("Inactive Member");
+            /*m.setLogin2(member.getLogin());*/
+            m.setLogin("Inactive Member");
+            m.setActive(false);
            /* member.setLogin2(m.getLogin2());*/
-            System.out.println("disabling member!.new login: "+member.getLogin());
+            System.out.println("disabling member!.new login: "+m.getLogin());
         }else{
             System.out.println("restoring original login: "+m.getLogin2());
-            if(!member.getLogin().equals("")){
+            m.setLogin(m.getLogin2());
+            /*if(!member.getLogin().equals("")){
                 member.setLogin2(member.getLogin());
             }else {
                 member.setLogin2(m.getLogin2());
                 member.setLogin(m.getLogin2());
-            }
+            }*/
         }
-        if(member.getPassword().equals("")){
-            member.setPassword(m.getPassword());
+        if(!member.getPassword().equals("")){
+            m.setPassword(member.getPassword());
         }
-        sessionFactory.getCurrentSession().persist(member);
+        session.update(m);
     }
 
     @Override
     public void deleteMember(int id) {
-        sessionFactory.getCurrentSession().delete(id);
+        gettingSession();
+        System.out.println("trying to delete member: "+id);
+        Member m= (Member) session.get(cl, id);
+        session.delete(cl.getName(), m);
     }
 
 

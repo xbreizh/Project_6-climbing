@@ -66,7 +66,7 @@ public class GestionZoneAction extends ActionSupport {
 
         zone = zoneManager.getZone(id);
         System.out.println("Zone from doDetail: " + zone);
-        System.out.println("Creator: "+zone.getCreatorZone().getLogin());
+       /* System.out.println("Creator: "+zone.getCreatorZone().getLogin());*/
         if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;
         }
@@ -90,7 +90,7 @@ public class GestionZoneAction extends ActionSupport {
         System.out.println("zone");
         listZone = zoneManager.getListZone();
         System.out.println("size: " + listZone.size());
-        System.out.println("login: "+listZone.get(1).getCreatorZone().getLogin());
+        System.out.println("listZone: "+listZone);
         return ActionSupport.SUCCESS;
     }
 

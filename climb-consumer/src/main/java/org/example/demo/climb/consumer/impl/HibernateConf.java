@@ -19,6 +19,7 @@ public class HibernateConf {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan("org.example.demo.climb.consumer");
+        sessionFactory.setPackagesToScan("org.example.demo.climb.model");
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
     }
@@ -47,7 +48,7 @@ public class HibernateConf {
         hibernateProperties.setProperty(
                 "hibernate.hbm2ddl.auto", "update");
         hibernateProperties.setProperty(
-                "hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+                "hibernate.dialect", "org.hibernate.dialect.PostgreSQL82Dialect");
 
         return hibernateProperties;
     }
