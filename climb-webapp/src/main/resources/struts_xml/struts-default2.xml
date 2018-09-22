@@ -27,5 +27,9 @@
         <action name="index">
             <result>/jsp/index.jsp</result>
         </action>
+
+        <action name="demo_convert" class="org.example.demo.climb.webapp.action.DemoConvertAction">
+            <result name="input">/jsp/demo/convert.jsp</result>
+        </action>
     </package>
 </struts>

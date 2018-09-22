@@ -19,7 +19,7 @@
               list="listMember" listKey="id" listValue="login"
               onchange="onSelectMemberChange()"/>
 
-    <%--<s:select id="selectSpot" label="Spot" list="{}"/>--%>
+    <s:select id="selectSpot" label="Spot" list="{}"/>
 </s:form>
 <li>Login: <s:property value="login"/></li>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -35,17 +35,18 @@
         };
 
         // Action AJAX en POST
-        /*jQuery.post(
+        jQuery.post(
             url,
             params,
             function (data) {
-                var $selectSpot = jQuery("#selectSpot");
-                $selectSpot.empty();
+                var selectSpot = jQuery("#selectSpot");
+                selectSpot.empty();
                 jQuery.each(data, function (key, val) {
-                    $selectSpot.append(
+                    selectSpot.append(
                         jQuery("<option>")
-                            .text(val.id)
-                            .val(val.id)
+                        .append(val.login)
+                            /*.text(val.id)
+                            .val(val.id)*/
                     );
                 });
             })
@@ -56,12 +57,12 @@
                     console.log(data);
                 }
                 alert("Une erreur s'est produite.");
-            });*/
+            });
     }
 
-    function reloadListMember() {
+   /* function reloadListMember() {
         // URL de l'action AJAX
-        var url = "<s:url action="demo_ajax_getListMember"/>";
+        var url = "*/<%--<s:url action="demo_ajax_getListMember"/>--%>/*";
 
         // Action AJAX en POST
         jQuery.post(
@@ -81,7 +82,7 @@
             .fail(function () {
                 alert("Une erreur s'est produite.");
             });
-    }
+    }*/
 </script>
 </body>
 </html>

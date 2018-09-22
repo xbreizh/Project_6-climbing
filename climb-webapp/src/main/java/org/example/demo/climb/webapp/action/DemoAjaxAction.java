@@ -70,11 +70,11 @@ public class DemoAjaxAction extends ActionSupport {
      */
     public String doAjaxGetListSpot() throws NotFoundException {
         System.out.println("Liste de spots: "+spotList);
-        if (member == null) {
+       /* if (member == null) {
             addActionError("Le membre doit être précisé !");
         } else {
             spotList = memberManager.getMember().getSpotList();
-        }
+        }*/
 
         return hasErrors() ? ActionSupport.ERROR : ActionSupport.SUCCESS;
     }
