@@ -1,8 +1,7 @@
-package org.example.demo.climb.consumer.contract.manager;
+package org.example.demo.climb.business.contract.manager;
 
 import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.exception.NotFoundException;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 

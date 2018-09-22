@@ -12,6 +12,9 @@
 <s:a action="pwd_reset">
     Password Reset
 </s:a>
+<s:a action="demo_ajax">
+    Demo Ajax
+</s:a>
 
 
 

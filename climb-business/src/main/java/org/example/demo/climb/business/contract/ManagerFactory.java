@@ -1,6 +1,6 @@
-package org.example.demo.climb.consumer.contract;
+package org.example.demo.climb.business.contract;
 
-import org.example.demo.climb.consumer.contract.manager.MemberManager;
+import org.example.demo.climb.business.contract.manager.MemberManager;
 
 
 /**

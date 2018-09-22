@@ -1,15 +1,5 @@
 package org.example.demo.climb.webapp.action;
 
-import com.opensymphony.xwork2.ActionSupport;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.struts2.interceptor.SessionAware;
-import org.example.demo.climb.consumer.contract.ManagerFactory;
-import org.example.demo.climb.model.bean.member.Member;
-import org.example.demo.climb.model.exception.NotFoundException;
-
-import javax.inject.Inject;
-import java.util.Map;
-
 public class LoginAction /*extends ActionSupport implements SessionAware*/ {
 /*
     private String login;

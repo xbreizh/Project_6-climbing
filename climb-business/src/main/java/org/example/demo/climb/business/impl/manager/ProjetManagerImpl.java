@@ -1,7 +1,7 @@
-package org.example.demo.climb.consumer.impl.manager;
+package org.example.demo.climb.business.impl.manager;
 
-import org.example.demo.climb.consumer.contract.manager.MemberManager;
-import org.example.demo.climb.consumer.contract.manager.ProjetManager;
+import org.example.demo.climb.business.contract.manager.MemberManager;
+import org.example.demo.climb.business.contract.manager.ProjetManager;
 import org.example.demo.climb.model.bean.projet.Projet;
 import org.example.demo.climb.model.bean.projet.Version;
 import org.example.demo.climb.model.exception.FunctionalException;

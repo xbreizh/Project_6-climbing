@@ -1,8 +1,8 @@
-package org.example.demo.climb.consumer.impl;
+package org.example.demo.climb.business.impl;
 
-import org.example.demo.climb.consumer.contract.ManagerFactory;
-import org.example.demo.climb.consumer.contract.manager.MemberManager;
-import org.example.demo.climb.consumer.contract.manager.ProjetManager;
+import org.example.demo.climb.business.contract.ManagerFactory;
+import org.example.demo.climb.business.contract.manager.MemberManager;
+import org.example.demo.climb.business.contract.manager.ProjetManager;
 
 import javax.inject.Inject;
 import javax.inject.Named;

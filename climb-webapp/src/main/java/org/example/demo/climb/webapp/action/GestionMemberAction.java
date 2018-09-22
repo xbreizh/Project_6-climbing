@@ -1,7 +1,7 @@
 package org.example.demo.climb.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-import org.example.demo.climb.consumer.contract.manager.MemberManager;
+import org.example.demo.climb.business.contract.manager.MemberManager;
 import org.example.demo.climb.model.bean.member.Member;
 import org.example.demo.climb.model.exception.NotFoundException;
 
@@ -82,19 +82,20 @@ public class GestionMemberAction extends ActionSupport {
         if(login !=null || password!=null || password_check !=null) {
             if (login.equals("")) {
                 this.addFieldError("login", "you must provide a login");
+                return vResult;
             } else if (this.password.length() < 3 || this.password.length() > 8) {
                 this.addFieldError("password", "must be between 3 and 8 characters");
+                return vResult;
             } else if (!this.password.equals(password_check)) {
                 this.addFieldError("password", "password mismatch");
                 return vResult;
             }
             if (memberManager.updatePassword(login, password)) {
-                vResult = ActionSupport.SUCCESS;
+                return vResult = ActionSupport.SUCCESS;
             } else {
                 this.addFieldError("login", "this login doesn't exist");
             }
         }
-
         return vResult;
     }
     private String validDoCreate(String vResult) {

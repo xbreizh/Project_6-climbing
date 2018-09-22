@@ -7,14 +7,20 @@
 <struts>
 
 
-    <package name="Default" extends="struts-default">
+    <package name="Default" extends="struts-default, json-default">
 
         <!--Action par défaut-->
         <default-action-ref name="index"/>
 
         <!--Resultats Globaux-->
         <global-results>
-            <result name="error">/jsp/error.jsp</result>
+            <!--<result name="error">/jsp/error.jsp</result>-->
+            <result name="error" type="json">
+                <param name="statusCode">400</param>
+                <param name="includeProperties">actionErrors.*,fieldErrors.*</param>
+                <!-- Pour accéder au attributs des classes parentes à la classe d'action -->
+                <param name="ignoreHierarchy">false</param>
+            </result>
         </global-results>
 
         <!--Action index-->

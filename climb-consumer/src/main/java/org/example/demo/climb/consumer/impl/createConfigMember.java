@@ -1,12 +1,5 @@
 package org.example.demo.climb.consumer.impl;
 
-import org.example.demo.climb.model.bean.member.Member;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-
-import javax.inject.Named;
-
 /*@Named*/
 public class createConfigMember {
 

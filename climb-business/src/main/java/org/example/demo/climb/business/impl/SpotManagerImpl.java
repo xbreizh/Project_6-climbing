@@ -1,7 +1,7 @@
-package org.example.demo.climb.consumer.impl;
+package org.example.demo.climb.business.impl;
 
 
-import org.example.demo.climb.consumer.contract.manager.SpotManager;
+import org.example.demo.climb.business.contract.manager.SpotManager;
 import org.example.demo.climb.model.bean.Spot;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

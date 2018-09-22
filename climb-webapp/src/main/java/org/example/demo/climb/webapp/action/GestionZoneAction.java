@@ -1,7 +1,7 @@
 package org.example.demo.climb.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-import org.example.demo.climb.consumer.contract.manager.ZoneManager;
+import org.example.demo.climb.business.contract.manager.ZoneManager;
 import org.example.demo.climb.model.bean.Zone;
 import org.example.demo.climb.model.exception.NotFoundException;
 

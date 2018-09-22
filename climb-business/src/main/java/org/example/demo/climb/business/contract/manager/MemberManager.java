@@ -1,8 +1,7 @@
-package org.example.demo.climb.consumer.contract.manager;
+package org.example.demo.climb.business.contract.manager;
 
 import org.example.demo.climb.model.bean.member.Member;
 import org.example.demo.climb.model.exception.NotFoundException;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
@@ -23,6 +22,7 @@ public interface MemberManager  {
     Member getMember(Integer pId) throws NotFoundException;
 
     Member getMember(String pLogin) throws NotFoundException;
+    Member getMember() throws NotFoundException;
 
     //Update
 

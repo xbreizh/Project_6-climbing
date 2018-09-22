@@ -1,5 +1,5 @@
-package org.example.demo.climb.consumer.impl.manager;
-import org.example.demo.climb.consumer.contract.manager.MemberManager;
+package org.example.demo.climb.business.impl.manager;
+import org.example.demo.climb.business.contract.manager.MemberManager;
 import org.example.demo.climb.model.bean.member.Member;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -14,7 +14,7 @@ import java.util.List;
 @Named("memberManager")
 public class MemberManagerImpl  implements MemberManager {
 
-    /*private Member member = null;*/
+    private Member member;
     private Class cl=Member.class;
     /*@Inject
     private MemberDao memberDao;*/
@@ -30,11 +30,14 @@ public class MemberManagerImpl  implements MemberManager {
     }
 
     private void gettingSession() {
-        if (this.session == null) {
+        this.session=sessionFactory.openSession();
+       /* if (this.session == null) {
+            System.out.println("Opening a new session");
             this.session = sessionFactory.openSession();
         } else {
+            System.out.println("Getting existing session");
             this.session = sessionFactory.getCurrentSession();
-        }
+        }*/
     }
 
     @Override
@@ -140,4 +143,11 @@ public class MemberManagerImpl  implements MemberManager {
     }
 
 
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
 }

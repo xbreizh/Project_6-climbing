@@ -7,7 +7,7 @@
 <struts>
 
 
-    <package name="Member" extends="struts-default">
+    <package name="Member" extends="struts-default, json-default">
 
 
         <!-- CREATE-->
@@ -94,6 +94,27 @@
 
             <result name="success" type="redirectAction">
                 <param name="actionName">member_list</param>
+            </result>
+        </action>
+
+        <!-- Action de démonstration pour l'AJAX -->
+        <action name="demo_ajax" class="org.example.demo.climb.webapp.action.DemoAjaxAction">
+            <result name="success">/jsp/demo/ajax.jsp</result>
+        </action>
+        <!-- Action renvoyant la liste des Projets -->
+        <action name="demo_ajax_getListMember"
+                class="org.example.demo.climb.webapp.action.DemoAjaxAction"
+                method="doAjaxGetListMember">
+            <result name="success" type="json">
+                <param name="root">listMember</param>
+            </result>
+        </action>
+        <!-- Action renvoyant la liste des Spots -->
+        <action name="demo_ajax_getListSpot"
+                class="org.example.demo.climb.webapp.action.DemoAjaxAction"
+                method="doAjaxGetListSpot">
+            <result name="success" type="json">
+                <param name="root">spotList</param>
             </result>
         </action>
 

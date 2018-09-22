@@ -1,22 +1,6 @@
 package org.example.demo.climb.consumer.impl;
 
-import org.example.demo.climb.consumer.contract.Dao;
-import org.example.demo.climb.consumer.contract.MemberDao;
-import org.example.demo.climb.model.bean.member.Member;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.transaction.annotation.Transactional;
-
-import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.List;
 
 @Named
 public class MemberDaoImpl  /*implements MemberDao*/ {

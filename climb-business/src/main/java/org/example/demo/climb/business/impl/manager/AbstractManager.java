@@ -1,4 +1,4 @@
-package org.example.demo.climb.consumer.impl.manager;
+package org.example.demo.climb.business.impl.manager;
 
 import javax.validation.Configuration;
 import javax.validation.Validation;

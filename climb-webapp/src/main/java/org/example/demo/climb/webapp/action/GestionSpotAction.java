@@ -1,7 +1,8 @@
 package org.example.demo.climb.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-import org.example.demo.climb.consumer.contract.manager.SpotManager;
+import org.example.demo.climb.business.contract.manager.MemberManager;
+import org.example.demo.climb.business.contract.manager.SpotManager;
 import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.exception.NotFoundException;
 
@@ -17,6 +18,8 @@ public class GestionSpotAction extends ActionSupport {
 
     @Inject
     private SpotManager spotManager;
+    @Inject
+    private MemberManager memberManager;
 
     // Getters & Setters
 
@@ -45,10 +48,11 @@ public class GestionSpotAction extends ActionSupport {
     }
 
 
-    public String doCreate() {
+    public String doCreate() throws NotFoundException {
         String vResult = ActionSupport.INPUT;
 
         if (this.spot != null) {
+            spot.setCreator(memberManager.getMember(1));
             spotManager.addSpot(spot);
             vResult = ActionSupport.SUCCESS;
             System.out.println("Action: " + spot);

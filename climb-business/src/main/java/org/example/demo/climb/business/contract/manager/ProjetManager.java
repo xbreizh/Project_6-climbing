@@ -1,4 +1,4 @@
-package org.example.demo.climb.consumer.contract.manager;
+package org.example.demo.climb.business.contract.manager;
 
 import org.example.demo.climb.model.bean.projet.Projet;
 import org.example.demo.climb.model.bean.projet.Version;

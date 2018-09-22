@@ -1,8 +1,6 @@
 package org.example.demo.climb.consumer.impl;
-import org.example.demo.climb.consumer.contract.Dao;
 import org.example.demo.climb.consumer.contract.SpotDao;
 import org.example.demo.climb.model.bean.Spot;
-import org.example.demo.climb.model.bean.member.Member;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

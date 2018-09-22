@@ -1,17 +1,6 @@
 package org.example.demo.climb.consumer.impl;
-import org.example.demo.climb.consumer.contract.Dao;
-import org.example.demo.climb.consumer.contract.ZoneDao;
-import org.example.demo.climb.model.bean.Spot;
-import org.example.demo.climb.model.bean.Zone;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
 
-import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.List;
 
 @Named
 public class ZoneDaoImpl /*implements ZoneDao*/ {

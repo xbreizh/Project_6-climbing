@@ -1,5 +1,5 @@
-package org.example.demo.climb.consumer.impl;
-import org.example.demo.climb.consumer.contract.manager.ZoneManager;
+package org.example.demo.climb.business.impl;
+import org.example.demo.climb.business.contract.manager.ZoneManager;
 import org.example.demo.climb.model.bean.Zone;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

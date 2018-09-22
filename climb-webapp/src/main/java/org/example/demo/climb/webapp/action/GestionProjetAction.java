@@ -1,7 +1,7 @@
 package org.example.demo.climb.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-import org.example.demo.climb.consumer.contract.ManagerFactory;
+import org.example.demo.climb.business.contract.ManagerFactory;
 import org.example.demo.climb.model.bean.member.Utilisateur;
 import org.example.demo.climb.model.bean.projet.Projet;
 
