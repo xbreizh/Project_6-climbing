@@ -1,7 +1,8 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
+
 <html>
 
-<%@include file="../../_include/head.jsp" %>
+<%@include file="../../_include/header.jsp" %>
 
 <body>
 

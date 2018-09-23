@@ -34,12 +34,12 @@ public interface MemberManager  {
 
     //Connect
 
-    boolean connect(String login, String password);
+    Member connect(String login, String password);
 
     //Disconnect
 
-    boolean disconnect(String login);
-
+    void disconnect(String login);
+        //get last connexion date??!
     // Check if existing
 
     boolean exists(String login);

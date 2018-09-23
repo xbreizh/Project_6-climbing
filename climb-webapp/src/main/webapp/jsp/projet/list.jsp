@@ -1,7 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 
-<%@include file="../_include/header.jsp"%>
-<h1>Liste des projets</h1>
+<html>
+
+<%@include file="../_include/header.jsp" %>
+
+<body>
+<%--<h1>Liste des projets</h1>
 
 <s:a action="projet_new">Créer un nouveau projet</s:a>
 <s:iterator value="listProjet">
@@ -17,6 +21,6 @@
             <s:property value="responsable.nom"/>
         </s:a>
     </li>
-</s:iterator>
+</s:iterator>--%>
 </body>
 </html>

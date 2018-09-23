@@ -1,12 +1,14 @@
-<%--<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>--%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <header>
-    <s:if test="#session.member">
+    <%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
+    <title>Climb</title>
+    <s:if test="#session.user">
         Utilisateur connecté :
-        <s:property value="#session.member.prenom"/>
-        <s:property value="#session.member.nom"/>
-
+        <s:property value="#session.user.login"/>
+       <%-- <s:property value="#session.member.nom"/>--%>
+        <br>
         <s:a action="logout">Déconnexion</s:a>
     </s:if>
     <s:else>

@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+
 <html>
-<head>
-    <%@include file="../_include/head.jsp"%>
-</head>
+
+<%@include file="../_include/header.jsp" %>
+
 <body>
-<h1>Détails du projet</h1>
+<%--<h1>Détails du projet</h1>
 
 
 
@@ -26,6 +26,6 @@
 
 </ul>
 
-<s:a action="projet_list">Retour a la liste des projets</s:a>
+<s:a action="projet_list">Retour a la liste des projets</s:a>--%>
 </body>
 </html>

@@ -100,7 +100,7 @@ public class GestionMemberAction extends ActionSupport {
     }
     private String validDoCreate(String vResult) {
 
-
+        // checking if existing member with the proposed login
         if (this.member != null) {
             boolean exist= memberManager.exists(this.member.getLogin());
             if (this.member.getLogin().equals("")) {

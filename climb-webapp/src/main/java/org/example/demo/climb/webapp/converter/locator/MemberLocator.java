@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.util.StrutsTypeConverter;
 import org.example.demo.climb.business.contract.manager.MemberManager;
 import org.example.demo.climb.model.bean.member.Member;
+import org.example.demo.climb.model.bean.member.Utilisateur;
 import org.example.demo.climb.model.exception.NotFoundException;
 
 import javax.inject.Inject;
@@ -27,6 +28,7 @@ public class MemberLocator extends StrutsTypeConverter {
                             = StringUtils.isEmpty(vValue)
                             ? null
                             :  memberManager.getMember(new Integer(vValue));
+                    System.out.println("vValue: "+vValue);
                 } catch (NumberFormatException pEx) {
                     throw new TypeConversionException("Format d'identifiant membre invalide", pEx);
                 } catch (NotFoundException pEx) {
@@ -43,15 +45,17 @@ public class MemberLocator extends StrutsTypeConverter {
 
     @Override
     public String convertToString(Map pContext, Object pObject) {
-        String vString;
+        System.out.println("trying to convert into string");
+        String vString="";
         if (pObject instanceof Member) {
             Member member = (Member) pObject;
-            vString = "";
-            try {
-                int i=memberManager.getMember().getId();
-                vString= Integer.toString(i);
-            } catch (NotFoundException e) {
-                e.printStackTrace();
+           /* vString = member.getId() != null? member.getId().toString(): "";*/
+            if(member.getId()!=0){
+                try {
+                    vString = memberManager.getMember().toString();
+                } catch (NotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         } else {
             vString = "";

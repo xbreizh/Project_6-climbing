@@ -2,7 +2,7 @@
 
 <html>
 
-<%@include file="../_include/head.jsp" %>
+<%@include file="../_include/header.jsp" %>
 
 <body>
 <h1>Login Created Successfully!!</h1>

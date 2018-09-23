@@ -2,11 +2,10 @@
 
 <html>
 
-<%@include file="_include/head.jsp" %>
+<%@include file="_include/header.jsp" %>
 
 <body>
 
-<%@include file="_include/header.jsp"%>
 <h1><s:text name="home.welcome"/></h1>
 
 <s:a action="pwd_reset">

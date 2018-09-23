@@ -2,7 +2,7 @@
 
 <html>
 
-<%@include file="../_include/head.jsp" %>
+<%@include file="../_include/header.jsp" %>
 
 <body>
 <h2>Démo - AJAX</h2>
@@ -45,8 +45,8 @@
                     selectSpot.append(
                         jQuery("<option>")
                         .append(val.login)
-                            /*.text(val.id)
-                            .val(val.id)*/
+                            .text(val.id)
+                            .val(val.id)
                     );
                 });
             })

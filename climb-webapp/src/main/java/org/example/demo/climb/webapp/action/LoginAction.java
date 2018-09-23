@@ -1,18 +1,27 @@
 package org.example.demo.climb.webapp.action;
 
-public class LoginAction /*extends ActionSupport implements SessionAware*/ {
-/*
+import com.opensymphony.xwork2.ActionSupport;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.struts2.interceptor.SessionAware;
+import org.example.demo.climb.business.contract.manager.MemberManager;
+import org.example.demo.climb.model.bean.member.Member;
+import org.example.demo.climb.model.exception.NotFoundException;
+
+import javax.inject.Inject;
+import java.util.Map;
+
+public class LoginAction extends ActionSupport implements SessionAware {
     private String login;
     private String pwd;
     private Map<String, Object> session;
     @Inject
-    private ManagerFactory managerFactory;
+    private MemberManager memberManager;
 
     public String getLogin() {
         return login;
     }
 
-    *//*Getters / Setters*//*
+    //Getters / Setters
     public void setLogin(String login) {
         this.login = login;
     }
@@ -25,18 +34,37 @@ public class LoginAction /*extends ActionSupport implements SessionAware*/ {
         this.pwd = pwd;
     }
 
-    *//*Méthodes*//*
+    //Méthodes
 
     public String doLogin(){
-        String vResult=ActionSupport.INPUT;
+        String vResult= ActionSupport.INPUT;
         if (!StringUtils.isAllEmpty(login, pwd)) {
-            try {
-                Member vMember = managerFactory.getMemberManager().getMember(login);
-                this.session.put("user", vMember);
+           /*
+            try{Member member = memberManager.connect(login,pwd);
+            }catch(NotFoundException e){
+                this.addActionError("Identifiant ou mot de passe invalide");
+            }*/
+           Member member = memberManager.connect(login,pwd);
+            if(member!=null){
+                System.out.println("trying to get member");
+                this.session.put("user", member);
+                System.out.println("Session: "+session.entrySet().toString());
                 vResult = ActionSupport.SUCCESS;
-            } catch (NotFoundException e) {
+            }else{
                 this.addActionError("Identifiant ou mot de passe invalide");
             }
+           /* try {
+                if(member) {
+                    System.out.println("Member: "+login);
+                }
+            } catch (NotFoundException e) {
+
+            }*/
+
+          /*  if(memberManager.connect(login, pwd)){
+            }else{
+                this.addActionError("Identifiant ou mot de passe invalide");
+            }*/
         }
         return vResult;
     }
@@ -49,5 +77,5 @@ public class LoginAction /*extends ActionSupport implements SessionAware*/ {
     @Override
     public void setSession(Map<String, Object> session) {
         this.session = session;
-    }*/
+    }
 }

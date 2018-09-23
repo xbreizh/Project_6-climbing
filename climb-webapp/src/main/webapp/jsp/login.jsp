@@ -1,6 +1,10 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<%@ include file="_include/header.jsp" %>
+<html>
+
+<%@include file="_include/header.jsp" %>
+
+<body>
 
 <h2>Connexion</h2>
 

@@ -30,30 +30,30 @@ public class MemberManagerImpl  implements MemberManager {
     }
 
     private void gettingSession() {
-        this.session=sessionFactory.openSession();
-       /* if (this.session == null) {
+        System.out.println("Session: "+session);
+        if((this.session=sessionFactory.getCurrentSession())==null){
+            this.session=sessionFactory.openSession();
             System.out.println("Opening a new session");
-            this.session = sessionFactory.openSession();
-        } else {
-            System.out.println("Getting existing session");
-            this.session = sessionFactory.getCurrentSession();
-        }*/
+        }else{
+            System.out.println("getting existing session");
+        }
     }
 
     @Override
     public void addMember(Member member) {
         gettingSession();
+        System.out.println("Session: "+session.toString());
         member.setActive(true);//activating user
         member.setLogin2(member.getLogin().toUpperCase());//setting backup login
         member.setLogin(member.getLogin().toUpperCase());//setting upper case login
         member.setDate(new Date());
+        System.out.println("Member to be added: "+member);
+        /*session.save(member);*/
         session.persist(member);
+        System.out.println("Checking if member is added: "+getMember(member.getId()));
     }
 
-    @Override
-    public boolean disconnect(String login) {
-        return false;
-    }
+
 
     @Override //checks if the login passed is already in use
     public boolean exists(String login) {
@@ -124,8 +124,22 @@ public class MemberManagerImpl  implements MemberManager {
 
 
     @Override
-    public boolean connect(String pLogin, String pPassword) {
-        return false;
+    public Member connect(String login, String password) {
+        System.out.println("yo!");
+        Member m;
+        if(((m=getMember(login.toUpperCase()))!=null)){
+            System.out.println("login ok :"+login);
+            if(m.getPassword().equals(password)){
+                System.out.println("login & pwd ok");
+                return m;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void disconnect(String login) {
+
     }
 
     @Override
