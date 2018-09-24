@@ -116,9 +116,9 @@
             <result name="success" type="json">
                 <param name="root">spotList</param>
             </result>
-            <result name="input" type="json">
+            <!--<result name="input" type="json">
                 <param name="root">spotList</param>
-            </result>
+            </result>-->
         </action>
 
     </package>

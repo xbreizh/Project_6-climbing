@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import com.opensymphony.xwork2.ActionSupport;
 
 import org.example.demo.climb.business.contract.manager.MemberManager;
+import org.example.demo.climb.business.contract.manager.SpotManager;
 import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.bean.member.Member;
 import org.example.demo.climb.model.exception.NotFoundException;
@@ -19,11 +20,22 @@ public class DemoAjaxAction extends ActionSupport {
     // ==================== Attributs ====================
     @Inject
     private MemberManager memberManager;
+    @Inject
+    private SpotManager spotManager;
 
 
 
     // ----- Eléments en entree
     private Member member;
+    private Spot spot;
+
+    public Spot getSpot() {
+        return spot;
+    }
+
+    public void setSpot(Spot spot) {
+        this.spot = spot;
+    }
 
     // ----- Eléments en sortie
     private List<Member> listMember;
@@ -40,6 +52,7 @@ public class DemoAjaxAction extends ActionSupport {
     public Member getMember() {
         return member;
     }
+
 
     public void setMember(Member member) {
         this.member = member;
@@ -61,7 +74,7 @@ public class DemoAjaxAction extends ActionSupport {
         System.out.println("trying to get member lists");
         listMember = memberManager.getListMember();
         System.out.println("got the members list");
-        System.out.println("Liste: "+member.getSpotList());
+        /*System.out.println("Liste: "+member.getSpotList());*/
         return ActionSupport.SUCCESS;
     }
     /**
@@ -69,13 +82,16 @@ public class DemoAjaxAction extends ActionSupport {
      * @return success / error
      */
     public String doAjaxGetListSpot() throws NotFoundException {
-        System.out.println("Liste de spots: "+spotList);
-       /* if (member == null) {
+        System.out.println("trying to get spot: ");
+        if (member == null) {
             addActionError("Le membre doit être précisé !");
         } else {
-            spotList = memberManager.getMember().getSpotList();
-        }*/
-
+            System.out.println("Member is: "+member);
+            spotList = member.getSpotList();
+            System.out.println("Liste de spots: "+spotList);
+        }
+        /*spotList=memberManager.getMember(4).getSpotList();*/
+        /*spotList = spotManager.getListSpot();*/
         return hasErrors() ? ActionSupport.ERROR : ActionSupport.SUCCESS;
     }
 

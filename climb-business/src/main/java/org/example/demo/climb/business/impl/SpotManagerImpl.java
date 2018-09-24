@@ -31,7 +31,8 @@ public class SpotManagerImpl  implements SpotManager {
     }
 
     private void gettingSession() {
-        this.session= sessionFactory.getCurrentSession();
+        /*this.session= sessionFactory.getCurrentSession();*/
+        this.session=sessionFactory.openSession();
     }
 
     @Override

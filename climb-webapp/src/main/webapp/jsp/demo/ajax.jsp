@@ -19,9 +19,9 @@
               list="listMember" listKey="id" listValue="login"
               onchange="onSelectMemberChange()"/>
 
-    <s:select id="selectSpot" label="Spot" list="{}"/>
+    <s:select id="selectSpot" label="Spot" list="{}" listValue="spot.name"/>
+
 </s:form>
-<li>Login: <s:property value="login"/></li>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
 
@@ -44,9 +44,8 @@
                 jQuery.each(data, function (key, val) {
                     selectSpot.append(
                         jQuery("<option>")
-                        .append(val.login)
-                            .text(val.id)
-                            .val(val.id)
+                        .text(val.name)
+                            .val(val.name)
                     );
                 });
             })
@@ -60,7 +59,7 @@
             });
     }
 
-   /* function reloadListMember() {
+/*    function reloadListMember() {
         // URL de l'action AJAX
         var url = "*/<%--<s:url action="demo_ajax_getListMember"/>--%>/*";
 

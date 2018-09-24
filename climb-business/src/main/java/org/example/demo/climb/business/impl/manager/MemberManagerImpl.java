@@ -31,12 +31,12 @@ public class MemberManagerImpl  implements MemberManager {
 
     private void gettingSession() {
         System.out.println("Session: "+session);
-        if((this.session=sessionFactory.getCurrentSession())==null){
+        /*if((this.session=sessionFactory.getCurrentSession())==null){*/
             this.session=sessionFactory.openSession();
-            System.out.println("Opening a new session");
+           /* System.out.println("Opening a new session");
         }else{
             System.out.println("getting existing session");
-        }
+        }*/
     }
 
     @Override
