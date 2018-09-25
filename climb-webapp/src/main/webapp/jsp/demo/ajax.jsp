@@ -14,14 +14,21 @@
 </ul>
 <h3>Selects en cascade</h3>
 <button onclick="reloadListMember()">Actualiser</button>--%>
-<s:form>
+<s:form action="demo_ajax" method="POST">
     <s:select id="selectMember" name="member" label="Member"
               list="listMember" listKey="id" listValue="login"
               onchange="onSelectMemberChange()"/>
 
     <s:select id="selectSpot" label="Spot" list="{}" listValue="spot.name"/>
 
+    <s:submit value="OK"/>
 </s:form>
+<ul>
+
+
+   <s:property value="member.login" />
+
+</ul>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
 

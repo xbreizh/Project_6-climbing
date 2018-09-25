@@ -1,19 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="r" uri="/struts-tags" %>
 
 <header>
     <%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
     <title>Climb</title>
-    <s:if test="#session.user">
+    <r:if test="#session.user">
         Utilisateur connecté :
-        <s:property value="#session.user.login"/>
+        <r:property value="#session.user.login"/>
        <%-- <s:property value="#session.member.nom"/>--%>
         <br>
-        <s:a action="logout">Déconnexion</s:a>
-    </s:if>
-    <s:else>
-        <s:a action="login">Connexion</s:a>
-    </s:else>
+        <r:a action="logout">Déconnexion</r:a>
+    </r:if>
+    <r:else>
+        <r:a action="login">Connexion</r:a>
+    </r:else>
 </header>
 <%@include file="navbar.jsp"%>
 <%--<nav>

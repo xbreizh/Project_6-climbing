@@ -75,13 +75,19 @@ public class DemoAjaxAction extends ActionSupport {
         listMember = memberManager.getListMember();
         System.out.println("got the members list");
         /*System.out.println("Liste: "+member.getSpotList());*/
+        if(member==null) {
+            member = listMember.get(0);
+        }
         return ActionSupport.SUCCESS;
+
     }
     /**
      * Action "AJAX" renvoyant la liste des versions d'un projet
      * @return success / error
      */
     public String doAjaxGetListSpot() throws NotFoundException {
+        System.out.println("display member: "+member.getLogin());
+        System.out.println("list for that member: " +spotList);
         System.out.println("trying to get spot: ");
         if (member == null) {
             addActionError("Le membre doit être précisé !");

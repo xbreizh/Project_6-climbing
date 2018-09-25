@@ -20,36 +20,25 @@ public class MemberManagerImpl  implements MemberManager {
     private MemberDao memberDao;*/
     @Inject
     private SessionFactory sessionFactory;
-    private Session session;
 
     @Override
     public List<Member> getListMember() {
-        gettingSession();
-        return session.createQuery("from Member ").list();
+        return sessionFactory.getCurrentSession().createQuery("from Member ").list();
 
     }
 
-    private void gettingSession() {
-        System.out.println("Session: "+session);
-        /*if((this.session=sessionFactory.getCurrentSession())==null){*/
-            this.session=sessionFactory.openSession();
-           /* System.out.println("Opening a new session");
-        }else{
-            System.out.println("getting existing session");
-        }*/
-    }
+
 
     @Override
     public void addMember(Member member) {
-        gettingSession();
-        System.out.println("Session: "+session.toString());
+        System.out.println("Session: "+sessionFactory.getCurrentSession().toString());
         member.setActive(true);//activating user
         member.setLogin2(member.getLogin().toUpperCase());//setting backup login
         member.setLogin(member.getLogin().toUpperCase());//setting upper case login
         member.setDate(new Date());
         System.out.println("Member to be added: "+member);
         /*session.save(member);*/
-        session.persist(member);
+        sessionFactory.getCurrentSession().persist(member);
         System.out.println("Checking if member is added: "+getMember(member.getId()));
     }
 
@@ -57,7 +46,6 @@ public class MemberManagerImpl  implements MemberManager {
 
     @Override //checks if the login passed is already in use
     public boolean exists(String login) {
-        gettingSession();
         for (Member m : getListMember()
         ) {
             if (m.getLogin().equals(login.toUpperCase())) {
@@ -69,13 +57,11 @@ public class MemberManagerImpl  implements MemberManager {
 
     @Override
     public Member getMember(Integer pId) {
-        gettingSession();
-        return (Member) session.get(cl, pId);
+        return (Member) sessionFactory.getCurrentSession().get(cl, pId);
     }
 
     @Override
     public Member getMember(String login) {
-        gettingSession();
         for (Member m : getListMember()
         ) {
             if (m.getLogin().equals(login)) {
@@ -87,9 +73,8 @@ public class MemberManagerImpl  implements MemberManager {
 
     @Override
     public void updateMember(Member member) {
-        gettingSession();
         int id = member.getId();
-        Member m = (Member) session.get(cl, id);
+        Member m = (Member) sessionFactory.getCurrentSession().get(cl, id);
         System.out.println("login: "+m.getLogin());
         System.out.println(m);
         if(!member.isActive()){
@@ -111,15 +96,14 @@ public class MemberManagerImpl  implements MemberManager {
         if(!member.getPassword().equals("")){
             m.setPassword(member.getPassword());
         }
-        session.update(m);
+        sessionFactory.getCurrentSession().update(m);
     }
 
     @Override
     public void deleteMember(int id) {
-        gettingSession();
         System.out.println("trying to delete member: "+id);
-        Member m= (Member) session.get(cl, id);
-        session.delete(cl.getName(), m);
+        Member m= (Member) sessionFactory.getCurrentSession().get(cl, id);
+        sessionFactory.getCurrentSession().delete(cl.getName(), m);
     }
 
 
@@ -145,11 +129,10 @@ public class MemberManagerImpl  implements MemberManager {
     @Override
     public boolean updatePassword(String login, String password){
         System.out.println("trying to update pwd");
-        gettingSession();
         if(exists(login.toUpperCase())){
             Member m = getMember(login.toUpperCase());
             m.setPassword(password);
-        session.update(cl.getName(), m);
+            sessionFactory.getCurrentSession().update(cl.getName(), m);
             return true;
         }else{
             return false;

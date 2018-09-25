@@ -18,30 +18,23 @@ public class ZoneManagerImpl  implements ZoneManager {
 
     @Inject
     private SessionFactory sessionFactory;
-    private Session session;
 
     @Override
     public List<Zone> getListZone() {
         System.out.println("trying to get Zone list");
-        gettingSession();
-        return session.createQuery("from Zone ").list();
+        return sessionFactory.getCurrentSession().createQuery("from Zone ").list();
 
     }
 
-    private void gettingSession() {
-        this.session= sessionFactory.getCurrentSession();
-    }
 
     @Override
     public void addZone(Zone zone) {
-        gettingSession();
-        session.persist(zone);
+        sessionFactory.getCurrentSession().persist(zone);
     }
 
     @Override
     public Zone getZone(Integer pId) {
-        gettingSession();
-        return (Zone) session.get(cl, pId);
+        return (Zone) sessionFactory.getCurrentSession().get(cl, pId);
     }
 
     @Override
@@ -51,9 +44,8 @@ public class ZoneManagerImpl  implements ZoneManager {
 
     @Override
     public void updateZone(Zone zone) {
-        gettingSession();
         int id = zone.getId();
-        Zone z = (Zone) session.get(cl.getName(), id);
+        Zone z = (Zone) sessionFactory.getCurrentSession().get(cl.getName(), id);
         if(zone.getName() != null){
             z.setName(zone.getName());
         }
@@ -66,15 +58,14 @@ public class ZoneManagerImpl  implements ZoneManager {
         if(zone.getType() != null){
             z.setType(zone.getType());
         }
-        session.update(z);
+        sessionFactory.getCurrentSession().update(z);
     }
 
     @Override
     public void deleteZone(int id) {
-        gettingSession();
         System.out.println("trying to delete zone: "+id);
-        Zone m= (Zone) session.get(cl, id);
-        session.delete(cl.getName(), m);
+        Zone m= (Zone) sessionFactory.getCurrentSession().get(cl, id);
+        sessionFactory.getCurrentSession().delete(cl.getName(), m);
     }
 
 

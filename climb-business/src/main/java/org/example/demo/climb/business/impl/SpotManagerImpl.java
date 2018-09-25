@@ -21,30 +21,23 @@ public class SpotManagerImpl  implements SpotManager {
     private SpotDao spotDao;*/
     @Inject
     private SessionFactory sessionFactory;
-    private Session session;
 
     @Override
     public List<Spot> getListSpot() {
-        gettingSession();
-        return session.createQuery("from Spot ").list();
+        return sessionFactory.getCurrentSession().createQuery("from Spot ").list();
 
     }
 
-    private void gettingSession() {
-        /*this.session= sessionFactory.getCurrentSession();*/
-        this.session=sessionFactory.openSession();
-    }
+
 
     @Override
     public void addSpot(Spot spot) {
-        gettingSession();
-        session.persist(spot);
+        sessionFactory.getCurrentSession().persist(spot);
     }
 
     @Override
     public Spot getSpot(Integer pId) {
-        gettingSession();
-        return (Spot) session.get(cl, pId);
+        return (Spot) sessionFactory.getCurrentSession().get(cl, pId);
     }
 
     @Override
@@ -54,9 +47,8 @@ public class SpotManagerImpl  implements SpotManager {
 
     @Override
     public void updateSpot(Spot spot) {
-        gettingSession();
         int id = spot.getId();
-        Spot s = (Spot) session.get(cl, id);
+        Spot s = (Spot) sessionFactory.getCurrentSession().get(cl, id);
         if(!(spot.getName()==null)){
             s.setName(spot.getName());
         }
@@ -64,15 +56,14 @@ public class SpotManagerImpl  implements SpotManager {
             s.setNb_ways(spot.getNb_ways());
         }
 
-        session.update(s);
+        sessionFactory.getCurrentSession().update(s);
     }
 
     @Override
     public void deleteSpot(int id) {
-        gettingSession();
         System.out.println("trying to delete spot: "+id);
-        Spot m= (Spot) session.get(cl, id);
-        session.delete(cl.getName(), m);
+        Spot m= (Spot) sessionFactory.getCurrentSession().get(cl, id);
+        sessionFactory.getCurrentSession().delete(cl.getName(), m);
     }
 
 

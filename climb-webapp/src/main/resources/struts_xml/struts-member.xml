@@ -113,7 +113,7 @@
         <action name="demo_ajax_getListSpot"
                 class="org.example.demo.climb.webapp.action.DemoAjaxAction"
                 method="doAjaxGetListSpot">
-            <result name="success" type="json">
+            <result name="input" type="json">
                 <param name="root">spotList</param>
             </result>
             <!--<result name="input" type="json">
