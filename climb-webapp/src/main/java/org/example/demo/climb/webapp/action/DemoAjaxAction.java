@@ -8,6 +8,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import org.example.demo.climb.business.contract.manager.MemberManager;
 import org.example.demo.climb.business.contract.manager.SpotManager;
 import org.example.demo.climb.model.bean.Spot;
+import org.example.demo.climb.model.bean.Zone;
 import org.example.demo.climb.model.bean.member.Member;
 import org.example.demo.climb.model.exception.NotFoundException;
 
@@ -28,6 +29,23 @@ public class DemoAjaxAction extends ActionSupport {
     // ----- Eléments en entree
     private Member member;
     private Spot spot;
+    private Zone zone;
+
+    public Zone getZone() {
+        return zone;
+    }
+
+    public void setZone(Zone zone) {
+        this.zone = zone;
+    }
+
+    public List<Zone> getZoneList() {
+        return zoneList;
+    }
+
+    public void setZoneList(List<Zone> zoneList) {
+        this.zoneList = zoneList;
+    }
 
     public Spot getSpot() {
         return spot;
@@ -40,6 +58,7 @@ public class DemoAjaxAction extends ActionSupport {
     // ----- Eléments en sortie
     private List<Member> listMember;
     private List<Spot> spotList;
+    private List<Zone> zoneList;
 
     // ==================== Getters/Setters ====================
 

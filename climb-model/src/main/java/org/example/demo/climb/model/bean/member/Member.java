@@ -1,7 +1,6 @@
 package org.example.demo.climb.model.bean.member;
 
 import org.example.demo.climb.model.bean.Spot;
-import org.example.demo.climb.model.bean.Zone;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -52,8 +51,8 @@ public class Member {
 
     @OneToMany(mappedBy = "creatorSpot")
     private List<Spot> spotList= new ArrayList<>();
-    @OneToMany(mappedBy = "creatorZone")
-    private List<Zone> zoneList= new ArrayList<>();
+  /*  @OneToMany(mappedBy = "creatorZone")
+    private List<Zone> zoneList= new ArrayList<>();*/
 
     public Member() {
     }
@@ -85,13 +84,7 @@ public class Member {
         this.spotList = spotList;
     }
 
-    public List<Zone> getZoneList() {
-        return zoneList;
-    }
 
-    public void setZoneList(List<Zone> zoneList) {
-        this.zoneList = zoneList;
-    }
 
     public List<Spot> getSpotList() {
         return spotList;

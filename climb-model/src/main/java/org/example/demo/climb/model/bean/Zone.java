@@ -11,11 +11,11 @@ import javax.validation.constraints.Size;
                 name = "findAllZones",
                 /*query = "from Member m where m.login != :name"*/
                 query = "from Zone"
-        ),
+        )/*,
         @NamedQuery(
                 name = "findByZoneName",
                 query = "from Zone m where m.name = :name"
-        )
+        )*/
 })
 @Entity
 public class Zone {
@@ -26,32 +26,15 @@ public class Zone {
     private int id;
     @NotNull
     @Size(min = 1, max = 50)
-    private String name;
+    private String continent;
     @NotNull
     @Size(min = 1, max = 100)
     private String country;
-    @NotNull
+   /* @NotNull*/
     @Size(min = 1, max = 100)
     private String region;
-    /*type of climbing*/
-    @NotNull
-    @Size(min = 1, max = 50)
-    private String type;
-    @ManyToOne
-    private Member creatorZone;
-
- /*   @OneToMany
-    private List<Spot> spotList = new ArrayList<>();*/
 
     public Zone() {
-    }
-
-    public Member getCreatorZone() {
-        return creatorZone;
-    }
-
-    public void setCreatorZone(Member creatorZone) {
-        this.creatorZone = creatorZone;
     }
 
     public int getId() {
@@ -62,12 +45,12 @@ public class Zone {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getContinent() {
+        return continent;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setContinent(String continent) {
+        this.continent = continent;
     }
 
     public String getCountry() {
@@ -86,22 +69,15 @@ public class Zone {
         this.region = region;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
     @Override
     public String toString() {
         return "Zone{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", continent='" + continent + '\'' +
                 ", country='" + country + '\'' +
                 ", region='" + region + '\'' +
-                ", type='" + type + '\'' +
                 '}';
     }
+
 }
