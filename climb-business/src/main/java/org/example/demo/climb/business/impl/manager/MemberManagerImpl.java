@@ -1,7 +1,6 @@
 package org.example.demo.climb.business.impl.manager;
 import org.example.demo.climb.business.contract.manager.MemberManager;
 import org.example.demo.climb.model.bean.member.Member;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -57,7 +56,8 @@ public class MemberManagerImpl  implements MemberManager {
 
     @Override
     public Member getMember(Integer pId) {
-        return (Member) sessionFactory.getCurrentSession().get(cl, pId);
+        Member m = (Member) sessionFactory.getCurrentSession().get(cl, pId);
+        return m;
     }
 
     @Override
@@ -78,23 +78,12 @@ public class MemberManagerImpl  implements MemberManager {
         System.out.println("login: "+m.getLogin());
         System.out.println(m);
         if(!member.isActive()){
-            /*m.setLogin2(member.getLogin());*/
             m.setLogin("Inactive Member");
             m.setActive(false);
-           /* member.setLogin2(m.getLogin2());*/
-            System.out.println("disabling member!.new login: "+m.getLogin());
         }else{
-            System.out.println("restoring original login: "+m.getLogin2());
             m.setLogin(m.getLogin2());
-            /*if(!member.getLogin().equals("")){
-                member.setLogin2(member.getLogin());
-            }else {
-                member.setLogin2(m.getLogin2());
-                member.setLogin(m.getLogin2());
-            }*/
-        }
-        if(!member.getPassword().equals("")){
-            m.setPassword(member.getPassword());
+            m.setActive(true);
+            m.setDescription(member.getDescription());
         }
         sessionFactory.getCurrentSession().update(m);
     }

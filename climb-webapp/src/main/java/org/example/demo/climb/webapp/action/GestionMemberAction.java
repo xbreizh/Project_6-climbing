@@ -9,6 +9,33 @@ import javax.inject.Inject;
 import java.util.List;
 
 public class GestionMemberAction extends ActionSupport {
+    private Member member;
+    private int id;
+    private String login;
+    private String password;
+    private String password_check;
+    private List<Member> listMember;
+    private String description;
+
+    private boolean active;
+    @Inject
+    private MemberManager memberManager;
+    public String getDescription() {
+        return description;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getLogin() {
         return login;
     }
@@ -16,15 +43,10 @@ public class GestionMemberAction extends ActionSupport {
     public void setLogin(String login) {
         this.login = login;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
-
-    private Member member;
-    private List<Member> listMember;
-    private int id;
-    private String login;
-    private String password;
 
     public String getPassword_check() {
         return password_check;
@@ -34,16 +56,6 @@ public class GestionMemberAction extends ActionSupport {
         this.password_check = password_check;
     }
 
-    private String password_check;
-
-/*    public String getDescription() {
-        return description;
-    }
-
-    private String description;*/
-
-    @Inject
-    private MemberManager memberManager;
 
     public Member getMember() {
        return member;
@@ -142,7 +154,14 @@ public class GestionMemberAction extends ActionSupport {
     }
 
     public String doEdit() {
-
+        System.out.println("id: "+id);
+        try {
+            member = memberManager.getMember(id);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.println("doedit id: "+member);
+        System.out.println("active: "+member.isActive());
         return ActionSupport.SUCCESS;
     }
 

@@ -49,7 +49,7 @@ public class Member {
     @NotNull
     private Date date;
 
-    @OneToMany(mappedBy = "creatorSpot")
+    @OneToMany(mappedBy = "creatorSpot", fetch=FetchType.EAGER)
     private List<Spot> spotList= new ArrayList<>();
   /*  @OneToMany(mappedBy = "creatorZone")
     private List<Zone> zoneList= new ArrayList<>();*/
