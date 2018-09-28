@@ -25,7 +25,7 @@ public class Member {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
 
@@ -51,8 +51,6 @@ public class Member {
 
     @OneToMany(mappedBy = "creatorSpot", fetch=FetchType.EAGER)
     private List<Spot> spotList= new ArrayList<>();
-  /*  @OneToMany(mappedBy = "creatorZone")
-    private List<Zone> zoneList= new ArrayList<>();*/
 
     public Member() {
     }

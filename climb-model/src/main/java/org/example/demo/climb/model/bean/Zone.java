@@ -5,6 +5,8 @@ import org.example.demo.climb.model.bean.member.Member;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @NamedQueries({
         @NamedQuery(
@@ -21,7 +23,7 @@ import javax.validation.constraints.Size;
 public class Zone {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
     @NotNull
@@ -30,9 +32,11 @@ public class Zone {
     @NotNull
     @Size(min = 1, max = 100)
     private String country;
-   /* @NotNull*/
+    @NotNull
     @Size(min = 1, max = 100)
     private String region;
+    @OneToMany(mappedBy = "zone", fetch=FetchType.EAGER)
+    private List<Spot> spotList= new ArrayList<>();
 
     public Zone() {
     }

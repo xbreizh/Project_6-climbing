@@ -20,6 +20,8 @@ public class GestionSpotAction extends ActionSupport {
     private SpotManager spotManager;
     @Inject
     private MemberManager memberManager;
+    @Inject
+    private LoginAction loginAction;
 
     // Getters & Setters
 
@@ -52,9 +54,14 @@ public class GestionSpotAction extends ActionSupport {
         String vResult = ActionSupport.INPUT;
 
         if (this.spot != null) {
-            spot.setCreator(memberManager.getMember(1));
-            spotManager.addSpot(spot);
-            vResult = ActionSupport.SUCCESS;
+            System.out.println(loginAction.getMember());
+            if(loginAction.getMember()!=null) {
+                spot.setCreatorSpot(loginAction.getMember());
+                spotManager.addSpot(spot);
+                vResult = ActionSupport.SUCCESS;
+            }else{
+                this.addActionError("no member found for this session");
+            }
             System.out.println("Action: " + spot);
         }
         if (this.hasErrors()) {
@@ -91,9 +98,9 @@ public class GestionSpotAction extends ActionSupport {
         return vResult;
     }
 
-    public String doList() {
+    public String doList(String continent, String country, String region) {
         System.out.println("spot");
-        listSpot = spotManager.getListSpot();
+        listSpot = spotManager.getListSpot(continent, country, region);
         System.out.println("size: " + listSpot.size());
         return ActionSupport.SUCCESS;
     }

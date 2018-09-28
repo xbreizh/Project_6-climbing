@@ -17,6 +17,9 @@ public interface SpotManager {
     //Get list
     List<Spot> getListSpot();
 
+    //Get list with criterias
+    List<Spot> getListSpot(String continent, String country, String region);
+
     //Read
     Spot getSpot(Integer pId) throws NotFoundException;
 
@@ -27,5 +30,8 @@ public interface SpotManager {
 
     //Delete
     void deleteSpot(int id);
+
+    //
+    void updateWhenDeletingMember(int id);
 
 }

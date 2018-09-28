@@ -8,14 +8,21 @@ import org.example.demo.climb.model.bean.member.Member;
 import org.example.demo.climb.model.exception.NotFoundException;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.Map;
-
+@Named
 public class LoginAction extends ActionSupport implements SessionAware {
     private String login;
     private String pwd;
     private Map<String, Object> session;
+    private Member member;
+
     @Inject
     private MemberManager memberManager;
+
+    public Member getMember() {
+        return member;
+    }
 
     public String getLogin() {
         return login;
@@ -35,6 +42,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
     }
 
     //Méthodes
+
+
 
     public String doLogin(){
         String vResult= ActionSupport.INPUT;
@@ -65,6 +74,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
             }else{
                 this.addActionError("Identifiant ou mot de passe invalide");
             }*/
+
         }
         return vResult;
     }

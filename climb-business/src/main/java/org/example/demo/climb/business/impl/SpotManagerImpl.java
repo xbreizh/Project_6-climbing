@@ -1,10 +1,14 @@
 package org.example.demo.climb.business.impl;
 
 
+import org.example.demo.climb.business.contract.manager.MemberManager;
 import org.example.demo.climb.business.contract.manager.SpotManager;
 import org.example.demo.climb.model.bean.Spot;
+import org.example.demo.climb.model.bean.member.Member;
+import org.example.demo.climb.model.exception.NotFoundException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
@@ -21,6 +25,8 @@ public class SpotManagerImpl  implements SpotManager {
     private SpotDao spotDao;*/
     @Inject
     private SessionFactory sessionFactory;
+    @Inject
+    private MemberManager memberManager;
 
     @Override
     public List<Spot> getListSpot() {
@@ -28,6 +34,11 @@ public class SpotManagerImpl  implements SpotManager {
 
     }
 
+    @Override
+    public List<Spot> getListSpot(String continent, String country, String region) {
+
+        return null;
+    }
 
 
     @Override
@@ -66,11 +77,13 @@ public class SpotManagerImpl  implements SpotManager {
         sessionFactory.getCurrentSession().delete(cl.getName(), m);
     }
 
+    @Override
+    public void updateWhenDeletingMember(int id) {
+        System.out.println("updating spotList owner on member deletion");
+        Query query = sessionFactory.getCurrentSession().createQuery("update Spot set creatorSpot=1 where creatorSpot= :memberId");
+        query.setParameter("memberId    ", id);
 
-
-
-
-
+    }
 
 
 }

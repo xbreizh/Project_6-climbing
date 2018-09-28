@@ -20,7 +20,7 @@ import javax.validation.constraints.Size;
     public class Spot {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
     @NotNull
@@ -28,17 +28,30 @@ import javax.validation.constraints.Size;
     private String name;
     private int nb_ways;
 
+    @NotNull
     @ManyToOne
     private Member creatorSpot;
 
+    @NotNull
+    @ManyToOne
+    private Zone zone;
+
     public Spot() {
+    }
+
+    public Zone getZone() {
+        return zone;
+    }
+
+    public void setZone(Zone zone) {
+        this.zone = zone;
     }
 
     public Member getCreatorSpot() {
         return creatorSpot;
     }
 
-    public void setCreator(Member creatorSpot) {
+    public void setCreatorSpot(Member creatorSpot) {
         this.creatorSpot = creatorSpot;
     }
 

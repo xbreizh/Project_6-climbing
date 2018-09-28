@@ -1,5 +1,6 @@
 package org.example.demo.climb.business.impl.manager;
 import org.example.demo.climb.business.contract.manager.MemberManager;
+import org.example.demo.climb.business.contract.manager.SpotManager;
 import org.example.demo.climb.model.bean.member.Member;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,8 @@ public class MemberManagerImpl  implements MemberManager {
     private MemberDao memberDao;*/
     @Inject
     private SessionFactory sessionFactory;
+    @Inject
+    private SpotManager spotManager;
 
     @Override
     public List<Member> getListMember() {
@@ -90,8 +93,11 @@ public class MemberManagerImpl  implements MemberManager {
 
     @Override
     public void deleteMember(int id) {
+        spotManager.updateWhenDeletingMember(id);
         System.out.println("trying to delete member: "+id);
         Member m= (Member) sessionFactory.getCurrentSession().get(cl, id);
+        System.out.println("trying to remove spotList");
+        m.setSpotList(null);
         sessionFactory.getCurrentSession().delete(cl.getName(), m);
     }
 
