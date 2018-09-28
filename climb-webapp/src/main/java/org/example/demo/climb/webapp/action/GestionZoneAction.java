@@ -8,7 +8,7 @@ import org.example.demo.climb.model.exception.NotFoundException;
 import javax.inject.Inject;
 import java.util.List;
 
-public class GestionZoneAction extends ActionSupport {
+public class GestionZoneAction extends LoginAction {
 
     private Zone zone;
     private List<Zone> listZone;

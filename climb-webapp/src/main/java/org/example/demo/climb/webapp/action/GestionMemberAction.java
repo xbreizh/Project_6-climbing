@@ -8,7 +8,7 @@ import org.example.demo.climb.model.exception.NotFoundException;
 import javax.inject.Inject;
 import java.util.List;
 
-public class GestionMemberAction extends ActionSupport {
+public class GestionMemberAction extends LoginAction {
     private Member member;
     private int id;
     private String login;

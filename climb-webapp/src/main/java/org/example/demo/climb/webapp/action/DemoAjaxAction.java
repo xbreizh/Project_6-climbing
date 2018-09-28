@@ -16,7 +16,7 @@ import org.example.demo.climb.model.exception.NotFoundException;
 /**
  * Action de démo pour les appels AJAX
  */
-public class DemoAjaxAction extends ActionSupport {
+public class DemoAjaxAction extends LoginAction {
 
     // ==================== Attributs ====================
     @Inject

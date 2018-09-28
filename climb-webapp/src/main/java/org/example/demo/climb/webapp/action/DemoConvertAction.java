@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Action de démo pour les StrutsTypeConverter
  */
-public class DemoConvertAction extends ActionSupport {
+public class DemoConvertAction extends LoginAction {
 
 
     // ==================== Attributs ====================

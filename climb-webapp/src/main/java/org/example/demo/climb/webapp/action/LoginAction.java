@@ -6,6 +6,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.example.demo.climb.business.contract.manager.MemberManager;
 import org.example.demo.climb.model.bean.member.Member;
 import org.example.demo.climb.model.exception.NotFoundException;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,23 +15,23 @@ import java.util.Map;
 public class LoginAction extends ActionSupport implements SessionAware {
     private String login;
     private String pwd;
+
     private Map<String, Object> session;
-    private Member member;
 
     @Inject
     private MemberManager memberManager;
 
-    public Member getMember() {
-        return member;
+    //Getters / Setters
+
+    public Map<String, Object> getSession() {
+        return session;
+    }
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getLogin() {
         return login;
-    }
-
-    //Getters / Setters
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     public String getPwd() {
@@ -43,37 +44,19 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
     //Méthodes
 
-
-
     public String doLogin(){
         String vResult= ActionSupport.INPUT;
         if (!StringUtils.isAllEmpty(login, pwd)) {
-           /*
-            try{Member member = memberManager.connect(login,pwd);
-            }catch(NotFoundException e){
-                this.addActionError("Identifiant ou mot de passe invalide");
-            }*/
            Member member = memberManager.connect(login,pwd);
             if(member!=null){
-                System.out.println("trying to get member");
+                System.out.println("trying to get member: ");
                 this.session.put("user", member);
                 System.out.println("Session: "+session.entrySet().toString());
                 vResult = ActionSupport.SUCCESS;
+                System.out.println("Member from the session creation: "+session.values());
             }else{
                 this.addActionError("Identifiant ou mot de passe invalide");
             }
-           /* try {
-                if(member) {
-                    System.out.println("Member: "+login);
-                }
-            } catch (NotFoundException e) {
-
-            }*/
-
-          /*  if(memberManager.connect(login, pwd)){
-            }else{
-                this.addActionError("Identifiant ou mot de passe invalide");
-            }*/
 
         }
         return vResult;

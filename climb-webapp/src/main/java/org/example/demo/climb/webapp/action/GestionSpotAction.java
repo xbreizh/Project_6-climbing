@@ -3,25 +3,28 @@ package org.example.demo.climb.webapp.action;
 import com.opensymphony.xwork2.ActionSupport;
 import org.example.demo.climb.business.contract.manager.MemberManager;
 import org.example.demo.climb.business.contract.manager.SpotManager;
+import org.example.demo.climb.business.contract.manager.ZoneManager;
 import org.example.demo.climb.model.bean.Spot;
+import org.example.demo.climb.model.bean.member.Member;
 import org.example.demo.climb.model.exception.NotFoundException;
 
 import javax.inject.Inject;
 import java.util.List;
 
-public class GestionSpotAction extends ActionSupport {
+public class GestionSpotAction extends LoginAction {
 
     private Spot spot;
     private List<Spot> listSpot;
 
     private int id;
+    private Member member;
 
     @Inject
     private SpotManager spotManager;
     @Inject
     private MemberManager memberManager;
     @Inject
-    private LoginAction loginAction;
+    private ZoneManager zoneManager;
 
     // Getters & Setters
 
@@ -51,15 +54,17 @@ public class GestionSpotAction extends ActionSupport {
 
 
     public String doCreate() throws NotFoundException {
+        Member m = (Member) getSession().get("user");
         String vResult = ActionSupport.INPUT;
 
         if (this.spot != null) {
-            System.out.println(loginAction.getMember());
-            if(loginAction.getMember()!=null) {
-                spot.setCreatorSpot(loginAction.getMember());
+            try{
+                spot.setCreatorSpot(m);
+                spot.setZone(zoneManager.getZone(7)); // atlantide
                 spotManager.addSpot(spot);
                 vResult = ActionSupport.SUCCESS;
-            }else{
+            }catch (Exception e){
+                this.addActionError(e.getMessage());
                 this.addActionError("no member found for this session");
             }
             System.out.println("Action: " + spot);
@@ -101,6 +106,12 @@ public class GestionSpotAction extends ActionSupport {
     public String doList(String continent, String country, String region) {
         System.out.println("spot");
         listSpot = spotManager.getListSpot(continent, country, region);
+        System.out.println("size: " + listSpot.size());
+        return ActionSupport.SUCCESS;
+    }
+    public String doList() {
+        System.out.println("spot");
+        listSpot = spotManager.getListSpot();
         System.out.println("size: " + listSpot.size());
         return ActionSupport.SUCCESS;
     }

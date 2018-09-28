@@ -8,7 +8,7 @@ import org.example.demo.climb.model.bean.projet.Projet;
 import javax.inject.Inject;
 import java.util.List;
 
-public class GestionProjetAction extends ActionSupport {
+public class GestionProjetAction extends LoginAction {
 
     private Integer id;
 
