@@ -22,7 +22,7 @@
             <result name="success" type="redirectAction">
                 <param name="actionName">spot_list</param>
             </result>
-            <result name="error">/jsp/spot/form/new.jsp</result>
+            <result name="error">/jsp/member/form/new.jsp</result>
         </action>
 
 

@@ -49,11 +49,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
         if (!StringUtils.isAllEmpty(login, pwd)) {
            Member member = memberManager.connect(login,pwd);
             if(member!=null){
-                System.out.println("trying to get member: ");
                 this.session.put("user", member);
-                System.out.println("Session: "+session.entrySet().toString());
                 vResult = ActionSupport.SUCCESS;
-                System.out.println("Member from the session creation: "+session.values());
             }else{
                 this.addActionError("Identifiant ou mot de passe invalide");
             }
@@ -63,7 +60,15 @@ public class LoginAction extends ActionSupport implements SessionAware {
     }
 
     public String doLogout(){
-        session.remove("user");
+        try{
+            Member m = (Member) session.get("user");
+            System.out.println("trying to update the lastconnect date before disconnecting: "+m.getLogin());
+            memberManager.disconnect(m.getLogin());
+            session.remove("user");
+        }catch(NullPointerException e){
+            this.addActionError(e.getMessage());
+            this.addActionError("Disconnection error");
+        }
         return ActionSupport.SUCCESS;
     }
 

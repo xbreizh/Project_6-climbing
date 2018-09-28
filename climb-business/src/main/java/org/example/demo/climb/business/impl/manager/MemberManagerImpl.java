@@ -37,7 +37,7 @@ public class MemberManagerImpl  implements MemberManager {
         member.setActive(true);//activating user
         member.setLogin2(member.getLogin().toUpperCase());//setting backup login
         member.setLogin(member.getLogin().toUpperCase());//setting upper case login
-        member.setDate(new Date());
+        member.setDatejoin(new Date());
         System.out.println("Member to be added: "+member);
         /*session.save(member);*/
         sessionFactory.getCurrentSession().persist(member);
@@ -118,7 +118,10 @@ public class MemberManagerImpl  implements MemberManager {
 
     @Override
     public void disconnect(String login) {
-
+        Member m;
+        if(((m=getMember(login.toUpperCase()))!=null)){
+            m.setDateLastConnect(new Date());
+        }
     }
 
     @Override

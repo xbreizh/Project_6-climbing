@@ -47,7 +47,9 @@ public class Member {
     private String description;
 
     @NotNull
-    private Date date;
+    private Date datejoin;
+
+    private Date dateLastConnect;
 
     @OneToMany(mappedBy = "creatorSpot", fetch=FetchType.EAGER)
     private List<Spot> spotList= new ArrayList<>();
@@ -55,13 +57,23 @@ public class Member {
     public Member() {
     }
 
-    public Date getDate() {
-        return date;
+    public Date getDatejoin() {
+        return datejoin;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDatejoin(Date datejoin) {
+        this.datejoin = datejoin;
     }
+
+    public Date getDateLastConnect() {
+        return dateLastConnect;
+    }
+
+    public void setDateLastConnect(Date dateLastConnect) {
+        this.dateLastConnect = dateLastConnect;
+    }
+
+
 
     public String getLogin2() {
         return login2;
