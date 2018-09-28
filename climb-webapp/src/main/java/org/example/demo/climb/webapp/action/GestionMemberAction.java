@@ -12,20 +12,42 @@ public class GestionMemberAction extends LoginAction {
     private Member member;
     private int id;
     private String login;
+    private String email;
+    private String emailCheck;
     private String password;
-    private String password_check;
+    private String passwordCheck;
     private List<Member> listMember;
     private String description;
-
     private boolean active;
+
     @Inject
     private MemberManager memberManager;
+
+    public Member getMember() {
+        return member;
+    }
+
     public String getDescription() {
         return description;
     }
-
     public boolean isActive() {
         return active;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmailCheck() {
+        return emailCheck;
+    }
+
+    public void setEmailCheck(String emailCheck) {
+        this.emailCheck = emailCheck;
     }
 
     public void setActive(boolean active) {
@@ -48,18 +70,16 @@ public class GestionMemberAction extends LoginAction {
         this.password = password;
     }
 
-    public String getPassword_check() {
-        return password_check;
+    public String getPasswordCheck() {
+        return passwordCheck;
     }
 
-    public void setPassword_check(String password_check) {
-        this.password_check = password_check;
+    public void setPasswordCheck(String passwordCheck) {
+        this.passwordCheck = passwordCheck;
     }
 
 
-    public Member getMember() {
-       return member;
-   }
+
 
     public void setMember(Member member) {
         this.member = member;
@@ -91,14 +111,14 @@ public class GestionMemberAction extends LoginAction {
 
     public String doReset(){
         String vResult = ActionSupport.INPUT;
-        if(login !=null || password!=null || password_check !=null) {
+        if(login !=null || password!=null || passwordCheck !=null) {
             if (login.equals("")) {
                 this.addFieldError("login", "you must provide a login");
                 return vResult;
             } else if (this.password.length() < 3 || this.password.length() > 8) {
                 this.addFieldError("password", "must be between 3 and 8 characters");
                 return vResult;
-            } else if (!this.password.equals(password_check)) {
+            } else if (!this.password.equals(passwordCheck)) {
                 this.addFieldError("password", "password mismatch");
                 return vResult;
             }
@@ -125,8 +145,11 @@ public class GestionMemberAction extends LoginAction {
             else if (this.member.getPassword().length() < 3 || this.member.getPassword().length() > 8) {
                 this.addFieldError("member.password", "must be between 3 and 8 characters");
             }
-            else if(!this.member.getPassword().equals(password_check)){
+            else if(!this.member.getPassword().equals(passwordCheck)){
                 this.addFieldError("member.password", "password mismatch");
+            }
+            else if(!this.member.getEmail().equals(emailCheck)){
+                this.addFieldError("member.email", "email mismatch");
             }else {
                 try {
                     memberManager.addMember(member);

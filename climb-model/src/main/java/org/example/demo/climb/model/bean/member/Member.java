@@ -51,10 +51,21 @@ public class Member {
 
     private Date dateLastConnect;
 
+    @NotNull
+    private String email;
+
     @OneToMany(mappedBy = "creatorSpot", fetch=FetchType.EAGER)
     private List<Spot> spotList= new ArrayList<>();
 
     public Member() {
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Date getDatejoin() {
@@ -142,8 +153,13 @@ public class Member {
         return "Member{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
+                ", login2='" + login2 + '\'' +
+                ", active=" + active +
                 ", password='" + password + '\'' +
                 ", description='" + description + '\'' +
+                ", datejoin=" + datejoin +
+                ", dateLastConnect=" + dateLastConnect +
+                ", email='" + email + '\'' +
                 ", spotList=" + spotList +
                 '}';
     }

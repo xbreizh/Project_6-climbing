@@ -60,7 +60,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
     }
 
     public String doLogout(){
-        try{
+       /* try{
             Member m = (Member) session.get("user");
             System.out.println("trying to update the lastconnect date before disconnecting: "+m.getLogin());
             memberManager.disconnect(m.getLogin());
@@ -68,7 +68,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
         }catch(NullPointerException e){
             this.addActionError(e.getMessage());
             this.addActionError("Disconnection error");
-        }
+        }*/
+        session.remove("user");
         return ActionSupport.SUCCESS;
     }
 

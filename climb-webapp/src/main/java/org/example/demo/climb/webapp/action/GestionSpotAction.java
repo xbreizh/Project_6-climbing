@@ -64,8 +64,7 @@ public class GestionSpotAction extends LoginAction {
                 spotManager.addSpot(spot);
                 vResult = ActionSupport.SUCCESS;
             }catch (Exception e){
-                this.addActionError(e.getMessage());
-                this.addActionError("no member found for this session");
+                this.addActionError("Vous devez vous connecter pour cette action!");
             }
             System.out.println("Action: " + spot);
         }
