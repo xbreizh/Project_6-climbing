@@ -44,7 +44,7 @@ public interface MemberManager  {
 
     boolean exists(String login);
 
-    boolean updatePassword(String login, String password);
+    boolean updatePassword(String login, String email, String password);
 
 
 }

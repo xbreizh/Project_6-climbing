@@ -12,7 +12,7 @@
         <r:a action="logout">Déconnexion</r:a>
     </r:if>
     <r:else>
-        <r:a action="login">Connexion</r:a>
+        <r:a action="login">Connexion</r:a> <br> <r:a action="member_new">Become Member</r:a>
     </r:else>
 </header>
 <%@include file="navbar.jsp"%>

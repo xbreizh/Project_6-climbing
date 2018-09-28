@@ -122,10 +122,10 @@ public class GestionMemberAction extends LoginAction {
                 this.addFieldError("password", "password mismatch");
                 return vResult;
             }
-            if (memberManager.updatePassword(login, password)) {
+            if (memberManager.updatePassword(login, email, password)) {
                 return vResult = ActionSupport.SUCCESS;
             } else {
-                this.addFieldError("login", "this login doesn't exist");
+                this.addFieldError("login", "Login or Email incorrect");
             }
         }
         return vResult;

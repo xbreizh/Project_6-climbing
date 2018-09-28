@@ -14,5 +14,8 @@
 
     <s:submit value="Connexion"/>
 </s:form>
+<br>
+<r:a action="member_new">Become Member</r:a><br>
+<r:a action="pwd_reset">Reset Password</r:a>
 </body>
 </html>

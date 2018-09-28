@@ -125,16 +125,17 @@ public class MemberManagerImpl  implements MemberManager {
     }
 
     @Override
-    public boolean updatePassword(String login, String password){
+    public boolean updatePassword(String login, String email, String password){
         System.out.println("trying to update pwd");
         if(exists(login.toUpperCase())){
             Member m = getMember(login.toUpperCase());
-            m.setPassword(password);
-            sessionFactory.getCurrentSession().update(cl.getName(), m);
-            return true;
-        }else{
-            return false;
+            if(m.getEmail().equals(email)) {
+                m.setPassword(password);
+                sessionFactory.getCurrentSession().update(cl.getName(), m);
+                return true;
+            }
         }
+        return false;
     }
 
 
