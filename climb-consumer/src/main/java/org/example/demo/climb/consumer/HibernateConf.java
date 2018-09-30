@@ -1,4 +1,4 @@
-package org.example.demo.climb.consumer.impl;
+package org.example.demo.climb.consumer;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;

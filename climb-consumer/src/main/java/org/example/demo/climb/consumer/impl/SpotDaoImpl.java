@@ -1,12 +1,12 @@
 package org.example.demo.climb.consumer.impl;
+import org.example.demo.climb.consumer.contract.MemberDao;
 import org.example.demo.climb.consumer.contract.SpotDao;
 import org.example.demo.climb.model.bean.Spot;
-import org.hibernate.Session;
+import org.example.demo.climb.model.bean.member.Member;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 
@@ -14,73 +14,47 @@ import java.util.List;
 public class SpotDaoImpl implements SpotDao {
 
     private Class cl = Spot.class;
-    private Transaction tx;
-    private Session session;
-    private SessionFactory sf;
-
-    private Session getSession() {
-        if(this.sf==null) {
-            System.out.println("creation of session factory");
-            Configuration conf = new Configuration().configure().addAnnotatedClass(Spot.class);
-            this.sf = conf.buildSessionFactory();
-            System.out.println("creation session and opening");
-            return this.session = this.sf.openSession();
-        }else {
-            System.out.println("creation session and opening");
-            return this.session = this.sf.openSession();
-        }/*else{
-            System.out.println("getting current session");
-            return   this.session = this.sf.getCurrentSession();
-        }*/
-    }
+    @Inject
+    private SessionFactory sessionFactory;
+    @Inject
+    private MemberDao memberDao;
 
     @Override
     public void add(Object o) {
-        /*session= transactionBeanMember.createFactory().openSession();*/
-        getSession();
-        tx = session.beginTransaction();
-        System.out.println("transaction starting with object: " + o);
-        session.saveOrUpdate(cl.getName(), o);
-        tx.commit();
-        System.out.println("Object has been added!");
+        sessionFactory.getCurrentSession().persist(o);
     }
 
     @Override
     public List getAll() {
-        /*session= transactionBeanMember.createFactory().openSession();*/
-        getSession();
-        Query query = session.getNamedQuery("findAllSpots");
-        return query.getResultList();
+        return sessionFactory.getCurrentSession().createQuery("from Spot").list();
     }
 
     @Override
     public Object getById(int id) {
-        /*session= transactionBeanMember.createFactory().openSession();*/
-        getSession();
-        tx = session.beginTransaction();
-        return session.get(cl, id);
+        return(Spot) sessionFactory.getCurrentSession().get(cl, id);
     }
 
     @Override
     public void update(Object o) {
-        /*createSession();*/
-        /*session= transactionBeanMember.createFactory().openSession();*/
-        getSession();
-        tx = session.beginTransaction();
-        session.saveOrUpdate(cl.getName(), o);
-        tx.commit();
-        session.close();
+        sessionFactory.getCurrentSession().update(o);
     }
 
     @Override
-    public void delete(int id) {
-        /*session= transactionBeanMember.createFactory().openSession();*/
-        getSession();
-        tx = session.beginTransaction();
-        session.remove(session.get(cl, id));
-        tx.commit();
-        session.close();
-        System.out.println("Spot has been deleted!");
-
+    public void delete(Object o) {
+        sessionFactory.getCurrentSession().delete(cl.getName(), o);
     }
+
+
+    @Override
+    public void updateWhenDeletingMember(int id1, int id2){
+
+        String request= "update Spot set creatorSpot=(select * from Member where id=1) where creatorSpot.id= 2";
+
+        System.out.println("request: "+request);
+        Query query = sessionFactory.getCurrentSession().createQuery(request);
+        query.setParameter("member1", id1  );
+        query.setParameter("member2", id2);
+    }
+
+
 }

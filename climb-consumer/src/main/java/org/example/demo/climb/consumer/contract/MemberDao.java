@@ -1,7 +1,10 @@
 package org.example.demo.climb.consumer.contract;
 
 
-public interface MemberDao extends Dao/*extends  JpaRepository<Member, Integer>*/ {
+
+public interface MemberDao extends Dao {
+
+
 
 
 

@@ -11,8 +11,8 @@
 
 <s:form action="member_new" method="POST">
     <s:textfield type="text" name="member.login" label="Login" requiredLabel="true"/>
-    <s:textfield type="text" name="member.email" label="Email" requiredLabel="true"/>
-    <s:textfield type="text" name="emailCheck" label="Repeat Email" requiredLabel="true"/>
+    <s:textfield type="email" name="member.email" label="Email" requiredLabel="true"/>
+    <s:textfield type="email" name="emailCheck" label="Repeat Email" requiredLabel="true"/>
     <s:password name="member.password" label="Password" requiredLabel="true" />
     <s:password name="passwordCheck" label="Repeat Password" requiredLabel="true" />
     <s:textarea name="member.description" label="Description" requiredLabel="true" value="member.description"/>

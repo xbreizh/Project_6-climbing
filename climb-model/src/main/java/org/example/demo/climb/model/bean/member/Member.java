@@ -1,7 +1,6 @@
 package org.example.demo.climb.model.bean.member;
 
 import org.example.demo.climb.model.bean.Spot;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -12,7 +11,6 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(
                 name = "findAllMembers",
-               /* query = "from Member m where m.login != :name"*/
                 query = "from Member"
         ),
         @NamedQuery(

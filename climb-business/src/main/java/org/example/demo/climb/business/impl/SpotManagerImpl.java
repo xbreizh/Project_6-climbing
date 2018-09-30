@@ -3,12 +3,10 @@ package org.example.demo.climb.business.impl;
 
 import org.example.demo.climb.business.contract.manager.MemberManager;
 import org.example.demo.climb.business.contract.manager.SpotManager;
+import org.example.demo.climb.consumer.contract.SpotDao;
 import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.bean.member.Member;
 import org.example.demo.climb.model.exception.NotFoundException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
@@ -19,18 +17,15 @@ import java.util.List;
 @Named("spotManager")
 public class SpotManagerImpl  implements SpotManager {
 
-    /*private Spot spot = null;*/
     private Class cl=Spot.class;
-    /*@Inject
-    private SpotDao spotDao;*/
     @Inject
-    private SessionFactory sessionFactory;
+    private SpotDao spotDao;
     @Inject
     private MemberManager memberManager;
 
     @Override
     public List<Spot> getListSpot() {
-        return sessionFactory.getCurrentSession().createQuery("from Spot ").list();
+        return spotDao.getAll();
 
     }
 
@@ -43,12 +38,12 @@ public class SpotManagerImpl  implements SpotManager {
 
     @Override
     public void addSpot(Spot spot) {
-        sessionFactory.getCurrentSession().persist(spot);
+        spotDao.add(spot);
     }
 
     @Override
-    public Spot getSpot(Integer pId) {
-        return (Spot) sessionFactory.getCurrentSession().get(cl, pId);
+    public Spot getSpot(Integer id) {
+        return (Spot) spotDao.getById(id);
     }
 
     @Override
@@ -59,7 +54,7 @@ public class SpotManagerImpl  implements SpotManager {
     @Override
     public void updateSpot(Spot spot) {
         int id = spot.getId();
-        Spot s = (Spot) sessionFactory.getCurrentSession().get(cl, id);
+        Spot s = (Spot) spotDao.getById(id);
         if(!(spot.getName()==null)){
             s.setName(spot.getName());
         }
@@ -67,21 +62,29 @@ public class SpotManagerImpl  implements SpotManager {
             s.setNb_ways(spot.getNb_ways());
         }
 
-        sessionFactory.getCurrentSession().update(s);
+        spotDao.update(spot);
     }
 
     @Override
     public void deleteSpot(int id) {
         System.out.println("trying to delete spot: "+id);
-        Spot m= (Spot) sessionFactory.getCurrentSession().get(cl, id);
-        sessionFactory.getCurrentSession().delete(cl.getName(), m);
+        Spot m= (Spot) spotDao.getById(id);
+        spotDao.delete(m);
     }
 
     @Override
     public void updateWhenDeletingMember(int id) {
-        System.out.println("updating spotList owner on member deletion");
-        Query query = sessionFactory.getCurrentSession().createQuery("update Spot set creatorSpot=1 where creatorSpot= :memberId");
-        query.setParameter("memberId    ", id);
+        System.out.println("trying to update member spots before deleting");
+        /*System.out.println("updating spotList owner on member deletion");
+       *//* try {*//*
+            *//*Member m = memberManager.getMember(1);*//*
+        List<Spot> spotList= spotDao.getListfromMember(id);
+            spotDao.updateWhenDeletingMember(1, id);
+            System.out.println("update done");*/
+        /*} catch (NotFoundException e) {
+            e.printStackTrace();
+        }*/
+        /*Query query = sessionFactory.getCurrentSession().createQuery("update Spot set creatorSpot=(select m from Member m where Member.id=1) where creatorSpot= :memberId");*/
 
     }
 

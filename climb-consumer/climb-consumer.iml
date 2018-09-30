@@ -6,7 +6,9 @@
         <datasource-map>
           <unit-entry name="sessionFactory" value="4f630eb4-2bb5-4589-ad5d-784b33d44cd8" />
         </datasource-map>
-        <naming-strategy-map />
+        <naming-strategy-map>
+          <unit-entry name="sessionFactory" />
+        </naming-strategy-map>
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernate.cfg.xml.old" />
       </configuration>
     </facet>
