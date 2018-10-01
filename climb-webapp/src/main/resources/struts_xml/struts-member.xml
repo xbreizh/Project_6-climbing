@@ -96,26 +96,39 @@
                 <param name="actionName">member_list</param>
             </result>
         </action>
-
+        <!-- Action de démonstration pour l'AJAX -->
+        <action name="demo_ajax" class="org.example.demo.climb.webapp.action.DemoAjaxAction">
+            <result name="success">/jsp/demo/ajax2.jsp</result>
+        </action>
 
         <!-- Action renvoyant la liste des Projets -->
-        <action name="demo_ajax_getListMember"
+       <!-- <action name="demo_ajax_getListMember"
                 class="org.example.demo.climb.webapp.action.DemoAjaxAction"
                 method="doAjaxGetListMember">
             <result name="success" type="json">
                 <param name="root">listMember</param>
             </result>
-        </action>
+        </action>-->
         <!-- Action renvoyant la liste des Spots -->
-        <action name="demo_ajax_getListSpot"
+        <!--<action name="demo_ajax_getListSpot"
                 class="org.example.demo.climb.webapp.action.DemoAjaxAction"
                 method="doAjaxGetListSpot">
             <result name="input" type="json">
                 <param name="root">spotList</param>
             </result>
-            <!--<result name="input" type="json">
+            <result name="success">jsp/demo/ajax.jsp</result>
+            &lt;!&ndash;<result name="input" type="json">
                 <param name="root">spotList</param>
-            </result>-->
+            </result>&ndash;&gt;
+        </action>-->
+
+        <action name="comboBoxAction"
+                class="org.example.demo.climb.webapp.action.DemoAjaxAction" method="display">
+            <result name="none">jsp/demo/ajax2.jsp</result>
+        </action>
+
+        <action name="resultAction" class="org.example.demo.climb.webapp.action.DemoAjaxAction">
+            <result name="success">jsp/demo/ajax2.jsp</result>
         </action>
 
     </package>

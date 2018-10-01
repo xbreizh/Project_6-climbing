@@ -1,5 +1,6 @@
 package org.example.demo.climb.webapp.action;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -16,35 +17,32 @@ import org.example.demo.climb.model.exception.NotFoundException;
 /**
  * Action de démo pour les appels AJAX
  */
-public class DemoAjaxAction extends LoginAction {
+public class DemoAjaxAction extends ActionSupport{
 
-    // ==================== Attributs ====================
+    private List<String> fruits;
     @Inject
     private MemberManager memberManager;
-    @Inject
-    private SpotManager spotManager;
 
+    public void setListMember(List<Member> listMember) {
+        this.listMember = listMember;
+    }
 
-
-    // ----- Eléments en entree
+    private List<Member> listMember;
+    private List<Spot> spotList;
     private Member member;
     private Spot spot;
-    private Zone zone;
+    private String yourFruits;
+    private String yourMonth;
 
-    public Zone getZone() {
-        return zone;
+    public List<Member> getListMember() {
+        return listMember;
+    }
+    public List<Spot> getSpotList() {
+        return spotList;
     }
 
-    public void setZone(Zone zone) {
-        this.zone = zone;
-    }
-
-    public List<Zone> getZoneList() {
-        return zoneList;
-    }
-
-    public void setZoneList(List<Zone> zoneList) {
-        this.zoneList = zoneList;
+    public Member getMember() {
+        return member;
     }
 
     public Spot getSpot() {
@@ -54,42 +52,47 @@ public class DemoAjaxAction extends LoginAction {
     public void setSpot(Spot spot) {
         this.spot = spot;
     }
-
-    // ----- Eléments en sortie
-    private List<Member> listMember;
-    private List<Spot> spotList;
-    private List<Zone> zoneList;
-
-    // ==================== Getters/Setters ====================
-
-    public List<Spot> getSpotList() {
-        return spotList;
-    }
-    public List<Member> getListMember() {
-        return listMember;
-    }
-    public Member getMember() {
-        return member;
-    }
-
-
     public void setMember(Member member) {
         this.member = member;
     }
 
-
-    // ==================== Méthodes ====================
-    public String execute() {
-        listMember = memberManager.getListMember();
-        return ActionSupport.SUCCESS;
+    public String getYourMonth() {
+        return yourMonth;
     }
 
+    public void setYourMonth(String yourMonth) {
+        this.yourMonth = yourMonth;
+    }
 
-    /**
-     * Action "AJAX" renvoyant la liste des projets
-     * @return success
-     */
-    public String doAjaxGetListMember() {
+    public List<String> getFruits() {
+        return fruits;
+    }
+
+    public void setFruits(List<String> fruits) {
+        this.fruits = fruits;
+    }
+
+    public String getYourFruits() {
+        return yourFruits;
+    }
+
+    public void setYourFruits(String yourFruits) {
+        this.yourFruits = yourFruits;
+    }
+
+    public DemoAjaxAction(){
+
+       /* fruits = new ArrayList<String>();
+        fruits.add("Apple");
+        fruits.add("Banana");
+        fruits.add("Orange");
+        fruits.add("Watermelon");*/
+       /*listMember=memberManager.getListMember();*/
+
+        System.out.println("bam l'action!");
+    }
+
+    public String execute() {
         System.out.println("trying to get member lists");
         listMember = memberManager.getListMember();
         System.out.println("got the members list");
@@ -97,27 +100,12 @@ public class DemoAjaxAction extends LoginAction {
         if(member==null) {
             member = listMember.get(0);
         }
-        return ActionSupport.SUCCESS;
-
+        /*spotList = member.getSpotList();*/
+        return SUCCESS;
     }
-    /**
-     * Action "AJAX" renvoyant la liste des versions d'un projet
-     * @return success / error
-     */
-    public String doAjaxGetListSpot() throws NotFoundException {
-        System.out.println("display member: "+member.getLogin());
-        System.out.println("list for that member: " +spotList);
-        System.out.println("trying to get spot: ");
-        if (member == null) {
-            addActionError("Le membre doit être précisé !");
-        } else {
-            System.out.println("Member is: "+member);
-            spotList = member.getSpotList();
-            System.out.println("Liste de spots: "+spotList);
-        }
-        /*spotList=memberManager.getMember(4).getSpotList();*/
-        /*spotList = spotManager.getListSpot();*/
-        return hasErrors() ? ActionSupport.ERROR : ActionSupport.SUCCESS;
+
+    public String display() {
+        return NONE;
     }
 
 }

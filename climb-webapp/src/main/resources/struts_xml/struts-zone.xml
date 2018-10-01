@@ -81,10 +81,7 @@
                 <param name="actionName">zone_list</param>
             </result>
         </action>
-        <!-- Action de démonstration pour l'AJAX -->
-        <action name="demo_ajax" class="org.example.demo.climb.webapp.action.DemoAjaxAction">
-            <result name="success">/jsp/demo/ajax.jsp</result>
-        </action>
+
 
     </package>
 </struts>
