@@ -47,13 +47,12 @@ public class SpotDaoImpl implements SpotDao {
 
     @Override
     public void updateWhenDeletingMember(int id1, int id2){
-
-        String request= "update Spot set creatorSpot=(select * from Member where id=1) where creatorSpot.id= 2";
-
-        System.out.println("request: "+request);
-        Query query = sessionFactory.getCurrentSession().createQuery(request);
-        query.setParameter("member1", id1  );
+        Member m = (Member) memberDao.getById(id1);
+        Query query=sessionFactory.getCurrentSession().createQuery("update Spot set creatorSpot= :member1 where creatorSpot.id=:member2");
+        query.setParameter("member1", m);
         query.setParameter("member2", id2);
+        int result = query.executeUpdate();
+        System.out.println("updated list?");
     }
 
 

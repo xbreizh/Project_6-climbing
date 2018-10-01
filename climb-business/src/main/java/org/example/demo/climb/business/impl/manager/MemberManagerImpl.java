@@ -105,30 +105,10 @@ public class MemberManagerImpl  implements MemberManager {
 
     @Override
     public void deleteMember(int id) {
+       Member m= (Member) memberDao.getById(id);
         spotManager.updateWhenDeletingMember(id);
-        System.out.println("trying to delete member: "+id);
-        /*Member m= (Member) sessionFactory.getCurrentSession().get(cl, id);*/
-        Member m= (Member)memberDao.getById(id);
-       /* Member m2= (Member)memberDao.getById(1);
-        System.out.println("trying to remove spotList");
-        *//*m.setSpotList(null);*//*
-        *//*sessionFactory.getCurrentSession().delete(cl.getName(), m);*//*
-       *//* spotManager.updateWhenDeletingMember(id);*//*
-        List<Spot> spotList1= m.getSpotList();
-        List<Spot> spotList2= m2.getSpotList();
-        for (Spot spot:spotList1){
-            spotList2.add(spot);
-        }
-        List<Spot> spotList3 = new ArrayList<>();
-        m.setSpotList(spotList3);
-        System.out.println("new list for member: "+m.getSpotList());
-        memberDao.update(m);*/
-        System.out.println("member to delete after update: "+m);
-        if(m.getSpotList().size()==0) {
-            memberDao.delete(m);
-        }else{
-            System.err.println("issue while updating the spotlist for member: "+m);
-        }
+
+        memberDao.delete(m);
     }
 
 

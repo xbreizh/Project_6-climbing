@@ -5,8 +5,6 @@ import org.example.demo.climb.business.contract.manager.MemberManager;
 import org.example.demo.climb.business.contract.manager.SpotManager;
 import org.example.demo.climb.consumer.contract.SpotDao;
 import org.example.demo.climb.model.bean.Spot;
-import org.example.demo.climb.model.bean.member.Member;
-import org.example.demo.climb.model.exception.NotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
@@ -75,17 +73,7 @@ public class SpotManagerImpl  implements SpotManager {
     @Override
     public void updateWhenDeletingMember(int id) {
         System.out.println("trying to update member spots before deleting");
-        /*System.out.println("updating spotList owner on member deletion");
-       *//* try {*//*
-            *//*Member m = memberManager.getMember(1);*//*
-        List<Spot> spotList= spotDao.getListfromMember(id);
-            spotDao.updateWhenDeletingMember(1, id);
-            System.out.println("update done");*/
-        /*} catch (NotFoundException e) {
-            e.printStackTrace();
-        }*/
-        /*Query query = sessionFactory.getCurrentSession().createQuery("update Spot set creatorSpot=(select m from Member m where Member.id=1) where creatorSpot= :memberId");*/
-
+        spotDao.updateWhenDeletingMember(1, id);
     }
 
 

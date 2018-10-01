@@ -3,6 +3,7 @@ package org.example.demo.climb.consumer.impl;
 import org.example.demo.climb.consumer.contract.MemberDao;
 import org.example.demo.climb.model.bean.member.Member;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -39,6 +40,7 @@ public class MemberDaoImpl  implements MemberDao {
 
     @Override
     public void delete(Object o) {
-        sessionFactory.getCurrentSession().delete(cl.getName(), o);
+        Member m = (Member) o;
+        sessionFactory.getCurrentSession().delete(cl.getName(), m);
     }
 }
