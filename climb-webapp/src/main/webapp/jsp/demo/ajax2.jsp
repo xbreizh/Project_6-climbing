@@ -1,4 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib uri="/struts-tags" prefix="form"%>
 
 <html>
 
@@ -6,52 +7,64 @@
 
 <body>
 
-<script type="text/javascript">
-function populate(s1, s2){
-    var s1 = document.getElementById(s1);
-    var s2 = document.getElementById(s2);
-    s2.innerHTML = "";
-    if(s1.value = "Chevy"){
-        var optionArray = ["|", "camaro|Camaro", "corvette|Corvette", "impala|Impala"];
-    }
-    else if(s1.value = "Dodge"){
-        var optionArray = ["|", "dogdge1|Dodge1", "dogdge2|Dodge2", "dogdge3|Dodge3"];
-    }
-    else if(s1.value = "Chevy"){
-        var optionArray = ["|", "chevy1|Chevy1", "chevy2|Chevy2", "chevy3|Chevy3"];
-    }
-    for(var option in optionArray){
-        var pair = optionArray[option].split("|");
-        var newOption = document.createElement("option");
-        newOption.value = pair[0];
-        newOption.innerHTML = pair[1];
-        s2.options.add(newOption);
-    }
+<%--
+<s:select id="selectContinent" name="continentList" label="Country"
+          list="continentList" listKey="id" listValue="value"
+          onchange="onSelectContinentChange()"/>
+--%>
 
-}
+<s:select label="Select Continent" listKey="continent"
 
+          name="continent"
+          headerValue="Select Continent"
+          list="continentList" onchange="onSelectContinentChange()"
+/>
+<s:select label="Select Country" listKey="country"
 
+          name="country"
+          headerValue="Select Country"
+          list="countryList" onchange="onSelectCountryChange()"
+/>
 
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
 
+/*     function onSelectContinentChange() {
+         // URL de l'action AJAX
+         var url = "*/<%--<s:url action="demo_ajaxGetListCountry"--%>/*/>";
 
+        // Paramètres de la requête AJAX
+        var params = {
+            continent: jQuery("#onSelectContinentChange").val()
+            /!*country: jQuery("#onSelectContinentChange").val(),
+            region: jQuery("#onSelectContinentChange").val()*!/
+        };
+
+        // Action AJAX en POST
+        jQuery.post(
+            url,
+            params,
+            function (data) {
+                var selectSpot = jQuery("#selectSpot");
+                countryList.empty();
+                jQuery.each(data, function (key, val) {
+                    selectSpot.append(
+                        jQuery("<option>")
+                        .text(val.name)
+                            .val(val.name)
+                    );
+                });
+            })
+            .fail(function (data) {
+                if (typeof data.responseJSON === 'object') {
+                    console.log(data.responseJSON);
+                } else {
+                    console.log(data);
+                }
+                alert("Une erreur s'est produite.");
+            });
+    }*/
 </script>
-<h2>Choose your car</h2>
-<hr />
-Choose car make:
-<select inlist="listMember" id="slct1" name="slct1" onchange="populate(this.id, 'slct2')">
-    <%--<option value=""></option>--%>
-    <option value="Chevy">Chevy</option>
-    <option value="Dodge">Dodge</option>
-    <option value="Ford">Ford</option>
-</select>
-<%--<s:combobox label="Pick a Member"
-            headerKey="-1" headerValue="--- Select ---"
-            list="slct2"
-            name="slct2"  />--%>
-<hr />
-    Choose car model:
-    <select id="slct2" name="slct2">
-    </select>
-<hr />
+
 </body>
 </html>

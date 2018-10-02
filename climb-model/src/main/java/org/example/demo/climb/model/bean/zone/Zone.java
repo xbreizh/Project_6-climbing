@@ -1,5 +1,6 @@
-package org.example.demo.climb.model.bean;
+package org.example.demo.climb.model.bean.zone;
 
+import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.bean.member.Member;
 
 import javax.persistence.*;

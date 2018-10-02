@@ -96,10 +96,7 @@
                 <param name="actionName">member_list</param>
             </result>
         </action>
-        <!-- Action de démonstration pour l'AJAX -->
-        <action name="demo_ajax" class="org.example.demo.climb.webapp.action.DemoAjaxAction">
-            <result name="success">/jsp/demo/ajax2.jsp</result>
-        </action>
+
 
         <!-- Action renvoyant la liste des Projets -->
        <!-- <action name="demo_ajax_getListMember"
@@ -122,7 +119,7 @@
             </result>&ndash;&gt;
         </action>-->
 
-        <action name="comboBoxAction"
+       <!-- <action name="comboBoxAction"
                 class="org.example.demo.climb.webapp.action.DemoAjaxAction" method="display">
             <result name="none">jsp/demo/ajax2.jsp</result>
         </action>
@@ -130,7 +127,7 @@
         <action name="resultAction" class="org.example.demo.climb.webapp.action.DemoAjaxAction">
             <result name="success">jsp/demo/ajax2.jsp</result>
         </action>
-
+-->
     </package>
     <include file="struts_xml/struts-default2.xml"/>
 </struts>

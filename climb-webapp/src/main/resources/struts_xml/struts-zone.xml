@@ -81,7 +81,18 @@
                 <param name="actionName">zone_list</param>
             </result>
         </action>
+        <!-- Action de démonstration pour l'AJAX -->
+        <action name="demo_ajax" class="org.example.demo.climb.webapp.action.DemoAjaxAction">
+            <result name="success">/jsp/demo/ajax2.jsp</result>
+        </action>
 
-
+    </package>
+    <package name="ajax" extends="struts-default, json-default">
+        <action class="org.example.demo.climb.webapp.action.DemoAjaxAction" name="demo_ajaxGetListCountry"
+                method="DoAjaxGetListCountry">
+            <result type="json">
+                <param name="root">zoneList</param>
+            </result>
+        </action>
     </package>
 </struts>

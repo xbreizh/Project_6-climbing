@@ -1,6 +1,6 @@
 package org.example.demo.climb.business.contract.manager;
 
-import org.example.demo.climb.model.bean.Zone;
+import org.example.demo.climb.model.bean.zone.Zone;
 import org.example.demo.climb.model.exception.NotFoundException;
 
 import java.util.List;
@@ -16,6 +16,10 @@ public interface ZoneManager {
 
     //Get list
     List<Zone> getListZone();
+
+    List<String> getListContinent();
+    List<String> getListCountry(String continent);
+    List<String> getListRegion( String country);
 
     //Read
     Zone getZone(Integer pId) throws NotFoundException;

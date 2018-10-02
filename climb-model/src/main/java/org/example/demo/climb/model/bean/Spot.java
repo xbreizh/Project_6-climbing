@@ -1,6 +1,8 @@
 package org.example.demo.climb.model.bean;
 
 import org.example.demo.climb.model.bean.member.Member;
+import org.example.demo.climb.model.bean.zone.Zone;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
