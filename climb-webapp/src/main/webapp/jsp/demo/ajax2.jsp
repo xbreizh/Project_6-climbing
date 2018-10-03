@@ -12,41 +12,22 @@
           headerKey="-1" headerValue="Select Continent"
           list="continentList"
           onchange="this.form.submit()"/>
-    <s:if test="%{continent!=null}">
+    <s:if test="%{continent!=null && !continent.equals('-1')}">
             <s:select id="selectCountry" name="country"
                       headerKey="-1" headerValue="Select Country"
                       list="countryList"
                       onchange="this.form.submit()"/>
     </s:if>
-    <s:if test="%{country!=null}">
-            <s:select id="selectRegion" name="region" label="Region"
+    <s:if test="%{country!=null && !country.equals('-1')&& !continent.equals('-1')}">
+            <s:select id="selectRegion" name="region"
+                      headerKey="-1" headerValue="Select Region"
                       list="regionList"
                       onchange="this.form.submit()"/>
     </s:if>
 </s:form>
 Continent: <s:property value="%{continent}"/><br>
 Country: <s:property value="%{country}"/>
-<%--
-<s:if test="%{continent!=null}">
-<s:form action="demo_ajaxGetListRegion">
-<s:select id="selectCountry" name="country"
-          headerKey="-1" headerValue="Select Country"
-          list="countryList"
-          onchange="this.form.submit()"/>
-</s:form>
-</s:if>
 
-<s:if test="%{country!=null}">
-<s:form action="demo_ajaxGetListRegion">
-    <s:select id="selectRegion" name="region" label="Region"
-              list="regionList"
-              onchange="this.form.submit()"/>
-</s:form>
-</s:if>
-<s:else>
-    Continent: <s:property value="%{continent}"/>
-    Country: <s:property value="%{country}"/></s:else>
---%>
 
 </body>
 </html>

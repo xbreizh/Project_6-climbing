@@ -20,13 +20,9 @@ import org.example.demo.climb.model.bean.member.Member;
  */
 public class DemoAjaxAction extends ActionSupport{
 
-    private List<String> fruits;
-    @Inject
-    private MemberManager memberManager;
     @Inject
     private ZoneManager zoneManager;
 
-    private List<Member> listMember;
 
     private List<Spot> spotList;
     private List<Zone> zoneList;
@@ -40,10 +36,6 @@ public class DemoAjaxAction extends ActionSupport{
     private String continent;
     private String country;
     private String region;
-    private Member member;
-    private Spot spot;
-    private String yourFruits;
-    private String yourMonth;
     public List<String> getContinentList() {
         return continentList;
     }
@@ -110,13 +102,16 @@ public class DemoAjaxAction extends ActionSupport{
     }
 
     public String execute() {
-        continentList = zoneManager.getListContinent();
-        if(continent!=null){
+       /* continentList = zoneManager.getListContinent();
+        if(continent!=null && !continent.equals("-1")){
             countryList=zoneManager.getListCountry(continent);
-            if(country!=null){
+            if(country!=null && !country.equals("-1")){
                 regionList=zoneManager.getListRegion(country);
             }
-        }
+        }else{
+            country = null;
+            region = null;
+        }*/
         return ActionSupport.SUCCESS;
     }
 

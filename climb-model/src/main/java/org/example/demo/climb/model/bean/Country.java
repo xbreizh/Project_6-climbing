@@ -1,4 +1,4 @@
-package org.example.demo.climb.model.bean.zone;
+package org.example.demo.climb.model.bean;
 
 import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.bean.member.Member;
@@ -9,23 +9,21 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
-@NamedQueries({
+/*@NamedQueries({
         @NamedQuery(
-                name = "findAllZones",
-                /*query = "from Member m where m.login != :name"*/
-                query = "from Zone"
-        )/*,
+                name = "findAllCountries",
+                *//*query = "from Member m where m.login != :name"*//*
+                query = "from Country"
+        )*//*,
         @NamedQuery(
                 name = "findByZoneName",
                 query = "from Zone m where m.name = :name"
-        )*/
+        )*//*
 })
-@Entity
-public class Zone {
+@Entity*/
+public class Country {
 
-    @Id
-   /* @SequenceGenerator(name="identifier", sequenceName="mytable_id_seq", allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="identifier")*/
+/*    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
@@ -35,13 +33,8 @@ public class Zone {
     @NotNull
     @Size(min = 1, max = 100)
     private String country;
-    @NotNull
-    @Size(min = 1, max = 100)
-    private String region;
-    @OneToMany(mappedBy = "zone", fetch=FetchType.EAGER)
-    private List<Spot> spotList= new ArrayList<>();
 
-    public Zone() {
+    public Country() {
     }
 
     public int getId() {
@@ -68,23 +61,13 @@ public class Zone {
         this.country = country;
     }
 
-    public String getRegion() {
-        return region;
-    }
-
-    public void setRegion(String region) {
-        this.region = region;
-    }
-
 
     @Override
     public String toString() {
-        return "Zone{" +
+        return "Country{" +
                 "id=" + id +
                 ", continent='" + continent + '\'' +
                 ", country='" + country + '\'' +
-                ", region='" + region + '\'' +
                 '}';
-    }
-
+    }*/
 }

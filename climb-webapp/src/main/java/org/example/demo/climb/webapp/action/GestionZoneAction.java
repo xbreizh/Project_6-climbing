@@ -1,24 +1,46 @@
 package org.example.demo.climb.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import org.example.demo.climb.business.contract.manager.CountryManager;
 import org.example.demo.climb.business.contract.manager.ZoneManager;
 import org.example.demo.climb.model.bean.zone.Zone;
 import org.example.demo.climb.model.exception.NotFoundException;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GestionZoneAction extends LoginAction {
 
     private Zone zone;
     private List<Zone> listZone;
-
     private int id;
+    private String continent="";
+    private String country="";
+    private String region="";
+    private List<String> continentList;
+
+    private List<String> countryList;
+
+    private List<String> regionList;
 
     @Inject
     private ZoneManager zoneManager;
+    /*@Inject
+    private CountryManager countryManager;*/
 
     // Getters & Setters
+    public List<String> getContinentList() {
+        return continentList;
+    }
+
+    public List<String> getCountryList() {
+        return countryList;
+    }
+
+    public List<String> getRegionList() {
+        return regionList;
+    }
 
     public int getId() {
         return id;
@@ -44,14 +66,55 @@ public class GestionZoneAction extends LoginAction {
         this.listZone = listZone;
     }
 
+    public String getContinent() {
+        return continent;
+    }
+
+    public void setContinent(String continent) {
+        this.continent = continent;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    // Methods
+
 
     public String doCreate() {
         String vResult = ActionSupport.INPUT;
-
-        if (this.zone != null) {
-            zoneManager.addZone(zone);
-            vResult = ActionSupport.SUCCESS;
-            System.out.println("Action: " + zone);
+        /*continentList = countryManager.getListContinent();*/
+        continentList = new ArrayList<>();
+        continentList.add("Atlantide");
+        continentList.add("Europe");
+        if(this.zone!=null){
+            continent=zone.getContinent();
+            System.out.println("continent: "+this.getContinent());
+            if (!this.getContinent().equals("") && !this.getContinent().equals("-1")) {
+                country=zone.getCountry();
+                /*countryList = countryManager.getListCountry(this.getContinent());*/
+                countryList=new ArrayList<>();
+                countryList.add("France");
+                countryList.add("Germany");
+                region=zone.getRegion();
+                if(zone.getRegion()!=null){
+                    System.out.println("region: "+zone);
+                    zoneManager.addZone(zone);
+                    vResult = ActionSupport.SUCCESS;
+                }
+            }
         }
         if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;
@@ -89,8 +152,8 @@ public class GestionZoneAction extends LoginAction {
     public String doList() {
         System.out.println("zone");
         listZone = zoneManager.getListZone();
-        System.out.println("size: " + listZone.size());
-        System.out.println("listZone: "+listZone);
+       /* System.out.println("size: " + listZone.size());
+        System.out.println("listZone: "+listZone);*/
         return ActionSupport.SUCCESS;
     }
 

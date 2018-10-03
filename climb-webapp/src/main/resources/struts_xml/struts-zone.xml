@@ -18,7 +18,7 @@
             <interceptor-ref name="defaultStack"/>
             <result name="input">/jsp/zone/form/new.jsp</result>
             <result name="success" type="redirectAction">
-                <param name="actionName">zone_list</param>
+                <param name="actionName">index</param>
             </result>
         </action>
         <!-- READ ALL -->

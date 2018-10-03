@@ -19,7 +19,14 @@ public class ZoneDaoImpl implements ZoneDao {
 
     @Override
     public void add(Object o) {
+        /*int i= Integer.parseInt(sessionFactory.getCurrentSession().createQuery("select max(id) from Zone ").getSingleResult().toString());
+        System.out.println("max would be: "+i);
+        Zone zone= (Zone) o;
+        *//*zone.setId(i+1);*//*
+        System.out.println(zone);
+        System.out.println("id de o: "+(zone.getId()));*/
         sessionFactory.getCurrentSession().persist(o);
+        System.out.println(o);
     }
 
     @Override
