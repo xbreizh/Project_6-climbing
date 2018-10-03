@@ -87,12 +87,37 @@
         </action>
 
     </package>
-    <package name="ajax" extends="struts-default, json-default">
+<!--    <package name="ajax" extends="struts-default, json-default">
+        <global-results>
+            <result name="error" type="json">
+                <param name="statusCode">400</param>
+                <param name="includeProperties">actionErrors.*,fieldErrors.*</param>
+                <param name="ignoreHierarchy">false</param>
+            </result>
+        </global-results>
+        <action class="org.example.demo.climb.webapp.action.DemoAjaxAction" name="demo_ajaxGetListContinent"
+                method="DoAjaxGetListContinent">
+            <result name="success">/jsp/demo/ajax2.jsp</result>
+            &lt;!&ndash;<result type="json">
+                <param name="root">continentList</param>
+            </result>&ndash;&gt;
+        </action>
         <action class="org.example.demo.climb.webapp.action.DemoAjaxAction" name="demo_ajaxGetListCountry"
                 method="DoAjaxGetListCountry">
-            <result type="json">
-                <param name="root">zoneList</param>
-            </result>
+            <result name="success">/jsp/demo/ajax2.jsp</result>
+
+           &lt;!&ndash; <result type="json">
+                <param name="root">/jsp/demo/ajax2.jsp</param>
+            </result>&ndash;&gt;
         </action>
-    </package>
+        <action class="org.example.demo.climb.webapp.action.DemoAjaxAction" name="demo_ajaxGetListRegion"
+                method="DoAjaxGetListRegion">
+            <result name="success">/jsp/demo/ajax2.jsp</result>
+
+            &lt;!&ndash; <result type="json">
+                 <param name="root">/jsp/demo/ajax2.jsp</param>
+             </result>&ndash;&gt;
+        </action>
+
+    </package>-->
 </struts>

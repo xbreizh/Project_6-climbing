@@ -101,106 +101,30 @@ public class DemoAjaxAction extends ActionSupport{
     }
 
 
-
-    public void setListMember(List<Member> listMember) {
-        this.listMember = listMember;
-    }
-
-    public List<Member> getListMember() {
-        return listMember;
-    }
-    public List<Spot> getSpotList() {
-        return spotList;
-    }
-
-    public Member getMember() {
-        return member;
-    }
-
-    public Spot getSpot() {
-        return spot;
-    }
-
-    public void setSpot(Spot spot) {
-        this.spot = spot;
-    }
-    public void setMember(Member member) {
-        this.member = member;
-    }
-
-    public String getYourMonth() {
-        return yourMonth;
-    }
-
-    public void setYourMonth(String yourMonth) {
-        this.yourMonth = yourMonth;
-    }
-
-    public List<String> getFruits() {
-        return fruits;
-    }
-
-    public void setFruits(List<String> fruits) {
-        this.fruits = fruits;
-    }
-
-    public String getYourFruits() {
-        return yourFruits;
-    }
-
-    public void setYourFruits(String yourFruits) {
-        this.yourFruits = yourFruits;
-    }
-
-    public DemoAjaxAction(){
-
-       /* fruits = new ArrayList<String>();
-        fruits.add("Apple");
-        fruits.add("Banana");
-        fruits.add("Orange");
-        fruits.add("Watermelon");*/
-       /*listMember=memberManager.getListMember();*/
-
-        System.out.println("bam l'action!");
-    }
-
     public void setContinentList(List<String> continentList) {
         this.continentList = continentList;
     }
 
-    public String execute() {
-        /*System.out.println("trying to get zone lists");
-        continentList=zoneManager.getListContinent();*/
-        continentList=zoneManager.getListContinent();
-        countryList=zoneManager.getListCountry("Europe");/*
-        System.out.println("got the zone list");
-        *//*System.out.println("Liste: "+member.getSpotList());*//*
-       *//* if(zone==null) {
-            zone = zoneList.get(0);
-        }*//*
-        *//*spotList = member.getSpotList();*//*
-        System.out.println("liste of continents: "+zoneManager.getListContinent());
-        HttpServletRequest request = (HttpServletRequest)(ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST));
-        continent = request.getParameter("continent");
-        System.out.println("Continent selected: "+continent);
-        System.out.println("liste de pays d'Afrique: "+zoneManager.getListCountry("Africa"));
-        System.out.println("liste de region en France: "+zoneManager.getListRegion( "France"));*/
-        return SUCCESS;
+    public DemoAjaxAction(){
+
     }
 
-
-    public String DoAjaxGetListCountry(){
-        countryList=zoneManager.getListCountry("Europe");
+    public String execute() {
+        continentList = zoneManager.getListContinent();
+        if(continent!=null){
+            countryList=zoneManager.getListCountry(continent);
+            if(country!=null){
+                regionList=zoneManager.getListRegion(country);
+            }
+        }
         return ActionSupport.SUCCESS;
     }
+
+
     public String display() {
 
-        /*System.out.println("je display un truc");*/
         return NONE;
     }
 
-    public String DoAjaxGetListContinent() throws Exception {
-        continentList=zoneManager.getListContinent();
-        return ActionSupport.SUCCESS;
-    }
+
 }
