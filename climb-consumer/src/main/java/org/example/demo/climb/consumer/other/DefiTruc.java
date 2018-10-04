@@ -1,4 +1,4 @@
-package org.example.demo.climb.consumer.impl;
+package org.example.demo.climb.consumer.other;
 
 import java.util.Scanner;
 

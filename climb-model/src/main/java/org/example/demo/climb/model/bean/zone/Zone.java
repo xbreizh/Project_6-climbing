@@ -1,5 +1,6 @@
 package org.example.demo.climb.model.bean.zone;
 
+import org.example.demo.climb.model.bean.Country;
 import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.bean.member.Member;
 
@@ -9,17 +10,17 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
-@NamedQueries({
+/*@NamedQueries({
         @NamedQuery(
                 name = "findAllZones",
-                /*query = "from Member m where m.login != :name"*/
+                *//*query = "from Member m where m.login != :name"*//*
                 query = "from Zone"
-        )/*,
+        )*//*,
         @NamedQuery(
                 name = "findByZoneName",
                 query = "from Zone m where m.name = :name"
-        )*/
-})
+        )*//*
+})*/
 @Entity
 public class Zone {
 
@@ -30,16 +31,13 @@ public class Zone {
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
     @NotNull
-    @Size(min = 1, max = 50)
-    private String continent;
-    @NotNull
-    @Size(min = 1, max = 100)
-    private String country;
+    @ManyToOne
+    private Country country;
     @NotNull
     @Size(min = 1, max = 100)
     private String region;
-    @OneToMany(mappedBy = "zone", fetch=FetchType.EAGER)
-    private List<Spot> spotList= new ArrayList<>();
+   /* @OneToMany(mappedBy = "zone", fetch=FetchType.EAGER)
+    private List<Spot> spotList= new ArrayList<>();*/
 
     public Zone() {
     }
@@ -52,19 +50,11 @@ public class Zone {
         this.id = id;
     }
 
-    public String getContinent() {
-        return continent;
-    }
-
-    public void setContinent(String continent) {
-        this.continent = continent;
-    }
-
-    public String getCountry() {
+    public Country getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(Country country) {
         this.country = country;
     }
 
@@ -76,15 +66,21 @@ public class Zone {
         this.region = region;
     }
 
+    /*public List<Spot> getSpotList() {
+        return spotList;
+    }
+
+    public void setSpotList(List<Spot> spotList) {
+        this.spotList = spotList;
+    }*/
 
     @Override
     public String toString() {
         return "Zone{" +
                 "id=" + id +
-                ", continent='" + continent + '\'' +
-                ", country='" + country + '\'' +
+                ", country=" + country +
                 ", region='" + region + '\'' +
+                ", spotList=" + /*spotList +*/
                 '}';
     }
-
 }

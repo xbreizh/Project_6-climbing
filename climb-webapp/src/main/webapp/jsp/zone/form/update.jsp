@@ -5,14 +5,12 @@
 <%@include file="../../_include/header.jsp" %>
 
 <body>
-
+<br><br>
 <s:form action="zone_update" method="POST">
-    <%--Id: <s:property value="zone.id"/><br>--%>
 
     <s:hidden name="zone.id" value="%{id}"/>
-    <li>Id: <s:property value="id"/></li>
-    <s:textfield name="zone.continent" label="Continent" requiredLabel="true"/>
-    <s:textfield name="zone.country" label="Country" requiredLabel="true"/>
+    Continent: <s:property value="zone.continent"/><br>
+    Country: <s:property value="zone.country"/><br>
     <s:textfield name="zone.region" label="Region" requiredLabel="true"/>
     <s:submit value="OK"/>
 </s:form>

@@ -25,8 +25,12 @@ public class ZoneDaoImpl implements ZoneDao {
         *//*zone.setId(i+1);*//*
         System.out.println(zone);
         System.out.println("id de o: "+(zone.getId()));*/
+        System.out.println("Object to be saved: "+o);
+        System.out.println("trying to save object");
+        sessionFactory.getCurrentSession().save(o);
+        System.out.println("after saving object");
         sessionFactory.getCurrentSession().persist(o);
-        System.out.println(o);
+        System.out.println("object has been persisted");
     }
 
     @Override
@@ -59,14 +63,14 @@ public class ZoneDaoImpl implements ZoneDao {
             }
         }*/
         List<String> continentList=sessionFactory.getCurrentSession().createQuery(
-                "select distinct z.continent from Zone z", String.class).getResultList();
+                "select distinct z.country.continent from Zone z", String.class).getResultList();
         return continentList;
     }
 
     @Override
     public List<String> getListCountry(String continent) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "select distinct z.country from Zone z where z.continent=:continent");
+                "select distinct z.country from Zone z where z.country.continent=:continent");
         query.setParameter("continent", continent);
 
         return query.getResultList();

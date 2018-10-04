@@ -17,6 +17,7 @@ public interface CountryManager {
 
     List<String> getListContinent();
     List<String> getListCountry(String continent);
+    Country getCountry(String country);
 
 
 

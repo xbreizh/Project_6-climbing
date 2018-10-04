@@ -1,4 +1,4 @@
-package org.example.demo.climb.consumer.impl;
+package org.example.demo.climb.consumer.other;
 
 import org.example.demo.climb.consumer.contract.MemberDao;
 

@@ -1,4 +1,4 @@
-package org.example.demo.climb.consumer;
+package org.example.demo.climb.consumer.config;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;
@@ -46,7 +46,7 @@ public class HibernateConf {
     private final Properties hibernateProperties() {
         Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty(
-                "hibernate.hbm2ddl.auto", "create");
+                "hibernate.hbm2ddl.auto", "update");
         hibernateProperties.setProperty(
                 "hibernate.dialect", "org.hibernate.dialect.PostgreSQL82Dialect");
         hibernateProperties.setProperty("show_sql", "true");

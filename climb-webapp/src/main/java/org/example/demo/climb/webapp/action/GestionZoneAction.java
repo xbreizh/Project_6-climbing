@@ -7,7 +7,6 @@ import org.example.demo.climb.model.bean.zone.Zone;
 import org.example.demo.climb.model.exception.NotFoundException;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
 import java.util.List;
 
 public class GestionZoneAction extends LoginAction {
@@ -26,8 +25,8 @@ public class GestionZoneAction extends LoginAction {
 
     @Inject
     private ZoneManager zoneManager;
-    /*@Inject
-    private CountryManager countryManager;*/
+    @Inject
+    private CountryManager countryManager;
 
     // Getters & Setters
     public List<String> getContinentList() {
@@ -95,22 +94,19 @@ public class GestionZoneAction extends LoginAction {
 
     public String doCreate() {
         String vResult = ActionSupport.INPUT;
-        /*continentList = countryManager.getListContinent();*/
-        continentList = new ArrayList<>();
-        continentList.add("Atlantide");
-        continentList.add("Europe");
+        continentList = countryManager.getListContinent();
         if(this.zone!=null){
-            continent=zone.getContinent();
-            System.out.println("continent: "+this.getContinent());
+            System.out.println("continent: "+zone.getCountry().getContinent());
+            continent=zone.getCountry().getContinent();
             if (!this.getContinent().equals("") && !this.getContinent().equals("-1")) {
-                country=zone.getCountry();
-                /*countryList = countryManager.getListCountry(this.getContinent());*/
-                countryList=new ArrayList<>();
-                countryList.add("France");
-                countryList.add("Germany");
+                country=zone.getCountry().getName();
+                countryList = countryManager.getListCountry(this.getContinent());
                 region=zone.getRegion();
                 if(zone.getRegion()!=null){
                     System.out.println("region: "+zone);
+                    System.out.println("Country: "+country);
+                    System.out.println(countryManager.getCountry(country));
+                    zone.setCountry(countryManager.getCountry(country));
                     zoneManager.addZone(zone);
                     vResult = ActionSupport.SUCCESS;
                 }

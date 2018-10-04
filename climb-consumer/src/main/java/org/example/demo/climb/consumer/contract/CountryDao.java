@@ -1,12 +1,16 @@
 package org.example.demo.climb.consumer.contract;
 
 
+
+import org.example.demo.climb.model.bean.Country;
+
 import java.util.List;
 
 public interface CountryDao {
 
-    public List getAll();
-    public List<String> getListContinent();
-    public List<String> getListCountry(String continent);
+    List getAll();
+    List<String> getListContinent();
+    List<String> getListCountry(String continent);
+    Country getCountry(String name);
 
 }

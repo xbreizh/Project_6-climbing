@@ -8,10 +8,9 @@ import org.hibernate.query.Query;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
-/*
-@Named*/
-public class CountryDaoImpl  /*implements CountryDao*/ {
-/*
+
+@Named
+public class CountryDaoImpl  implements CountryDao {
 
     private Class cl= Country.class;
 
@@ -37,12 +36,22 @@ public class CountryDaoImpl  /*implements CountryDao*/ {
     @Override
     public List<String> getListCountry(String continent) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "select distinct z.country from Country z where z.continent=:continent");
+                "select distinct z.name from Country z where z.continent=:continent");
         query.setParameter("continent", continent);
 
         return query.getResultList();
     }
 
-*/
+    @Override
+    public Country getCountry(String name) {
+        Query query = sessionFactory.getCurrentSession().createQuery(
+                "select max(z.id) from Country z where lower(z.name)=lower(:name)");
+        query.setParameter("name", name);
+        System.out.println(query.uniqueResult());
+        int id= (int) query.uniqueResult();
+        return sessionFactory.getCurrentSession().get(Country.class, id);
+        /*return (Country) query.uniqueResult();*/
+    }
+
 
 }

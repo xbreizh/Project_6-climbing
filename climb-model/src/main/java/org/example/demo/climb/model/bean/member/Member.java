@@ -1,5 +1,7 @@
 package org.example.demo.climb.model.bean.member;
 
+import org.example.demo.climb.model.bean.Comment;
+import org.example.demo.climb.model.bean.Route;
 import org.example.demo.climb.model.bean.Spot;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -35,6 +37,9 @@ public class Member {
     private String login2;
 
     @NotNull
+    private String role;
+
+    @NotNull
     private boolean active;
 
     @NotNull
@@ -54,65 +59,13 @@ public class Member {
 
     @OneToMany(mappedBy = "creatorSpot", fetch=FetchType.EAGER)
     private List<Spot> spotList= new ArrayList<>();
+    @OneToMany(mappedBy = "creatorRoute", fetch=FetchType.EAGER)
+    private List<Route> routeList= new ArrayList<>();
+    @OneToMany(mappedBy = "creatorComment", fetch=FetchType.EAGER)
+    private List<Comment> commentList= new ArrayList<>();
 
     public Member() {
     }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Date getDatejoin() {
-        return datejoin;
-    }
-
-    public void setDatejoin(Date datejoin) {
-        this.datejoin = datejoin;
-    }
-
-    public Date getDateLastConnect() {
-        return dateLastConnect;
-    }
-
-    public void setDateLastConnect(Date dateLastConnect) {
-        this.dateLastConnect = dateLastConnect;
-    }
-
-
-
-    public String getLogin2() {
-        return login2;
-    }
-
-    public void setLogin2(String login2) {
-        this.login2 = login2;
-    }
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public void setSpotList(List<Spot> spotList) {
-        this.spotList = spotList;
-    }
-
-
-
-    public List<Spot> getSpotList() {
-        return spotList;
-    }
-
-    public void addSpot(Spot spot) {
-        this.spotList.add(spot);
-    }
-
 
     public int getId() {
         return id;
@@ -128,6 +81,30 @@ public class Member {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public String getLogin2() {
+        return login2;
+    }
+
+    public void setLogin2(String login2) {
+        this.login2 = login2;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public String getPassword() {
@@ -146,12 +123,61 @@ public class Member {
         this.description = description;
     }
 
+    public Date getDatejoin() {
+        return datejoin;
+    }
+
+    public void setDatejoin(Date datejoin) {
+        this.datejoin = datejoin;
+    }
+
+    public Date getDateLastConnect() {
+        return dateLastConnect;
+    }
+
+    public void setDateLastConnect(Date dateLastConnect) {
+        this.dateLastConnect = dateLastConnect;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<Spot> getSpotList() {
+        return spotList;
+    }
+
+    public void setSpotList(List<Spot> spotList) {
+        this.spotList = spotList;
+    }
+
+    public List<Route> getRouteList() {
+        return routeList;
+    }
+
+    public void setRouteList(List<Route> routeList) {
+        this.routeList = routeList;
+    }
+
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
+    }
+
     @Override
     public String toString() {
         return "Member{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
                 ", login2='" + login2 + '\'' +
+                ", role='" + role + '\'' +
                 ", active=" + active +
                 ", password='" + password + '\'' +
                 ", description='" + description + '\'' +
@@ -159,6 +185,8 @@ public class Member {
                 ", dateLastConnect=" + dateLastConnect +
                 ", email='" + email + '\'' +
                 ", spotList=" + spotList +
+                ", routeList=" + routeList +
+                ", commentList=" + commentList +
                 '}';
     }
 }

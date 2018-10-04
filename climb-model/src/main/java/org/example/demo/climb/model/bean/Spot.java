@@ -6,6 +6,8 @@ import org.example.demo.climb.model.bean.zone.Zone;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @NamedQueries({
         @NamedQuery(
@@ -28,7 +30,10 @@ import javax.validation.constraints.Size;
     @NotNull
     @Size(min = 1, max = 100)
     private String name;
+    @NotNull
     private int nb_ways;
+    @OneToMany(mappedBy = "spot", fetch=FetchType.EAGER)
+    private List<Route> routeList= new ArrayList<>();
 
     @NotNull
     @ManyToOne
@@ -39,22 +44,6 @@ import javax.validation.constraints.Size;
     private Zone zone;
 
     public Spot() {
-    }
-
-    public Zone getZone() {
-        return zone;
-    }
-
-    public void setZone(Zone zone) {
-        this.zone = zone;
-    }
-
-    public Member getCreatorSpot() {
-        return creatorSpot;
-    }
-
-    public void setCreatorSpot(Member creatorSpot) {
-        this.creatorSpot = creatorSpot;
     }
 
     public int getId() {
@@ -73,14 +62,6 @@ import javax.validation.constraints.Size;
         this.name = name;
     }
 
-   /* public Zone getZone() {
-        return zone;
-    }
-
-    public void setZone(Zone zone) {
-        this.zone = zone;
-    }*/
-
     public int getNb_ways() {
         return nb_ways;
     }
@@ -89,22 +70,39 @@ import javax.validation.constraints.Size;
         this.nb_ways = nb_ways;
     }
 
-  /*  public Member getCreator() {
-        return creator;
+    public List<Route> getRouteList() {
+        return routeList;
     }
 
-    public void setCreator(Member creator) {
-        this.creator = creator;
-    }*/
+    public void setRouteList(List<Route> routeList) {
+        this.routeList = routeList;
+    }
+
+    public Member getCreatorSpot() {
+        return creatorSpot;
+    }
+
+    public void setCreatorSpot(Member creatorSpot) {
+        this.creatorSpot = creatorSpot;
+    }
+
+    public Zone getZone() {
+        return zone;
+    }
+
+    public void setZone(Zone zone) {
+        this.zone = zone;
+    }
 
     @Override
     public String toString() {
         return "Spot{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                /*", zone=" + zone +*/
                 ", nb_ways=" + nb_ways +
-                /*  ", creator=" + creator +*/
+                ", routeList=" + routeList +
+                ", creatorSpot=" + creatorSpot +
+                ", zone=" + zone +
                 '}';
     }
 }

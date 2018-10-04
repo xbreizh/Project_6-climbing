@@ -8,11 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
-/*
 @Transactional
-@Named("zoneManager")*/
-public class CountryManagerImpl /*implements CountryManager*/ {
-/*
+@Named("countryManager")
+public class CountryManagerImpl implements CountryManager {
 
 
     private Class cl= Country.class;
@@ -25,8 +23,7 @@ public class CountryManagerImpl /*implements CountryManager*/ {
     @Override
     public List<Country> getListCountry() {
         System.out.println("trying to get Country list");
-        */
-/*return sessionFactory.getCurrentSession().createQuery("from Zone ").list();*//*
+
 
         return countryDao.getAll();
 
@@ -42,18 +39,10 @@ public class CountryManagerImpl /*implements CountryManager*/ {
         return countryDao.getListCountry(continent);
     }
 
-
-
-
-
-
-
-
-
-
-*/
-
-
+    @Override
+    public Country getCountry(String country) {
+        return countryDao.getCountry(country);
+    }
 
 
 }

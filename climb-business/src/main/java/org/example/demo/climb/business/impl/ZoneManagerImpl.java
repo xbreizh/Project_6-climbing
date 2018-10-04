@@ -62,21 +62,6 @@ public class ZoneManagerImpl  implements ZoneManager {
 
     @Override
     public void updateZone(Zone zone) {
-        /*int id = zone.getId();*/
-        /*Zone z = (Zone) sessionFactory.getCurrentSession().get(cl.getName(), id);
-        if(zone.getName() != null){
-            z.setName(zone.getName());
-        }
-        if(zone.getCountry() != null){
-            z.setCountry(zone.getCountry());
-        }
-        if(zone.getRegion() != null){
-            z.setRegion(zone.getRegion());
-        }
-        if(zone.getType() != null){
-            z.setType(zone.getType());
-        }*/
-        /*sessionFactory.getCurrentSession().update(zone);*/
         zoneDao.update(zone);
     }
 
