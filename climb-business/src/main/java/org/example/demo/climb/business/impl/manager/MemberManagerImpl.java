@@ -48,6 +48,7 @@ public class MemberManagerImpl  implements MemberManager {
         member.setLogin2(member.getLogin().toUpperCase());//setting backup login
         member.setLogin(member.getLogin().toUpperCase());//setting upper case login
         member.setDatejoin(new Date());
+        member.setRole("admin");
         System.out.println("Member to be added: "+member);
         /*sessionFactory.getCurrentSession().persist(member);*/
         memberDao.add(member);
