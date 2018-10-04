@@ -9,17 +9,17 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
-@NamedQueries({
+/*@NamedQueries({
         @NamedQuery(
                 name = "findAllSpots",
-                /*query = "from Member m where m.login != :name"*/
+                *//*query = "from Member m where m.login != :name"*//*
                 query = "from Spot"
         ),
         @NamedQuery(
                 name = "findByName",
                 query = "from Spot m where m.name = :name"
         )
-})
+})*/
     @Entity
     public class Spot {
 

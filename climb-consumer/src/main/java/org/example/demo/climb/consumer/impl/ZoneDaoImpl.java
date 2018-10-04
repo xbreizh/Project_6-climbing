@@ -35,7 +35,11 @@ public class ZoneDaoImpl implements ZoneDao {
 
     @Override
     public List getAll() {
-        return sessionFactory.getCurrentSession().createQuery("from Zone ").list();
+        System.out.println("niveau DAO");
+
+        /*List<Zone> de = sessionFactory.getCurrentSession().createQuery("from Zone ").list();
+        System.out.println("liste spots: "+de);*/
+        return sessionFactory.getCurrentSession().createQuery("from Zone").list();
     }
 
     @Override

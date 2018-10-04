@@ -22,8 +22,8 @@ public class Country {
     @NotNull
     @Size(min = 1, max = 100)
     private String name;
-    @OneToMany(mappedBy = "country", fetch=FetchType.EAGER)
-    private List<Zone> zoneList= new ArrayList<>();
+    /*@OneToMany(mappedBy = "country", fetch=FetchType.EAGER)
+    private List<Zone> zoneList= new ArrayList<>();*/
 
     public Country() {
     }
@@ -48,25 +48,24 @@ public class Country {
         return name;
     }
 
-    public void setName(String country) {
-        this.name = country;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public List<Zone> getZoneList() {
+    /*public List<Zone> getZoneList() {
         return zoneList;
     }
 
     public void setZoneList(List<Zone> zoneList) {
         this.zoneList = zoneList;
-    }
+    }*/
 
     @Override
     public String toString() {
         return "Country{" +
                 "id=" + id +
                 ", continent='" + continent + '\'' +
-                ", country='" + name + '\'' +
-                ", zoneList=" + zoneList +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

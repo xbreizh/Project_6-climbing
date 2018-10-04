@@ -61,6 +61,18 @@ public class GestionZoneAction extends LoginAction {
         return listZone;
     }
 
+    public void setContinentList(List<String> continentList) {
+        this.continentList = continentList;
+    }
+
+    public void setCountryList(List<String> countryList) {
+        this.countryList = countryList;
+    }
+
+    public void setRegionList(List<String> regionList) {
+        this.regionList = regionList;
+    }
+
     public void setListZone(List<Zone> listZone) {
         this.listZone = listZone;
     }
@@ -148,8 +160,16 @@ public class GestionZoneAction extends LoginAction {
     public String doList() {
         System.out.println("zone");
         listZone = zoneManager.getListZone();
-       /* System.out.println("size: " + listZone.size());
-        System.out.println("listZone: "+listZone);*/
+        System.out.println("size: " + listZone.size());/*
+        System.out.println(new StackOverflowError().getMessage());
+        System.out.println("got the list of zone: " );*/
+        /*try {
+            System.out.println("trokoko");
+            System.out.println("listZone: " + listZone);
+        }catch(Exception e){
+            System.err.println(e.getMessage());
+            return ActionSupport.ERROR;
+        }*/
         return ActionSupport.SUCCESS;
     }
 

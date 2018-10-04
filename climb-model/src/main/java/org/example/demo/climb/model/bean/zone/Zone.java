@@ -36,8 +36,8 @@ public class Zone {
     @NotNull
     @Size(min = 1, max = 100)
     private String region;
-   /* @OneToMany(mappedBy = "zone", fetch=FetchType.EAGER)
-    private List<Spot> spotList= new ArrayList<>();*/
+    @OneToMany(mappedBy = "zone", fetch=FetchType.EAGER)
+    private List<Spot> spotList= new ArrayList<>();
 
     public Zone() {
     }
@@ -66,13 +66,13 @@ public class Zone {
         this.region = region;
     }
 
-    /*public List<Spot> getSpotList() {
+    public List<Spot> getSpotList() {
         return spotList;
     }
 
     public void setSpotList(List<Spot> spotList) {
         this.spotList = spotList;
-    }*/
+    }
 
     @Override
     public String toString() {
@@ -80,7 +80,7 @@ public class Zone {
                 "id=" + id +
                 ", country=" + country +
                 ", region='" + region + '\'' +
-                ", spotList=" + /*spotList +*/
+                ", spotList=" + spotList +
                 '}';
     }
 }

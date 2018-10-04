@@ -122,4 +122,6 @@ public class DemoAjaxAction extends ActionSupport{
     }
 
 
+    public void setListZone(String listZone) {
+    }
 }

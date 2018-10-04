@@ -25,7 +25,8 @@
         <action name="zone_list"
                 class="org.example.demo.climb.webapp.action.GestionZoneAction"
                 method="doList">
-            <result>/jsp/zone/list.jsp</result>
+            <result name="success">/jsp/zone/list.jsp</result>
+            <result name="error">/jsp/error.jsp</result>
 
         </action>
 
@@ -82,8 +83,8 @@
             </result>
         </action>
         <!-- Action de démonstration pour l'AJAX -->
-        <action name="demo_ajax" class="org.example.demo.climb.webapp.action.DemoAjaxAction">
-            <result name="success">/jsp/demo/ajax2.jsp</result>
+        <action name="demo_ajax" class="org.example.demo.climb.webapp.action.GestionZoneAction">
+            <result name="success">/jsp/zone/list.jsp</result>
         </action>
 
     </package>
