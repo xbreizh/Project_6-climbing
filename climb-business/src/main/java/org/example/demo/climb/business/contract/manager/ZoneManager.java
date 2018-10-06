@@ -1,6 +1,6 @@
 package org.example.demo.climb.business.contract.manager;
 
-import org.example.demo.climb.model.bean.zone.Zone;
+import org.example.demo.climb.model.bean.Zone;
 import org.example.demo.climb.model.exception.NotFoundException;
 
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface ZoneManager {
 
-    //Create
+/*    //Create
     void addZone(Zone zone);
 
     //Get list
@@ -30,7 +30,7 @@ public interface ZoneManager {
     void updateZone(Zone zone);
 
     //Delete
-    void deleteZone(int id);
+    void deleteZone(int id);*/
 
 
 }

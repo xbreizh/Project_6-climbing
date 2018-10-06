@@ -1,7 +1,7 @@
 package org.example.demo.climb.business.impl;
 import org.example.demo.climb.business.contract.manager.ZoneManager;
 import org.example.demo.climb.consumer.contract.ZoneDao;
-import org.example.demo.climb.model.bean.zone.Zone;
+import org.example.demo.climb.model.bean.Zone;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -9,12 +9,12 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 
-@Transactional
-@Named("zoneManager")
-public class ZoneManagerImpl  implements ZoneManager {
+/*@Transactional
+@Named("zoneManager")*/
+public class ZoneManagerImpl  /*implements ZoneManager*/ {
 
 
-    private Class cl=Zone.class;
+   /* private Class cl=Zone.class;
 
     @Inject
     private SessionFactory sessionFactory;
@@ -24,7 +24,7 @@ public class ZoneManagerImpl  implements ZoneManager {
     @Override
     public List<Zone> getListZone() {
         System.out.println("trying to get Zone list");
-        /*return sessionFactory.getCurrentSession().createQuery("from Zone ").list();*/
+        *//*return sessionFactory.getCurrentSession().createQuery("from Zone ").list();*//*
         return zoneDao.getAll();
 
     }
@@ -68,11 +68,11 @@ public class ZoneManagerImpl  implements ZoneManager {
     @Override
     public void deleteZone(int id) {
         System.out.println("trying to delete zone: "+id);
-        /*Zone m= (Zone) sessionFactory.getCurrentSession().get(cl, id);*/
+        *//*Zone m= (Zone) sessionFactory.getCurrentSession().get(cl, id);*//*
         Zone m = (Zone) zoneDao.getById(id);
-        /*sessionFactory.getCurrentSession().delete(cl.getName(), m);*/
+        *//*sessionFactory.getCurrentSession().delete(cl.getName(), m);*//*
         zoneDao.delete(m);
-    }
+    }*/
 
 
 

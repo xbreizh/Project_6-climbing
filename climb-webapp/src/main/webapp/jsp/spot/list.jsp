@@ -16,12 +16,12 @@
     <ul>
         <li>Name: <s:property value="name"/></li>
         <li>Number of ways: <s:property value="nb_ways"/></li>
-        <li>Creator:
+        <%--<li>Creator:
             <s:a action="member_detail">
                 <s:param name="id" value="creatorSpot.id"/>
                 <s:property value="creatorSpot.login"/>
             </s:a>
-        </li>
+        </li>--%>
         <li>
             <s:a action="spot_detail">Details
                 <s:param name="id" value="id"/>

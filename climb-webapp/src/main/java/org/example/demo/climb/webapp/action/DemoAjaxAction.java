@@ -2,17 +2,12 @@ package org.example.demo.climb.webapp.action;
 
 import java.util.List;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-import org.apache.struts2.ServletActionContext;
-import org.example.demo.climb.business.contract.manager.MemberManager;
 import org.example.demo.climb.business.contract.manager.ZoneManager;
 import org.example.demo.climb.model.bean.Spot;
-import org.example.demo.climb.model.bean.zone.Zone;
-import org.example.demo.climb.model.bean.member.Member;
+import org.example.demo.climb.model.bean.Zone;
 
 
 /**

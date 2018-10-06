@@ -4,9 +4,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.interceptor.SessionAware;
 import org.example.demo.climb.business.contract.manager.MemberManager;
-import org.example.demo.climb.model.bean.member.Member;
-import org.example.demo.climb.model.exception.NotFoundException;
-import org.springframework.web.context.request.ServletRequestAttributes;
+import org.example.demo.climb.model.bean.Member;
 
 import javax.inject.Inject;
 import javax.inject.Named;

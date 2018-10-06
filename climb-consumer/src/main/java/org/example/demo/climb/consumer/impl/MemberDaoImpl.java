@@ -1,7 +1,7 @@
 package org.example.demo.climb.consumer.impl;
 
 import org.example.demo.climb.consumer.contract.MemberDao;
-import org.example.demo.climb.model.bean.member.Member;
+import org.example.demo.climb.model.bean.Member;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
@@ -24,13 +24,21 @@ public class MemberDaoImpl  implements MemberDao {
     }
 
     @Override
-    public List getAll() {
-        return sessionFactory.getCurrentSession().createQuery("from Member ").list();
+    public Object getById(int id) {
+        return (Member) sessionFactory.getCurrentSession().get(cl, id);
     }
 
     @Override
-    public Object getById(int id) {
-        return (Member) sessionFactory.getCurrentSession().get(cl, id);
+    public Member getMemberByLogin(String name) {
+        Query query = sessionFactory.getCurrentSession().createQuery("" +
+                "From Member where login=:name");
+        query.setParameter("name", name);
+        return (Member) query.getSingleResult();
+    }
+
+    @Override
+    public List getAll() {
+        return sessionFactory.getCurrentSession().createQuery("from Member ").list();
     }
 
     @Override

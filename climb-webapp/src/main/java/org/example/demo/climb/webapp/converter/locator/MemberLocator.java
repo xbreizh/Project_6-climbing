@@ -4,8 +4,7 @@ import com.opensymphony.xwork2.conversion.TypeConversionException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.util.StrutsTypeConverter;
 import org.example.demo.climb.business.contract.manager.MemberManager;
-import org.example.demo.climb.model.bean.member.Member;
-import org.example.demo.climb.model.bean.member.Utilisateur;
+import org.example.demo.climb.model.bean.Member;
 import org.example.demo.climb.model.exception.NotFoundException;
 
 import javax.inject.Inject;
@@ -27,7 +26,7 @@ public class MemberLocator extends StrutsTypeConverter {
                     vRetour
                             = StringUtils.isEmpty(vValue)
                             ? null
-                            :  memberManager.getMember(new Integer(vValue));
+                            :  memberManager.getMemberById(new Integer(vValue));
                     System.out.println("vValue: "+vValue);
                 } catch (NumberFormatException pEx) {
                     throw new TypeConversionException("Format d'identifiant membre invalide", pEx);
@@ -53,7 +52,7 @@ public class MemberLocator extends StrutsTypeConverter {
             if(member.getId()!=0){
                 try {
                     vString = memberManager.getMember().toString();
-                } catch (NotFoundException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

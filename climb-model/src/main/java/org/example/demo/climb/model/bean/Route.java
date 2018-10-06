@@ -1,8 +1,5 @@
 package org.example.demo.climb.model.bean;
 
-import org.example.demo.climb.model.bean.member.Member;
-import org.example.demo.climb.model.bean.zone.Zone;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -14,24 +11,28 @@ import javax.validation.constraints.Size;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
+
     @NotNull
     @Size(min = 1, max = 100)
     private String name;
+
     @NotNull
     private int height;
+
     @NotNull
     @Size(min = 1, max = 5)
     private String grade;
+
     @NotNull
     @Size(min = 1, max = 20)
     private String type;
 
     @NotNull
     @ManyToOne
-    private Member creatorRoute;
+    private Member member;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne()
     private Spot spot;
 
     public Route() {
@@ -77,12 +78,12 @@ import javax.validation.constraints.Size;
             this.type = type;
         }
 
-        public Member getCreatorRoute() {
-            return creatorRoute;
+        public Member getMember() {
+            return member;
         }
 
-        public void setCreatorRoute(Member creatorRoute) {
-            this.creatorRoute = creatorRoute;
+        public void setMember(Member member) {
+            this.member = member;
         }
 
         public Spot getSpot() {
@@ -101,7 +102,7 @@ import javax.validation.constraints.Size;
                     ", height=" + height +
                     ", grade='" + grade + '\'' +
                     ", type='" + type + '\'' +
-                    ", creatorRoute=" + creatorRoute +
+                    ", member=" + member +
                     ", spot=" + spot +
                     '}';
         }

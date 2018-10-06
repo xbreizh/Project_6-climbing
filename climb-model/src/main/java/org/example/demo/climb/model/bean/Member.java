@@ -1,8 +1,10 @@
-package org.example.demo.climb.model.bean.member;
+package org.example.demo.climb.model.bean;
 
 import org.example.demo.climb.model.bean.Comment;
 import org.example.demo.climb.model.bean.Route;
 import org.example.demo.climb.model.bean.Spot;
+import org.example.demo.climb.model.bean.Topo;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -10,16 +12,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@NamedQueries({
-        @NamedQuery(
-                name = "findAllMembers",
-                query = "from Member"
-        ),
-        @NamedQuery(
-                name = "findByLogin",
-                query = "from Member m where m.login = :login"
-        )
-})
 @Entity
 public class Member {
 
@@ -46,7 +38,7 @@ public class Member {
     @Size(min = 3, max = 8)
     private String password;
 
-    @Size( max = 255)
+    @Size(max = 255)
     private String description;
 
     @NotNull
@@ -57,12 +49,17 @@ public class Member {
     @NotNull
     private String email;
 
-    @OneToMany(mappedBy = "creatorSpot", fetch=FetchType.EAGER)
-    private List<Spot> spotList= new ArrayList<>();
-    @OneToMany(mappedBy = "creatorRoute", fetch=FetchType.EAGER)
-    private List<Route> routeList= new ArrayList<>();
-    @OneToMany(mappedBy = "creatorComment", fetch=FetchType.EAGER)
-    private List<Comment> commentList= new ArrayList<>();
+    @OneToMany(mappedBy = "member", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    private List<Spot> spotList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    private List<Route> routeList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    private List<Comment> commentList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    private List<Topo> topoList = new ArrayList<>();
 
     public Member() {
     }
@@ -171,6 +168,14 @@ public class Member {
         this.commentList = commentList;
     }
 
+    public List<Topo> getTopoList() {
+        return topoList;
+    }
+
+    public void setTopoList(List<Topo> topoList) {
+        this.topoList = topoList;
+    }
+
     @Override
     public String toString() {
         return "Member{" +
@@ -187,6 +192,7 @@ public class Member {
                 ", spotList=" + spotList +
                 ", routeList=" + routeList +
                 ", commentList=" + commentList +
+                ", topoList=" + topoList +
                 '}';
     }
 }

@@ -8,9 +8,13 @@ import java.util.List;
 
 public interface CountryDao {
 
-    List getAll();
+    // Get
+    Country getCountryByName(String name);
+    Country getCountryById(int id);
+
+    // Get List
+    List<Country> getAll();
     List<String> getListContinent();
-    List<String> getListCountry(String continent);
-    Country getCountry(String name);
+    List<Country> getAllByContinent(String continent);
 
 }

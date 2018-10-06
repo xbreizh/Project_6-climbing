@@ -4,8 +4,8 @@ import com.opensymphony.xwork2.ActionSupport;
 import org.example.demo.climb.business.contract.manager.MemberManager;
 import org.example.demo.climb.business.contract.manager.SpotManager;
 import org.example.demo.climb.model.bean.Spot;
-import org.example.demo.climb.model.bean.zone.Zone;
-import org.example.demo.climb.model.bean.member.Member;
+import org.example.demo.climb.model.bean.Zone;
+import org.example.demo.climb.model.bean.Member;
 import org.example.demo.climb.model.exception.NotFoundException;
 
 import javax.inject.Inject;
@@ -111,7 +111,7 @@ public class DemoAjaxActionBackup extends LoginAction {
             addActionError("Le membre doit être précisé !");
         } else {
             System.out.println("Member is: "+member);
-            spotList = member.getSpotList();
+            /*spotList = member.getSpotList();*/
             System.out.println("Liste de spots: "+spotList);
         }
         /*spotList=memberManager.getMember(4).getSpotList();*/

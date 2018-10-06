@@ -1,7 +1,5 @@
 package org.example.demo.climb.model.bean;
 
-import org.example.demo.climb.model.bean.member.Member;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -14,17 +12,23 @@ public class Comment {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 @Column(name = "id", updatable = false, nullable = false)
 private int id;
+
 @NotNull
 @Size(min = 1, max = 100)
 private String text;
+
 @NotNull
 private Date date;
 
 @NotNull
 @ManyToOne
-private Member creatorComment;
+private Member member;
 
-@NotNull
+
+@ManyToOne
+private Route route;
+
+
 @ManyToOne
 private Spot spot;
 
@@ -55,12 +59,20 @@ public Comment() {
         this.date = date;
     }
 
-    public Member getCreatorComment() {
-        return creatorComment;
+    public Member getMember() {
+        return member;
     }
 
-    public void setCreatorComment(Member creatorComment) {
-        this.creatorComment = creatorComment;
+    public void setMember(Member member) {
+        this.member = member;
+    }
+
+    public Route getRoute() {
+        return route;
+    }
+
+    public void setRoute(Route route) {
+        this.route = route;
     }
 
     public Spot getSpot() {
@@ -77,7 +89,8 @@ public Comment() {
                 "id=" + id +
                 ", text='" + text + '\'' +
                 ", date=" + date +
-                ", creatorComment=" + creatorComment +
+                ", member=" + member +
+                ", route=" + route +
                 ", spot=" + spot +
                 '}';
     }

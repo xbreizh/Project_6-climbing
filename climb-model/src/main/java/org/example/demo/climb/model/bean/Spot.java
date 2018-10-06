@@ -1,25 +1,11 @@
 package org.example.demo.climb.model.bean;
 
-import org.example.demo.climb.model.bean.member.Member;
-import org.example.demo.climb.model.bean.zone.Zone;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
-/*@NamedQueries({
-        @NamedQuery(
-                name = "findAllSpots",
-                *//*query = "from Member m where m.login != :name"*//*
-                query = "from Spot"
-        ),
-        @NamedQuery(
-                name = "findByName",
-                query = "from Spot m where m.name = :name"
-        )
-})*/
     @Entity
     public class Spot {
 
@@ -27,82 +13,133 @@ import java.util.List;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
+
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 3, max = 100)
+    private String region;
+
+    @NotNull
+    @Size(min = 3, max = 100)
     private String name;
+
     @NotNull
-    private int nb_ways;
-    @OneToMany(mappedBy = "spot", fetch=FetchType.EAGER)
+    @Size(min = 10, max = 100)
+    private String description;
+
+    private int rateMore;
+
+    private int rateLess;
+
+    @NotNull
+    @ManyToOne
+    private Country country;
+
+    @NotNull
+    @ManyToOne
+    private Member member;
+
+    @OneToMany(mappedBy = "spot", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
     private List<Route> routeList= new ArrayList<>();
 
-    @NotNull
-    @ManyToOne
-    private Member creatorSpot;
-
-    @NotNull
-    @ManyToOne
-    private Zone zone;
+    @OneToMany(mappedBy = "spot", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    private List<Comment> commentList= new ArrayList<>();
 
     public Spot() {
     }
 
-    public int getId() {
-        return id;
-    }
+        public int getId() {
+            return id;
+        }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+        public void setId(int id) {
+            this.id = id;
+        }
 
-    public String getName() {
-        return name;
-    }
+        public String getRegion() {
+            return region;
+        }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+        public void setRegion(String region) {
+            this.region = region;
+        }
 
-    public int getNb_ways() {
-        return nb_ways;
-    }
+        public String getName() {
+            return name;
+        }
 
-    public void setNb_ways(int nb_ways) {
-        this.nb_ways = nb_ways;
-    }
+        public void setName(String name) {
+            this.name = name;
+        }
 
-    public List<Route> getRouteList() {
-        return routeList;
-    }
+        public String getDescription() {
+            return description;
+        }
 
-    public void setRouteList(List<Route> routeList) {
-        this.routeList = routeList;
-    }
+        public void setDescription(String description) {
+            this.description = description;
+        }
 
-    public Member getCreatorSpot() {
-        return creatorSpot;
-    }
+        public int getRateMore() {
+            return rateMore;
+        }
 
-    public void setCreatorSpot(Member creatorSpot) {
-        this.creatorSpot = creatorSpot;
-    }
+        public void setRateMore(int rateMore) {
+            this.rateMore = rateMore;
+        }
 
-    public Zone getZone() {
-        return zone;
-    }
+        public int getRateLess() {
+            return rateLess;
+        }
 
-    public void setZone(Zone zone) {
-        this.zone = zone;
-    }
+        public void setRateLess(int rateLess) {
+            this.rateLess = rateLess;
+        }
 
-    @Override
-    public String toString() {
-        return "Spot{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", nb_ways=" + nb_ways +
-                ", routeList=" + routeList +
-                ", creatorSpot=" + creatorSpot +
-                ", zone=" + zone +
-                '}';
+        public Country getCountry() {
+            return country;
+        }
+
+        public void setCountry(Country country) {
+            this.country = country;
+        }
+
+        public Member getMember() {
+            return member;
+        }
+
+        public void setMember(Member member) {
+            this.member = member;
+        }
+
+        public List<Route> getRouteList() {
+            return routeList;
+        }
+
+        public void setRouteList(List<Route> routeList) {
+            this.routeList = routeList;
+        }
+
+        public List<Comment> getCommentList() {
+            return commentList;
+        }
+
+        public void setCommentList(List<Comment> commentList) {
+            this.commentList = commentList;
+        }
+
+        @Override
+        public String toString() {
+            return "Spot{" +
+                    "id=" + id +
+                    ", region='" + region + '\'' +
+                    ", name='" + name + '\'' +
+                    ", description='" + description + '\'' +
+                    ", rateMore=" + rateMore +
+                    ", rateLess=" + rateLess +
+                    ", country=" + country +
+                    ", member=" + member +
+                    ", routeList=" + routeList +
+                    ", commentList=" + commentList +
+                    '}';
+        }
     }
-}

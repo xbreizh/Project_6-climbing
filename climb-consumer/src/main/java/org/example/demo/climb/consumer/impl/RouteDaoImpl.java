@@ -2,8 +2,8 @@ package org.example.demo.climb.consumer.impl;
 import org.example.demo.climb.consumer.contract.MemberDao;
 import org.example.demo.climb.consumer.contract.RouteDao;
 import org.example.demo.climb.model.bean.Route;
-import org.example.demo.climb.model.bean.Route;
-import org.example.demo.climb.model.bean.member.Member;
+import org.example.demo.climb.model.bean.Member;
+import org.example.demo.climb.model.bean.Spot;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
@@ -49,11 +49,16 @@ public class RouteDaoImpl implements RouteDao {
     @Override
     public void updateWhenDeletingMember(int id1, int id2){
         Member m = (Member) memberDao.getById(id1);
-        Query query=sessionFactory.getCurrentSession().createQuery("update Route set creatorRoute= :member1 where creatorRoute.id=:member2");
+        Query query=sessionFactory.getCurrentSession().createQuery("update Route set member= :member1 where member.id=:member2");
         query.setParameter("member1", m);
         query.setParameter("member2", id2);
         int result = query.executeUpdate();
         System.out.println("updated list?");
+    }
+
+    @Override
+    public List<Route> ListByCriterias(Spot spot, String grade, String type, int height) {
+        return null; // to do
     }
 
 

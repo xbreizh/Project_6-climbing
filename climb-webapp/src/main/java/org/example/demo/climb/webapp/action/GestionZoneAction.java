@@ -3,15 +3,15 @@ package org.example.demo.climb.webapp.action;
 import com.opensymphony.xwork2.ActionSupport;
 import org.example.demo.climb.business.contract.manager.CountryManager;
 import org.example.demo.climb.business.contract.manager.ZoneManager;
-import org.example.demo.climb.model.bean.zone.Zone;
+import org.example.demo.climb.model.bean.Zone;
 import org.example.demo.climb.model.exception.NotFoundException;
 
 import javax.inject.Inject;
 import java.util.List;
 
-public class GestionZoneAction extends LoginAction {
+public class GestionZoneAction/* extends LoginAction */{
 
-    private Zone zone;
+    /*private Zone zone;
     private List<Zone> listZone;
     private int id;
     private String continent="";
@@ -113,6 +113,9 @@ public class GestionZoneAction extends LoginAction {
             if (!this.getContinent().equals("") && !this.getContinent().equals("-1")) {
                 country=zone.getCountry().getName();
                 countryList = countryManager.getListCountry(this.getContinent());
+                *//*regionList = zoneManager.getListRegion(this.getCountry());*//*
+                System.out.println("country: "+zone.getCountry().getName());
+                System.out.println(regionList);
                 region=zone.getRegion();
                 if(zone.getRegion()!=null){
                     System.out.println("region: "+zone);
@@ -137,7 +140,7 @@ public class GestionZoneAction extends LoginAction {
 
         zone = zoneManager.getZone(id);
         System.out.println("Zone from doDetail: " + zone);
-       /* System.out.println("Creator: "+zone.getCreatorZone().getLogin());*/
+       *//* System.out.println("Creator: "+zone.getCreatorZone().getLogin());*//*
         if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;
         }
@@ -160,16 +163,16 @@ public class GestionZoneAction extends LoginAction {
     public String doList() {
         System.out.println("zone");
         listZone = zoneManager.getListZone();
-        System.out.println("size: " + listZone.size());/*
+        System.out.println("size: " + listZone.size());*//*
         System.out.println(new StackOverflowError().getMessage());
-        System.out.println("got the list of zone: " );*/
-        /*try {
+        System.out.println("got the list of zone: " );*//*
+        *//*try {
             System.out.println("trokoko");
             System.out.println("listZone: " + listZone);
         }catch(Exception e){
             System.err.println(e.getMessage());
             return ActionSupport.ERROR;
-        }*/
+        }*//*
         return ActionSupport.SUCCESS;
     }
 
@@ -202,7 +205,7 @@ public class GestionZoneAction extends LoginAction {
         return vResult;
 
     }
-
+*/
 
 
 }

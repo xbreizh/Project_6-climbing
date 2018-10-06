@@ -1,8 +1,4 @@
-package org.example.demo.climb.model.bean.zone;
-
-import org.example.demo.climb.model.bean.Country;
-import org.example.demo.climb.model.bean.Spot;
-import org.example.demo.climb.model.bean.member.Member;
+package org.example.demo.climb.model.bean;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -21,12 +17,12 @@ import java.util.List;
                 query = "from Zone m where m.name = :name"
         )*//*
 })*/
-@Entity
+/*@Entity*/
 public class Zone {
-
+/*
     @Id
-   /* @SequenceGenerator(name="identifier", sequenceName="mytable_id_seq", allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="identifier")*/
+   *//* @SequenceGenerator(name="identifier", sequenceName="mytable_id_seq", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="identifier")*//*
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
@@ -36,7 +32,8 @@ public class Zone {
     @NotNull
     @Size(min = 1, max = 100)
     private String region;
-    @OneToMany(mappedBy = "zone", fetch=FetchType.EAGER)
+    @NotNull
+    @OneToMany(mappedBy = "zone", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
     private List<Spot> spotList= new ArrayList<>();
 
     public Zone() {
@@ -82,5 +79,5 @@ public class Zone {
                 ", region='" + region + '\'' +
                 ", spotList=" + spotList +
                 '}';
-    }
+    }*/
 }

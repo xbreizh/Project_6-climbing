@@ -2,10 +2,9 @@ package org.example.demo.climb.webapp.converter;
 
 import com.opensymphony.xwork2.conversion.TypeConversionException;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.Fraction;
 import org.apache.struts2.util.StrutsTypeConverter;
 import org.example.demo.climb.business.contract.manager.MemberManager;
-import org.example.demo.climb.model.bean.member.Member;
+import org.example.demo.climb.model.bean.Member;
 import org.example.demo.climb.model.exception.NotFoundException;
 
 import javax.inject.Inject;
@@ -23,7 +22,7 @@ public class MemberConverter extends StrutsTypeConverter {
             if (pValues.length == 1) {
                 String vValue = pValues[0];
                 try {
-                    vRetour = StringUtils.isEmpty(vValue) ? null : memberManager.getMember(Integer.parseInt(vValue));
+                    vRetour = StringUtils.isEmpty(vValue) ? null : memberManager.getMemberById(Integer.parseInt(vValue));
                     System.out.println(vRetour);
                 } catch (NumberFormatException pEx) {
                     throw new TypeConversionException("Format de fraction invalide", pEx);

@@ -2,7 +2,7 @@ package org.example.demo.climb.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.example.demo.climb.business.contract.manager.MemberManager;
-import org.example.demo.climb.model.bean.member.Member;
+import org.example.demo.climb.model.bean.Member;
 import org.example.demo.climb.model.exception.NotFoundException;
 
 import javax.inject.Inject;
@@ -168,7 +168,7 @@ public class GestionMemberAction extends LoginAction {
 
     public String doDetail() throws NotFoundException {
         String vResult = ActionSupport.SUCCESS;
-        member = memberManager.getMember(id);
+        member = memberManager.getMemberById(id);
 
         if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;
@@ -179,7 +179,7 @@ public class GestionMemberAction extends LoginAction {
     public String doEdit() {
         System.out.println("id: "+id);
         try {
-            member = memberManager.getMember(id);
+            member = memberManager.getMemberById(id);
         } catch (NotFoundException e) {
             e.printStackTrace();
         }

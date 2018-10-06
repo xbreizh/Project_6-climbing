@@ -1,6 +1,6 @@
 package org.example.demo.climb.business.contract.manager;
 
-import org.example.demo.climb.model.bean.member.Member;
+import org.example.demo.climb.model.bean.Member;
 import org.example.demo.climb.model.exception.NotFoundException;
 
 import java.util.List;
@@ -18,11 +18,12 @@ public interface MemberManager  {
 
     void addMember(Member member);
 
-    //Read
-    Member getMember(Integer pId) throws NotFoundException;
+    //Get
+    Member getMember();
+    Member getMemberById(Integer id) throws NotFoundException;
 
-    Member getMember(String pLogin) throws NotFoundException;
-    Member getMember() throws NotFoundException;
+    Member getMemberByLogin(String login) throws NotFoundException;
+    /*Member getMember() throws NotFoundException;*/
 
     //Update
 
@@ -32,17 +33,18 @@ public interface MemberManager  {
 
     void deleteMember(int id);
 
+    // Check if exists
+    boolean exists(String login);
+
     //Connect
 
     Member connect(String login, String password);
 
     //Disconnect
-
     void disconnect(String login);
-        //get last connexion date??!
-    // Check if existing
+    //get last connexion date??!
 
-    boolean exists(String login);
+    // Check if existing
 
     boolean updatePassword(String login, String email, String password);
 

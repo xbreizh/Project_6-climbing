@@ -1,3 +1,4 @@
+<!--
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE struts PUBLIC
@@ -8,7 +9,7 @@
 
     <package name="Zone" extends="struts-default">
 
-        <!-- CREATE-->
+        &lt;!&ndash; CREATE&ndash;&gt;
         <action name="zone_new"
                 class="org.example.demo.climb.webapp.action.GestionZoneAction"
                 method="doCreate">
@@ -21,7 +22,7 @@
                 <param name="actionName">index</param>
             </result>
         </action>
-        <!-- READ ALL -->
+        &lt;!&ndash; READ ALL &ndash;&gt;
         <action name="zone_list"
                 class="org.example.demo.climb.webapp.action.GestionZoneAction"
                 method="doList">
@@ -30,7 +31,7 @@
 
         </action>
 
-        <!--READ ONE -->
+        &lt;!&ndash;READ ONE &ndash;&gt;
         <action name="zone_detail"
                 class="org.example.demo.climb.webapp.action.GestionZoneAction"
                 method="doDetail">
@@ -43,7 +44,7 @@
         </action>
 
 
-        <!-- UPDATE -->
+        &lt;!&ndash; UPDATE &ndash;&gt;
         <action name="zone_update"
                 class="org.example.demo.climb.webapp.action.GestionZoneAction"
                 method="doUpdate">
@@ -57,7 +58,7 @@
             </result>
         </action>
 
-        <!-- EDIT -->
+        &lt;!&ndash; EDIT &ndash;&gt;
         <action name="zone_edit"
                 class="org.example.demo.climb.webapp.action.GestionZoneAction"
                 method="doEdit">
@@ -69,7 +70,7 @@
         </action>
 
 
-        <!-- DELETE -->
+        &lt;!&ndash; DELETE &ndash;&gt;
         <action name="zone_delete"
                 class="org.example.demo.climb.webapp.action.GestionZoneAction"
                 method="doDelete">
@@ -82,13 +83,13 @@
                 <param name="actionName">zone_list</param>
             </result>
         </action>
-        <!-- Action de démonstration pour l'AJAX -->
+        &lt;!&ndash; Action de démonstration pour l'AJAX &ndash;&gt;
         <action name="demo_ajax" class="org.example.demo.climb.webapp.action.GestionZoneAction">
             <result name="success">/jsp/zone/list.jsp</result>
         </action>
 
     </package>
-<!--    <package name="ajax" extends="struts-default, json-default">
+&lt;!&ndash;    <package name="ajax" extends="struts-default, json-default">
         <global-results>
             <result name="error" type="json">
                 <param name="statusCode">400</param>
@@ -120,5 +121,5 @@
              </result>&ndash;&gt;
         </action>
 
-    </package>-->
-</struts>
+    </package>&ndash;&gt;
+</struts>-->

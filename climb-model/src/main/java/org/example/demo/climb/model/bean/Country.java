@@ -1,8 +1,5 @@
 package org.example.demo.climb.model.bean;
 
-
-import org.example.demo.climb.model.bean.zone.Zone;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -16,14 +13,17 @@ public class Country {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
+
     @NotNull
     @Size(min = 1, max = 50)
     private String continent;
+
     @NotNull
     @Size(min = 1, max = 100)
     private String name;
-    /*@OneToMany(mappedBy = "country", fetch=FetchType.EAGER)
-    private List<Zone> zoneList= new ArrayList<>();*/
+
+    @OneToMany(mappedBy = "country", fetch=FetchType.EAGER)
+    private List<Spot> spotList= new ArrayList<>();
 
     public Country() {
     }
@@ -52,13 +52,13 @@ public class Country {
         this.name = name;
     }
 
-    /*public List<Zone> getZoneList() {
-        return zoneList;
+    public List<Spot> getSpotList() {
+        return spotList;
     }
 
-    public void setZoneList(List<Zone> zoneList) {
-        this.zoneList = zoneList;
-    }*/
+    public void setSpotList(List<Spot> spotList) {
+        this.spotList = spotList;
+    }
 
     @Override
     public String toString() {
@@ -66,6 +66,7 @@ public class Country {
                 "id=" + id +
                 ", continent='" + continent + '\'' +
                 ", name='" + name + '\'' +
+                ", spotList=" + spotList +
                 '}';
     }
 }

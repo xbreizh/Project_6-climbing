@@ -13,11 +13,12 @@ public interface CountryManager {
 
 
     //Get list
-    List<Country> getListCountry();
-
     List<String> getListContinent();
-    List<String> getListCountry(String continent);
+    List<Country> getListCountry();
+    List<String> getListCountryStrings();
+    List<String> getListCountryByContinent(String continent);
     Country getCountry(String country);
+    Country getCountry(int id);
 
 
 

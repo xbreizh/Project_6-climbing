@@ -17,33 +17,9 @@ public class CountryDaoImpl  implements CountryDao {
     @Inject
     private SessionFactory sessionFactory;
 
-
-
+    // Get
     @Override
-    public List getAll() {
-        return sessionFactory.getCurrentSession().createQuery("from Country ").list();
-    }
-
-
-
-    @Override
-    public List<String> getListContinent() {
-      List<String> continentList=sessionFactory.getCurrentSession().createQuery(
-                "select distinct z.continent from Country z", String.class).getResultList();
-        return continentList;
-    }
-
-    @Override
-    public List<String> getListCountry(String continent) {
-        Query query = sessionFactory.getCurrentSession().createQuery(
-                "select distinct z.name from Country z where z.continent=:continent");
-        query.setParameter("continent", continent);
-
-        return query.getResultList();
-    }
-
-    @Override
-    public Country getCountry(String name) {
+    public Country getCountryByName(String name) {
         Query query = sessionFactory.getCurrentSession().createQuery(
                 "select max(z.id) from Country z where lower(z.name)=lower(:name)");
         query.setParameter("name", name);
@@ -52,6 +28,44 @@ public class CountryDaoImpl  implements CountryDao {
         return sessionFactory.getCurrentSession().get(Country.class, id);
         /*return (Country) query.uniqueResult();*/
     }
+
+    @Override
+    public Country getCountryById(int id) {
+        return sessionFactory.getCurrentSession().get(Country.class, id);
+    }
+
+    // Get List
+    @Override
+    public List getAll() {
+        return sessionFactory.getCurrentSession().createQuery("from Country ").list();
+    }
+
+    @Override
+    public List<String> getListContinent() {
+        Query query = sessionFactory.getCurrentSession().createQuery(
+                "select distinct(continent) from Country");
+        return query.getResultList();
+    }
+
+
+
+   /* @Override
+    public List<String> getListContinent() {
+      List<Country> continentList=sessionFactory.getCurrentSession().createQuery(
+                "select distinct z.continent from Country z", String.class).getResultList();
+        return continentList;
+    }*/
+
+    @Override
+    public List<Country> getAllByContinent(String continent) {
+        Query query = sessionFactory.getCurrentSession().createQuery(
+                "From Country z where z.continent=:continent");
+        query.setParameter("continent", continent);
+
+        return query.getResultList();
+    }
+
+
 
 
 }

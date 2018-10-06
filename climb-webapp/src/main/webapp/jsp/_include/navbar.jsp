@@ -40,7 +40,7 @@
             </s:a>
         </td>
     </tr>
-    <tr>
+    <%--<tr>
         <td>
             <s:a action="zone_new">
                 <s:text name="nav.newZone"/>
@@ -56,5 +56,5 @@
                 <s:text name="nav.detailZone"/>
             </s:a>
         </td>
-    </tr>
+    </tr>--%>
 </table>

@@ -1,10 +1,8 @@
 package org.example.demo.climb.consumer.impl;
 import org.example.demo.climb.consumer.contract.CommentDao;
 import org.example.demo.climb.consumer.contract.MemberDao;
-import org.example.demo.climb.consumer.contract.CommentDao;
 import org.example.demo.climb.model.bean.Comment;
-import org.example.demo.climb.model.bean.Comment;
-import org.example.demo.climb.model.bean.member.Member;
+import org.example.demo.climb.model.bean.Member;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
@@ -50,7 +48,7 @@ public class CommentDaoImpl implements CommentDao {
     @Override
     public void updateWhenDeletingMember(int id1, int id2){
         Member m = (Member) memberDao.getById(id1);
-        Query query=sessionFactory.getCurrentSession().createQuery("update Comment set creatorComment= :member1 where creatorComment.id=:member2");
+        Query query=sessionFactory.getCurrentSession().createQuery("update Comment set member= :member1 where member.id=:member2");
         query.setParameter("member1", m);
         query.setParameter("member2", id2);
         int result = query.executeUpdate();

@@ -1,12 +1,9 @@
 package org.example.demo.climb.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-import org.apache.commons.lang3.math.Fraction;
-import org.example.demo.climb.business.contract.manager.MemberManager;
 import org.example.demo.climb.model.bean.Spot;
-import org.example.demo.climb.model.bean.member.Member;
+import org.example.demo.climb.model.bean.Member;
 
-import javax.inject.Inject;
 import java.util.List;
 
 /**

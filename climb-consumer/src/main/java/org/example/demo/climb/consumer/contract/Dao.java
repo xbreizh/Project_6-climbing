@@ -9,7 +9,7 @@ public interface Dao  {
     // Create
     void add(Object o);
 
-    // Read
+    // Get
     List getAll();
 
     Object getById(int id);

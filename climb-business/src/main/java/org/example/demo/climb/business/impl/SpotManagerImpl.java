@@ -1,9 +1,11 @@
 package org.example.demo.climb.business.impl;
 
 
+import org.example.demo.climb.business.contract.manager.CountryManager;
 import org.example.demo.climb.business.contract.manager.MemberManager;
 import org.example.demo.climb.business.contract.manager.SpotManager;
 import org.example.demo.climb.consumer.contract.SpotDao;
+import org.example.demo.climb.model.bean.Country;
 import org.example.demo.climb.model.bean.Spot;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +22,27 @@ public class SpotManagerImpl  implements SpotManager {
     private SpotDao spotDao;
     @Inject
     private MemberManager memberManager;
+    @Inject
+    private CountryManager countryManager;
 
+    // Create
+    @Override
+    public void addSpot(Spot spot) {
+        spotDao.add(spot);
+    }
+
+    // Get
+    @Override
+    public Spot getSpotById(Integer id) {
+        return (Spot) spotDao.getById(id);
+    }
+
+    @Override
+    public Spot getSpotByName(String login) {
+        return spotDao.getSpotByName(login);
+    }
+
+    // Get List
     @Override
     public List<Spot> getListSpot() {
         return spotDao.getAll();
@@ -28,27 +50,22 @@ public class SpotManagerImpl  implements SpotManager {
     }
 
     @Override
-    public List<Spot> getListSpot(String continent, String country, String region) {
+    public List<Spot> getListSpotByRegion(String region) {
 
-        return null;
-    }
-
-
-    @Override
-    public void addSpot(Spot spot) {
-        spotDao.add(spot);
+        return spotDao.ListSpotByRegion(region);
     }
 
     @Override
-    public Spot getSpot(Integer id) {
-        return (Spot) spotDao.getById(id);
+    public List<String> getListRegionByCountry(Country country) {
+        List<String> regionList = null;
+        for (Spot spot:spotDao.ListSpotByCountry(country)
+             ) {
+            regionList.add(spot.getRegion());
+        }
+        return regionList;
     }
 
-    @Override
-    public Spot getSpot(String pLogin) {
-        return null;
-    }
-
+    // Update
     @Override
     public void updateSpot(Spot spot) {
         int id = spot.getId();
@@ -56,24 +73,26 @@ public class SpotManagerImpl  implements SpotManager {
         if(!(spot.getName()==null)){
             s.setName(spot.getName());
         }
-        if(!(spot.getNb_ways()==0)){
+       /* if(!(spot.getNb_ways()==0)){
             s.setNb_ways(spot.getNb_ways());
-        }
+        }*/
 
         spotDao.update(spot);
-    }
-
-    @Override
-    public void deleteSpot(int id) {
-        System.out.println("trying to delete spot: "+id);
-        Spot m= (Spot) spotDao.getById(id);
-        spotDao.delete(m);
     }
 
     @Override
     public void updateWhenDeletingMember(int id) {
         System.out.println("trying to update member spots before deleting");
         spotDao.updateWhenDeletingMember(1, id);
+    }
+
+    // Delete
+
+    @Override
+    public void deleteSpot(int id) {
+        System.out.println("trying to delete spot: "+id);
+        Spot m= (Spot) spotDao.getById(id);
+        spotDao.delete(m);
     }
 
 
