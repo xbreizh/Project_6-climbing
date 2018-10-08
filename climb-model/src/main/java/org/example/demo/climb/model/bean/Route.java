@@ -7,36 +7,36 @@ import javax.validation.constraints.Size;
     @Entity
     public class Route {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", updatable = false, nullable = false)
-    private int id;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = "id", updatable = false, nullable = false)
+        private int id;
 
-    @NotNull
-    @Size(min = 1, max = 100)
-    private String name;
+        @NotNull
+        @Size(min = 1, max = 100)
+        private String name;
 
-    @NotNull
-    private int height;
+        @NotNull
+        private int height;
 
-    @NotNull
-    @Size(min = 1, max = 5)
-    private String grade;
+        @NotNull
+        @Size(min = 1, max = 5)
+        private String grade;
 
-    @NotNull
-    @Size(min = 1, max = 20)
-    private String type;
+        @NotNull
+        @Size(min = 1, max = 20)
+        private String type;
 
-    @NotNull
-    @ManyToOne
-    private Member member;
+        @NotNull
+        @ManyToOne
+        private Member memberRoute;
 
-    @NotNull
-    @ManyToOne()
-    private Spot spot;
+        @NotNull
+        @ManyToOne()
+        private Spot spot;
 
-    public Route() {
-    }
+        public Route() {
+        }
 
         public int getId() {
             return id;
@@ -78,12 +78,12 @@ import javax.validation.constraints.Size;
             this.type = type;
         }
 
-        public Member getMember() {
-            return member;
+        public Member getMemberRoute() {
+            return memberRoute;
         }
 
-        public void setMember(Member member) {
-            this.member = member;
+        public void setMemberRoute(Member memberRoute) {
+            this.memberRoute = memberRoute;
         }
 
         public Spot getSpot() {
@@ -102,7 +102,7 @@ import javax.validation.constraints.Size;
                     ", height=" + height +
                     ", grade='" + grade + '\'' +
                     ", type='" + type + '\'' +
-                    ", member=" + member +
+                    ", memberRoute=" + memberRoute +
                     ", spot=" + spot +
                     '}';
         }

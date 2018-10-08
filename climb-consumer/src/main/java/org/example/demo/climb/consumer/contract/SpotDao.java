@@ -5,7 +5,7 @@ import org.example.demo.climb.model.bean.Spot;
 
 import java.util.List;
 
-public interface SpotDao extends Dao {
+public interface SpotDao /*extends Dao*/ {
 
     void updateWhenDeletingMember(int id1, int id2);
     // Get
@@ -13,7 +13,15 @@ public interface SpotDao extends Dao {
 
     // Get List
     List<Spot> ListSpotByContinent(String continent);
-    List<Spot> ListSpotByCountry(Country country);
-    List<Spot> ListSpotByRegion(String region);
+    List<Spot> ListSpotByCountry(String continent, String country);
+    List<Spot> ListSpotByCity(String continent, String country, String city);
+    List<String> ListCity();
+
+
+    void update(Spot o);
+    void delete(Spot o);
+    List getAll();
+    Spot getById(int id);
+    void add(Spot o);
 
 }

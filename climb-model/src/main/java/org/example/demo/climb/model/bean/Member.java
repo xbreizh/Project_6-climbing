@@ -1,10 +1,5 @@
 package org.example.demo.climb.model.bean;
 
-import org.example.demo.climb.model.bean.Comment;
-import org.example.demo.climb.model.bean.Route;
-import org.example.demo.climb.model.bean.Spot;
-import org.example.demo.climb.model.bean.Topo;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -49,17 +44,17 @@ public class Member {
     @NotNull
     private String email;
 
-    @OneToMany(mappedBy = "member", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "memberSpot", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<Spot> spotList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "memberRoute", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<Route> routeList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "memberComment", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<Comment> commentList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-    private List<Topo> topoList = new ArrayList<>();
+    /*@OneToMany(mappedBy = "owner", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    private List<Topo> topoList = new ArrayList<>();*/
 
     public Member() {
     }
@@ -168,13 +163,13 @@ public class Member {
         this.commentList = commentList;
     }
 
-    public List<Topo> getTopoList() {
+   /* public List<Topo> getTopoList() {
         return topoList;
     }
 
     public void setTopoList(List<Topo> topoList) {
         this.topoList = topoList;
-    }
+    }*/
 
     @Override
     public String toString() {
@@ -189,10 +184,6 @@ public class Member {
                 ", datejoin=" + datejoin +
                 ", dateLastConnect=" + dateLastConnect +
                 ", email='" + email + '\'' +
-                ", spotList=" + spotList +
-                ", routeList=" + routeList +
-                ", commentList=" + commentList +
-                ", topoList=" + topoList +
                 '}';
     }
 }

@@ -66,7 +66,6 @@ public class Country {
                 "id=" + id +
                 ", continent='" + continent + '\'' +
                 ", name='" + name + '\'' +
-                ", spotList=" + spotList +
                 '}';
     }
 }

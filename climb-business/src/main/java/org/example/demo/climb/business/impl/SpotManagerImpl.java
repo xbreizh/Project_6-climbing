@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.ArrayList;
 import java.util.List;
 
 @Transactional
@@ -28,13 +29,17 @@ public class SpotManagerImpl  implements SpotManager {
     // Create
     @Override
     public void addSpot(Spot spot) {
+        /*System.out.println("country passed: "+country);
+        Country c=countryManager.getCountry(country);
+        System.out.println(c.getName());
+        spot.setCountry(c);*/
         spotDao.add(spot);
     }
 
     // Get
     @Override
     public Spot getSpotById(Integer id) {
-        return (Spot) spotDao.getById(id);
+        return spotDao.getById(id);
     }
 
     @Override
@@ -44,26 +49,30 @@ public class SpotManagerImpl  implements SpotManager {
 
     // Get List
     @Override
-    public List<Spot> getListSpot() {
-        return spotDao.getAll();
-
+    public List<Spot> getListSpot(String continent, String country, String city) {
+       return spotDao.ListSpotByCity(continent, country, city);
     }
 
     @Override
-    public List<Spot> getListSpotByRegion(String region) {
-
-        return spotDao.ListSpotByRegion(region);
-    }
-
-    @Override
-    public List<String> getListRegionByCountry(Country country) {
-        List<String> regionList = null;
-        for (Spot spot:spotDao.ListSpotByCountry(country)
+    public List<String> getListCityByCountry(String continent, String country) {
+        List<String> list = new ArrayList<>();
+        for (Spot spot: spotDao.ListSpotByCountry(continent, country)
              ) {
-            regionList.add(spot.getRegion());
+            list.add(spot.getCity());
         }
-        return regionList;
+        return list;
     }
+
+    @Override
+    public List<String> getListCity() {
+        return spotDao.ListCity();
+    }
+
+    @Override
+    public List<String> getListCityByContinent(String continent) {
+        return null;
+    }
+
 
     // Update
     @Override

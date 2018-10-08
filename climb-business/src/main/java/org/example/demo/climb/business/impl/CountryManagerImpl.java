@@ -30,12 +30,13 @@ public class CountryManagerImpl implements CountryManager {
             continentList.add(country.getContinent());
         }
         System.out.println(continentList);*/
+        /*System.out.println("Manager: "+countryDao.getListContinent());*/
         return countryDao.getListContinent();
     }
 
     @Override
     public List<Country> getListCountry() {
-        System.out.println("trying to get Country list");
+       /* System.out.println("trying to get Country list");*/
         return countryDao.getAll();
 
     }
@@ -51,12 +52,13 @@ public class CountryManagerImpl implements CountryManager {
 
     @Override
     public List<String> getListCountryByContinent(String continent) {
-        List<String> countrytList = null;
+        List<String> countryList = new ArrayList<>();
         for (Country country: countryDao.getAllByContinent(continent)
         ) {
-            countrytList.add(country.getContinent());
+            countryList.add(country.getName());
         }
-        return countrytList;
+        System.out.println("Country List by continent: "+countryList);
+        return countryList;
     }
 
     @Override

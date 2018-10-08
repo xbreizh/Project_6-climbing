@@ -21,12 +21,10 @@ public class CountryDaoImpl  implements CountryDao {
     @Override
     public Country getCountryByName(String name) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "select max(z.id) from Country z where lower(z.name)=lower(:name)");
-        query.setParameter("name", name);
-        System.out.println(query.uniqueResult());
-        int id= (int) query.uniqueResult();
-        return sessionFactory.getCurrentSession().get(Country.class, id);
-        /*return (Country) query.uniqueResult();*/
+                "From Country where name=:n");
+        query.setParameter("n", name);
+        System.out.println("result from dao: "+query.uniqueResult());
+       return (Country) query.uniqueResult();
     }
 
     @Override

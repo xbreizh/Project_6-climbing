@@ -31,17 +31,21 @@
        <!-- <action name="demo_convert" class="org.example.demo.climb.webapp.action.DemoConvertAction">
         <result name="input">/jsp/demo/convert.jsp</result>
     </action>-->
-        <action name="demo_convert" class="org.example.demo.climb.webapp.action.DemoConvertAction"
+       <!-- <action name="demo_convert" class="org.example.demo.climb.webapp.action.DemoConvertAction"
         method="memberConvert">
             <result name="input">/jsp/demo/convert.jsp</result>
         </action>
-        <action name="demo_dropdown" class="org.example.demo.climb.webapp.action.DemoConvertAction"
+        <action name="demo_convert" class="org.example.demo.climb.webapp.action.DemoConvertAction"
+                method="memberConvert">
+            <result name="input">/jsp/demo/convert.jsp</result>
+        </action>-->
+       <!-- <action name="demo_dropdown" class="org.example.demo.climb.webapp.action.DemoConvertAction"
                 method="droptest">
             <result name="input">/jsp/demo/dropdown_test.jsp</result>
         </action>
         <action name="demo_dropdown_result" class="org.example.demo.climb.webapp.action.DemoConvertAction"
                 method="droptest_result">
             <result name="success">/jsp/demo/dropdown_result.jsp</result>
-        </action>
+        </action>-->
     </package>
 </struts>

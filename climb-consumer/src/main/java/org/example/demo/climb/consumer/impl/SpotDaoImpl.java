@@ -1,7 +1,6 @@
 package org.example.demo.climb.consumer.impl;
 import org.example.demo.climb.consumer.contract.MemberDao;
 import org.example.demo.climb.consumer.contract.SpotDao;
-import org.example.demo.climb.model.bean.Country;
 import org.example.demo.climb.model.bean.Spot;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -19,16 +18,19 @@ public class SpotDaoImpl implements SpotDao {
     @Inject
     private MemberDao memberDao;
 
-    @Override
-    public void add(Object o) {
+    /*@Override*/
+    public void add(Spot o) {
         /*sessionFactory.getCurrentSession().save(o);*/
         sessionFactory.getCurrentSession().persist(o);
     }
 
     // Get
-    @Override
-    public Object getById(int id) {
-        return(Spot) sessionFactory.getCurrentSession().get(cl, id);
+    /*@Override*/
+    public Spot getById(int id) {
+        Query query=sessionFactory.getCurrentSession().createQuery(
+                "From Spot where id=:n");
+        query.setParameter("n", id);
+        return (Spot) query.getSingleResult();
     }
 
     @Override
@@ -40,7 +42,7 @@ public class SpotDaoImpl implements SpotDao {
     }
 
     // Get List
-    @Override
+   /* @Override*/
     public List getAll() {
         return sessionFactory.getCurrentSession().createQuery("from Spot").list();
     }
@@ -55,58 +57,45 @@ public class SpotDaoImpl implements SpotDao {
     }
 
     @Override
-    public List<Spot> ListSpotByCountry(Country country) {
+    public List<Spot> ListSpotByCountry(String continent, String country) {
         Query query=sessionFactory.getCurrentSession().createQuery(
-                "From Spot where country=:c");
-        query.setParameter("c", country);
+                "select spotList from Country c where c.name=:countryName and c.continent=:continentName");
+        query.setParameter("continentName", continent);
+        query.setParameter("countryName", country);
         return query.getResultList();
     }
 
     @Override
-    public List<Spot> ListSpotByRegion(String region) {
+    public List<Spot> ListSpotByCity(String continent, String country, String city) {
+        // no value
+        if(continent.equals("")|| country.equals("")|| city.equals("")){
 
-        Query query=sessionFactory.getCurrentSession().createQuery(
-                "From Spot where region=:r");
-        query.setParameter("r", region);
-        // if continent, country, region = "" -> return all spots
-        // if country, region = "" -> return all spots from continent
-        // if region = "" -> return all spots from country
-        // else -> return all spots from region
-  /*      Query query;
-        if(region.equals("")){
-            if(country.equals("")){
-                query=sessionFactory.getCurrentSession().createQuery(
-                        "From Spot where country.continent=:c");
-                query.setParameter("c", country.getContinent());
-            }else {
-                if (country==null) {
-                    query = sessionFactory.getCurrentSession().createQuery(
-                            "From Spot");
-                    query.setParameter("n", country);
-                } else {
-                    query = sessionFactory.getCurrentSession().createQuery(
-                            "From Spot where country.name=:n");
-                    query.setParameter("n", country);
-                }
-            }
-        }else{
-            query=sessionFactory.getCurrentSession().createQuery(
-                    "From Spot where region=:r");
-            query.setParameter("r", region);
         }
-        return query.getResultList();*/
+        String str="From Spot where country.continent=:cn and country.name=:cr and city=:r";
+        Query query=sessionFactory.getCurrentSession().createQuery(str
+                );
+        query.setParameter("cn", continent);
+        query.setParameter("cr", country);
+        query.setParameter("r", city);
   return query.getResultList();
     }
 
-
-
     @Override
-    public void update(Object o) {
+    public List<String> ListCity() {
+        Query query=sessionFactory.getCurrentSession().createQuery(
+                "select distinct (city) from Spot ");
+
+        return query.getResultList();
+    }
+
+
+   /* @Override*/
+    public void update(Spot o) {
         sessionFactory.getCurrentSession().update(o);
     }
 
-    @Override
-    public void delete(Object o) {
+    /*@Override*/
+    public void delete(Spot o) {
         sessionFactory.getCurrentSession().delete(cl.getName(), o);
     }
 

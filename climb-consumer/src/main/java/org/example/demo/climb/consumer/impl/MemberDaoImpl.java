@@ -25,7 +25,12 @@ public class MemberDaoImpl  implements MemberDao {
 
     @Override
     public Object getById(int id) {
-        return (Member) sessionFactory.getCurrentSession().get(cl, id);
+        /*Query query = sessionFactory.getCurrentSession().createQuery(
+                "From Member where id=:id");
+        query.setParameter("id", id);
+        return query.getSingleResult();*/
+        return sessionFactory.getCurrentSession().get(cl, id);
+        /*return (Member) sessionFactory.getCurrentSession().get(cl, id);*/
     }
 
     @Override

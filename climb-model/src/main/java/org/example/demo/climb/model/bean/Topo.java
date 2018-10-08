@@ -4,10 +4,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-@Entity
+/*@Entity*/
 public class Topo {
 
-    @Id
+   /* @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
@@ -89,5 +89,5 @@ public class Topo {
                 ", returnDate=" + returnDate +
                 ", available=" + available +
                 '}';
-    }
+    }*/
 }

@@ -1,52 +1,83 @@
 package org.example.demo.climb.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.interceptor.SessionAware;
 import org.example.demo.climb.business.contract.manager.CountryManager;
 import org.example.demo.climb.business.contract.manager.MemberManager;
 import org.example.demo.climb.business.contract.manager.SpotManager;
+import org.example.demo.climb.model.bean.Country;
 import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.bean.Member;
 import org.example.demo.climb.model.exception.NotFoundException;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
-public class GestionSpotAction extends LoginAction {
+public class GestionSpotAction extends LoginAction implements SessionAware {
 
     private Spot spot;
-    private List<Spot> listSpot;
-    private List<String> continentList;
-    private List<String> countryList;
-    private List<String> regionList;
-    /*private Zone zone;*/
+    private List<Spot> listSpot=new ArrayList<>();
+    private List<String> continentList=new ArrayList<>();
+    private List<String> countryList=new ArrayList<>();
+    private List<String> cityList=new ArrayList<>();
 
+    private Country c;
+    private int id;
+    private int memberId;
+    private int countryId;
     private String continent="";
     private String country="";
-    private String region="";
-    private String name="";
-    /*private int nb_ways;*/
-
-
-    private int id;
+    private String city="";
     private Member member;
 
     @Inject
     private SpotManager spotManager;
     @Inject
     private MemberManager memberManager;
-    /*@Inject
-    private ZoneManager zoneManager;*/
     @Inject
     private CountryManager countryManager;
 
     // Getters & Setters
-    /*public Zone getZone() {
-        return zone;
+    public String getCity() {
+        return city;
     }
 
-    public void setZone(Zone zone) {
-        this.zone = zone;
-    }*/
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public int getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(int countryId) {
+        this.countryId = countryId;
+    }
+
+    public int getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(int memberId) {
+        this.memberId = memberId;
+    }
+
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
+
+    public Country getC() {
+        return c;
+    }
+
+    public void setC(Country c) {
+        this.c = c;
+    }
     public String getContinent() {
         return continent;
     }
@@ -63,13 +94,6 @@ public class GestionSpotAction extends LoginAction {
         this.country = country;
     }
 
-    public String getRegion() {
-        return region;
-    }
-
-    public void setRegion(String region) {
-        this.region = region;
-    }
     public List<String> getContinentList() {
         return continentList;
     }
@@ -86,12 +110,12 @@ public class GestionSpotAction extends LoginAction {
         this.countryList = countryList;
     }
 
-    public List<String> getRegionList() {
-        return regionList;
+    public List<String> getCityList() {
+        return cityList;
     }
 
-    public void setRegionList(List<String> regionList) {
-        this.regionList = regionList;
+    public void setCityList(List<String> cityList) {
+        this.cityList = cityList;
     }
 
     public int getId() {
@@ -119,108 +143,35 @@ public class GestionSpotAction extends LoginAction {
     }
 
     public String doCreate() throws NotFoundException {
-        /*member = memberManager.getMember(1);*/
-        System.out.println("got the member: "+member);
-        String vResult = ActionSupport.INPUT;
-        continentList = countryManager.getListContinent();
-        // checks that a spot has been submitted
-        if(this.spot!=null){
-            continent=spot.getCountry().getContinent();
-            country=spot.getCountry().getName();
-            System.out.println("continent: "+continent);
-            // checks that a continent has been selected and prepares the countryList
-            if (!continent.equals("") && !continent.equals("-1")) {
-                countryList = countryManager.getListCountryStrings();
-                System.out.println(country=spot.getCountry().getName());
-                // checks that a country has been submitted and prepares the regionList
-
-                if(country!=null && !country.equals("-1")){
-                    regionList=spotManager.getListRegionByCountry(spot.getCountry());
-                    System.out.println(regionList);
-                    region=spot.getRegion();
-                     /// to be cleaned up
-                    System.out.println("region: "+region);
-
-                    if(region!=null && !region.equals("create new") && !region.equals("-1") && !region.equals("")){
-                       name=spot.getName();
-                       /*nb_ways=spot.getNb_ways();*/
-                        if(!name.equals("")){
-                            System.out.println("trying to add the spot: ");
-                           /* spot.setCreatorSpot(member);*/
-                            /*spot.setZone(zoneManager.getZone(region));*/
-                            System.out.println("spot before adding: "+spot);
-                            spotManager.addSpot(spot);
-                            vResult = ActionSupport.SUCCESS;
-                        }
-                    }
-                }
-                /*country=spot.getZone().getCountry().getName();*/
-               /* if(!country.equals("") && country.equals("-1")){
-                    System.out.println("country: "+country);
-                }*/
-                // checks that a country has been submitted and prepares the regionList
-               /* if (!country.equals("") && !country.equals("-1")){
-                    country=spot.getZone().getCountry().getName();
-                    System.out.println("Country: "+country);
-                    regionList = zoneManager.getListRegion(spot.getZone().getCountry().getName());
-                    *//*region=spot.getZone().getRegion();*//*
-                }*/
-                /*region=spot.getZone().getRegion();
-                if(spot.getZone().getRegion()!=null){
-                    System.out.println("region: "+spot.getZone().getRegion());
-                    System.out.println("Country: "+spot.getZone().getCountry());
-                    System.out.println(countryManager.getCountry(country));
-                    spot.getZone().setCountry(countryManager.getCountry(country));
-                    zoneManager.addZone(zone);
-                    vResult = ActionSupport.SUCCESS;
-                }*/
-            }
+        String vResult=ActionSupport.INPUT;
+        if (checkSession()) return ActionSupport.ERROR;
+        if(spot!=null) {
+            System.out.println(spot.getCountry().getId());
+            spotManager.addSpot(spot);
+            vResult=ActionSupport.SUCCESS;
         }
         if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;
         }
         return vResult;
     }
-/*    public String doCreate() throws NotFoundException {
-        System.out.println("do create starting");
-        Member m = (Member) getSession().get("user");
-        System.out.println("User is: "+m);
-        String vResult = ActionSupport.INPUT;
-        System.out.println(spot);
 
-       *//* s.setName("plouf");
-        s.setNb_ways(2);
-        s.setRouteList(new ArrayList<Route>());*//*
-        if (this.spot != null) {
-            try{
-                spot.setZone(zoneManager.getZone(3));
-                System.out.println("zone set");
-                spot.setCreatorSpot(memberManager.getMember(1));
-                System.out.println("creator set");
-                *//*spot.setCreatorSpot(m);*//*
-                System.out.println("setting the zone ");
-                *//*spot.setZone(zoneManager.getZone(3));*//* // atlantide
-                *//*System.out.println("trying to add spot: "+spot);*//*
-                *//*spotManager.addSpot(spot);*//*
-                vResult = ActionSupport.SUCCESS;
-            }catch (Exception e){
-                this.addActionError("Vous devez vous connecter pour cette action!");
-            }
-            *//*System.out.println("Action: " + spot);*//*
+    private boolean checkSession() {
+        if(getSession().isEmpty()) {
+            this.addActionError("vous devez vous connecter pour cette action!");
+            return true;
         }
-        if (this.hasErrors()) {
-            vResult = ActionSupport.ERROR;
-        }
-        return vResult;
-    }*/
+        return false;
+    }
+
 
     public String doDetail() throws NotFoundException {
         String vResult = ActionSupport.SUCCESS;
-        System.out.println("Spot mgmt: " + spot);
-        System.out.println("Id: " + id);
+        /*System.out.println("Spot mgmt: " + spot);
+        System.out.println("Id: " + id);*/
 
-        spot = spotManager.getSpotById(id);
-        System.out.println("Member from doDetail: " + spot);
+        spot = spotManager.getSpotById(9);
+       /* System.out.println("Spot from doDetail: " + spot);*/
 
         if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;
@@ -242,18 +193,43 @@ public class GestionSpotAction extends LoginAction {
         return vResult;
     }
 
-    public String doList(String continent, String country, String region) {
-        System.out.println("spot");
-        listSpot = spotManager.getListSpotByRegion(region);
-        System.out.println("size: " + listSpot.size());
-        return ActionSupport.SUCCESS;
-    }
     public String doList() {
-        System.out.println("spot");
-        listSpot = spotManager.getListSpot();
+        continentList=countryManager.getListContinent();
+        System.out.println("continentList: "+continentList);
+        countryList=countryManager.getListCountryStrings();
+        System.out.println("countryList: "+countryList);
+        cityList = spotManager.getListCity();
+        System.out.println("citylist: "+cityList);
+        if(continent.equals("")){
+            city=country="";
+            countryList=countryManager.getListCountryStrings();
+        }else {
+            countryList = countryManager.getListCountryByContinent(continent);
+           if(!country.equals("")){
+               c=countryManager.getCountry(country);
+               System.out.println("Country name: "+c.getName());
+               getSession().put("country", c);
+           }
+        }
+        listSpot = spotManager.getListSpot(continent, country, city);
         System.out.println("size: " + listSpot.size());
         return ActionSupport.SUCCESS;
     }
+
+    public String selectSpotList(){
+        continentList=countryManager.getListContinent();
+        countryList=countryManager.getListCountryByContinent(continent);
+        /*cityList=countryManager.getListCityByCountry(country);*/
+        return ActionSupport.SUCCESS;
+    }
+/*    public String doList() {
+        countryList=countryManager.getListCountry();
+        System.out.println("spot");
+        listSpot = spotManager.getListSpotByCity("ssss");
+        System.out.println("size: " + listSpot.size());
+        return ActionSupport.SUCCESS;
+    }*/
+
 
     public String doUpdate() {
         String vResult = ActionSupport.INPUT;

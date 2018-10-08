@@ -44,7 +44,7 @@ public class MemberManagerImpl  implements MemberManager {
     }
 
     @Override
-    public Member getMemberById(Integer id) {
+    public Member getMemberById(int id) {
         /*Member m = (Member) sessionFactory.getCurrentSession().get(cl, pId);*/
         return (Member) memberDao.getById(id);
     }

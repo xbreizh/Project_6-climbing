@@ -20,7 +20,7 @@ public interface MemberManager  {
 
     //Get
     Member getMember();
-    Member getMemberById(Integer id) throws NotFoundException;
+    Member getMemberById(int id) throws NotFoundException;
 
     Member getMemberByLogin(String login) throws NotFoundException;
     /*Member getMember() throws NotFoundException;*/

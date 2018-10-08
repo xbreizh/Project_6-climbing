@@ -16,7 +16,7 @@ import java.util.List;
 
     @NotNull
     @Size(min = 3, max = 100)
-    private String region;
+    private String city;
 
     @NotNull
     @Size(min = 3, max = 100)
@@ -36,7 +36,7 @@ import java.util.List;
 
     @NotNull
     @ManyToOne
-    private Member member;
+    private Member memberSpot;
 
     @OneToMany(mappedBy = "spot", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
     private List<Route> routeList= new ArrayList<>();
@@ -55,12 +55,12 @@ import java.util.List;
             this.id = id;
         }
 
-        public String getRegion() {
-            return region;
+        public String getCity() {
+            return city;
         }
 
-        public void setRegion(String region) {
-            this.region = region;
+        public void setCity(String city) {
+            this.city = city;
         }
 
         public String getName() {
@@ -103,12 +103,12 @@ import java.util.List;
             this.country = country;
         }
 
-        public Member getMember() {
-            return member;
+        public Member getMemberSpot() {
+            return memberSpot;
         }
 
-        public void setMember(Member member) {
-            this.member = member;
+        public void setMemberSpot(Member memberSpot) {
+            this.memberSpot = memberSpot;
         }
 
         public List<Route> getRouteList() {
@@ -131,15 +131,13 @@ import java.util.List;
         public String toString() {
             return "Spot{" +
                     "id=" + id +
-                    ", region='" + region + '\'' +
+                    ", region='" + city + '\'' +
                     ", name='" + name + '\'' +
                     ", description='" + description + '\'' +
                     ", rateMore=" + rateMore +
                     ", rateLess=" + rateLess +
                     ", country=" + country +
-                    ", member=" + member +
-                    ", routeList=" + routeList +
-                    ", commentList=" + commentList +
+                    ", memberSpot=" + memberSpot +
                     '}';
         }
     }

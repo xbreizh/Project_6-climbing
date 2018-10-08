@@ -10,8 +10,8 @@ import org.example.demo.climb.model.exception.NotFoundException;
 import javax.inject.Inject;
 import java.util.Map;
 
-public class MemberLocator extends StrutsTypeConverter {
-    @Inject
+public class MemberLocator/* extends StrutsTypeConverter*/ {
+    /*@Inject
     private MemberManager memberManager;
 
 
@@ -48,7 +48,7 @@ public class MemberLocator extends StrutsTypeConverter {
         String vString="";
         if (pObject instanceof Member) {
             Member member = (Member) pObject;
-           /* vString = member.getId() != null? member.getId().toString(): "";*/
+           *//* vString = member.getId() != null? member.getId().toString(): "";*//*
             if(member.getId()!=0){
                 try {
                     vString = memberManager.getMember().toString();
@@ -60,5 +60,5 @@ public class MemberLocator extends StrutsTypeConverter {
             vString = "";
         }
         return vString;
-    }
+    }*/
 }

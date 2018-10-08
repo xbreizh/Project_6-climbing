@@ -93,7 +93,8 @@ public class GestionMemberAction extends LoginAction {
         this.id = id;
     }
 
-    public List<Member> getListMember() {
+    public List<Member> getListMember() throws NotFoundException {
+        System.out.println(memberManager.getMemberById(1));
         return listMember;
     }
 

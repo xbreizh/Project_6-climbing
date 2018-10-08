@@ -20,9 +20,11 @@ public interface SpotManager {
     Spot getSpotById(Integer id) throws NotFoundException;
 
     //Get list
-    List<Spot> getListSpot();
-    List<Spot> getListSpotByRegion(String region);
-    List<String> getListRegionByCountry(Country country);
+    List<Spot> getListSpot(String continent, String country, String city);
+    /*List<Spot> getListSpotByCity(String city);*/
+    List<String> getListCityByCountry(String continent, String country);
+    List<String> getListCity();
+    List<String> getListCityByContinent(String continent);
 
     //Update
     void updateSpot(Spot zone);

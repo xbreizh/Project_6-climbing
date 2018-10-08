@@ -9,13 +9,13 @@ import java.util.List;
 /**
  * Action de démo pour les StrutsTypeConverter
  */
-public class DemoConvertAction extends LoginAction {
+public class DemoConvertAction /*extends LoginAction*/ {
 
 
     // ==================== Attributs ====================
     /*private Fraction fraction;*/
 
-
+/*
     private Member member;
     private Spot spot;
     private int id;
@@ -63,17 +63,17 @@ public class DemoConvertAction extends LoginAction {
         this.member = member;
     }
     // ==================== Getters/Setters ====================
-   /* public Fraction getFraction() {
+   *//* public Fraction getFraction() {
         return fraction;
     }
     public void setFraction(Fraction pFraction) {
         fraction = pFraction;
-    }*/
+    }*//*
 
 
     // ==================== Méthodes ====================
 
- /*   @Override*/
+ *//*   @Override*//*
     public String memberConvert() throws Exception {
        if(member!=null){
            this.addActionMessage("Member is: "+member);
@@ -83,7 +83,7 @@ public class DemoConvertAction extends LoginAction {
        }
         return ActionSupport.INPUT;
     }
-
+*//*
     public String droptest() throws  Exception{
         return ActionSupport.INPUT;
     }
@@ -92,8 +92,8 @@ public class DemoConvertAction extends LoginAction {
         System.out.println("Member: :"+member.getLogin());
         System.out.println("Spot: "+spot.getName());
         return ActionSupport.SUCCESS;
-    }
-   /* @Override
+    }*//*
+   *//* @Override
     public String execute() throws Exception {
         if (this.fraction != null) {
             this.addActionMessage(String.format("La fraction est : %d sur %d",
