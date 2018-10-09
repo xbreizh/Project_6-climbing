@@ -223,13 +223,13 @@ public class GestionSpotAction extends LoginAction implements SessionAware {
         return vResult;
     }
 
-    public String doList() {
+/*    public String doList() {
         continentList=countryManager.getListContinent();
         System.out.println("continentList: "+continentList);
         countryList=countryManager.getListCountryStrings();
-        /*System.out.println("countryList: "+countryList);
+        *//*System.out.println("countryList: "+countryList);
         cityList = spotManager.getListCityByCountry(c);
-        System.out.println("citylist: "+cityList);*/
+        System.out.println("citylist: "+cityList);*//*
         if(continent.equals("")){
             city=country="";
             countryList=countryManager.getListCountryStrings();
@@ -244,7 +244,7 @@ public class GestionSpotAction extends LoginAction implements SessionAware {
         listSpot = spotManager.getListSpot(continent, country, city);
         System.out.println("size: " + listSpot.size());
         return ActionSupport.SUCCESS;
-    }
+    }*/
 
     public String selectSpotList(){
         continentList=countryManager.getListContinent();

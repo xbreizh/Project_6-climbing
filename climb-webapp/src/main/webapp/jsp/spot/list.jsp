@@ -10,7 +10,7 @@
 <br><br>
 
 
-<s:a action="spot_new">Create</s:a><br><br>
+<%--<s:a action="spot_new">Create</s:a><br><br>
 <s:a action="index" >Back to Menu</s:a><br><br>
 <s:form action="spot_list">
     <s:select id="selectContinent" name="continent" value="%{continent}"
@@ -28,8 +28,8 @@
 <s:form action="spot_new">
     <s:textfield name="c" value="%{c.id}" requiredLabel="true"/>
     <s:submit value="Create new Spot"/>
-</s:form>
-<s:iterator value="listSpot">
+</s:form>--%>
+<s:iterator value="spotList">
     <ul>
         <li>Continent: <s:property value="country.continent"/></li>
         <li>Country: <s:property value="country.name"/></li>

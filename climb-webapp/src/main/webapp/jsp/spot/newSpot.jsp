@@ -21,7 +21,7 @@ change<s:param name="id" value="%{c.id}"/>  </s:a><br><br>
 
 <s:form action="createSpot" method="POST">
     <s:hidden name="spot.country" value="%{c.id}"/>
-    <s:textfield name="spot.city" value="%{city}"/>
+    <s:hidden name="spot.city" value="%{city}"/>
     <s:textfield name="spot.memberSpot.id" value="%{session.user.id}" label="Member:"/>
     <s:textfield name="spot.name" value="Type Spot Name" requiredLabel="true"/>
     <s:textarea name="spot.description" value="Type Spot Description" requiredLabel="true"/>

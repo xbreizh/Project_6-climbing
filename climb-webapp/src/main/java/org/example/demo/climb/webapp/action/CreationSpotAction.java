@@ -18,6 +18,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     private List<String> continentList=new ArrayList<>();
     private List<String> countryList=new ArrayList<>();
     private List<String> cityList=new ArrayList<>();
+    private List<Spot> spotList = new ArrayList<>();
     private String continent="";
     private String country="";
     private String city="";
@@ -63,26 +64,40 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         cityList = spotManager.getListCityByCountry(c);
         return vResult;
     }
-    /*public String doCreateSpotAndCity() throws NotFoundException {
-        String vResult= ActionSupport.SUCCESS;
-        c = countryManager.getCountry(id);
-        System.out.println("city is here too: "+city);
-        if(spot!=null){
-            spotManager.addSpot(spot);
-        }
-        return vResult;
-    }*/
+    public String doList() throws  NotFoundException{
+        spotList = spotManager.getListSpot();
+        return ActionSupport.SUCCESS;
+    }
     public String doCreateSpot() throws NotFoundException {
-        String vResult= ActionSupport.SUCCESS;
+        String vResult= ActionSupport.INPUT;
         c = countryManager.getCountry(id);
         System.out.println("city is here: "+city);
         if(spot!=null){
             spotManager.addSpot(spot);
+            vResult = ActionSupport.SUCCESS;
+        }
+        return vResult;
+    }
+
+    public String doDetail() throws NotFoundException {
+        String vResult = ActionSupport.SUCCESS;
+        System.out.println("tentative de recuperation de l'id: "+id);
+        spot = spotManager.getSpotById(id);
+
+        if (this.hasErrors()) {
+            vResult = ActionSupport.ERROR;
         }
         return vResult;
     }
 
     // Getters and Setters
+    public List<Spot> getSpotList() {
+        return spotList;
+    }
+
+    public void setSpotList(List<Spot> spotList) {
+        this.spotList = spotList;
+    }
     public int getId() {
         return id;
     }

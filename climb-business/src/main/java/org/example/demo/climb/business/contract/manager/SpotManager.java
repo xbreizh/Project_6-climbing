@@ -21,6 +21,7 @@ public interface SpotManager {
 
     //Get list
     List<Spot> getListSpot(String continent, String country, String city);
+    List<Spot> getListSpot();
     /*List<Spot> getListSpotByCity(String city);*/
     List<String> getListCityByCountry(Country country);
     List<String> getListCity();

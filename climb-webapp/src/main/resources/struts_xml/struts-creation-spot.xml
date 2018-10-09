@@ -27,12 +27,37 @@
         <action name="createSpotAndCity"
                          class="org.example.demo.climb.webapp.action.CreationSpotAction"
                          method="doCreateSpot">
-        <result>/jsp/spot/newSpotAndCity.jsp</result>
+            <result name="input">/jsp/spot/newSpotAndCity.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">spot_list</param>
+            </result>
          </action>
         <action name="createSpot"
                 class="org.example.demo.climb.webapp.action.CreationSpotAction"
                 method="doCreateSpot">
-            <result>/jsp/spot/newSpot.jsp</result>
+            <result name="input">/jsp/spot/newSpot.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">spot_list</param>
+            </result>
+        </action>
+
+        <!-- READ ALL -->
+        <action name="spot_list"
+                class="org.example.demo.climb.webapp.action.CreationSpotAction"
+                method="doList">
+            <result>/jsp/spot/list.jsp</result>
+        </action>
+
+        <!--READ ONE -->
+        <action name="spot_detail"
+                class="org.example.demo.climb.webapp.action.CreationSpotAction"
+                method="doDetail">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+
+            <result name="success">jsp/spot/detail.jsp</result>
         </action>
     </package>
 </struts>

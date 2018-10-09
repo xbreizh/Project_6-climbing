@@ -50,6 +50,10 @@ public class SpotManagerImpl  implements SpotManager {
     }
 
     @Override
+    public List<Spot> getListSpot() {
+        return spotDao.getAll();
+    }
+    @Override
     public List<String> getListCityByCountry(Country country) {
         List<String> cityList = new ArrayList<>();
         for (Spot spot:spotDao.ListSpotByCountry(country)
