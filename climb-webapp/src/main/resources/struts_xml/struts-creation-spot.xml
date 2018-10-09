@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+    <package name="Zone" extends="struts-default">
+
+        <!-- CREATE-->
+    <action name="choseContinent"
+            class="org.example.demo.climb.webapp.action.CreationSpotAction"
+            method="doListContinent">
+        <result>/jsp/spot/choseContinent.jsp</result>
+    </action>
+    <action name="choseCountry"
+            class="org.example.demo.climb.webapp.action.CreationSpotAction"
+            method="doListCountry">
+         <result>/jsp/spot/choseCountry.jsp</result>
+        </action>
+        <action name="choseCity"
+                class="org.example.demo.climb.webapp.action.CreationSpotAction"
+                method="doListCity">
+            <result>/jsp/spot/choseCity.jsp</result>
+        </action>
+        <action name="createSpotAndCity"
+                         class="org.example.demo.climb.webapp.action.CreationSpotAction"
+                         method="doCreateSpot">
+        <result>/jsp/spot/newSpotAndCity.jsp</result>
+         </action>
+        <action name="createSpot"
+                class="org.example.demo.climb.webapp.action.CreationSpotAction"
+                method="doCreateSpot">
+            <result>/jsp/spot/newSpot.jsp</result>
+        </action>
+    </package>
+</struts>

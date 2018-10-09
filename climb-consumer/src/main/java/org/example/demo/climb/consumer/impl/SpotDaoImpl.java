@@ -1,6 +1,7 @@
 package org.example.demo.climb.consumer.impl;
 import org.example.demo.climb.consumer.contract.MemberDao;
 import org.example.demo.climb.consumer.contract.SpotDao;
+import org.example.demo.climb.model.bean.Country;
 import org.example.demo.climb.model.bean.Spot;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -57,11 +58,10 @@ public class SpotDaoImpl implements SpotDao {
     }
 
     @Override
-    public List<Spot> ListSpotByCountry(String continent, String country) {
+    public List<Spot> ListSpotByCountry(Country country) {
         Query query=sessionFactory.getCurrentSession().createQuery(
-                "select spotList from Country c where c.name=:countryName and c.continent=:continentName");
-        query.setParameter("continentName", continent);
-        query.setParameter("countryName", country);
+                "select spotList from Country c where c.id =:countryId");
+        query.setParameter("countryId", country.getId());
         return query.getResultList();
     }
 

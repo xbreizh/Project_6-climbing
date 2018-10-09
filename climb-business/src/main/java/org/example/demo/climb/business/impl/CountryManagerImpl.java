@@ -23,14 +23,6 @@ public class CountryManagerImpl implements CountryManager {
 
     @Override
     public List<String> getListContinent() {
-       /* List<String> continentList = new ArrayList<>();
-        System.out.println(countryDao.getAll());
-        for (Country country: countryDao.getAll()
-             ) {
-            continentList.add(country.getContinent());
-        }
-        System.out.println(continentList);*/
-        /*System.out.println("Manager: "+countryDao.getListContinent());*/
         return countryDao.getListContinent();
     }
 

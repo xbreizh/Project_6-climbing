@@ -131,7 +131,7 @@ import java.util.List;
         public String toString() {
             return "Spot{" +
                     "id=" + id +
-                    ", region='" + city + '\'' +
+                    ", city='" + city + '\'' +
                     ", name='" + name + '\'' +
                     ", description='" + description + '\'' +
                     ", rateMore=" + rateMore +

@@ -30,6 +30,7 @@
             <file>jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-core/2.5.16/struts2-core-2.5.16.jar!/struts-default.xml</file>
             <file>jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-spring-plugin/2.5.16/struts2-spring-plugin-2.5.16.jar!/struts-plugin.xml</file>
             <file>jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-json-plugin/2.5.16/struts2-json-plugin-2.5.16.jar!/struts-plugin.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/struts_xml/struts-creation-spot.xml</file>
           </fileset>
           <propertiesKeys disabled="false" />
         </configuration>

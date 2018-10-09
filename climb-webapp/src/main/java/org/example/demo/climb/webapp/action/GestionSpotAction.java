@@ -1,6 +1,9 @@
 package org.example.demo.climb.webapp.action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.components.ActionError;
 import org.apache.struts2.interceptor.SessionAware;
 import org.example.demo.climb.business.contract.manager.CountryManager;
 import org.example.demo.climb.business.contract.manager.MemberManager;
@@ -30,6 +33,15 @@ public class GestionSpotAction extends LoginAction implements SessionAware {
     private String country="";
     private String city="";
     private Member member;
+    private boolean showNew=false;
+
+    public boolean isShowNew() {
+        return showNew;
+    }
+
+    public void setShowNew(boolean showNew) {
+        this.showNew = showNew;
+    }
 
     @Inject
     private SpotManager spotManager;
@@ -145,7 +157,14 @@ public class GestionSpotAction extends LoginAction implements SessionAware {
     public String doCreate() throws NotFoundException {
         String vResult=ActionSupport.INPUT;
         if (checkSession()) return ActionSupport.ERROR;
+        if(c!=null) {
+            System.out.println("country name from action: " + c.getName());
+            cityList = spotManager.getListCityByCountry(c);
+        }else{
+            System.out.println("looks like c is null");
+        }
         if(spot!=null) {
+            if (checkSpotCreatorNotLegit()) return ActionSupport.ERROR;
             System.out.println(spot.getCountry().getId());
             spotManager.addSpot(spot);
             vResult=ActionSupport.SUCCESS;
@@ -156,9 +175,20 @@ public class GestionSpotAction extends LoginAction implements SessionAware {
         return vResult;
     }
 
+    private boolean checkSpotCreatorNotLegit() {
+        member = (Member) ServletActionContext.getRequest().getSession().getAttribute("user");
+        System.out.println("Member id: "+member.getId());
+        if(member.getId() != spot.getMemberSpot().getId()){
+            System.out.println("member from spot: "+spot.getMemberSpot().getId());
+            this.addActionError("Authentication issue, please log out, then try again. Member found: "+member.getId());
+            return false;
+        }
+        return true;
+    }
+
     private boolean checkSession() {
         if(getSession().isEmpty()) {
-            this.addActionError("vous devez vous connecter pour cette action!");
+            System.err.println("Vous devez vous connecter pour cette action!");
             return true;
         }
         return false;
@@ -197,9 +227,9 @@ public class GestionSpotAction extends LoginAction implements SessionAware {
         continentList=countryManager.getListContinent();
         System.out.println("continentList: "+continentList);
         countryList=countryManager.getListCountryStrings();
-        System.out.println("countryList: "+countryList);
-        cityList = spotManager.getListCity();
-        System.out.println("citylist: "+cityList);
+        /*System.out.println("countryList: "+countryList);
+        cityList = spotManager.getListCityByCountry(c);
+        System.out.println("citylist: "+cityList);*/
         if(continent.equals("")){
             city=country="";
             countryList=countryManager.getListCountryStrings();

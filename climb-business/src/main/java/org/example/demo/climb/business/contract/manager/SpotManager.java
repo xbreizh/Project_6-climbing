@@ -22,7 +22,7 @@ public interface SpotManager {
     //Get list
     List<Spot> getListSpot(String continent, String country, String city);
     /*List<Spot> getListSpotByCity(String city);*/
-    List<String> getListCityByCountry(String continent, String country);
+    List<String> getListCityByCountry(Country country);
     List<String> getListCity();
     List<String> getListCityByContinent(String continent);
 

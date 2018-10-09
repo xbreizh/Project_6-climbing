@@ -13,7 +13,7 @@ public interface SpotDao /*extends Dao*/ {
 
     // Get List
     List<Spot> ListSpotByContinent(String continent);
-    List<Spot> ListSpotByCountry(String continent, String country);
+    List<Spot> ListSpotByCountry(Country country);
     List<Spot> ListSpotByCity(String continent, String country, String city);
     List<String> ListCity();
 

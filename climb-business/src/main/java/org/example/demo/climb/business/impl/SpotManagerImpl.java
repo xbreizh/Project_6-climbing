@@ -29,10 +29,6 @@ public class SpotManagerImpl  implements SpotManager {
     // Create
     @Override
     public void addSpot(Spot spot) {
-        /*System.out.println("country passed: "+country);
-        Country c=countryManager.getCountry(country);
-        System.out.println(c.getName());
-        spot.setCountry(c);*/
         spotDao.add(spot);
     }
 
@@ -54,13 +50,13 @@ public class SpotManagerImpl  implements SpotManager {
     }
 
     @Override
-    public List<String> getListCityByCountry(String continent, String country) {
-        List<String> list = new ArrayList<>();
-        for (Spot spot: spotDao.ListSpotByCountry(continent, country)
+    public List<String> getListCityByCountry(Country country) {
+        List<String> cityList = new ArrayList<>();
+        for (Spot spot:spotDao.ListSpotByCountry(country)
              ) {
-            list.add(spot.getCity());
+            cityList.add(spot.getCity());
         }
-        return list;
+        return cityList;
     }
 
     @Override
