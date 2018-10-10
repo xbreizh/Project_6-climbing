@@ -33,6 +33,8 @@ public interface RouteManager {
 
     //Update on delete
     void updateWhenDeletingMember(int id);
+    List<String> getListGrade();
+    List<String> getListClimbingType();
 
 
 }

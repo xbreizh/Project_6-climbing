@@ -9,5 +9,7 @@ public interface RouteDao extends Dao {
 
     public void updateWhenDeletingMember(int id1, int id2);
     List<Route> ListByCriterias(Spot spot, String grade, String type, int height );
+    List<String> ListGrade();
+    List<String> ListClimbingType();
 
 }

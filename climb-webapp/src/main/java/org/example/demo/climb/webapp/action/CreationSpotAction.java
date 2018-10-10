@@ -87,9 +87,45 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;
         }
+        System.out.println("vresult: "+vResult.toString());
         return vResult;
     }
 
+    public String doTest(){
+        System.out.println("test ok");
+        return ActionSupport.SUCCESS;
+    }
+
+    public String doEdit() {
+        String vResult = ActionSupport.SUCCESS;
+        System.out.println("tentative de recuperation de l'id from doEdit: "+id);
+        try {
+            spot = spotManager.getSpotById(id);
+            System.out.println("doedit: " + id);
+        } catch (NotFoundException e) {
+            this.addActionError(e.toString());
+        }
+        if (this.hasErrors()) {
+            vResult = ActionSupport.ERROR;
+        }
+        return vResult;
+    }
+    public String doUpdate() {
+        String vResult = ActionSupport.INPUT;
+
+        if (spot != null) {
+            System.out.println("id de spot: "+spot.getId());
+            spotManager.updateSpot(spot);
+            vResult = ActionSupport.SUCCESS;
+            System.out.println("Spot: " + spot);
+
+        }
+        if (this.hasErrors()) {
+            System.out.println("Spot is null");
+            vResult = ActionSupport.ERROR;
+        }
+        return vResult;
+    }
     // Getters and Setters
     public List<Spot> getSpotList() {
         return spotList;

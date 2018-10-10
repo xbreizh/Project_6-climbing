@@ -24,18 +24,17 @@ Back to List</s:a>
             <s:property value="spot.memberSpot.login"/>
         </s:a>
     </li>
+    <s:if test="#session.user">
+    </s:if>
+
+
     <li>
-        <s:a action="spot_edit">Edit
-            <s:param name="id" value="id"/>
-        </s:a>
-    </li>
-    <li>
-        <s:a action="spot_delete">Delete
-            <s:param name="id" value="id"/>
-        </s:a>
+        <s:form action="createRoute" method="POST">
+            <s:textfield name="id" value="%{spot.id}" label="Description" requiredLabel="true" />
+            <s:submit value="Add Route"/>
+        </s:form>
     </li>
 </ul>
-
-
 </body>
 </html>
+

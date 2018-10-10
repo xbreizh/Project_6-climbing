@@ -1,22 +1,23 @@
+<!--
 <!DOCTYPE struts PUBLIC
             "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
             "http://struts.apache.org/dtds/struts-2.0.dtd">
         <struts>
            <package name="default" extends="struts-default">
-        <!--Action par défaut-->
+        &lt;!&ndash;Action par défaut&ndash;&gt;
         <default-action-ref name="index"/>
 
-        <!--Resultats Globaux-->
+        &lt;!&ndash;Resultats Globaux&ndash;&gt;
         <global-results>
         <result name="error">/jsp/error.jsp</result>
         </global-results>
 
-        <!--Action index-->
+        &lt;!&ndash;Action index&ndash;&gt;
         <action name="index">
         <result>/jsp/index.jsp</result>
         </action>
 
-        <!--Action listant les utilisateurs-->
+        &lt;!&ndash;Action listant les utilisateurs&ndash;&gt;
         <action name="member_list"
         class="org.example.demo.climb.webapp.action.GestionMemberAction"
         method="doList">
@@ -24,7 +25,7 @@
 
         </action>
 
-        <!--Detail du membre-->
+        &lt;!&ndash;Detail du membre&ndash;&gt;
         <action name="member_detail"
         class="org.example.demo.climb.webapp.action.GestionMemberAction"
         method="doDetail">
@@ -37,7 +38,7 @@
         </action>
 
 
-        <!--Création utilisateurs-->
+        &lt;!&ndash;Création utilisateurs&ndash;&gt;
         <action name="member_new"
         class="org.example.demo.climb.webapp.action.GestionMemberAction"
         method="doCreate">
@@ -51,7 +52,7 @@
         </result>
         </action>
 
-        <!--Modification Utilisateur-->
+        &lt;!&ndash;Modification Utilisateur&ndash;&gt;
         <action name="member_update"
         class="org.example.demo.climb.webapp.action.GestionMemberAction"
         method="doUpdate">
@@ -65,7 +66,7 @@
         </result>
         </action>
 
-        <!--Edition Membre-->
+        &lt;!&ndash;Edition Membre&ndash;&gt;
         <action name="member_edit"
         class="org.example.demo.climb.webapp.action.GestionMemberAction"
         method="doEdit">
@@ -77,7 +78,7 @@
         </action>
 
 
-        <!--Suppression du membre-->
+        &lt;!&ndash;Suppression du membre&ndash;&gt;
         <action name="member_delete"
         class="org.example.demo.climb.webapp.action.GestionMemberAction"
         method="doDelete">
@@ -91,8 +92,8 @@
         </result>
         </action>
 
-        <!--Action listant les détails d'un projet-->
-        <!-- <action name="projet_detail"
+        &lt;!&ndash;Action listant les détails d'un projet&ndash;&gt;
+        &lt;!&ndash; <action name="projet_detail"
         class="org.example.demo.climb.webapp.action.GestionProjetAction"
         method="doDetail">
         <interceptor-ref name="store">
@@ -101,11 +102,11 @@
         <interceptor-ref name="defaultStack" />
 
         <result name="success">jsp/projet/detail.jsp</result>
-    </action>-->
+    </action>&ndash;&gt;
 
 
-        <!--Action listant les détails d'un projet-->
-        <!-- <action name="projet_detail"
+        &lt;!&ndash;Action listant les détails d'un projet&ndash;&gt;
+        &lt;!&ndash; <action name="projet_detail"
         class="org.example.demo.climb.webapp.action.GestionProjetAction"
         method="doDetail">
         <interceptor-ref name="store">
@@ -114,20 +115,20 @@
         <interceptor-ref name="defaultStack" />
 
         <result name="success">jsp/projet/detail.jsp</result>
-    </action>-->
+    </action>&ndash;&gt;
 
 
-        <!--Action listant les projets-->
-        <!--<action name="projet_list"
+        &lt;!&ndash;Action listant les projets&ndash;&gt;
+        &lt;!&ndash;<action name="projet_list"
         class="org.example.demo.climb.webapp.action.GestionProjetAction"
         method="doList">
         <result>jsp/projet/list.jsp</result>
 
-    </action>-->
+    </action>&ndash;&gt;
 
 
-        <!--Action permettant de créer un projet-->
-        <!--        <action name="projet_new"
+        &lt;!&ndash;Action permettant de créer un projet&ndash;&gt;
+        &lt;!&ndash;        <action name="projet_new"
                 class="org.example.demo.climb.webapp.action.GestionProjetAction"
                 method="doCreate">
             <interceptor-ref name="store">
@@ -135,21 +136,21 @@
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
 
-            <result name="input">/jsp/projet/new.jsp</result>
+            <result name="input">/jsp/projet/newRoute.jsp</result>
             <result name="success" type="redirectAction">
                 <param name="actionName">projet_detail</param>
                 <param name="id">${projet.id}</param>
 
             </result>
-        </action>-->
-        <!-- Action listant les détails d'un utilisateur
+        </action>&ndash;&gt;
+        &lt;!&ndash; Action listant les détails d'un utilisateur
           <action name="utilisateur_detail"
                   class="org.example.demo.climb.webapp.action.GestionMemberAction"
                   method="doDetail">
               <result name="success">jsp/utilisateur/detail.jsp</result>
-          </action>-->
+          </action>&ndash;&gt;
 
-        <!--Actions Login / Logout-->
+        &lt;!&ndash;Actions Login / Logout&ndash;&gt;
         <action name="login"
         class="org.example.demo.climb.webapp.action.LoginAction"
         method="doLogin">
@@ -161,4 +162,4 @@
         <result type="redirectAction">index</result>
         </action>
         </package>
-        </struts>
+        </struts>-->

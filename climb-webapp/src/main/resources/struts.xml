@@ -20,6 +20,7 @@
     <include file="struts_xml/struts-session.xml"/>
     <include file="struts_xml/struts-member.xml"/>
     <include file="struts_xml/struts-creation-spot.xml"/>
+    <include file="struts_xml/struts-creation-route.xml"/>
     <include file="struts_xml/struts-site.xml"/>
     <include file="struts_xml/struts-spot.xml"/>
 
@@ -68,7 +69,7 @@
                     <param name="operationMode">RETRIEVE</param>
                 </interceptor-ref>
                 <interceptor-ref name="defaultStack"/>
-                <result name="input">/jsp/member/new.jsp</result>
+                <result name="input">/jsp/member/newRoute.jsp</result>
                 <result name="success" type="redirectAction">
                     <param name="actionName">member_list</param>
                 </result>
@@ -159,7 +160,7 @@
                         </interceptor-ref>
                         <interceptor-ref name="defaultStack"/>
 
-                        <result name="input">/jsp/projet/new.jsp</result>
+                        <result name="input">/jsp/projet/newRoute.jsp</result>
                         <result name="success" type="redirectAction">
                             <param name="actionName">projet_detail</param>
                             <param name="id">${projet.id}</param>

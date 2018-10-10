@@ -209,7 +209,7 @@ public class GestionSpotAction extends LoginAction implements SessionAware {
         return vResult;
     }
 
-    public String doEdit() {
+/*    public String doEdit() {
         String vResult = ActionSupport.SUCCESS;
         try {
             spot = spotManager.getSpotById(id);
@@ -221,7 +221,7 @@ public class GestionSpotAction extends LoginAction implements SessionAware {
             vResult = ActionSupport.ERROR;
         }
         return vResult;
-    }
+    }*/
 
 /*    public String doList() {
         continentList=countryManager.getListContinent();
@@ -261,7 +261,7 @@ public class GestionSpotAction extends LoginAction implements SessionAware {
     }*/
 
 
-    public String doUpdate() {
+/*    public String doUpdate() {
         String vResult = ActionSupport.INPUT;
 
         if (this.spot != null) {
@@ -275,7 +275,7 @@ public class GestionSpotAction extends LoginAction implements SessionAware {
             vResult = ActionSupport.ERROR;
         }
         return vResult;
-    }
+    }*/
 
     public String doDelete() {
         String vResult = ActionSupport.SUCCESS;

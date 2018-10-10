@@ -6,37 +6,33 @@
 
 <struts>
 
-
-    <package name="Spot" extends="struts-default">
-
+    <package name="Route" extends="struts-default">
 
         <!-- CREATE-->
-        <action name="spot_new"
-                class="org.example.demo.climb.webapp.action.GestionSpotAction"
-                method="doCreate">
+        <action name="createRoute"
+                class="org.example.demo.climb.webapp.action.CreationRouteAction"
+                method="doCreateRoute">
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
-            <result name="input">/jsp/spot/form/new.jsp</result>
+           <!-- <result>/jsp/route/form/newRoute.jsp</result>-->
+            <result name="input">/jsp/route/form/newRoute.jsp</result>
             <result name="success" type="redirectAction">
-                <param name="actionName">spot_list</param>
+                <param name="actionName">route_list</param>
             </result>
-            <result name="error">/jsp/login.jsp</result>
         </action>
 
-
-       <!-- &lt;!&ndash; READ ALL &ndash;&gt;
-        <action name="spot_list"
-                class="org.example.demo.climb.webapp.action.GestionSpotAction"
+        <!-- READ ALL -->
+        <action name="route_list"
+                class="org.example.demo.climb.webapp.action.CreationRouteAction"
                 method="doList">
-            <result>/jsp/spot/list.jsp</result>
+            <result>/jsp/route/list.jsp</result>
+        </action>
 
-        </action>-->
-
-<!--        &lt;!&ndash;READ ONE &ndash;&gt;
+        <!--READ ONE -->
         <action name="spot_detail"
-                class="org.example.demo.climb.webapp.action.GestionSpotAction"
+                class="org.example.demo.climb.webapp.action.CreationSpotAction"
                 method="doDetail">
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
@@ -44,38 +40,30 @@
             <interceptor-ref name="defaultStack"/>
 
             <result name="success">jsp/spot/detail.jsp</result>
-        </action>-->
+        </action>
 
-
-
-
-        <!-- EDIT -->
-        <!--<action name="spot_edit"
-                class="org.example.demo.climb.webapp.action.GestionSpotAction"
+        <action name="spot_edit"
+                class="org.example.demo.climb.webapp.action.CreationSpotAction"
                 method="doEdit">
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
             <result name="success">/jsp/spot/form/update.jsp</result>
-        </action>-->
+        </action>
 
-
-        <!-- DELETE -->
-        <action name="spot_delete"
-                class="org.example.demo.climb.webapp.action.GestionSpotAction"
-                method="doDelete">
+        <!-- UPDATE -->
+        <action name="spot_update"
+                class="org.example.demo.climb.webapp.action.CreationSpotAction"
+                method="doUpdate">
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
-
+            <result name="input">/jsp/spot/form/update.jsp</result>
             <result name="success" type="redirectAction">
                 <param name="actionName">spot_list</param>
             </result>
         </action>
-
-
     </package>
-    <include file="struts_xml/struts-default2.xml"/>
 </struts>

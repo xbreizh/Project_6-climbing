@@ -1,6 +1,8 @@
 package org.example.demo.climb.consumer.impl;
 import org.example.demo.climb.consumer.contract.MemberDao;
 import org.example.demo.climb.consumer.contract.RouteDao;
+import org.example.demo.climb.model.ClimbingType;
+import org.example.demo.climb.model.Grade;
 import org.example.demo.climb.model.bean.Route;
 import org.example.demo.climb.model.bean.Member;
 import org.example.demo.climb.model.bean.Spot;
@@ -9,6 +11,8 @@ import org.hibernate.query.Query;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Named
@@ -49,7 +53,7 @@ public class RouteDaoImpl implements RouteDao {
     @Override
     public void updateWhenDeletingMember(int id1, int id2){
         Member m = (Member) memberDao.getById(id1);
-        Query query=sessionFactory.getCurrentSession().createQuery("update Route set member= :member1 where member.id=:member2");
+        Query query=sessionFactory.getCurrentSession().createQuery("update Route set memberRoute= :member1 where memberRoute.id=:member2");
         query.setParameter("member1", m);
         query.setParameter("member2", id2);
         int result = query.executeUpdate();
@@ -61,5 +65,26 @@ public class RouteDaoImpl implements RouteDao {
         return null; // to do
     }
 
+    @Override
+    public List<String> ListGrade() {
+        List<Grade> listGrade = Arrays.asList(Grade.values());
+        List<String> listGradeString = new ArrayList<>();
+        for (Grade grade:listGrade
+             ) {
+            listGradeString.add(grade.getValue());
+        }
+        return listGradeString;
+    }
+
+    @Override
+    public List<String> ListClimbingType(){
+        List<ClimbingType> listClimbingType = Arrays.asList(ClimbingType.values());
+        List<String> listClimbingTypeString = new ArrayList<>();
+        for (ClimbingType ct:listClimbingType
+        ) {
+            listClimbingTypeString.add(ct.getName());
+        }
+        return listClimbingTypeString;
+    }
 
 }

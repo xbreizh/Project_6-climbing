@@ -46,7 +46,17 @@ public class RouteManagerImpl implements RouteManager {
         return routeDao.getAll();
 
     }
+    @Override
+    public List<String> getListGrade() {
+        return routeDao.ListGrade();
 
+    }
+
+    @Override
+    public List<String> getListClimbingType() {
+        return routeDao.ListClimbingType();
+
+    }
     @Override
     public List<Route> getListRoute(Spot spot, String grade, String type, int height) {
         return routeDao.ListByCriterias(spot, grade, type, height);

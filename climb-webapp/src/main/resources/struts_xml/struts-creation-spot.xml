@@ -6,7 +6,7 @@
 
 <struts>
 
-    <package name="Zone" extends="struts-default">
+    <package name="Spot" extends="struts-default">
 
         <!-- CREATE-->
     <action name="choseContinent"
@@ -47,6 +47,25 @@
                 method="doList">
             <result>/jsp/spot/list.jsp</result>
         </action>
+        <action name="test"
+                class="org.example.demo.climb.webapp.action.CreationSpotAction"
+                method="doTest">
+            <result>/jsp/route/form/newRoute.jsp</result>
+        </action>
+
+      <!--  &lt;!&ndash; CREATE&ndash;&gt;
+        <action name="createRoute"
+                class="org.example.demo.climb.webapp.action.CreationRouteAction"
+                method="doCreateRoute">
+             <interceptor-ref name="store">
+                 <param name="operationMode">RETRIEVE</param>
+             </interceptor-ref>
+             <interceptor-ref name="defaultStack"/>
+             <result name="input">/jsp/route/form/newRoute.jsp</result>
+             <result name="success" type="redirectAction">
+                 <param name="actionName">route_list</param>
+             </result>
+        </action>-->
 
         <!--READ ONE -->
         <action name="spot_detail"
@@ -58,6 +77,30 @@
             <interceptor-ref name="defaultStack"/>
 
             <result name="success">jsp/spot/detail.jsp</result>
+        </action>
+
+        <action name="spot_edit"
+                class="org.example.demo.climb.webapp.action.CreationSpotAction"
+                method="doEdit">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+            <result name="success">/jsp/spot/form/update.jsp</result>
+        </action>
+
+        <!-- UPDATE -->
+        <action name="spot_update"
+                class="org.example.demo.climb.webapp.action.CreationSpotAction"
+                method="doUpdate">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+            <result name="input">/jsp/spot/form/update.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">spot_list</param>
+            </result>
         </action>
     </package>
 </struts>

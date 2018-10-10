@@ -78,15 +78,25 @@ public class SpotManagerImpl  implements SpotManager {
     @Override
     public void updateSpot(Spot spot) {
         int id = spot.getId();
+        System.out.println(spot.getName());
+        System.out.println(spot.getCity());
+        System.out.println(spot.getId());
+        System.out.println("got spot from dao ok");
         Spot s = (Spot) spotDao.getById(id);
-        if(!(spot.getName()==null)){
+        if(!(spot.getName().equals(""))){
             s.setName(spot.getName());
+            System.out.println("updated name");
         }
-       /* if(!(spot.getNb_ways()==0)){
-            s.setNb_ways(spot.getNb_ways());
-        }*/
+        if(!spot.getCity().equals("")){
+            s.setCity(spot.getCity());
+            System.out.println("updated city");
+        }
+        if(!spot.getDescription().equals("")){
+            s.setDescription(spot.getDescription());
+            System.out.println("updated description");
+        }
 
-        spotDao.update(spot);
+        spotDao.update(s);
     }
 
     @Override
