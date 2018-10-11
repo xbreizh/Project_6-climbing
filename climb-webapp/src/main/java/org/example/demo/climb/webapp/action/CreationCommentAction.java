@@ -41,7 +41,15 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
 
     public String doList() throws  NotFoundException{
        /* commentList = commentManager.getListComment();*/
-        System.out.println("tried to get the comment liste");
+        route = routeManager.getRouteById(id);
+        if(route!=null){
+            System.out.println("tried to get the comment liste");
+            commentList = commentManager.getListCommentFromRoute(route.getId());
+            System.out.println(route.getName());
+        }
+        if(commentList.size() > 0) {
+            System.out.println("text from comment: " + commentList.get(0).getText());
+        }
         return ActionSupport.SUCCESS;
     }
     public String doCreateComment() throws NotFoundException {
@@ -49,6 +57,9 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
         System.out.println("je suis suppose etre la");
 
         if(comment!=null){
+            System.out.println("comment text: "+comment.getText());
+            System.out.println("comment member: "+comment.getMemberComment().getLogin());
+            System.out.println("comment route: "+comment.getRoute().getName());
             commentManager.addComment(comment);
             vResult = ActionSupport.SUCCESS;
         }else{

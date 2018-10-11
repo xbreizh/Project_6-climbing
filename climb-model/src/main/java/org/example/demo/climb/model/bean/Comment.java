@@ -20,7 +20,55 @@ private String text;
 @NotNull
 private Date date;
 
-@NotNull
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Member getMemberComment() {
+        return memberComment;
+    }
+
+    public void setMemberComment(Member memberComment) {
+        this.memberComment = memberComment;
+    }
+
+    public Route getRoute() {
+        return route;
+    }
+
+    public void setRoute(Route route) {
+        this.route = route;
+    }
+
+    public Spot getSpot() {
+        return spot;
+    }
+
+    public void setSpot(Spot spot) {
+        this.spot = spot;
+    }
+
+    @NotNull
 @ManyToOne
 private Member memberComment;
 

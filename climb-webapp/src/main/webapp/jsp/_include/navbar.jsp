@@ -1,5 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-
+<s:a action="index">
+    <s:text name="home.welcome"/>
+</s:a>
 <table>
     <tr>
         <th>Creation</th>
@@ -41,11 +43,7 @@
         </td>
     </tr>
     <tr>
-       <%-- <td>
-            <s:a action="zone_new">
-                <s:text name="nav.newZone"/>
-            </s:a>
-        </td>--%>
+
         <td>
             <s:a action="route_list">
                 <s:text name="nav.listRoute"/>

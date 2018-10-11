@@ -28,6 +28,7 @@ public class RouteManagerImpl implements RouteManager {
 
     @Override
     public void addRoute(Route route) {
+        route.setName(route.getName().toUpperCase());
         routeDao.add(route);
     }
 

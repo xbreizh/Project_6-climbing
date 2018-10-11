@@ -29,6 +29,7 @@
     <s:textfield name="c" value="%{c.id}" requiredLabel="true"/>
     <s:submit value="Create new Spot"/>
 </s:form>--%>
+
 <s:iterator value="spotList">
     <ul>
         <li>Continent: <s:property value="country.continent"/></li>

@@ -79,6 +79,10 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         return vResult;
     }
 
+
+
+
+
     public String doDetail() throws NotFoundException {
         String vResult = ActionSupport.SUCCESS;
         System.out.println("tentative de recuperation de l'id: "+id);

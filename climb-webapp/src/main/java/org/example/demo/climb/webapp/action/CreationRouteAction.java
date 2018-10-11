@@ -50,6 +50,7 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
         System.out.println("je suis suppose etre la");
 
         if(route!=null){
+            route.setName(route.getName().toUpperCase());
             routeManager.addRoute(route);
             this.addActionMessage("Route "+route.getName()+" successfully created");
             vResult = ActionSupport.SUCCESS;

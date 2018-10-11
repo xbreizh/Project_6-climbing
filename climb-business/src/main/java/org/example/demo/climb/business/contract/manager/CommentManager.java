@@ -18,12 +18,12 @@ public interface CommentManager {
    /* // Get
     Comment getCommentByName(String name) throws NotFoundException;*/
 
-    List<Comment> getListCommentFromSpot();
+    List<Comment> getListCommentFromRoute(int id);
 
-    //Get list
-    Comment getCommentById(Integer pId) throws NotFoundException;
+    /*//Get list
+    Comment getCommentById(Integer pId) throws NotFoundException;*/
 
-    List<Comment> getListComment(Spot spot, String grade, String type, int height);
+    /*List<Comment> getListComment(Spot spot, String grade, String type, int height);*/
 
     //Update
     void updateComment(Comment comment);
@@ -31,10 +31,10 @@ public interface CommentManager {
     //Delete
     void deleteComment(int id);
 
-    //Update on delete
+    /*//Update on delete
     void updateWhenDeletingMember(int id);
     List<String> getListGrade();
-    List<String> getListClimbingType();
+    List<String> getListClimbingType();*/
 
 
 }

@@ -7,11 +7,12 @@ import java.util.List;
 public interface CommentDao {
 
     /*void updateWhenDeletingMember(int id1, int id2);*/
-  /*  List<Comment> getAllRouteComment(int id);
-    List<Comment> getAllSpotComment(int id);*/
+  /*  List<Comment> getAllRouteComment(int id);*/
+    List<Comment> getListCommentByRoute(int id);
     void add(Comment comment);
-    void update(Object o);
-    void delete(Object o);
+    void update(Comment comment);
+    void delete(Comment comment);
+    Comment getCommentById(int id);
 
 
 }

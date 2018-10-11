@@ -34,7 +34,7 @@ Spot List</s:a>
         <img src="http://vincent.boulas.free.fr/teamgrimptout/topos/ainsavoiehautesavoie/topo_malpas.gif">
         <h2>Routes</h2>
         <s:iterator value="spot.routeList">
-            <s:property value="name"/>
+            <strong><s:property value="name"/></strong>
             Height: <s:property value="height"/>
             Grade: <s:property value="grade"/>
             Type: <s:property value="type"/>

@@ -6,46 +6,28 @@
 
 <struts>
 
-    <package name="Spot" extends="struts-default">
+    <package name="Comment" extends="struts-default">
 
-        <!-- CREATE-->
-    <action name="choseContinent"
-            class="org.example.demo.climb.webapp.action.CreationSpotAction"
-            method="doListContinent">
-        <result>/jsp/spot/choseContinent.jsp</result>
-    </action>
-    <action name="choseCountry"
-            class="org.example.demo.climb.webapp.action.CreationSpotAction"
-            method="doListCountry">
-         <result>/jsp/spot/choseCountry.jsp</result>
-        </action>
-        <action name="choseCity"
-                class="org.example.demo.climb.webapp.action.CreationSpotAction"
-                method="doListCity">
-            <result>/jsp/spot/choseCity.jsp</result>
-        </action>
-        <action name="createSpotAndCity"
-                         class="org.example.demo.climb.webapp.action.CreationSpotAction"
-                         method="doCreateSpot">
-            <result name="input">/jsp/spot/newSpotAndCity.jsp</result>
+
+        <action name="createComment"
+                class="org.example.demo.climb.webapp.action.CreationCommentAction"
+                method="doCreateComment">
+            <result name="input">/jsp/spot/newComment.jsp</result>
             <result name="success" type="redirectAction">
-                <param name="actionName">spot_list</param>
-            </result>
-         </action>
-        <action name="createSpot"
-                class="org.example.demo.climb.webapp.action.CreationSpotAction"
-                method="doCreateSpot">
-            <result name="input">/jsp/spot/newSpot.jsp</result>
-            <result name="success" type="redirectAction">
-                <param name="actionName">spot_list</param>
+                <param name="actionName">comment_list</param>
+                <param name="id">${comment.route.id}</param>
             </result>
         </action>
 
         <!-- READ ALL -->
-        <action name="spot_list"
-                class="org.example.demo.climb.webapp.action.CreationSpotAction"
+        <action name="comment_list"
+                class="org.example.demo.climb.webapp.action.CreationCommentAction"
                 method="doList">
-            <result>/jsp/spot/list.jsp</result>
+            <result name="success">/jsp/comment/list.jsp</result>
+           <!-- <result name="success" type="redirectAction">
+                <param name="actionName">comment_list</param>
+                <param name="id">${id}</param>
+            </result>-->
         </action>
         <!--<action name="createComment"
                 class="org.example.demo.climb.webapp.action.CreationSpotAction"

@@ -20,6 +20,13 @@ public class CommentDaoImpl implements CommentDao {
     private MemberDao memberDao;
 
     @Override
+    public List<Comment> getListCommentByRoute(int id) {
+        Query query=sessionFactory.getCurrentSession().createQuery("from Comment where route.id=:id order by date desc");
+        query.setParameter("id", id);
+        return query.getResultList();
+    }
+
+    @Override
     public void add(Comment comment) {
         sessionFactory.getCurrentSession().persist(comment);
     }
@@ -44,13 +51,18 @@ public class CommentDaoImpl implements CommentDao {
     }
 */
     @Override
-    public void update(Object o) {
-        sessionFactory.getCurrentSession().update(o);
+    public void update(Comment comment) {
+        sessionFactory.getCurrentSession().update(comment);
     }
 
     @Override
-    public void delete(Object o) {
-        sessionFactory.getCurrentSession().delete(cl.getName(), o);
+    public void delete(Comment comment) {
+        sessionFactory.getCurrentSession().delete(cl.getName(), comment);
+    }
+
+    @Override
+    public Comment getCommentById(int id) {
+        return (Comment) sessionFactory.getCurrentSession().get(cl, id);
     }
 
 
