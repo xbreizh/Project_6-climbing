@@ -11,5 +11,7 @@ public interface RouteDao extends Dao {
     List<Route> ListByCriterias(Spot spot, String grade, String type, int height );
     List<String> ListGrade();
     List<String> ListClimbingType();
+    Route getRouteByName(String name);
+    Route getRouteById(int id);
 
 }

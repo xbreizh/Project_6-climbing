@@ -6,7 +6,7 @@
 
 <body>
 
-<h1>Liste de Spots</h1>
+<h1>Chose a country</h1>
 <br><br>
 <s:if test="#session.user">
 

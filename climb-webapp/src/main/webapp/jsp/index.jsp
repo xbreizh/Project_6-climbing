@@ -14,9 +14,9 @@
 <%--<s:a action="demo_ajax">
     Demo Ajax
 </s:a><br><br>--%>
-<s:a action="choseContinent">
+<%--<s:a action="choseContinent">
     New Spot
-</s:a>
+</s:a>--%>
 
 
 

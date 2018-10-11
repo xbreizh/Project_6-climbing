@@ -17,7 +17,8 @@ Country: <s:property value="%{c.name}"/>
 change<s:param name="id" value="%{c.id}"/>  </s:a><br><br>
 
 <s:a action="choseCity" ><br>
-City list<s:param name="id" value="%{c.id}"/>  </s:a><br><br>
+Back<s:param name="id" value="%{c.id}"/>
+</s:a><br><br>
 
 <s:form action="createSpot" method="POST">
     <s:hidden name="spot.country" value="%{c.id}"/>

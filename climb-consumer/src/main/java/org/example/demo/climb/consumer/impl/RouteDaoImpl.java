@@ -11,6 +11,7 @@ import org.hibernate.query.Query;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.NoResultException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -85,6 +86,30 @@ public class RouteDaoImpl implements RouteDao {
             listClimbingTypeString.add(ct.getName());
         }
         return listClimbingTypeString;
+    }
+
+    @Override
+    public Route getRouteByName(String name) {
+        try{
+        Query query=sessionFactory.getCurrentSession().createQuery(
+                "From Route where name=:name");
+        query.setParameter("name", name);
+            return (Route) query.getSingleResult();
+        }catch(NoResultException e){
+            return null;
+        }
+    }
+
+    @Override
+    public Route getRouteById(int id) {
+        try{
+        Query query=sessionFactory.getCurrentSession().createQuery(
+                "From Route where id=:id");
+        query.setParameter("id", id);
+        return (Route) query.getSingleResult();
+        }catch(NoResultException e){
+        return null;
+        }
     }
 
 }

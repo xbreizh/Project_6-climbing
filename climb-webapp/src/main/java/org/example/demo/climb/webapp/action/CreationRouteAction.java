@@ -50,10 +50,17 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
         System.out.println("je suis suppose etre la");
 
         if(route!=null){
-            route.setName(route.getName().toUpperCase());
-            routeManager.addRoute(route);
-            this.addActionMessage("Route "+route.getName()+" successfully created");
-            vResult = ActionSupport.SUCCESS;
+            /*System.out.println("check if name in the dbb: "+routeManager.getRouteByName(route.getName().toUpperCase()));*/
+            if(routeManager.getRouteByName(route.getName().toUpperCase())==null){
+                route.setName(route.getName().toUpperCase());
+                routeManager.addRoute(route);
+                this.addActionMessage("Route "+route.getName()+" successfully created");
+                vResult = ActionSupport.SUCCESS;
+            }else{
+                this.addActionError("That route already exists, " +
+                        "if you wish to add some new information, please add a comment ");
+                return ActionSupport.ERROR;
+            }
         }else{
             spot = spotManager.getSpotById(id);
             gradeList = routeManager.getListGrade();

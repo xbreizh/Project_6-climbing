@@ -17,9 +17,14 @@
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
            <!-- <result>/jsp/route/form/newRoute.jsp</result>-->
-            <result name="input">/jsp/route/list.jsp</result>
+            <result name="input">/jsp/route/form/newRoute.jsp</result>
+
            <!-- <result name="success" >/jsp/route/success.jsp</result>-->
             <result name="success" type="redirectAction">
+                <param name="actionName">spot_detail</param>
+                <param name="id">${route.spot.id}</param>
+            </result>
+            <result name="error" type="redirectAction">
                 <param name="actionName">spot_detail</param>
                 <param name="id">${route.spot.id}</param>
             </result>

@@ -29,7 +29,7 @@
                          method="doCreateSpot">
             <result name="input">/jsp/spot/newSpotAndCity.jsp</result>
             <result name="success" type="redirectAction">
-                <param name="actionName">spot_list</param>
+                <param name="actionName">createRoute</param>
             </result>
          </action>
         <action name="createSpot"

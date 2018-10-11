@@ -27,7 +27,7 @@
     </tr>
     <tr>
         <td>
-            <s:a action="spot_new">
+            <s:a action="choseContinent">
                 <s:text name="nav.newSpot"/>
             </s:a>
         </td>
@@ -44,11 +44,11 @@
     </tr>
     <tr>
 
-        <td>
+       <%-- <td>
             <s:a action="route_list">
                 <s:text name="nav.listRoute"/>
             </s:a>
-        </td>
+        </td>--%>
         <%--<td>
             <s:a action="zone_detail">
                 <s:text name="nav.detailZone"/>

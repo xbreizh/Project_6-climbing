@@ -38,8 +38,8 @@ public class RouteManagerImpl implements RouteManager {
     }
 
     @Override
-    public Route getRouteByName(String pLogin) {
-        return null;
+    public Route getRouteByName(String name) {
+        return routeDao.getRouteByName(name);
     }
 
     @Override
