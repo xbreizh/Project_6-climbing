@@ -33,7 +33,7 @@
     <ul>
         <li>Continent: <s:property value="country.continent"/></li>
         <li>Country: <s:property value="country.name"/></li>
-        <li>Region: <s:property value="region"/></li>
+        <li>City: <s:property value="city"/></li>
         <li>Name: <s:property value="name"/></li>
         <li>Description: <s:property value="description"/></li>
         <li>Creator:

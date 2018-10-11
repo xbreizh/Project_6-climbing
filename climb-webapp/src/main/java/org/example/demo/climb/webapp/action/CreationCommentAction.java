@@ -3,10 +3,10 @@ package org.example.demo.climb.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
-import org.example.demo.climb.business.contract.manager.CountryManager;
+import org.example.demo.climb.business.contract.manager.CommentManager;
 import org.example.demo.climb.business.contract.manager.RouteManager;
 import org.example.demo.climb.business.contract.manager.SpotManager;
-import org.example.demo.climb.model.bean.Country;
+import org.example.demo.climb.model.bean.Comment;
 import org.example.demo.climb.model.bean.Route;
 import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.exception.NotFoundException;
@@ -17,22 +17,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class CreationRouteAction extends LoginAction implements SessionAware {
+public class CreationCommentAction extends LoginAction implements SessionAware {
 
-    private Route route;
+    private Comment comment;
     private int id;
 
-    private String country;
+    /*private String country;
     private List<Integer> heighList=new ArrayList<>();
     private List<String> gradeList=new ArrayList<>();
-    private List<String> typeList=new ArrayList<>();
-    private List<Route> routeList=new ArrayList<>();
+    private List<String> typeList=new ArrayList<>();*/
+    private List<Comment> commentList=new ArrayList<>();
 
 
-    private Spot spot;
+    private Route route;
 
     @Inject
-    private SpotManager spotManager;
+    private CommentManager commentManager;
     @Inject
     private RouteManager routeManager;
 
@@ -40,23 +40,22 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
 
 
     public String doList() throws  NotFoundException{
-        spot = spotManager.getSpotById(id);
-        routeList = spot.getRouteList();
-        System.out.println("tried to get the route liste");
+       /* commentList = commentManager.getListComment();*/
+        System.out.println("tried to get the comment liste");
         return ActionSupport.SUCCESS;
     }
-    public String doCreateRoute() throws NotFoundException {
+    public String doCreateComment() throws NotFoundException {
         String vResult= ActionSupport.INPUT;
         System.out.println("je suis suppose etre la");
 
-        if(route!=null){
-            routeManager.addRoute(route);
+        if(comment!=null){
+            commentManager.addComment(comment);
             vResult = ActionSupport.SUCCESS;
         }else{
-            spot = spotManager.getSpotById(id);
+            /*comment = commentManager.getSpotById(id);
             gradeList = routeManager.getListGrade();
             typeList = routeManager.getListClimbingType();
-            heighList= IntStream.range(1, 50).boxed().collect(Collectors.toList());
+            heighList= IntStream.range(1, 50).boxed().collect(Collectors.toList());*/
         }
         return vResult;
     }
@@ -103,50 +102,13 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
 
     // Getters and Setters
 
-    public List<Route> getRouteList() {
-        return routeList;
+
+    public Comment getComment() {
+        return comment;
     }
 
-    public void setRouteList(List<Route> routeList) {
-        this.routeList = routeList;
-    }
-    public Spot getSpot() {
-        return spot;
-    }
-
-    public void setSpot(Spot spot) {
-        this.spot = spot;
-    }
-    public List<Integer> getHeighList() {
-        return heighList;
-    }
-
-    public void setHeighList(List<Integer> heighList) {
-        this.heighList = heighList;
-    }
-
-    public List<String> getGradeList() {
-        return gradeList;
-    }
-
-    public void setGradeList(List<String> gradeList) {
-        this.gradeList = gradeList;
-    }
-
-    public List<String> getTypeList() {
-        return typeList;
-    }
-
-    public void setTypeList(List<String> typeList) {
-        this.typeList = typeList;
-    }
-
-    public Route getRoute() {
-        return route;
-    }
-
-    public void setRoute(Route route) {
-        this.route = route;
+    public void setComment(Comment comment) {
+        this.comment = comment;
     }
 
     public int getId() {
@@ -156,11 +118,20 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
     public void setId(int id) {
         this.id = id;
     }
-    public String getCountry() {
-        return country;
+
+    public List<Comment> getCommentList() {
+        return commentList;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
+    }
+
+    public Route getRoute() {
+        return route;
+    }
+
+    public void setRoute(Route route) {
+        this.route = route;
     }
 }

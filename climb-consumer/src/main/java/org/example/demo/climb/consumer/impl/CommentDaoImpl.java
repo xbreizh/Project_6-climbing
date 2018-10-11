@@ -20,20 +20,29 @@ public class CommentDaoImpl implements CommentDao {
     private MemberDao memberDao;
 
     @Override
-    public void add(Object o) {
-        sessionFactory.getCurrentSession().persist(o);
+    public void add(Comment comment) {
+        sessionFactory.getCurrentSession().persist(comment);
+    }
+
+   /* @Override
+    public List<Comment> getAllRouteComment(int id) {
+        Query query=sessionFactory.getCurrentSession().createQuery("from Comment where route.id=:id");
+        query.setParameter("id", id);
+        return query.getResultList();
     }
 
     @Override
-    public List getAll() {
-        return sessionFactory.getCurrentSession().createQuery("from Comment").list();
-    }
-
+    public List<Comment> getAllSpotComment(int id) {
+        Query query=sessionFactory.getCurrentSession().createQuery("from Comment where spot.id=:id");
+        query.setParameter("id", id);
+        return query.getResultList();
+    }*/
+/*
     @Override
     public Object getById(int id) {
         return(Comment) sessionFactory.getCurrentSession().get(cl, id);
     }
-
+*/
     @Override
     public void update(Object o) {
         sessionFactory.getCurrentSession().update(o);
@@ -45,7 +54,7 @@ public class CommentDaoImpl implements CommentDao {
     }
 
 
-    @Override
+   /* @Override
     public void updateWhenDeletingMember(int id1, int id2){
         Member m = (Member) memberDao.getById(id1);
         Query query=sessionFactory.getCurrentSession().createQuery("update Comment set member= :member1 where member.id=:member2");
@@ -53,7 +62,7 @@ public class CommentDaoImpl implements CommentDao {
         query.setParameter("member2", id2);
         int result = query.executeUpdate();
         System.out.println("updated list?");
-    }
+    }*/
 
 
 }

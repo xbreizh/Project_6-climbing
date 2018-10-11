@@ -19,7 +19,7 @@
            <!-- <result>/jsp/route/form/newRoute.jsp</result>-->
             <result name="input">/jsp/route/form/newRoute.jsp</result>
             <result name="success" type="redirectAction">
-                <param name="actionName">route_list</param>
+                <param name="actionName">spot_detail</param>
             </result>
         </action>
 
@@ -31,8 +31,8 @@
         </action>
 
         <!--READ ONE -->
-        <action name="spot_detail"
-                class="org.example.demo.climb.webapp.action.CreationSpotAction"
+        <action name="route_detail"
+                class="org.example.demo.climb.webapp.action.CreationRouteAction"
                 method="doDetail">
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
@@ -42,8 +42,8 @@
             <result name="success">jsp/spot/detail.jsp</result>
         </action>
 
-        <action name="spot_edit"
-                class="org.example.demo.climb.webapp.action.CreationSpotAction"
+        <action name="route_edit"
+                class="org.example.demo.climb.webapp.action.CreationRouteAction"
                 method="doEdit">
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
@@ -53,14 +53,28 @@
         </action>
 
         <!-- UPDATE -->
-        <action name="spot_update"
-                class="org.example.demo.climb.webapp.action.CreationSpotAction"
+        <action name="route_update"
+                class="org.example.demo.climb.webapp.action.CreationRouteAction"
                 method="doUpdate">
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
             <result name="input">/jsp/spot/form/update.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">route_list</param>
+            </result>
+        </action>
+
+        <!-- DELETE -->
+        <action name="route_delete"
+                class="org.example.demo.climb.webapp.action.CreationRouteAction"
+                method="doDelete">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+           <!-- <result name="input">/jsp/spot/form/update.jsp</result>-->
             <result name="success" type="redirectAction">
                 <param name="actionName">spot_list</param>
             </result>

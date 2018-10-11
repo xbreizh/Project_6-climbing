@@ -26,15 +26,15 @@
         </action>
 
 
-       <!-- &lt;!&ndash; READ ALL &ndash;&gt;
+        <!-- READ ALL -->
         <action name="spot_list"
                 class="org.example.demo.climb.webapp.action.GestionSpotAction"
                 method="doList">
             <result>/jsp/spot/list.jsp</result>
 
-        </action>-->
+        </action>
 
-<!--        &lt;!&ndash;READ ONE &ndash;&gt;
+        <!--READ ONE -->
         <action name="spot_detail"
                 class="org.example.demo.climb.webapp.action.GestionSpotAction"
                 method="doDetail">
@@ -44,13 +44,13 @@
             <interceptor-ref name="defaultStack"/>
 
             <result name="success">jsp/spot/detail.jsp</result>
-        </action>-->
+        </action>
 
 
 
 
-        <!-- EDIT -->
-        <!--<action name="spot_edit"
+       <!-- EDIT-->
+        <action name="spot_edit"
                 class="org.example.demo.climb.webapp.action.GestionSpotAction"
                 method="doEdit">
             <interceptor-ref name="store">
@@ -58,7 +58,7 @@
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
             <result name="success">/jsp/spot/form/update.jsp</result>
-        </action>-->
+        </action>
 
 
         <!-- DELETE -->

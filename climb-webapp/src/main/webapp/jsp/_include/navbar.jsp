@@ -40,21 +40,21 @@
             </s:a>
         </td>
     </tr>
-    <%--<tr>
-        <td>
+    <tr>
+       <%-- <td>
             <s:a action="zone_new">
                 <s:text name="nav.newZone"/>
             </s:a>
-        </td>
+        </td>--%>
         <td>
-            <s:a action="zone_list">
-                <s:text name="nav.listZone"/>
+            <s:a action="route_list">
+                <s:text name="nav.listRoute"/>
             </s:a>
         </td>
-        <td>
+        <%--<td>
             <s:a action="zone_detail">
                 <s:text name="nav.detailZone"/>
             </s:a>
-        </td>
-    </tr>--%>
+        </td>--%>
+    </tr>
 </table>

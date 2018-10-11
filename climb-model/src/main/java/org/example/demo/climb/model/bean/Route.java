@@ -3,8 +3,10 @@ package org.example.demo.climb.model.bean;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
-    @Entity
+@Entity
     public class Route {
 
         @Id
@@ -20,12 +22,27 @@ import javax.validation.constraints.Size;
         private int height;
 
         @NotNull
+        private int number;
+
+        public int getNumber() {
+            return number;
+        }
+
+        public void setNumber(int number) {
+            this.number = number;
+        }
+
+        @NotNull
         @Size(min = 1, max = 5)
         private String grade;
 
         @NotNull
         @Size(min = 1, max = 20)
         private String type;
+
+        @NotNull
+        @Size(min = 1, max = 250)
+        private String description;
 
         @NotNull
         @ManyToOne
@@ -35,9 +52,27 @@ import javax.validation.constraints.Size;
         @ManyToOne()
         private Spot spot;
 
+        @OneToMany(mappedBy = "route", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+        private List<Comment> commentList= new ArrayList<>();
+
         public Route() {
         }
 
+        public List<Comment> getCommentList() {
+            return commentList;
+        }
+
+        public void setCommentList(List<Comment> commentList) {
+            this.commentList = commentList;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
         public int getId() {
             return id;
         }
