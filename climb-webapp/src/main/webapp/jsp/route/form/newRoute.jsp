@@ -8,7 +8,8 @@
 <body>
 
 
-<h2>Route Creation</h2>
+<h2><s:property value="%{spot.name}"/></h2>
+<h3>New Route:</h3>
 <li>Id: <s:property value="id"/></li>
 <s:form action="createRoute" method="POST">
     <s:textfield type="text" name="route.name" label="Name" requiredLabel="true"/>
@@ -20,5 +21,10 @@
     <s:textfield name="route.spot.id" value="%{spot.id}" label="Spot" requiredLabel="true" />
     <s:submit value="OK"/>
 </s:form>
+
+<s:a action="spot_detail">
+    <s:param name="id" value="%{spot.id}"/>
+    Back to List:
+</s:a>
 </body>
 </html>

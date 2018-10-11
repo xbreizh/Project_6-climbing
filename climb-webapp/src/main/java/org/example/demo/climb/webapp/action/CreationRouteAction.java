@@ -51,6 +51,7 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
 
         if(route!=null){
             routeManager.addRoute(route);
+            this.addActionMessage("Route "+route.getName()+" successfully created");
             vResult = ActionSupport.SUCCESS;
         }else{
             spot = spotManager.getSpotById(id);

@@ -26,7 +26,10 @@ Spot List</s:a>
             <s:property value="spot.memberSpot.login"/>
         </s:a>
     </li>
-
+    <s:a action="createRoute">
+        <s:param name="id" value="id"/>
+        Add Route:
+    </s:a>
     <s:if test="spot.routeList.size() > 0">
         <img src="http://vincent.boulas.free.fr/teamgrimptout/topos/ainsavoiehautesavoie/topo_malpas.gif">
         <h2>Routes</h2>
@@ -51,6 +54,9 @@ Spot List</s:a>
             <br>
         </s:iterator>
     </s:if>
+    <s:else>
+        <h2> No route yet for this Spot </h2>
+    </s:else>
     <%--<s:form action="createComment" method="POST">
         <s:textarea type="text"  label="Comment" requiredLabel="true"/>
         <s:textfield name="comment.memberComment.id" label="Member" value="%{session.user.id}" requiredLabel="true" />

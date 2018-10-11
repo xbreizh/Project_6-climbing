@@ -23,7 +23,7 @@ import java.util.List;
     private String name;
 
     @NotNull
-    @Size(min = 10, max = 100)
+    @Size(min = 10, max = 1000)
     private String description;
 
     private int rateMore;
