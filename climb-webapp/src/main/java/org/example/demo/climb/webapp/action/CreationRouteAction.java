@@ -29,6 +29,8 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
     private List<Route> routeList=new ArrayList<>();
 
 
+
+
     private Spot spot;
 
     @Inject
@@ -50,16 +52,24 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
         System.out.println("je suis suppose etre la");
 
         if(route!=null){
-            /*System.out.println("check if name in the dbb: "+routeManager.getRouteByName(route.getName().toUpperCase()));*/
+            gradeList = routeManager.getListGrade();
+            typeList = routeManager.getListClimbingType();
+            heighList= IntStream.range(1, 50).boxed().collect(Collectors.toList());
             if(routeManager.getRouteByName(route.getName().toUpperCase())==null){
                 route.setName(route.getName().toUpperCase());
                 routeManager.addRoute(route);
                 this.addActionMessage("Route "+route.getName()+" successfully created");
                 vResult = ActionSupport.SUCCESS;
             }else{
+                System.out.println("id from route: "+route.getSpot().getId());
+                spot = spotManager.getSpotById(route.getSpot().getId());
+                System.out.println("id found: "+spot.getId());
+
+                System.out.println("error found");
+
                 this.addActionError("That route already exists, " +
                         "if you wish to add some new information, please add a comment ");
-                return ActionSupport.ERROR;
+                /*return ActionSupport.ERROR;*/
             }
         }else{
             spot = spotManager.getSpotById(id);
@@ -172,4 +182,5 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
     public void setCountry(String country) {
         this.country = country;
     }
+
 }

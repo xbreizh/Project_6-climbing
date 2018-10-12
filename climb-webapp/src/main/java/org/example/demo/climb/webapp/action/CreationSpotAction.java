@@ -6,6 +6,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.example.demo.climb.business.contract.manager.CountryManager;
 import org.example.demo.climb.business.contract.manager.SpotManager;
 import org.example.demo.climb.model.bean.Country;
+import org.example.demo.climb.model.bean.Route;
 import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.exception.NotFoundException;
 
@@ -19,6 +20,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     private List<String> countryList=new ArrayList<>();
     private List<String> cityList=new ArrayList<>();
     private List<Spot> spotList = new ArrayList<>();
+    private List<Route> routeList = new ArrayList<>();
     private String continent="";
     private String country="";
     private String city="";
@@ -79,15 +81,13 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         return vResult;
     }
 
-
-
-
-
     public String doDetail() throws NotFoundException {
         String vResult = ActionSupport.SUCCESS;
         System.out.println("tentative de recuperation de l'id: "+id);
         spot = spotManager.getSpotById(id);
-
+        /*System.out.println(spot);*/
+        routeList = spot.getRouteList();
+        System.out.println("size routeList: "+routeList.size());
         if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;
         }
@@ -131,6 +131,13 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         return vResult;
     }
     // Getters and Setters
+    public List<Route> getRouteList() {
+        return routeList;
+    }
+
+    public void setRouteList(List<Route> routeList) {
+        this.routeList = routeList;
+    }
     public List<Spot> getSpotList() {
         return spotList;
     }

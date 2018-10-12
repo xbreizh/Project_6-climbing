@@ -10,16 +10,17 @@
 <br><br>
 <s:a action="spot_detail">
     <s:param name="id" value="route.spot.id"/>
-    Back
+    Back to Spot
 </s:a>
 <br><br>
 <s:if test="#session.user">
     <s:form action="createComment" method="POST">
-        <s:textfield name="comment.route.id" value="%{route.id}"/>
-        <s:textfield name="comment.memberComment.id" value="%{session.user.id}" label="Member:"/>
-        <s:textarea name="comment.text" value="Type Spot Name" requiredLabel="true"/>
+        <s:hidden name="comment.route.id" value="%{route.id}"/>
+        <s:hidden name="comment.memberComment.id" value="%{session.user.id}" label="Member:"/>
+        <s:textarea name="comment.text" value="Type your comment"  requiredLabel="true" onclick=""/>
         <s:submit value="Create"/>
     </s:form>
+
 
 </s:if>
 <s:else>

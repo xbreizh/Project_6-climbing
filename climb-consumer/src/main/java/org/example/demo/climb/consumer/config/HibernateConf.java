@@ -20,7 +20,9 @@ public class HibernateConf {
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan("org.example.demo.climb.consumer");
         sessionFactory.setPackagesToScan("org.example.demo.climb.model");
-        sessionFactory.setHibernateProperties(hibernateProperties());
+        Properties hProperties = hibernateProperties();
+        hProperties.setProperty("show_sql", "true");
+        sessionFactory.setHibernateProperties(hProperties);
         return sessionFactory;
     }
 
@@ -28,7 +30,7 @@ public class HibernateConf {
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://127.0.0.1:5432/test");
+        dataSource.setUrl("jdbc:postgresql://127.0.0.1:5432/test2");
         dataSource.setUsername("ocp");
         dataSource.setPassword("123");
 

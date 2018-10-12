@@ -7,8 +7,6 @@
 <%@include file="../../_include/header.jsp" %>
 
 <body>
-
-
 <h2><s:property value="%{spot.name}"/> - New Route:</h2>
 <li>Id: <s:property value="id"/></li>
 <s:form action="createRoute" method="POST">
@@ -19,6 +17,7 @@
     <s:textarea type="text" name="route.description" label="Description" requiredLabel="true"/>
     <s:textfield name="route.memberRoute.id" label="Member" value="%{session.user.id}" requiredLabel="true" />
     <s:textfield name="route.spot.id" value="%{spot.id}" label="Spot" requiredLabel="true" />
+    <s:hidden name="id" value="%{id}" />
     <s:submit value="OK"/>
 </s:form>
 
