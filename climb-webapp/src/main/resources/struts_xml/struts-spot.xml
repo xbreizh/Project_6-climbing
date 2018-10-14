@@ -69,9 +69,9 @@
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
-
             <result name="success" type="redirectAction">
                 <param name="actionName">spot_list</param>
+                <param name="id">${id}</param>
             </result>
         </action>
 

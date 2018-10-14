@@ -1,13 +1,4 @@
 package org.example.demo.climb.business.impl;
-import org.example.demo.climb.business.contract.manager.ZoneManager;
-import org.example.demo.climb.consumer.contract.ZoneDao;
-import org.example.demo.climb.model.bean.Zone;
-import org.hibernate.SessionFactory;
-import org.springframework.transaction.annotation.Transactional;
-
-import javax.inject.Inject;
-import javax.inject.Named;
-import java.util.List;
 
 /*@Transactional
 @Named("zoneManager")*/

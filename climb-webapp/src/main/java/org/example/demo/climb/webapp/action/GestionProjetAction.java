@@ -2,7 +2,6 @@ package org.example.demo.climb.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.example.demo.climb.business.contract.ManagerFactory;
-import org.example.demo.climb.model.bean.member.Utilisateur;
 import org.example.demo.climb.model.bean.projet.Projet;
 
 import javax.inject.Inject;
@@ -16,15 +15,15 @@ public class GestionProjetAction extends LoginAction {
 
     private Projet projet;
 
-    private List<Utilisateur> listUtilisateur;
+   /* private List<Utilisateur> listUtilisateur;*/
 
     @Inject
     private ManagerFactory managerFactory;
 
     /*Getters / Setters*/
-    public List<Utilisateur> getListUtilisateur() {
+   /* public List<Utilisateur> getListUtilisateur() {
         return listUtilisateur;
-    }
+    }*/
 
     public int getId() {
         return id;

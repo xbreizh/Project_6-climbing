@@ -1,13 +1,11 @@
 package org.example.demo.climb.webapp.action;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.ServletActionContext;
-import org.apache.struts2.components.ActionError;
 import org.apache.struts2.interceptor.SessionAware;
-import org.example.demo.climb.business.contract.manager.CountryManager;
-import org.example.demo.climb.business.contract.manager.MemberManager;
-import org.example.demo.climb.business.contract.manager.SpotManager;
+import org.example.demo.climb.business.contract.CountryManager;
+import org.example.demo.climb.business.contract.MemberManager;
+import org.example.demo.climb.business.contract.SpotManager;
 import org.example.demo.climb.model.bean.Country;
 import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.bean.Member;
@@ -135,6 +133,7 @@ public class GestionSpotAction extends LoginAction implements SessionAware {
     }
 
     public void setId(int id) {
+        System.out.println("trying to get id");
         this.id = id;
     }
 
@@ -143,6 +142,7 @@ public class GestionSpotAction extends LoginAction implements SessionAware {
     }
 
     public void setSpot(Spot spot) {
+        System.out.println("trying to modify spot");
         this.spot = spot;
     }
 
@@ -277,11 +277,13 @@ public class GestionSpotAction extends LoginAction implements SessionAware {
         return vResult;
     }*/
 
-    public String doDelete() {
+    /*public String doDelete() {
+        System.out.println("ici");
         String vResult = ActionSupport.SUCCESS;
+        System.out.println(this.hasActionErrors());
         System.out.println("delete id: " + id);
 
-
+        System.out.println("trying des trucs");
         spotManager.deleteSpot(id);
 
         if (this.hasErrors()) {
@@ -289,6 +291,6 @@ public class GestionSpotAction extends LoginAction implements SessionAware {
         }
         return vResult;
 
-    }
+    }*/
 
 }

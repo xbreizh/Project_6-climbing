@@ -3,8 +3,8 @@ package org.example.demo.climb.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
-import org.example.demo.climb.business.contract.manager.CountryManager;
-import org.example.demo.climb.business.contract.manager.SpotManager;
+import org.example.demo.climb.business.contract.CountryManager;
+import org.example.demo.climb.business.contract.SpotManager;
 import org.example.demo.climb.model.bean.Country;
 import org.example.demo.climb.model.bean.Route;
 import org.example.demo.climb.model.bean.Spot;
@@ -129,6 +129,22 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
             vResult = ActionSupport.ERROR;
         }
         return vResult;
+    }
+
+    public String doDelete() {
+        System.out.println("ici");
+        String vResult = ActionSupport.SUCCESS;
+        System.out.println(this.hasActionErrors());
+        System.out.println("delete id: " + id);
+
+        System.out.println("trying des trucs");
+        spotManager.deleteSpot(id);
+
+        if (this.hasErrors()) {
+            vResult = ActionSupport.ERROR;
+        }
+        return vResult;
+
     }
     // Getters and Setters
     public List<Route> getRouteList() {

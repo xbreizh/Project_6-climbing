@@ -1,7 +1,5 @@
 package org.example.demo.climb.business.contract;
 
-import org.example.demo.climb.business.contract.manager.MemberManager;
-
 
 /**
  * Factory des Managers

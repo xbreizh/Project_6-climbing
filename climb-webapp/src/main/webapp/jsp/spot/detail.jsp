@@ -12,7 +12,11 @@
 &lt;%&ndash;<s:property value="spot.memberSpot.login"/>&ndash;%&gt;--%>
 Spot List</s:a>
 
-
+<br><br>
+<s:a action="comment_list_spot">
+    <s:param name="id" value="id"/>
+    Comment(s):
+</s:a><br>
 <ul>
     <li>Id: <s:property value="id"/></li>
     <li>Continent: <s:property value="spot.country.continent"/></li>
@@ -26,6 +30,10 @@ Spot List</s:a>
             <s:property value="spot.memberSpot.login"/>
         </s:a>
     </li>
+    <li><s:a action="spot_edit">
+        <s:param name="id" value="id"/>
+        Edit
+    </s:a></li><br>
     <s:a action="createRoute">
         <s:param name="id" value="id"/>
         Add Route:
@@ -45,7 +53,7 @@ Spot List</s:a>
                 <s:property value="memberRoute.login"/>
             </s:a>
            <%-- <s:if test="commentList.size() ==0">--%>
-            <s:a action="comment_list">
+            <s:a action="comment_list_route">
                 <s:param name="id" value="id"/>
                 Comment(s):
             </s:a>

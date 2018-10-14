@@ -3,7 +3,7 @@ package org.example.demo.climb.webapp.converter;
 import com.opensymphony.xwork2.conversion.TypeConversionException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.util.StrutsTypeConverter;
-import org.example.demo.climb.business.contract.manager.CountryManager;
+import org.example.demo.climb.business.contract.CountryManager;
 import org.example.demo.climb.model.bean.Country;
 
 import javax.inject.Inject;

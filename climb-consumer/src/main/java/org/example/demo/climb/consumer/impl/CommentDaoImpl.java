@@ -27,6 +27,13 @@ public class CommentDaoImpl implements CommentDao {
     }
 
     @Override
+    public List<Comment> getListCommentBySpot(int id) {
+        Query query=sessionFactory.getCurrentSession().createQuery("from Comment where spot.id=:id order by date desc");
+        query.setParameter("id", id);
+        return query.getResultList();
+    }
+
+    @Override
     public void add(Comment comment) {
         sessionFactory.getCurrentSession().persist(comment);
     }

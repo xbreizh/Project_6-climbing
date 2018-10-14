@@ -38,10 +38,10 @@ import java.util.List;
     @ManyToOne
     private Member memberSpot;
 
-    @OneToMany(mappedBy = "spot", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "spot", fetch=FetchType.EAGER, cascade=CascadeType.ALL, orphanRemoval = true)
     private List<Route> routeList= new ArrayList<>();
 
-    @OneToMany(mappedBy = "spot", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "spot", fetch=FetchType.EAGER, cascade=CascadeType.ALL, orphanRemoval = true)
     private List<Comment> commentList= new ArrayList<>();
 
     public Spot() {

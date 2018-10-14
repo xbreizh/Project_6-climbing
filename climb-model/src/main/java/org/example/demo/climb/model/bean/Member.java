@@ -3,9 +3,7 @@ package org.example.demo.climb.model.bean;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 public class Member {
@@ -53,8 +51,11 @@ public class Member {
     @OneToMany(mappedBy = "memberComment", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<Comment> commentList = new ArrayList<>();
 
-    /*@OneToMany(mappedBy = "owner", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-    private List<Topo> topoList = new ArrayList<>();*/
+    @OneToMany(mappedBy = "owner",  fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    private List<Topo> topoListOwned = new ArrayList<>();
+
+    @OneToMany(mappedBy = "borrower",  fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    private List<Borrow> ListBorrows = new ArrayList<>();
 
     public Member() {
     }
@@ -163,27 +164,19 @@ public class Member {
         this.commentList = commentList;
     }
 
-   /* public List<Topo> getTopoList() {
-        return topoList;
+    public List<Topo> getTopoListOwned() {
+        return topoListOwned;
     }
 
-    public void setTopoList(List<Topo> topoList) {
-        this.topoList = topoList;
-    }*/
+    public void setTopoListOwned(List<Topo> topoListOwned) {
+        this.topoListOwned = topoListOwned;
+    }
 
-    @Override
-    public String toString() {
-        return "Member{" +
-                "id=" + id +
-                ", login='" + login + '\'' +
-                ", login2='" + login2 + '\'' +
-                ", role='" + role + '\'' +
-                ", active=" + active +
-                ", password='" + password + '\'' +
-                ", description='" + description + '\'' +
-                ", datejoin=" + datejoin +
-                ", dateLastConnect=" + dateLastConnect +
-                ", email='" + email + '\'' +
-                '}';
+    public List<Borrow> getListBorrows() {
+        return ListBorrows;
+    }
+
+    public void setListBorrows(List<Borrow> listBorrows) {
+        ListBorrows = listBorrows;
     }
 }

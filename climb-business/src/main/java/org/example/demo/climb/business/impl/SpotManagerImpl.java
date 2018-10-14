@@ -1,9 +1,9 @@
 package org.example.demo.climb.business.impl;
 
 
-import org.example.demo.climb.business.contract.manager.CountryManager;
-import org.example.demo.climb.business.contract.manager.MemberManager;
-import org.example.demo.climb.business.contract.manager.SpotManager;
+import org.example.demo.climb.business.contract.CountryManager;
+import org.example.demo.climb.business.contract.MemberManager;
+import org.example.demo.climb.business.contract.SpotManager;
 import org.example.demo.climb.consumer.contract.SpotDao;
 import org.example.demo.climb.model.bean.Country;
 import org.example.demo.climb.model.bean.Spot;

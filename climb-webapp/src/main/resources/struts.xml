@@ -45,7 +45,7 @@
     <action name="member_list"
             class="org.example.demo.climb.webapp.action.GestionMemberAction"
             method="doList">
-        <result>/jsp/member/list.jsp</result>
+        <result>/jsp/member/listCommentRoute.jsp</result>
 
     </action>-->
 
@@ -146,7 +146,7 @@
             &lt;!&ndash;<action name="projet_list"
             class="org.example.demo.climb.webapp.action.GestionProjetAction"
             method="doList">
-            <result>jsp/projet/list.jsp</result>
+            <result>jsp/projet/listCommentRoute.jsp</result>
 
         </action>&ndash;&gt;
 

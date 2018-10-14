@@ -6,7 +6,7 @@
 
 <body>
 
-<h1><s:property value="%{route.name}"/>- Comments</h1>
+<h1><s:property value="%{route.name}"/>- Comments (Route)</h1>
 <br><br>
 <s:a action="spot_detail">
     <s:param name="id" value="route.spot.id"/>
@@ -14,7 +14,7 @@
 </s:a>
 <br><br>
 <s:if test="#session.user">
-    <s:form action="createComment" method="POST">
+    <s:form action="createCommentRoute" method="POST">
         <s:hidden name="comment.route.id" value="%{route.id}"/>
         <s:hidden name="comment.memberComment.id" value="%{session.user.id}" label="Member:"/>
         <s:textarea name="comment.text" value="Type your comment"  requiredLabel="true" onclick=""/>
@@ -27,7 +27,7 @@
     New Comment!
     <s:a action="login">Connect</s:a>
 </s:else>
-<s:iterator value="commentList">
+<s:iterator value="commentListRoute">
     <ul>
         <li>Login: <s:a action="member_detail">
             <s:param name="id" value="memberComment.id"/>

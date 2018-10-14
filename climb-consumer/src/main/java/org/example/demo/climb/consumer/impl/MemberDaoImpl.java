@@ -48,7 +48,7 @@ public class MemberDaoImpl  implements MemberDao {
 
     @Override
     public void update(Object o) {
-        sessionFactory.getCurrentSession().update(o);
+        sessionFactory.getCurrentSession().update(cl.getName(), o);
     }
 
     @Override

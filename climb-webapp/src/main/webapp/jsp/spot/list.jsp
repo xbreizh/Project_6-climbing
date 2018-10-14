@@ -47,6 +47,10 @@
             <s:a action="spot_detail">Details
                 <s:param name="id" value="id"/>
             </s:a>
+            <s:a action="spot_edit">
+                <s:param name="id" value="id"/>
+                Edit
+            </s:a>
         </li>
     </ul>
 </s:iterator>

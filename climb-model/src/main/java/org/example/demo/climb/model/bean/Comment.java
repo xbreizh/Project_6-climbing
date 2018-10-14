@@ -5,20 +5,34 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
-@Entity
-public class Comment {
+    @Entity
+    public class Comment {
 
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-@Column(name = "id", updatable = false, nullable = false)
-private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false, nullable = false)
+    private int id;
 
-@NotNull
-@Size(min = 1, max = 100)
-private String text;
+    @NotNull
+    @Size(min = 1, max = 100)
+    private String text;
 
-@NotNull
-private Date date;
+    @NotNull
+    private Date date;
+
+
+    @NotNull
+    @ManyToOne
+    private Member memberComment;
+
+    @ManyToOne
+    private Route route;
+
+    @ManyToOne
+    private Spot spot;
+
+    public Comment() {
+    }
 
     public int getId() {
         return id;
@@ -67,21 +81,5 @@ private Date date;
     public void setSpot(Spot spot) {
         this.spot = spot;
     }
-
-    @NotNull
-@ManyToOne
-private Member memberComment;
-
-
-@ManyToOne
-private Route route;
-
-
-@ManyToOne
-private Spot spot;
-
-public Comment() {
-}
-
 
 }

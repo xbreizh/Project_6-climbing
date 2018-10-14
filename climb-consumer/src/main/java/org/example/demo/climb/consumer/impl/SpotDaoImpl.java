@@ -96,6 +96,13 @@ public class SpotDaoImpl implements SpotDao {
 
     /*@Override*/
     public void delete(Spot o) {
+        // removing object from memberSpotList
+      /*  o.getMemberSpot().getSpotList().remove(o);
+        System.out.println("remove routes");
+        o.getCommentList().removeAll(o.getCommentList());
+        System.out.println("broke link with member");
+        o.getRouteList().removeAll(o.getRouteList());
+        System.out.println("remove comments");*/
         sessionFactory.getCurrentSession().delete(cl.getName(), o);
     }
 

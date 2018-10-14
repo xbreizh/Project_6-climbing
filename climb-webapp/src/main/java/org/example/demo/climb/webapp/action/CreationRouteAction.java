@@ -3,10 +3,8 @@ package org.example.demo.climb.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
-import org.example.demo.climb.business.contract.manager.CountryManager;
-import org.example.demo.climb.business.contract.manager.RouteManager;
-import org.example.demo.climb.business.contract.manager.SpotManager;
-import org.example.demo.climb.model.bean.Country;
+import org.example.demo.climb.business.contract.RouteManager;
+import org.example.demo.climb.business.contract.SpotManager;
 import org.example.demo.climb.model.bean.Route;
 import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.exception.NotFoundException;

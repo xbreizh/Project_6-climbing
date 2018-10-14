@@ -47,9 +47,23 @@
                 method="doList">
             <result>/jsp/spot/list.jsp</result>
         </action>
+
+        <!-- DELETE -->
+        <action name="spot_delete"
+                class="org.example.demo.climb.webapp.action.CreationSpotAction"
+                method="doDelete">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="redirectAction">
+                <param name="actionName">spot_list</param>
+                <param name="id">${id}</param>
+            </result>
+        </action>
         <!--<action name="createComment"
                 class="org.example.demo.climb.webapp.action.CreationSpotAction"
-                method="doCreateComment">
+                method="doCreateCommentRoute">
             <result name="input">/jsp/spot/newComment.jsp</result>
             <result name="success" type="redirectAction">
                 <param name="actionName">spot_list</param>

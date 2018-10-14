@@ -1,7 +1,5 @@
 package org.example.demo.climb.model.bean.projet;
 
-import org.example.demo.climb.model.bean.member.Utilisateur;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -25,9 +23,9 @@ public class Projet {
     private Date dateCreation;
 
     private Boolean cloture;
-
+/*
     @NotNull
-    private Utilisateur responsable;
+    private Utilisateur responsable;*/
 
 
     // ==================== Constructeurs ====================
@@ -72,12 +70,12 @@ public class Projet {
     public void setCloture(Boolean pCloture) {
         cloture = pCloture;
     }
-    public Utilisateur getResponsable() {
+   /* public Utilisateur getResponsable() {
         return responsable;
     }
     public void setResponsable(Utilisateur pResponsable) {
         responsable = pResponsable;
-    }
+    }*/
 
 
     // ==================== Méthodes ====================

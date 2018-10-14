@@ -1,5 +1,5 @@
 package org.example.demo.climb.business.impl;
-import org.example.demo.climb.business.contract.manager.CountryManager;
+import org.example.demo.climb.business.contract.CountryManager;
 import org.example.demo.climb.consumer.contract.CountryDao;
 import org.example.demo.climb.model.bean.Country;
 import org.hibernate.SessionFactory;

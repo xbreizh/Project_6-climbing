@@ -1,11 +1,8 @@
 package org.example.demo.climb.business.impl;
 
-import org.example.demo.climb.business.contract.manager.CommentManager;
-import org.example.demo.climb.business.contract.manager.ZoneManager;
+import org.example.demo.climb.business.contract.CommentManager;
 import org.example.demo.climb.consumer.contract.CommentDao;
-import org.example.demo.climb.consumer.contract.ZoneDao;
 import org.example.demo.climb.model.bean.Comment;
-import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.bean.Zone;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,6 +36,11 @@ public class CommentManagerImpl  implements CommentManager {
     @Override
     public List<Comment> getListCommentFromRoute(int id) {
         return commentDao.getListCommentByRoute(id);
+    }
+
+    @Override
+    public List<Comment> getListCommentFromSpot(int id) {
+        return commentDao.getListCommentBySpot(id);
     }
 
 

@@ -14,7 +14,7 @@
 <s:property value="%{route.id}"/>
 <s:if test="#session.user">
     Route: <s:property value="spot.route.name"/><br>
-    <s:form action="createComment" method="POST">
+    <s:form action="createCommentRoute" method="POST">
         <s:hidden name="route.id" value="%{route.id}"/>
         <s:textfield name="comment.memberComment.id" value="%{session.user.id}" label="Member:"/>
         <s:textarea name="comment.text" value="Type Spot Name" requiredLabel="true"/>
