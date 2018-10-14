@@ -15,7 +15,17 @@ public class Topo {
     @NotNull
     private String name;
 
+    @NotNull
+    private String edition;
 
+    @NotNull
+    private String author;
+
+    @NotNull
+    private int publishedYear;
+
+    @NotNull
+    private String keywords;
 
     @NotNull
     @ManyToOne
@@ -31,6 +41,36 @@ public class Topo {
 
     }
 
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+
+
+    public void setEdition(String edition) {
+        this.edition = edition;
+    }
+
+    public int getPublishedYear() {
+        return publishedYear;
+    }
+
+    public void setPublishedYear(int publishedYear) {
+        this.publishedYear = publishedYear;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -38,12 +78,17 @@ public class Topo {
     public void setName(String name) {
         this.name = name;
     }
-    public int getId() {
-        return id;
+
+    public String getEdition() {
+        return edition;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
     }
 
     public Member getOwner() {
@@ -69,6 +114,4 @@ public class Topo {
     public void setAvailable(boolean available) {
         this.available = available;
     }
-
-
 }

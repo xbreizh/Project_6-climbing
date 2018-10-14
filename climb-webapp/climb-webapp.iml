@@ -33,6 +33,7 @@
             <file>file://$MODULE_DIR$/src/main/resources/struts_xml/struts-creation-spot.xml</file>
             <file>file://$MODULE_DIR$/src/main/resources/struts_xml/struts-creation-route.xml</file>
             <file>file://$MODULE_DIR$/src/main/resources/struts_xml/struts-creation-comment.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/struts_xml/struts-topo.xml</file>
           </fileset>
           <propertiesKeys disabled="false" />
         </configuration>

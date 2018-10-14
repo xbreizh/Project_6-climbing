@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+
+    <package name="Topo" extends="struts-default">
+        <!-- CREATE-->
+        <action name="topo_new"
+                class="org.example.demo.climb.webapp.action.CreationTopoAction"
+                method="doCreateTopo">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+            <result name="input">/jsp/topo/form/new.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">topo_list</param>
+            </result>
+            <result name="error">/jsp/login.jsp</result>
+        </action>
+
+        <!-- READ ALL -->
+        <action name="topo_list"
+                class="org.example.demo.climb.webapp.action.CreationTopoAction"
+                method="doList">
+            <result>/jsp/topo/list.jsp</result>
+
+        </action>
+
+    </package>
+</struts>

@@ -11,6 +11,9 @@
 <s:a action="pwd_reset">
     Password Reset
 </s:a><br><br>
+<s:a action="topo_new">
+    Topo Creation
+</s:a><br><br>
 <%--<s:a action="demo_ajax">
     Demo Ajax
 </s:a><br><br>--%>
