@@ -23,7 +23,8 @@ Spot List</s:a>
     <li>Country: <s:property value="spot.country.name"/></li>
     <li>City: <s:property value="spot.city"/></li>
     <li>Description: <s:property value="spot.description"/></li>
-    <li>RouteList size: <s:property value="spot.routeList.size()"/></li>
+    <%--<li><a href="https://maps.google.com/?q=<s:property value="spot.latitude"/>,<s:property value="spot.longitude"/>">See map</a></li>--%>
+    <%@include file="map.jsp" %>
     <li>Creator:
         <s:a action="member_detail">
             <s:param name="id" value="spot.memberSpot.id"/>
@@ -56,6 +57,10 @@ Spot List</s:a>
             <s:a action="comment_list_route">
                 <s:param name="id" value="id"/>
                 Comment(s):
+            </s:a>
+            <s:a action="route_edit">
+                <s:param name="id" value="id"/>
+                Edit
             </s:a>
             <%--</s:if>--%>
             <br>

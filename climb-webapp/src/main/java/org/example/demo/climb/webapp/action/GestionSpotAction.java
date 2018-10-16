@@ -32,6 +32,9 @@ public class GestionSpotAction extends LoginAction implements SessionAware {
     private String city="";
     private Member member;
     private boolean showNew=false;
+    private String gpsCoordinates;
+
+
 
     public boolean isShowNew() {
         return showNew;
@@ -94,6 +97,13 @@ public class GestionSpotAction extends LoginAction implements SessionAware {
 
     public void setContinent(String continent) {
         this.continent = continent;
+    }
+    public String getGpsCoordinates() {
+        return gpsCoordinates;
+    }
+
+    public void setGpsCoordinates(String gpsCoordinates) {
+        this.gpsCoordinates = gpsCoordinates;
     }
 
     public String getCountry() {

@@ -8,8 +8,10 @@
 
 <h1>Liste de Spots</h1>
 <br><br>
-
-
+<s:a action="choseContinent">
+    <s:text name="nav.newSpot"/>
+</s:a>
+<br><br>
 <%--<s:a action="spot_new">Create</s:a><br><br>
 <s:a action="index" >Back to Menu</s:a><br><br>
 <s:form action="spot_list">
@@ -37,6 +39,7 @@
         <li>City: <s:property value="city"/></li>
         <li>Name: <s:property value="name"/></li>
         <li>Description: <s:property value="description"/></li>
+        <li>GPS coordinates: <s:property value="latitude"/>,<s:property value="longitude"/></li>
         <li>Creator:
             <s:a action="member_detail">
                 <s:param name="id" value="memberSpot.id"/>
@@ -47,10 +50,7 @@
             <s:a action="spot_detail">Details
                 <s:param name="id" value="id"/>
             </s:a>
-            <s:a action="spot_edit">
-                <s:param name="id" value="id"/>
-                Edit
-            </s:a>
+
         </li>
     </ul>
 </s:iterator>

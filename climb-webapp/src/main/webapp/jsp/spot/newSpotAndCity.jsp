@@ -25,6 +25,8 @@ Back<s:param name="id" value="%{c.id}"/>
     <s:textfield name="spot.city" requiredLabel="true" value="Type City Name"/>
     <s:textfield name="spot.memberSpot.id" value="%{session.user.id}" label="Member:"/>
     <s:textfield name="spot.name" value="Type Spot Name" requiredLabel="true"/>
+    <s:textfield name="spot.latitude" label="Latitude" />
+    <s:textfield name="spot.longitude" label="Longitude" /><a href="https://www.gps-coordinates.net/" target="_blank">Get coordinates</a>
     <s:textarea name="spot.description" value="Type Spot Description" requiredLabel="true"/>
     <s:submit value="Create"/>
 </s:form>

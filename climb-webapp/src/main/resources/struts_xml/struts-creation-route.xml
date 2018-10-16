@@ -67,6 +67,7 @@
             <result name="success">/jsp/spot/form/update.jsp</result>
         </action>
 
+
         <!-- UPDATE -->
         <action name="route_update"
                 class="org.example.demo.climb.webapp.action.CreationRouteAction"
@@ -77,7 +78,7 @@
             <interceptor-ref name="defaultStack"/>
             <result name="input">/jsp/spot/form/update.jsp</result>
             <result name="success" type="redirectAction">
-                <param name="actionName">route_list</param>
+                <param name="actionName">spot_list</param>
             </result>
         </action>
 

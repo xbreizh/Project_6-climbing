@@ -94,19 +94,29 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
     }
 
     public String doEdit() {
-        String vResult = ActionSupport.SUCCESS;
-
-        if (this.hasErrors()) {
-            vResult = ActionSupport.ERROR;
+        System.out.println("id: "+id);
+        try {
+            gradeList = routeManager.getListGrade();
+            typeList = routeManager.getListClimbingType();
+            heighList= IntStream.range(1, 50).boxed().collect(Collectors.toList());
+            route = routeManager.getRouteById(id);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
         }
-        return vResult;
+        System.out.println("doedit id: "+route.getId());
+        return ActionSupport.SUCCESS;
     }
     public String doUpdate() {
         String vResult = ActionSupport.INPUT;
 
+        if (this.route != null) {
+            System.out.println(route.getId());
+            routeManager.updateRoute(route);
+            System.out.println("Route: "+route);
+            vResult = ActionSupport.SUCCESS;
 
+        }
         if (this.hasErrors()) {
-            System.out.println("Spot is null");
             vResult = ActionSupport.ERROR;
         }
         return vResult;

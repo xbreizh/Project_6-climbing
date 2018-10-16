@@ -3,6 +3,7 @@ package org.example.demo.climb.model.bean;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,12 @@ import java.util.List;
     @NotNull
     @Size(min = 10, max = 1000)
     private String description;
+
+    @NotNull
+    private double latitude;
+
+    @NotNull
+    private double longitude;
 
     private int rateMore;
 
@@ -125,6 +132,22 @@ import java.util.List;
 
         public void setCommentList(List<Comment> commentList) {
             this.commentList = commentList;
+        }
+
+        public double getLatitude() {
+            return latitude;
+        }
+
+        public void setLatitude(double latitude) {
+            this.latitude = latitude;
+        }
+
+        public double getLongitude() {
+            return longitude;
+        }
+
+        public void setLongitude(double longitude) {
+            this.longitude = longitude;
         }
 
         @Override

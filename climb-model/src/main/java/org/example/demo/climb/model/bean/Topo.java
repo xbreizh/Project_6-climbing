@@ -25,6 +25,9 @@ public class Topo {
     private int publishedYear;
 
     @NotNull
+    private String description;
+
+    @NotNull
     private String keywords;
 
     @NotNull
@@ -49,7 +52,13 @@ public class Topo {
         this.author = author;
     }
 
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public void setEdition(String edition) {
         this.edition = edition;
@@ -113,5 +122,21 @@ public class Topo {
 
     public void setAvailable(boolean available) {
         this.available = available;
+    }
+
+    @Override
+    public String toString() {
+        return "Topo{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", edition='" + edition + '\'' +
+                ", author='" + author + '\'' +
+                ", publishedYear=" + publishedYear +
+                ", description=" + description +
+                ", keywords='" + keywords + '\'' +
+                ", owner=" + owner +
+                ", ListBorrows=" + ListBorrows +
+                ", available=" + available +
+                '}';
     }
 }

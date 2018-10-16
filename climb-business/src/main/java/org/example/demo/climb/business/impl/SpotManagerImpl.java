@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,6 +98,18 @@ public class SpotManagerImpl  implements SpotManager {
         if(!spot.getDescription().equals("")){
             s.setDescription(spot.getDescription());
             System.out.println("updated description");
+        }
+        if(!spot.getDescription().equals("")){
+            s.setDescription(spot.getDescription());
+            System.out.println("updated description");
+        }
+        if(spot.getLatitude()==0){
+            s.setLatitude(spot.getLatitude());
+            System.out.println("updated latitude");
+        }
+        if(spot.getLongitude()==0){
+            s.setLongitude(spot.getLongitude());
+            System.out.println("updated longitude");
         }
 
         spotDao.update(s);

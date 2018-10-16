@@ -44,15 +44,15 @@
     </tr>
     <tr>
 
-       <%-- <td>
-            <s:a action="route_list">
-                <s:text name="nav.listRoute"/>
+        <td>
+            <s:a action="topo_new">
+                <s:text name="nav.newTopo"/>
             </s:a>
-        </td>--%>
-        <%--<td>
-            <s:a action="zone_detail">
-                <s:text name="nav.detailZone"/>
+        </td>
+        <td>
+            <s:a action="topo_list">
+                <s:text name="nav.listTopo"/>
             </s:a>
-        </td>--%>
+        </td>
     </tr>
 </table>

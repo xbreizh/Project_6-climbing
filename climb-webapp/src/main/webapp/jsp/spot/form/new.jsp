@@ -18,6 +18,8 @@
         <s:textfield name="spot.city" requiredLabel="true" value="Type City Name"/>
         <s:textfield name="spot.memberSpot.id" value="%{session.user.id}" label="Member:"/>
         <s:textfield name="spot.name" value="Type Spot Name" requiredLabel="true"/>
+        <s:textarea name="spot.latitude" label="Latitude" />
+        <s:textarea name="spot.longitude" label="Longitude" /><a href="https://www.gps-coordinates.net/">Get coordinates</a>
         <s:textarea name="spot.description" value="Type Spot Description" requiredLabel="true"/>
         <s:submit value="Create"/>
     </s:form>
