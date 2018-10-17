@@ -22,12 +22,18 @@ public class SearchManagerImpl implements SearchManager {
     @Inject
     private SearchDao searchDao;
 
-
+    @Transactional(readOnly = true)
     @Override
     public List<Spot> findSpotByString(String str) {
         List<Spot> list =  searchDao.findListSpotByString(str);
+        for (Spot spot: list
+             ) {
+                spot.setName(spot.getName().replace(str, "<strong>" + str + "</strong>"));
+
+        }
         return list;
     }
+
 
     @Override
     public List<Topo> findTopoByString(String str) {

@@ -18,12 +18,14 @@
 
 <h2>Spot</h2>
 <div id="content">
+    Keyword: <s:property value="%{str}"/><br>
+    This is a color of red and blue and green and red and blue orange.
 <s:iterator value="spotList">
     <ul>
         <li>Continent: <s:property value="country.continent"/></li>
         <li>Country: <s:property value="country.name"/></li>
         <li>City: <s:property value="city"/></li>
-        <li>Name: <s:property value="name"/></li>
+        <li>Name: <s:property value="name" escapeHtml="false"/></li>
         <li>Description: <s:property value="description"/></li>
         <li>GPS coordinates: <s:property value="latitude"/>,<s:property value="longitude"/></li>
         <li>Creator:
@@ -42,7 +44,7 @@
 </s:iterator>
 <h2>Topo</h2>
 <s:iterator value="topoList">
-    <li>Name: <s:property value="name"/></li>
+    <li>Name: <s:property value="name" escapeHtml="false"/></li>
     <li>Edition: <s:property value="edition"/></li>
     <li>Author: <s:property value="author"/></li>
     <li>Published Year: <s:property value="publishedYear"/></li>
@@ -61,24 +63,9 @@
     <br><br>
 </s:iterator>
 </div>
-<script>
-    var text = document.getElementById("content");
-    var str = text.innerHTML,
-        reg = /red/ig; //g is to replace all occurances
-
-    //fixing a bit
-    var toStr = String(reg);
-    var color = (toStr.replace('\/g', '|')).substring(1);
-
-    //split it baby
-    var colors = color.split("|");
-
-    if (colors.indexOf("red") > -1) {
-        str = str.replace(/red/g, '<span style="color:red;">red</span>');
-    }
-
-
-    document.getElementById("content").innerHTML = str;
+<%--<script>
+var word = "${str}" ;
 </script>
+<script src="js/colorSearch.js"></script>--%>
 </body>
 </html>

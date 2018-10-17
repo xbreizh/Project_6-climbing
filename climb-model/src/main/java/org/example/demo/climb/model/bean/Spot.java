@@ -19,7 +19,18 @@ import java.util.List;
     @Size(min = 3, max = 100)
     private String city;
 
-    @NotNull
+        public Spot(String city, String name, String description, double latitude, double longitude, int rateMore, int rateLess, Country country) {
+            this.city = city;
+            this.name = name;
+            this.description = description;
+            this.latitude = latitude;
+            this.longitude = longitude;
+            this.rateMore = rateMore;
+            this.rateLess = rateLess;
+            this.country = country;
+        }
+
+        @NotNull
     @Size(min = 3, max = 100)
     private String name;
 

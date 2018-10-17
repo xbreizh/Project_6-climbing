@@ -20,16 +20,16 @@ public class SearchDaoImpl implements SearchDao {
     @Override
     public List<Spot> findListSpotByString(String str) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "From Spot where lower(name) like :n");
+                "From Spot where lower(name) like :n or lower(city) like :n");
         query.setParameter("n", "%"+str+"%".toLowerCase());
-        System.out.println("string passed: "+str);
+        System.out.println(str);
         return query.getResultList();
 }
 
     @Override
     public List<Topo> findListTopoByString(String str) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "From Topo where lower(name) like :n");
+                "From Topo where lower(name) like :n ");
         query.setParameter("n", "%"+str+"%".toLowerCase());
         System.out.println("string passed: "+str);
         System.out.println("search from dao: "+query.getParameter("n").toString());

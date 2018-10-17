@@ -3,6 +3,7 @@
 
 <header>
     <%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
+        <link href="<s:url value="/js/colorSearch.js"/>" rel="stylesheet" type="text/css"/>
     <title>Climb</title>
     <r:if test="#session.user">
         Utilisateur connecté :
