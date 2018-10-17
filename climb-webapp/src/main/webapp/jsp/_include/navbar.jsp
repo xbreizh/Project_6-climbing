@@ -27,8 +27,8 @@
     </tr>
     <tr>
         <td>
-            <s:a action="choseContinent">
-                <s:text name="nav.newSpot"/>
+            <s:a action="searchByKeyword">
+                SEARCH
             </s:a>
         </td>
         <td>

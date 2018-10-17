@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+
+    <package name="Search" extends="struts-default">
+        <!-- CREATE-->
+        <action name="searchByKeyword"
+                class="org.example.demo.climb.webapp.action.SearchAction"
+                method="doSearchByKeyword">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+            <result name="input">/jsp/search/searchForm.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">spotSearch_list</param>
+            </result>
+            <result name="error">/jsp/login.jsp</result>
+        </action>
+
+        <!-- READ ALL -->
+        <action name="spotSearch_list"
+                class="org.example.demo.climb.webapp.action.SearchAction"
+                method="doListTopo">
+            <result>/jsp/search/searchForm.jsp</result>
+
+        </action>
+
+    </package>
+</struts>

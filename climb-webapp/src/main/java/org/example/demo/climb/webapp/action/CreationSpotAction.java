@@ -28,8 +28,6 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     private Country c;
     private int id;
 
-
-
     @Inject
     private CountryManager countryManager;
     @Inject
@@ -145,6 +143,12 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         }
         return vResult;
 
+    }
+
+    public String doTestHtml(){
+        String vResult = ActionSupport.SUCCESS;
+        /*String name="Roger";*/
+        return vResult;
     }
     // Getters and Setters
     public List<Route> getRouteList() {

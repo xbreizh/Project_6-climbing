@@ -9,10 +9,10 @@
     <package name="Spot" extends="struts-default">
 
         <!-- CREATE-->
-    <action name="choseContinent"
+    <action name="testHtml"
             class="org.example.demo.climb.webapp.action.CreationSpotAction"
-            method="doListContinent">
-        <result>/jsp/spot/choseContinent.jsp</result>
+            method="doTestHtml">
+        <result>css/testHtml.jsp</result>
     </action>
     <action name="choseCountry"
             class="org.example.demo.climb.webapp.action.CreationSpotAction"
