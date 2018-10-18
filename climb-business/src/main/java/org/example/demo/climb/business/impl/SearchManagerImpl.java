@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Transactional
+@Transactional(readOnly = true)
 @Named("searchManager")
 public class SearchManagerImpl implements SearchManager {
 
@@ -22,14 +22,17 @@ public class SearchManagerImpl implements SearchManager {
     @Inject
     private SearchDao searchDao;
 
-    @Transactional(readOnly = true)
     @Override
     public List<Spot> findSpotByString(String str) {
         List<Spot> list =  searchDao.findListSpotByString(str);
+        String rep = "<font color=\"red\">" + str + "</font>";
         for (Spot spot: list
              ) {
-                spot.setName(spot.getName().replace(str, "<strong>" + str + "</strong>"));
-
+            spot.setName(spot.getName().replaceAll("(?i)"+str, rep));
+            spot.setCity(spot.getCity().replaceAll("(?i)"+str, rep));
+            spot.setDescription(spot.getDescription().replaceAll("(?i)"+str, rep));
+            spot.getCountry().setName(spot.getCountry().getName().replaceAll("(?i)"+str, rep));
+            spot.getCountry().setContinent(spot.getCountry().getContinent().replaceAll("(?i)"+str, rep));
         }
         return list;
     }
@@ -37,7 +40,14 @@ public class SearchManagerImpl implements SearchManager {
 
     @Override
     public List<Topo> findTopoByString(String str) {
-        return searchDao.findListTopoByString(str);
+        List<Topo> list =  searchDao.findListTopoByString(str);
+        String rep = "<font color=\"red\">" + str + "</font>";
+        for (Topo topo: list
+        ) {
+            topo.setName(topo.getName().replaceAll("(?i)"+str, rep));
+            topo.setDescription(topo.getDescription().replaceAll("(?i)"+str, rep));
+        }
+        return list;
     }
 
     @Override

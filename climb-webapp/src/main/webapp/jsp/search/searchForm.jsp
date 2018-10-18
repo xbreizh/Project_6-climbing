@@ -18,15 +18,13 @@
 
 <h2>Spot</h2>
 <div id="content">
-    Keyword: <s:property value="%{str}"/><br>
-    This is a color of red and blue and green and red and blue orange.
 <s:iterator value="spotList">
     <ul>
-        <li>Continent: <s:property value="country.continent"/></li>
-        <li>Country: <s:property value="country.name"/></li>
-        <li>City: <s:property value="city"/></li>
+        <li>Continent: <s:property value="country.continent" escapeHtml="false"/></li>
+        <li>Country: <s:property value="country.name" escapeHtml="false"/></li>
+        <li>City: <s:property value="city" escapeHtml="false"/></li>
         <li>Name: <s:property value="name" escapeHtml="false"/></li>
-        <li>Description: <s:property value="description"/></li>
+        <li>Description: <s:property value="description" escapeHtml="false"/></li>
         <li>GPS coordinates: <s:property value="latitude"/>,<s:property value="longitude"/></li>
         <li>Creator:
             <s:a action="member_detail">
@@ -48,7 +46,7 @@
     <li>Edition: <s:property value="edition"/></li>
     <li>Author: <s:property value="author"/></li>
     <li>Published Year: <s:property value="publishedYear"/></li>
-    <li>Description: <s:property value="description"/></li>
+    <li>Description: <s:property value="description" escapeHtml="false"/></li>
     <li>
         <%--<s:a action="topo_detail" >
             <s:property value="nom"/>
