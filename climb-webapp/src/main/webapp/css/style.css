@@ -11,7 +11,11 @@
 @media (min-width: 1200px) {
     .container {
         width: 1170px;
+        background-color: #fff1f1;
     }
+}
+#login{
+    color: red;
 }
 body {
     padding-top: 10px;
