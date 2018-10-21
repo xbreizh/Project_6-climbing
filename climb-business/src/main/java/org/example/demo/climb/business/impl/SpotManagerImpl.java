@@ -77,6 +77,16 @@ public class SpotManagerImpl  implements SpotManager {
         return null;
     }
 
+    @Override
+    public List<Spot> getListSpotByContinent(String continent) {
+        return spotDao.ListSpotByContinent(continent);
+    }
+
+    @Override
+    public List<Spot> getListSpotByCountry(Country country) {
+        return spotDao.ListSpotByCountry(country);
+    }
+
 
     // Update
     @Override

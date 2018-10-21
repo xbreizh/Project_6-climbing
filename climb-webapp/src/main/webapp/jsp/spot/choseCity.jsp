@@ -6,13 +6,13 @@
 
 <body>
 
-<h1>Chose a City</h1>
+<h1>Chose a City for <s:property value="%{c.name}"/>(<s:property value="%{c.continent}"/>)</h1>
 <br><br>
 <s:if test="#session.user">
 
-Continent: <s:property value="%{c.continent}"/>
-<s:a action="choseContinent" ><br>
-    change</s:a><br><br>
+<%--Continent: <s:property value="%{c.continent}"/><br><br>--%>
+<%--<s:a action="choseContinent" ><br>
+    change</s:a><br><br>--%>
 Country: <s:property value="%{c.name}"/>
 <s:a action="choseCountry" ><br>
     change<s:param name="id" value="%{c.id}"/>  </s:a><br><br>

@@ -6,14 +6,14 @@
 
 <body>
 
-<h1>Chose a country</h1>
+<h1>Chose a country for <s:property value="%{continent}"/></h1>
 <br><br>
 <s:if test="#session.user">
 
-Continent: <s:property value="%{continent}"/><br>
+<%--Continent: <s:property value="%{continent}"/><br>--%>
 
-<s:a action="choseContinent" >
-    change</s:a><br><br>
+<%--<s:a action="choseContinent" >
+    change</s:a><br><br>--%>
 
 <s:form action="choseCity">
     <s:select id="selectCountry" name="country" value="%{country}"
@@ -22,7 +22,7 @@ Continent: <s:property value="%{continent}"/><br>
               onchange="this.form.submit()"
                /><br><br>
 
-    <s:hidden value=""/>
+    <s:hidden name="continent" value="%{c.continent}"/>
 
 </s:form>
 

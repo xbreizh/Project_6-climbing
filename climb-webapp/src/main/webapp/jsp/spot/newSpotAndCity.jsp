@@ -6,12 +6,12 @@
 
 <body>
 
-<h1>New Spot and city</h1>
+<h1>New Spot and city for <s:property value="%{c.continent}"/></h1>
 <br><br>
 <s:if test="#session.user">
-Continent: <s:property value="%{c.continent}"/>
+<%--Continent: <s:property value="%{c.continent}"/>
 <s:a action="choseContinent" ><br>
-change</s:a><br><br>
+change</s:a><br><br>--%>
 Country: <s:property value="%{c.name}"/>
 <s:a action="choseCountry" ><br>
 change<s:param name="id" value="%{c.id}"/>  </s:a><br><br>
@@ -22,6 +22,8 @@ Back<s:param name="id" value="%{c.id}"/>
 
 <s:form action="createSpot" method="POST">
     <s:hidden name="spot.country" value="%{c.id}"/>
+    <s:hidden name="country" value="%{c.name}"/>
+    <s:hidden name="continent" value="%{c.continent}"/>
     <s:textfield name="spot.city" requiredLabel="true" value="Type City Name"/>
     <s:textfield name="spot.memberSpot.id" value="%{session.user.id}" label="Member:"/>
     <s:textfield name="spot.name" value="Type Spot Name" requiredLabel="true"/>

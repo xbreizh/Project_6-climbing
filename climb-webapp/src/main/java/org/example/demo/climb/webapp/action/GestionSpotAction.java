@@ -51,6 +51,149 @@ public class GestionSpotAction extends LoginAction implements SessionAware {
     @Inject
     private CountryManager countryManager;
 
+    //Methods
+
+    public String doCreate() throws NotFoundException {
+        String vResult=ActionSupport.INPUT;
+       /* if (checkSession()) return ActionSupport.ERROR;
+        if(c!=null) {
+            System.out.println("country name from action: " + c.getName());
+            cityList = spotManager.getListCityByCountry(c);
+        }else{
+            System.out.println("looks like c is null");
+        }
+        if(spot!=null) {
+            if (checkSpotCreatorNotLegit()) return ActionSupport.ERROR;
+            System.out.println(spot.getCountry().getId());
+            spotManager.addSpot(spot);
+            vResult=ActionSupport.SUCCESS;
+        }
+        if (this.hasErrors()) {
+            vResult = ActionSupport.ERROR;
+        }*/
+        return vResult;
+    }
+
+    private boolean checkSpotCreatorNotLegit() {
+        /*member = (Member) ServletActionContext.getRequest().getSession().getAttribute("user");
+        System.out.println("Member id: "+member.getId());
+        if(member.getId() != spot.getMemberSpot().getId()){
+            System.out.println("member from spot: "+spot.getMemberSpot().getId());
+            this.addActionError("Authentication issue, please log out, then try again. Member found: "+member.getId());
+            return false;
+        }*/
+        return true;
+    }
+
+    private boolean checkSession() {
+        /*if(getSession().isEmpty()) {
+            System.err.println("Vous devez vous connecter pour cette action!");
+            return true;
+        }*/
+        return false;
+    }
+
+
+    public String doDetail() throws NotFoundException {
+        String vResult = ActionSupport.SUCCESS;
+        /*System.out.println("Spot mgmt: " + spot);
+        System.out.println("Id: " + id);*/
+
+       /* spot = spotManager.getSpotById(9);
+       *//* System.out.println("Spot from doDetail: " + spot);*//*
+
+        if (this.hasErrors()) {
+            vResult = ActionSupport.ERROR;
+        }*/
+        return vResult;
+    }
+
+    public String doEdit() {
+        String vResult = ActionSupport.SUCCESS;
+       /* try {
+            spot = spotManager.getSpotById(id);
+            System.out.println("doedit: " + id);
+        } catch (NotFoundException e) {
+            this.addActionError(e.toString());
+        }
+        if (this.hasErrors()) {
+            vResult = ActionSupport.ERROR;
+        }*/
+        return vResult;
+    }
+
+    public String doList() {
+        System.out.println("test");
+    /*    *//*continentList=countryManager.getListContinent();*//*
+        *//*System.out.println("continentList: "+continentList);*//*
+        System.out.println("continent: continent");
+        countryList=countryManager.getListCountryByContinent(continent);
+        System.out.println("countryList: "+countryList);
+        cityList = spotManager.getListCityByCountry(c);
+        System.out.println("citylist: "+cityList);
+        if(continent.equals("")){
+            city=country="";
+            countryList=countryManager.getListCountryStrings();
+        }else {
+            countryList = countryManager.getListCountryByContinent(continent);
+           if(!country.equals("")){
+               c=countryManager.getCountry(country);
+               System.out.println("Country name: "+c.getName());
+               getSession().put("country", c);
+           }
+        }
+        listSpot = spotManager.getListSpot(continent, country, city);
+        System.out.println("size: " + listSpot.size());
+        return ActionSupport.SUCCESS;
+    }
+
+    public String selectSpotList(){
+        continentList=countryManager.getListContinent();
+        countryList=countryManager.getListCountryByContinent(continent);
+        *//*cityList=countryManager.getListCityByCountry(country);*/
+        return ActionSupport.SUCCESS;
+    }
+/*    public String doList() {
+        countryList=countryManager.getListCountry();
+        System.out.println("spot");
+        listSpot = spotManager.getListSpotByCity("ssss");
+        System.out.println("size: " + listSpot.size());
+        return ActionSupport.SUCCESS;
+    }*/
+
+
+/*    public String doUpdate() {
+        String vResult = ActionSupport.INPUT;
+
+        if (this.spot != null) {
+            spotManager.updateSpot(spot);
+            vResult = ActionSupport.SUCCESS;
+            System.out.println("Spot: " + spot);
+
+        }
+        if (this.hasErrors()) {
+            System.out.println("Spot is null");
+            vResult = ActionSupport.ERROR;
+        }
+        return vResult;
+    }*/
+
+    /*public String doDelete() {
+        System.out.println("ici");
+        String vResult = ActionSupport.SUCCESS;
+        System.out.println(this.hasActionErrors());
+        System.out.println("delete id: " + id);
+
+        System.out.println("trying des trucs");
+        spotManager.deleteSpot(id);
+
+        if (this.hasErrors()) {
+            vResult = ActionSupport.ERROR;
+        }
+        return vResult;
+
+    }*/
+
     // Getters & Setters
     public String getCity() {
         return city;
@@ -163,144 +306,5 @@ public class GestionSpotAction extends LoginAction implements SessionAware {
     public void setListSpot(List<Spot> listSpot) {
         this.listSpot = listSpot;
     }
-
-    public String doCreate() throws NotFoundException {
-        String vResult=ActionSupport.INPUT;
-        if (checkSession()) return ActionSupport.ERROR;
-        if(c!=null) {
-            System.out.println("country name from action: " + c.getName());
-            cityList = spotManager.getListCityByCountry(c);
-        }else{
-            System.out.println("looks like c is null");
-        }
-        if(spot!=null) {
-            if (checkSpotCreatorNotLegit()) return ActionSupport.ERROR;
-            System.out.println(spot.getCountry().getId());
-            spotManager.addSpot(spot);
-            vResult=ActionSupport.SUCCESS;
-        }
-        if (this.hasErrors()) {
-            vResult = ActionSupport.ERROR;
-        }
-        return vResult;
-    }
-
-    private boolean checkSpotCreatorNotLegit() {
-        member = (Member) ServletActionContext.getRequest().getSession().getAttribute("user");
-        System.out.println("Member id: "+member.getId());
-        if(member.getId() != spot.getMemberSpot().getId()){
-            System.out.println("member from spot: "+spot.getMemberSpot().getId());
-            this.addActionError("Authentication issue, please log out, then try again. Member found: "+member.getId());
-            return false;
-        }
-        return true;
-    }
-
-    private boolean checkSession() {
-        if(getSession().isEmpty()) {
-            System.err.println("Vous devez vous connecter pour cette action!");
-            return true;
-        }
-        return false;
-    }
-
-
-    public String doDetail() throws NotFoundException {
-        String vResult = ActionSupport.SUCCESS;
-        /*System.out.println("Spot mgmt: " + spot);
-        System.out.println("Id: " + id);*/
-
-        spot = spotManager.getSpotById(9);
-       /* System.out.println("Spot from doDetail: " + spot);*/
-
-        if (this.hasErrors()) {
-            vResult = ActionSupport.ERROR;
-        }
-        return vResult;
-    }
-
-    public String doEdit() {
-        String vResult = ActionSupport.SUCCESS;
-        try {
-            spot = spotManager.getSpotById(id);
-            System.out.println("doedit: " + id);
-        } catch (NotFoundException e) {
-            this.addActionError(e.toString());
-        }
-        if (this.hasErrors()) {
-            vResult = ActionSupport.ERROR;
-        }
-        return vResult;
-    }
-
-    public String doList() {
-        continentList=countryManager.getListContinent();
-        System.out.println("continentList: "+continentList);
-        countryList=countryManager.getListCountryStrings();
-        System.out.println("countryList: "+countryList);
-        cityList = spotManager.getListCityByCountry(c);
-        System.out.println("citylist: "+cityList);
-        if(continent.equals("")){
-            city=country="";
-            countryList=countryManager.getListCountryStrings();
-        }else {
-            countryList = countryManager.getListCountryByContinent(continent);
-           if(!country.equals("")){
-               c=countryManager.getCountry(country);
-               System.out.println("Country name: "+c.getName());
-               getSession().put("country", c);
-           }
-        }
-        listSpot = spotManager.getListSpot(continent, country, city);
-        System.out.println("size: " + listSpot.size());
-        return ActionSupport.SUCCESS;
-    }
-
-    public String selectSpotList(){
-        continentList=countryManager.getListContinent();
-        countryList=countryManager.getListCountryByContinent(continent);
-        /*cityList=countryManager.getListCityByCountry(country);*/
-        return ActionSupport.SUCCESS;
-    }
-/*    public String doList() {
-        countryList=countryManager.getListCountry();
-        System.out.println("spot");
-        listSpot = spotManager.getListSpotByCity("ssss");
-        System.out.println("size: " + listSpot.size());
-        return ActionSupport.SUCCESS;
-    }*/
-
-
-/*    public String doUpdate() {
-        String vResult = ActionSupport.INPUT;
-
-        if (this.spot != null) {
-            spotManager.updateSpot(spot);
-            vResult = ActionSupport.SUCCESS;
-            System.out.println("Spot: " + spot);
-
-        }
-        if (this.hasErrors()) {
-            System.out.println("Spot is null");
-            vResult = ActionSupport.ERROR;
-        }
-        return vResult;
-    }*/
-
-    /*public String doDelete() {
-        System.out.println("ici");
-        String vResult = ActionSupport.SUCCESS;
-        System.out.println(this.hasActionErrors());
-        System.out.println("delete id: " + id);
-
-        System.out.println("trying des trucs");
-        spotManager.deleteSpot(id);
-
-        if (this.hasErrors()) {
-            vResult = ActionSupport.ERROR;
-        }
-        return vResult;
-
-    }*/
 
 }

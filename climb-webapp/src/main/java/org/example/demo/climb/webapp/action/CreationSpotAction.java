@@ -59,13 +59,31 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
             c=countryManager.getCountry(id);
         }else {
             c = countryManager.getCountry(country);
-            System.out.println("setting up c: " + c.getName());
+            /*System.out.println("setting up c: " + c.getName());*/
         }
         cityList = spotManager.getListCityByCountry(c);
         return vResult;
     }
     public String doList() throws  NotFoundException{
-        spotList = spotManager.getListSpot();
+
+        if(country.equals("")){
+            // Getting list of spots for that continent
+            spotList = spotManager.getListSpotByContinent(continent);
+        }else{
+            c = countryManager.getCountry(country);
+            // Init cityList
+            cityList = spotManager.getListCityByCountry(c);
+            if(city.equals("")){
+                // Getting list of spots for that country
+                spotList = spotManager.getListSpotByCountry(c);
+            }else{
+                spotList = spotManager.getListSpot(c.getContinent(), c.getName(), city);
+            }
+
+        }
+        // Init list of countries for the selected continent
+        countryList = countryManager.getListCountryByContinent(continent);
+
         return ActionSupport.SUCCESS;
     }
     public String doCreateSpot() throws NotFoundException {

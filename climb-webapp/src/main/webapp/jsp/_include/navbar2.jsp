@@ -17,20 +17,20 @@
             <%--<li class="active"><a href="index2.html">Africa</a></li>--%>
             <li><s:a class="active" action="spot_list">
                 Africa
-               <s:param name="id">0</s:param>
+                <s:param name="continent">Africa</s:param>
             </s:a></li>
                 <li><s:a class="active" action="spot_list">
                     America
-                    <s:param name="id">1</s:param>
+                    <s:param name="continent">America</s:param>
                 </s:a></li> <li><s:a class="active" action="spot_list">
                 Asia
-                <s:param name="id">2</s:param>
+                <s:param name="continent">Asia</s:param>
             </s:a></li> <li><s:a class="active" action="spot_list">
                 Europe
-                <s:param name="id">3</s:param>
+                <s:param name="continent">Europe</s:param>
             </s:a></li> <li><s:a class="active" action="spot_list">
                 Oceania
-                <s:param name="id">4</s:param>
+                <s:param name="continent">Oceania</s:param>
             </s:a></li>
             <%--<li><a href="#">America</a></li>
             <li><a href="index2.html">Asia</a></li>
