@@ -8,14 +8,34 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">ClimbingWorld</a>
+            <s:a  class="navbar-brand" action="index">
+                <s:text name="home.welcome"/>
+            </s:a>
+           <%-- <a class="navbar-brand" href="#">ClimbingWorld</a>--%>
         </div>
         <ul class="nav navbar-nav collapse navbar-collapse" id="myNavbar">
-            <li class="active"><a href="index2.html">Africa</a></li>
-            <li><a href="#">America</a></li>
+            <%--<li class="active"><a href="index2.html">Africa</a></li>--%>
+            <li><s:a class="active" action="spot_list">
+                Africa
+               <s:param name="id">0</s:param>
+            </s:a></li>
+                <li><s:a class="active" action="spot_list">
+                    America
+                    <s:param name="id">1</s:param>
+                </s:a></li> <li><s:a class="active" action="spot_list">
+                Asia
+                <s:param name="id">2</s:param>
+            </s:a></li> <li><s:a class="active" action="spot_list">
+                Europe
+                <s:param name="id">3</s:param>
+            </s:a></li> <li><s:a class="active" action="spot_list">
+                Oceania
+                <s:param name="id">4</s:param>
+            </s:a></li>
+            <%--<li><a href="#">America</a></li>
             <li><a href="index2.html">Asia</a></li>
             <li><a href="#">Europe</a></li>
-            <li><a href="#">Oceania</a></li>
+            <li><a href="#">Oceania</a></li>--%>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <r:if test="#session.user">
@@ -36,7 +56,21 @@
                         <%--<span style="color:white">Connected: <r:property value="#session.user.login"/>!</span>--%>
                     <r:a action="member_new"><span style="color:white">Become Member</span></r:a>
                 </ul><ul>
-                    <%--<li>--%><r:a action="login"><span class="glyphicon glyphicon-log-in"></span> Login</r:a>
+
+                <%--<form name=popupform>
+                    <input type="button" name="chooser" onClick="window.open('login','popup','width=250,height=200,top=100,left=100');" value="Login"><br>
+                    <input type="text" name="choice" value=""/>
+                </form>--%>
+               <%-- <script onClick="window.open('login','popup','width=250,height=200,top=100,left=100');"></script>--%>
+                    <script type="text/javascript">
+                        function popupLogin() {
+                            window.open('login','popup','width=250,height=200,top=100,left=100');
+                        }
+                    </script>
+
+                <a href="javascript: popupLogin()"><button><span class="glyphicon glyphicon-log-in"></span> Login</button></a>
+
+                    <%--<li>--%><%--<r:a action="login"><span class="glyphicon glyphicon-log-in"></span> Login</r:a>--%>
             </ul>
 
             </r:else>

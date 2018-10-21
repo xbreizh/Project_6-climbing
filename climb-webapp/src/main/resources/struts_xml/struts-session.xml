@@ -14,7 +14,8 @@
                 class="org.example.demo.climb.webapp.action.LoginAction"
                 method="doLogin">
             <result name="input">/jsp/login.jsp</result>
-            <result name="success" type="redirectAction">index</result>
+            <!--<result name="success" type="redirectAction">index</result>-->
+            <result name="success">/jsp/done.jsp</result>
         </action>
         <action name="logout" class="org.example.demo.climb.webapp.action.LoginAction"
                 method="doLogout">
