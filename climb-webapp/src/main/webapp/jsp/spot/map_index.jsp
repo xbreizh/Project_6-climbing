@@ -1,18 +1,29 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0" type="text/javascript" charset="UTF-8"></script>
 <body onload="GetMap();">
 <div id="map" style="position: relative; width: 600px; height: 450px;"></div>
+
+
 <script>var pinInfobox;
 
 function GetMap() {
 
     var pushpinInfos = [];
+    //json array
+    var result = ${listo};
+
+    // loop around the list but issue for i doesn't get incremented within the loop for the java values
+    for(var i=0; i < result.length ; i++){
+       pushpinInfos[i] = {'lat': '${spotList.get(i).latitude}',
+           'lng': '${spotList.get(i).longitude}',
+           'title': '${spotList.get(i).name}',
+           'description' : '${spotList.get(i).description}'};
+    }
 
 
 
 
-    pushpinInfos[0] = { 'lat': ${spotList.get(0).latitude}, 'lng': ${spotList.get(0).longitude}, 'title': '${spotList.get(0).name}', 'description': '${spotList.get(0).description}'};
 
-    pushpinInfos[1] = { 'lat': ${spotList.get(1).latitude}, 'lng': ${spotList.get(1).longitude}, 'title': '${spotList.get(1).name}', 'description': '${spotList.get(1).description}'};
 
 
 

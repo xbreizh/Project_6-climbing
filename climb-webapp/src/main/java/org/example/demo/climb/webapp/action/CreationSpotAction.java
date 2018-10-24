@@ -1,6 +1,8 @@
 package org.example.demo.climb.webapp.action;
 
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
 import org.example.demo.climb.business.contract.CountryManager;
@@ -29,9 +31,19 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     private int id;
     private final String token= "AlcwuVaVbdcepPJ0gbZ0Nd5prdkYHYS1LEEFEbUm2l0CfEe4XLUeDArvlkrXHcg2";
 
+    public JsonArray getListo() {
+        return listo;
+    }
+
+    public void setListo(JsonArray listo) {
+        this.listo = listo;
+    }
+
+    private JsonArray listo = new JsonArray();
 
 
-    private Spot[] spotArray ;
+
+    private String[][] spotArray ;
 
     @Inject
     private CountryManager countryManager;
@@ -45,7 +57,26 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
 
         /*continentList=countryManager.getListContinent();*/
         spotList = spotManager.getListSpot();
-        System.out.println("size spotList: "+spotList.size());
+        int i=0;
+        /*Spot[][] spotArray = spotList.toArray(new Spot[2][4]);*/
+        spotArray = new String[spotList.size()][4];
+
+        for (Spot s: spotList
+             ) {
+            String lat = Double.toString(spotList.get(i).getLatitude());
+            String lon = Double.toString(spotList.get(i).getLongitude());
+            String name = spotList.get(i).getName();
+            String desc = spotList.get(i).getDescription();
+            JsonObject obj = new JsonObject();
+            obj.addProperty("lat", lat);
+            obj.addProperty("lon", lon);
+            obj.addProperty("name", name);
+            obj.addProperty("desc", desc);
+            listo.add(obj);
+        }
+
+
+
         return vResult;
     }
 
@@ -269,11 +300,11 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         return token;
     }
 
-    public Spot[] getSpotArray() {
+    public String[][] getSpotArray() {
         return spotArray;
     }
 
-    public void setSpotArray(Spot[] spotArray) {
+    public void setSpotArray(String[][] spotArray) {
         this.spotArray = spotArray;
     }
 }

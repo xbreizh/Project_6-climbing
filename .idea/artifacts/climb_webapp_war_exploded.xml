@@ -74,6 +74,7 @@
           <element id="library" level="project" name="Maven: oro:oro:2.0.8" />
           <element id="library" level="project" name="Maven: com.jgeppert.struts2.bootstrap:struts2-bootstrap-plugin:2.5.2" />
           <element id="library" level="project" name="Maven: org.apache.struts:struts-annotations:1.0.6" />
+          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.0" />
           <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:5.0.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.0.8.RELEASE" />
@@ -85,6 +86,7 @@
           <element id="library" level="project" name="Maven: commons-io:commons-io:2.5" />
           <element id="library" level="project" name="Maven: org.apache.struts:struts2-spring-plugin:2.5.16" />
           <element id="library" level="project" name="Maven: org.apache.struts:struts2-json-plugin:2.5.16" />
+          <element id="library" level="project" name="Maven: org.mortbay.jetty:jetty-util:6.1.25" />
           <element id="library" level="project" name="Maven: org.eclipse.persistence:org.eclipse.persistence.core:2.6.4" />
           <element id="library" level="project" name="Maven: org.eclipse.persistence:org.eclipse.persistence.asm:2.6.4" />
           <element id="library" level="project" name="Maven: org.glassfish:javax.json:1.0.4" />
