@@ -4,5 +4,5 @@
 
 
 </div>
-<footer></footer>
+<footer>I am a footer</footer>
 </html>

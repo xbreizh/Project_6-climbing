@@ -1,4 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
+
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
 
@@ -64,7 +65,7 @@
                <%-- <script onClick="window.open('login','popup','width=250,height=200,top=100,left=100');"></script>--%>
                     <script type="text/javascript">
                         function popupLogin() {
-                            window.open('login','popup','width=250,height=200,top=100,left=100');
+                            window.open('login','popup','width=250,height=300,top=100,left=100');
                         }
                     </script>
 

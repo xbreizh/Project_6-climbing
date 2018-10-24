@@ -11,7 +11,7 @@
 @media (min-width: 1200px) {
     .container {
         width: 1170px;
-        background-color: #fff1f1;
+        background-color: white;
     }
 }
 #login{
@@ -22,10 +22,10 @@ body {
     background-color: blue;
 }
 .row{
-    background-color: aqua;
+    background-color: #1c354c;
 }
 [class*="col-"], footer {
-    background-color: lightgreen;
+    background-color: #d3d6ee;
     border: 2px solid black;
     border-radius: 6px;
     line-height: 40px;

@@ -161,7 +161,7 @@ public class GestionMemberAction extends LoginAction {
                 }
             }
         }else{
-            this.addActionError("No member found");
+            /*this.addActionError("No member found");*/
             vResult = ActionSupport.INPUT;
         }
         return vResult;

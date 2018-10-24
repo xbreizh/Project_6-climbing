@@ -24,8 +24,9 @@
         </global-results>
 
         <!--Action index-->
-        <action name="index">
-            <result>/jsp/index.jsp</result>
+        <action name="index" class="org.example.demo.climb.webapp.action.CreationSpotAction"
+                method="doIndex">
+            <result name="success">/jsp/index.jsp</result>
         </action>
 
        <!-- <action name="demo_convert" class="org.example.demo.climb.webapp.action.DemoConvertAction">

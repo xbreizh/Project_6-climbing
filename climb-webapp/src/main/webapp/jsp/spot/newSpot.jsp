@@ -13,7 +13,7 @@
 <s:a action="choseContinent" ><br>
 change</s:a><br><br>--%>
 <s:form action="createSpot">
-    <s:select id="selectCountry" name="country" value="%{country}"
+    <s:select class="form-control" id="selectCountry" name="country" value="%{country}"
               headerKey="" headerValue="--Select Country--"
               list="countryList"
               onchange="this.form.submit()"

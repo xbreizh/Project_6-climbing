@@ -27,6 +27,11 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     private Spot spot;
     private Country c;
     private int id;
+    private final String token= "AlcwuVaVbdcepPJ0gbZ0Nd5prdkYHYS1LEEFEbUm2l0CfEe4XLUeDArvlkrXHcg2";
+
+
+
+    private Spot[] spotArray ;
 
     @Inject
     private CountryManager countryManager;
@@ -34,6 +39,15 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     private SpotManager spotManager;
 
     // Methodes
+
+    public String doIndex() throws NotFoundException {
+        String vResult= ActionSupport.SUCCESS;
+
+        /*continentList=countryManager.getListContinent();*/
+        spotList = spotManager.getListSpot();
+        System.out.println("size spotList: "+spotList.size());
+        return vResult;
+    }
 
     public String doListContinent() throws NotFoundException {
         String vResult= ActionSupport.SUCCESS;
@@ -250,5 +264,16 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
 
     public void setCity(String city) {
         this.city = city;
+    }
+    public String getToken() {
+        return token;
+    }
+
+    public Spot[] getSpotArray() {
+        return spotArray;
+    }
+
+    public void setSpotArray(Spot[] spotArray) {
+        this.spotArray = spotArray;
     }
 }

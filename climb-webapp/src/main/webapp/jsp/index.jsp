@@ -5,7 +5,6 @@
 <%@include file="_include/header.jsp" %>
 
 <body>
-<%--
 <h1><s:text name="home.welcome"/></h1>
 
 <s:a action="pwd_reset">
@@ -14,18 +13,18 @@
 <s:a action="topo_new">
     Topo Creation
 </s:a><br><br>
-&lt;%&ndash;<s:a action="demo_ajax">
+<%--<s:a action="demo_ajax">
     Demo Ajax
-</s:a><br><br>&ndash;%&gt;
+</s:a><br><br>--%>
 <s:a action="testHtml">
     testHtml
 </s:a><br><br>
 <s:a action="searchByKeyword">
     SEARCH
-</s:a>--%>
+</s:a><br><br>
 
-
+<%@include file="spot/map_index.jsp" %>
 
 <%@include file="_include/footer.jsp" %>
 
-
+<s:property value="#session."/>
