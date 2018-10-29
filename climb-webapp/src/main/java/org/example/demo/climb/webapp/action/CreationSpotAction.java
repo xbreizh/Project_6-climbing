@@ -58,8 +58,8 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         /*continentList=countryManager.getListContinent();*/
         spotList = spotManager.getListSpot();
         int i=0;
-        /*Spot[][] spotArray = spotList.toArray(new Spot[2][4]);*/
-        spotArray = new String[spotList.size()][4];
+        /*Spot[][] spotArray = spotList.toArray(new Spot[2][4]);*//*
+        spotArray = new String[spotList.size()][4];*/
 
         for (Spot s: spotList
              ) {
@@ -73,8 +73,11 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
             obj.addProperty("name", name);
             obj.addProperty("desc", desc);
             listo.add(obj);
+            i++;
         }
-
+    if(listo ==null){
+        vResult = ActionSupport.ERROR;
+    }
 
 
         return vResult;

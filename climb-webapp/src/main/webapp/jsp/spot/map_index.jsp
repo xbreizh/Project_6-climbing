@@ -11,13 +11,11 @@ function GetMap() {
     var pushpinInfos = [];
     //json array
     var result = ${listo};
+    console.log(result[0]);
 
     // loop around the list but issue for i doesn't get incremented within the loop for the java values
     for(var i=0; i < result.length ; i++){
-       pushpinInfos[i] = {'lat': '${spotList.get(i).latitude}',
-           'lng': '${spotList.get(i).longitude}',
-           'title': '${spotList.get(i).name}',
-           'description' : '${spotList.get(i).description}'};
+       pushpinInfos[i] = result[i];
     }
 
 
@@ -39,7 +37,7 @@ function GetMap() {
 
     var locs = [];
     for (var i = 0 ; i < pushpinInfos.length; i++) {
-        locs[i] = new Microsoft.Maps.Location(pushpinInfos[i].lat, pushpinInfos[i].lng);
+        locs[i] = new Microsoft.Maps.Location(pushpinInfos[i].lat, pushpinInfos[i].lon);
         var pin = new Microsoft.Maps.Pushpin(locs[i]);
         pin.Title = pushpinInfos[i].title;
         pin.Description = pushpinInfos[i].description;
