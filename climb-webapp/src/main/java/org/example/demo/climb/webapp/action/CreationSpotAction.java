@@ -67,11 +67,13 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
             String lon = Double.toString(spotList.get(i).getLongitude());
             String name = spotList.get(i).getName();
             String desc = spotList.get(i).getDescription();
+            int ref = spotList.get(i).getId();
             JsonObject obj = new JsonObject();
+            obj.addProperty("ref", ref);
             obj.addProperty("lat", lat);
             obj.addProperty("lon", lon);
-            obj.addProperty("name", name);
-            obj.addProperty("desc", desc);
+            obj.addProperty("title", name);
+            obj.addProperty("description", desc);
             listo.add(obj);
             i++;
         }

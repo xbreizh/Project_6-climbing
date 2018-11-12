@@ -1,62 +1,89 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0" type="text/javascript" charset="UTF-8"></script>
-<body onload="GetMap();">
-<div id="map" style="position: relative; width: 600px; height: 450px;"></div>
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script type='text/javascript'
+            src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap'
+            async defer></script>
+    <script type='text/javascript'>
+        var map, infobox;
+
+        function GetMap() {
+            var pushpinInfos = [];
+            //json array
+            var result = ${listo};
+            console.log(result[0]);
+            // loop around the list but issue for i doesn't get incremented within the loop for the java values
+            for(var i=0; i < result.length ; i++){
+                pushpinInfos[i] = result[i];
+            }
+
+            var pinLayer = new Microsoft.Maps.EntityCollection();
+            var locs = [];
+            /*for (var i = 0 ; i < pushpinInfos.length; i++) {
+                locs[i] = new Microsoft.Maps.Location(pushpinInfos[i].lat, pushpinInfos[i].lon);
+                var pin = new Microsoft.Maps.Pushpin(locs[i]);
+                pin.Title = pushpinInfos[i].title;
+                pin.Description = pushpinInfos[i].description;
+                console.log('title: '+pin.Title)
+                console.log('description: '+pin.Description);
+                pinLayer.push(pin);
+                Microsoft.Maps.Events.addHandler(pin, 'click', pushpinClicked);
+            }*/
 
 
-<script>var pinInfobox;
+            map = new Microsoft.Maps.Map('#myMap', {
+                credentials: '${token}'
+            });
 
-function GetMap() {
-
-    var pushpinInfos = [];
-    //json array
-    var result = ${listo};
-    console.log(result[0]);
-
-    // loop around the list but issue for i doesn't get incremented within the loop for the java values
-    for(var i=0; i < result.length ; i++){
-       pushpinInfos[i] = result[i];
-    }
+            map.setView({
+                zoom: 1.3 });
 
 
+            //Create an infobox at the center of the map but don't show it.
+            infobox = new Microsoft.Maps.Infobox(map.getCenter(), {
+                visible: false
+            });
 
+            //Assign the infobox to a map instance.
+            infobox.setMap(map);
 
+          /*  //Create random locations in the map bounds.
+            var randomLocations = Microsoft.Maps.TestDataGenerator.getLocations(5, map.getBounds());*/
 
+            for (var i = 0 ; i < pushpinInfos.length; i++) {
+                locs[i] = new Microsoft.Maps.Location(pushpinInfos[i].lat, pushpinInfos[i].lon);
+                var pin = new Microsoft.Maps.Pushpin(locs[i]);
+                //Store some metadata with the pushpin.
+                pin.Ref = pushpinInfos[i].ref;
+                pin.Title = pushpinInfos[i].title;
+                pin.Description = pushpinInfos[i].description;
 
+                //Add a click event handler to the pushpin.
+                Microsoft.Maps.Events.addHandler(pin, 'click', pushpinClicked);
 
+                //Add pushpin to the map.
+                map.entities.push(pin);
+            }
+        }
 
-    var infoboxLayer = new Microsoft.Maps.EntityCollection();
-    var pinLayer = new Microsoft.Maps.EntityCollection();
-    var apiKey = "<api key>";
-
-    var map = new Microsoft.Maps.Map(document.getElementById("map"), { credentials: '${token}' });
-
-    // Create the info box for the pushpin
-    pinInfobox = new Microsoft.Maps.Infobox(new Microsoft.Maps.Location(0, 0), { visible: false });
-    infoboxLayer.push(pinInfobox);
-
-    var locs = [];
-    for (var i = 0 ; i < pushpinInfos.length; i++) {
-        locs[i] = new Microsoft.Maps.Location(pushpinInfos[i].lat, pushpinInfos[i].lon);
-        var pin = new Microsoft.Maps.Pushpin(locs[i]);
-        pin.Title = pushpinInfos[i].title;
-        pin.Description = pushpinInfos[i].description;
-        pinLayer.push(pin);
-        Microsoft.Maps.Events.addHandler(pin, 'click', displayInfobox);
-    }
-
-    map.entities.push(pinLayer);
-    map.entities.push(infoboxLayer);
-
-    var bestview = Microsoft.Maps.LocationRect.fromLocations(locs);
-    map.setView({ center: bestview.center, zoom: 1 });
-}
-
-function displayInfobox(e) {
-    pinInfobox.setOptions({ title: e.target.Title, description: e.target.Description, visible: true, offset: new Microsoft.Maps.Point(0, 25) });
-    pinInfobox.setLocation(e.target.getLocation());
-}
-
-function hideInfobox(e) {
-    pinInfobox.setOptions({ visible: false });
-}</script>
+        function pushpinClicked(e) {
+            //Make sure the infobox has metadata to display.
+           /* alert('plagf');*/
+           /* if (e.target.metadata) {*/
+                //Set the infobox options with the metadata of the pushpin.
+                infobox.setOptions({
+                    title: e.target.Title,
+                    description: '<a href="spot_detail.action?id='+e.target.Ref+'" >'+e.target.Description+'</a>',
+                    visible: true
+                });
+            infobox.setLocation(e.target.getLocation());
+            /*}*/
+        }
+    </script>
+</head>
+<body>
+<div id="myMap" style="position:relative;width:600px;height:400px;"></div>
+</body>
+</html>
