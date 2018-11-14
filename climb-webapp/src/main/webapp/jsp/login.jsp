@@ -23,6 +23,7 @@
     <s:submit class="btn btn-primary" value="Connexion"  />--%>
 
             </s:form>
+
 <%--<br>--%>
 
 <%--    <p>

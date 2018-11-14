@@ -24,7 +24,8 @@
 </s:a><br><br>
 
 <%@include file="spot/map_index.jsp" %>
-
+<%--<%@include file="spot/search.jsp" %>--%>
+<%@include file="search/searchForm.jsp" %>
 <%@include file="_include/footer.jsp" %>
 
 <s:property value="#session."/>

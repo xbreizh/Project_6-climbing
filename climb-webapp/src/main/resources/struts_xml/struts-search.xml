@@ -27,7 +27,7 @@
         <action name="spotSearch_list"
                 class="org.example.demo.climb.webapp.action.SearchAction"
                 method="doListTopo">
-            <result>/jsp/search/searchForm.jsp</result>
+            <result>/jsp/index.jsp</result>
 
         </action>
 

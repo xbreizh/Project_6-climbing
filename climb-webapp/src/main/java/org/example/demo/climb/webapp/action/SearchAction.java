@@ -13,13 +13,14 @@ import java.util.List;
 
 public class SearchAction extends LoginAction implements SessionAware {
 
-    private String str;
     private int id;
     private List<Spot> spotList=new ArrayList<>();
     private List<Topo> topoList=new ArrayList<>();
     private Spot spot;
     private Topo topo;
-
+    private String str;
+    private String climbingType;
+    private String hasTopo;
 
     @Inject
     private CommentManager commentManager;
@@ -53,6 +54,8 @@ public class SearchAction extends LoginAction implements SessionAware {
     public String doListTopo() throws  NotFoundException{
         String vResult= ActionSupport.SUCCESS;
         System.out.println("trying to get a list with keyword: "+str);
+        System.out.println("climbing type passed: "+climbingType);
+        System.out.println("has topo passed: "+hasTopo);
         spotList=searchManager.findSpotByString(str);
         topoList=searchManager.findTopoByString(str);
         System.out.println("size spot: "+spotList.size());
@@ -193,5 +196,20 @@ public class SearchAction extends LoginAction implements SessionAware {
 
     public void setSpot(Spot spot) {
         this.spot = spot;
+    }
+    public String getClimbingType() {
+        return climbingType;
+    }
+
+    public void setClimbingType(String climbingType) {
+        this.climbingType = climbingType;
+    }
+
+    public String getHasTopo() {
+        return hasTopo;
+    }
+
+    public void setHasTopo(String hasTopo) {
+        this.hasTopo = hasTopo;
     }
 }

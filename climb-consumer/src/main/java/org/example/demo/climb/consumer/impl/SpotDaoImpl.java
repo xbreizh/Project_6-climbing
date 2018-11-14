@@ -8,6 +8,7 @@ import org.hibernate.query.Query;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.ArrayList;
 import java.util.List;
 
 @Named
@@ -62,6 +63,22 @@ public class SpotDaoImpl implements SpotDao {
         Query query=sessionFactory.getCurrentSession().createQuery(
                 "select spotList from Country c where c.id =:countryId");
         query.setParameter("countryId", country.getId());
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Spot> ListSpotByCriterias(String str, String climbingType, String hasTopo) {
+        System.out.println("from dao str: "+str+" climb: "+climbingType+" topo: "+hasTopo);
+        Query q = sessionFactory.getCurrentSession().createQuery("select spot.id from Route where type in (:Ctype)");
+        q.setParameter("Ctype", climbingType.toUpperCase());
+        List<String> idList = q.getResultList();
+        System.out.println("list from dao: "+idList);
+        System.out.println("l: "+idList);
+        Query query = sessionFactory.getCurrentSession().createQuery(
+                "From Spot  where id in (:list) and (upper(name) like :n or upper(city) like :n or upper(description) like :n " + "or upper(country.name) like :n or upper(country.continent) like :n )");
+        query.setParameter("n", "%"+str+"%".toUpperCase());
+        query.setParameter("list", idList);
+        /*System.out.println("param: "+query.getParameter("list").toString());*/
         return query.getResultList();
     }
 

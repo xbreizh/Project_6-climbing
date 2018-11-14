@@ -7,6 +7,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
 import org.example.demo.climb.business.contract.CountryManager;
 import org.example.demo.climb.business.contract.SpotManager;
+import org.example.demo.climb.model.ClimbingType;
 import org.example.demo.climb.model.bean.Country;
 import org.example.demo.climb.model.bean.Route;
 import org.example.demo.climb.model.bean.Spot;
@@ -14,6 +15,7 @@ import org.example.demo.climb.model.exception.NotFoundException;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CreationSpotAction extends LoginAction implements SessionAware {
@@ -29,6 +31,13 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     private Spot spot;
     private Country c;
     private int id;
+    private String str="";
+    private String climbingType;
+    private String hasTopo;
+    public List<String> climbingList = new ArrayList<>();
+
+
+
     private final String token= "AlcwuVaVbdcepPJ0gbZ0Nd5prdkYHYS1LEEFEbUm2l0CfEe4XLUeDArvlkrXHcg2";
 
     public JsonArray getListo() {
@@ -53,10 +62,23 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     // Methodes
 
     public String doIndex() throws NotFoundException {
+        for(ClimbingType ct: ClimbingType.values()){
+            climbingList.add(ct.getName());
+        }
+
         String vResult= ActionSupport.SUCCESS;
+        System.out.println("climbing list: "+climbingList);
 
         /*continentList=countryManager.getListContinent();*/
-        spotList = spotManager.getListSpot();
+        if(str==null && climbingType==null && hasTopo == null) {
+            spotList = spotManager.getListSpot();
+        }else{
+            System.out.println("trying to get a list with keyword: "+str);
+            System.out.println("climbing type passed: "+climbingType);
+            System.out.println("has topo passed: "+hasTopo);
+            spotList = spotManager.getListSpot(str, climbingType, hasTopo);
+        }
+        System.out.println("spotList size: "+spotList.size());
         int i=0;
         /*Spot[][] spotArray = spotList.toArray(new Spot[2][4]);*//*
         spotArray = new String[spotList.size()][4];*/
@@ -311,5 +333,36 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
 
     public void setSpotArray(String[][] spotArray) {
         this.spotArray = spotArray;
+    }
+    public String getStr() {
+        return str;
+    }
+
+    public void setStr(String str) {
+        this.str = str;
+    }
+
+    public String getClimbingType() {
+        return climbingType;
+    }
+
+    public void setClimbingType(String climbingType) {
+        this.climbingType = climbingType;
+    }
+
+    public String getHasTopo() {
+        return hasTopo;
+    }
+
+    public void setHasTopo(String hasTopo) {
+        this.hasTopo = hasTopo;
+    }
+
+    public List<String> getClimbingList() {
+        return climbingList;
+    }
+
+    public void setClimbingList(List<String> climbingList) {
+        this.climbingList = climbingList;
     }
 }

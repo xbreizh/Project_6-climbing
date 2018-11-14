@@ -1,5 +1,6 @@
 package org.example.demo.climb.consumer.contract;
 
+import org.example.demo.climb.model.ClimbingType;
 import org.example.demo.climb.model.bean.Country;
 import org.example.demo.climb.model.bean.Spot;
 
@@ -14,6 +15,7 @@ public interface SpotDao /*extends Dao*/ {
     // Get List
     List<Spot> ListSpotByContinent(String continent);
     List<Spot> ListSpotByCountry(Country country);
+    List<Spot> ListSpotByCriterias(String str, String climbingType, String hasTopo);
     List<Spot> ListSpotByCity(String continent, String country, String city);
     List<String> ListCity();
 

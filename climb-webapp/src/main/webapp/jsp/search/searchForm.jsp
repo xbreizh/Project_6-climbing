@@ -1,20 +1,86 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<html>
+<%--<html>
 
 <%@include file="../_include/header.jsp" %>
 
-<body>
+<body>--%>
 
 
-<h2>Search by keyword </h2>
-    Search:
-    <s:form action="spotSearch_list" method="POST">
-        <s:textfield name="str" requiredLabel="true"/>
-        <s:submit value="Search"/>
-    </s:form>
+<%--<h2>Search by keyword </h2>
+    Search:--%>
+<s:form class="justify-content-center"  action="index" method="POST">
+    <div class="form-group">
+        Keyword: <input type="text" class="form-control" name="str"  value = "${str}" requiredLabel="false">
+    </div>
+    <div class="form-group">Climbing Type:
+        <label class="radio-inline">
+            <s:radio list="climbingList" name="climbingType" label="climbing Type" default="climbingType"></s:radio>
+        </label>
+    </div>
+       <%-- <label class="radio-inline">
+            <s:textfield type="radio" name="climbingType" value="All"></s:textfield>
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="climbingType" value="Boulder">Boulder
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="climbingType" value="RopeClimbing">RopeClimbing
+        </label>--%>
+
+    <div class="form-group">
+    <div class="checkbox">
+        <label><input type="checkbox" name="hasTopo" <c:if test="${hasTopo.equals('on')}">checked="true"</c:if>>Has Topo</label>
+    </div>
+    </div>
+    <div class="form-group">
+    <s:submit value="Refresh"/>
+    </div>
+</s:form>
+   <%-- <div class="form-group">
+        <div data-role="rangeslider">
+            <label for="level-min">Level:</label>
+            <input type="range" name="price-min" id="level-min" value="2" min="0" max="10">
+            <label for="level-max">Level:</label>
+            <input type="range" name="level-max" id="level-max" value="8" min="0" max="10">
+        </div>
+    </div>--%>
+<%--
+<div id="slider"></div>
+<script>
+    var steps = [
+        "very sad",
+        "sad",
+        "not so sad",
+        "happy",
+        "very happy"
+    ];
+
+    $(function() {
+        $("#slider").slider({
+            value: 1,
+            min: 0,
+            max: 4,
+            step: 1,
+            slide: function(event, ui) {
+                $("#amount").val(steps[ui.value]);
+            }
+        });
+        $("#amount").val(steps[$("#slider").slider("value")]);
+    });
+</script>
+
+<p>
+    <label for="amount">Donation amount ($50 increments):</label>
+    <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+</p>
+
+<div id="slider"></div>--%>
 
 <h2>Spot</h2>
 <div id="content">
@@ -65,5 +131,7 @@
 var word = "${str}" ;
 </script>
 <script src="js/colorSearch.js"></script>--%>
+<%--
 </body>
 </html>
+--%>

@@ -5,6 +5,7 @@ import org.example.demo.climb.business.contract.CountryManager;
 import org.example.demo.climb.business.contract.MemberManager;
 import org.example.demo.climb.business.contract.SpotManager;
 import org.example.demo.climb.consumer.contract.SpotDao;
+import org.example.demo.climb.model.ClimbingType;
 import org.example.demo.climb.model.bean.Country;
 import org.example.demo.climb.model.bean.Spot;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,8 +50,22 @@ public class SpotManagerImpl  implements SpotManager {
 
     // Get List
     @Override
-    public List<Spot> getListSpot(String continent, String country, String city) {
-       return spotDao.ListSpotByCity(continent, country, city);
+    public List<Spot> getListSpot(String str, String climbingType, String hasTopo) {
+        String  ct = "'BOULDER', 'ROPECLIMB'";
+        String  htopo = "is null";
+        for(ClimbingType clt: ClimbingType.values()){
+            if(clt.getName().equals(climbingType)){
+                ct = clt.getName().toUpperCase();
+            }
+        }
+        if(hasTopo!=null) {
+            if (hasTopo.equals("on")) {
+                htopo = "is not null";
+            }
+        }
+        str = str.toUpperCase();
+        System.out.println("str: "+str+" climb: "+ct+" topo: "+htopo);
+       return spotDao.ListSpotByCriterias(str, ct, htopo);
     }
 
     @Override
