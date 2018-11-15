@@ -68,12 +68,17 @@ public class SpotDaoImpl implements SpotDao {
 
     @Override
     public List<Spot> ListSpotByCriterias(String str, String climbingType, String hasTopo) {
-        System.out.println("from dao str: "+str+" climb: "+climbingType+" topo: "+hasTopo);
-        Query q = sessionFactory.getCurrentSession().createQuery("select spot.id from Route where type in (:Ctype)");
-        q.setParameter("Ctype", climbingType.toUpperCase());
+        /*System.out.println("from dao str: "+str+" climb: "+climbingType+" topo: "+hasTopo);*/
+        Query q;
+        if(climbingType.equals("ALL")){
+            q = sessionFactory.getCurrentSession().createQuery("select spot.id from Route");
+        }else {
+            q = sessionFactory.getCurrentSession().createQuery("select spot.id from Route where type in (:Ctype)");
+            q.setParameter("Ctype", climbingType.toUpperCase());
+        }
         List<String> idList = q.getResultList();
-        System.out.println("list from dao: "+idList);
-        System.out.println("l: "+idList);
+     /*   System.out.println("list from dao: "+idList);
+        System.out.println("l: "+idList);*/
         Query query = sessionFactory.getCurrentSession().createQuery(
                 "From Spot  where id in (:list) and (upper(name) like :n or upper(city) like :n or upper(description) like :n " + "or upper(country.name) like :n or upper(country.continent) like :n )");
         query.setParameter("n", "%"+str+"%".toUpperCase());

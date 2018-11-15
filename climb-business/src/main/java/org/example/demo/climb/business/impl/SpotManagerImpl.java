@@ -51,7 +51,7 @@ public class SpotManagerImpl  implements SpotManager {
     // Get List
     @Override
     public List<Spot> getListSpot(String str, String climbingType, String hasTopo) {
-        String  ct = "'BOULDER', 'ROPECLIMB'";
+        String  ct = "ALL";
         String  htopo = "is null";
         for(ClimbingType clt: ClimbingType.values()){
             if(clt.getName().equals(climbingType)){
@@ -64,6 +64,10 @@ public class SpotManagerImpl  implements SpotManager {
             }
         }
         str = str.toUpperCase();
+        if(str == null){
+            System.out.println("str was null");
+            str="";
+        }
         System.out.println("str: "+str+" climb: "+ct+" topo: "+htopo);
        return spotDao.ListSpotByCriterias(str, ct, htopo);
     }

@@ -23,16 +23,6 @@
             <s:radio list="climbingList" name="climbingType" label="climbing Type" default="climbingType"></s:radio>
         </label>
     </div>
-       <%-- <label class="radio-inline">
-            <s:textfield type="radio" name="climbingType" value="All"></s:textfield>
-        </label>
-        <label class="radio-inline">
-            <input type="radio" name="climbingType" value="Boulder">Boulder
-        </label>
-        <label class="radio-inline">
-            <input type="radio" name="climbingType" value="RopeClimbing">RopeClimbing
-        </label>--%>
-
     <div class="form-group">
     <div class="checkbox">
         <label><input type="checkbox" name="hasTopo" <c:if test="${hasTopo.equals('on')}">checked="true"</c:if>>Has Topo</label>
