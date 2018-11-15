@@ -168,10 +168,11 @@ import java.util.List;
                     ", city='" + city + '\'' +
                     ", name='" + name + '\'' +
                     ", description='" + description + '\'' +
+                    ", latitude=" + latitude +
+                    ", longitude=" + longitude +
                     ", rateMore=" + rateMore +
                     ", rateLess=" + rateLess +
                     ", country=" + country +
-                    ", memberSpot=" + memberSpot +
                     '}';
         }
     }

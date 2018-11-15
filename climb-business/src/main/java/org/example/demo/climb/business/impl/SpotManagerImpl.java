@@ -132,11 +132,11 @@ public class SpotManagerImpl  implements SpotManager {
             s.setDescription(spot.getDescription());
             System.out.println("updated description");
         }
-        if(spot.getLatitude()==0){
+        if(spot.getLatitude()!=0){
             s.setLatitude(spot.getLatitude());
             System.out.println("updated latitude");
         }
-        if(spot.getLongitude()==0){
+        if(spot.getLongitude()!=0){
             s.setLongitude(spot.getLongitude());
             System.out.println("updated longitude");
         }

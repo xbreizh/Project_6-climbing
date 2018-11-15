@@ -73,7 +73,7 @@ public class SpotDaoImpl implements SpotDao {
         if(climbingType.equals("ALL")){
             q = sessionFactory.getCurrentSession().createQuery("select spot.id from Route");
         }else {
-            q = sessionFactory.getCurrentSession().createQuery("select spot.id from Route where type in (:Ctype)");
+                    q = sessionFactory.getCurrentSession().createQuery("select spot.id from Route where type in (:Ctype)");
             q.setParameter("Ctype", climbingType.toUpperCase());
         }
         List<String> idList = q.getResultList();

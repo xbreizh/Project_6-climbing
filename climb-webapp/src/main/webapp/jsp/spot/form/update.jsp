@@ -13,8 +13,8 @@
     <s:textfield name="spot.city" label="City" value="%{spot.city}" requiredLabel="true"/>
     <s:textfield name="spot.memberSpot.id" value="%{spot.memberSpot.id}" label="Member:"/>
     <s:textfield name="spot.name" label="Name" value="%{spot.name}" requiredLabel="true"/>
-    <s:textarea name="spot.latitude" label="Latitude" />
-    <s:textarea name="spot.longitude" label="Longitude" value="%{spot.longitude}" /><a href="https://www.gps-coordinates.net/">Get coordinates</a>
+    <s:textfield name="spot.latitude" label="Latitude" value="%{spot.latitude}"/>
+    <s:textfield name="spot.longitude" label="Longitude" value="%{spot.longitude}" /><a href="https://www.gps-coordinates.net/">Get coordinates</a>
     <s:textarea name="spot.description" label="Description" value="%{spot.description}" requiredLabel="true"/>
     <s:submit value="Update"/>
 </s:form>

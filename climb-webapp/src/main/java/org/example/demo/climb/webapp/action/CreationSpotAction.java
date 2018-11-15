@@ -38,6 +38,11 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
 
 
 
+    private double latitude;
+    private double longitude;
+
+
+
     private final String token= "AlcwuVaVbdcepPJ0gbZ0Nd5prdkYHYS1LEEFEbUm2l0CfEe4XLUeDArvlkrXHcg2";
 
     public JsonArray getListo() {
@@ -207,10 +212,14 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
 
         if (spot != null) {
             System.out.println("id de spot: "+spot.getId());
+            System.out.println("latitude: "+spot.getLatitude());
+            System.out.println("latitude: "+spot.getLongitude());
             spotManager.updateSpot(spot);
             vResult = ActionSupport.SUCCESS;
             System.out.println("Spot: " + spot);
 
+        }else{
+            System.out.println("spot is null");
         }
         if (this.hasErrors()) {
             System.out.println("Spot is null");
@@ -364,5 +373,20 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
 
     public void setClimbingList(List<String> climbingList) {
         this.climbingList = climbingList;
+    }
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 }
