@@ -2,7 +2,7 @@
 
     <html>
 
-    <%@include file="../_include/header.jsp" %>
+    <%@include file="../../_include/header.jsp" %>
 
     <body>
     <h1>Struts 2 <%--<s:combobox> --%>example</h1>

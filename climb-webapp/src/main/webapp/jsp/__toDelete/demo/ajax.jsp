@@ -2,12 +2,12 @@
 
 <html>
 
-<%@include file="../_include/header.jsp" %>
+<%@include file="../../_include/header.jsp" %>
 
 <body>
-<h2>Démo - AJAX</h2>
+<%--<h2>Démo - AJAX</h2>--%>
 
-<s:form action="resultAction" namespace="/">
+<%--<s:form action="resultAction" namespace="/">
 
     <h2>
         <s:combobox label="Pick a Member"
@@ -32,7 +32,7 @@
 
 <h2>
     Description : <s:property value="member.login"/>
-</h2>
+</h2>--%>
 
 </body>
 </html>

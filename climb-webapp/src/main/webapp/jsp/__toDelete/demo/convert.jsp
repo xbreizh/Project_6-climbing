@@ -2,17 +2,17 @@
 
 <html>
 
-<%@include file="../_include/header.jsp" %>
+<%@include file="../../_include/header.jsp" %>
 
 <body>
 
-<h2>Démo - Converter</h2>
+<%--<h2>Démo - Converter</h2>
 
-<%--<s:form action="demo_convert">
+&lt;%&ndash;<s:form action="demo_convert">
     <s:textfield name="fraction" label="Fraction (format : #/#)" />
 
     <s:submit value="OK"/>
-</s:form>--%>
+</s:form>&ndash;%&gt;
 <s:form action="demo_convert">
     <s:textfield name="id" label="Member" />
 
@@ -34,6 +34,6 @@
             <s:param name="id" value="id"/>
         </s:a>
     </li>
-</ul>
+</ul>--%>
 </body>
 </html>

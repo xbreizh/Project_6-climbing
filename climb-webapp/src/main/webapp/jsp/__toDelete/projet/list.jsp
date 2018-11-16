@@ -2,7 +2,7 @@
 
 <html>
 
-<%@include file="../_include/header.jsp" %>
+<%@include file="../../_include/header.jsp" %>
 
 <body>
 <%--<h1>Liste des projets</h1>

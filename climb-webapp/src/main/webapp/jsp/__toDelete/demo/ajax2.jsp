@@ -3,9 +3,10 @@
 
 <html>
 
-<%@include file="../_include/header.jsp" %>
+<%@include file="../../_include/header.jsp" %>
 
 <body>
+<%--
 
 <s:form action="demo_ajax">
 <s:select id="selectContinent" name="continent"
@@ -27,6 +28,7 @@
 </s:form>
 Continent: <s:property value="%{continent}"/><br>
 Country: <s:property value="%{country}"/>
+--%>
 
 
 </body>

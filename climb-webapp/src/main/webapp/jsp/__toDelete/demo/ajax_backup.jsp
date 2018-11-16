@@ -2,7 +2,7 @@
 
 <html>
 
-<%@include file="../_include/header.jsp" %>
+<%@include file="../../_include/header.jsp" %>
 
 <body>
 <h2>Démo - AJAX</h2>
