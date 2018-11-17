@@ -17,7 +17,6 @@ You are now connected
     function init() {
         opener.location.reload();
         this.close();
-        //close();
     }
 </script>
 

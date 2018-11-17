@@ -1,3 +1,4 @@
+<%--
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
@@ -8,7 +9,7 @@
 
 <body>
 
-<%--
+&lt;%&ndash;
 <h2>Creation d'un comment</h2>
 <r:property value="#session.user.id"/>
 <s:property value="%{route.id}"/>
@@ -25,6 +26,7 @@
 <s:else>
     Vous devez vous connecter pour cette action!
     <s:a action="login">Connexion</s:a>
-</s:else>--%>
+</s:else>&ndash;%&gt;
 </body>
 </html>
+--%>

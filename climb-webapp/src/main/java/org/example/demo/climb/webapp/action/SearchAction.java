@@ -23,19 +23,10 @@ public class SearchAction extends LoginAction implements SessionAware {
     private String hasTopo;
 
     @Inject
-    private CommentManager commentManager;
-    @Inject
-    private RouteManager routeManager;
-    @Inject
-    private SpotManager spotManager;
-    @Inject
     private SearchManager searchManager;
-    @Inject
-    private TopoManager topoManager;
 
 
-    // Methodes
-
+    // Methods
 
     public String doSearchByKeyword() throws  NotFoundException {
         String vResult = ActionSupport.INPUT;
@@ -60,118 +51,19 @@ public class SearchAction extends LoginAction implements SessionAware {
         topoList=searchManager.findTopoByString(str);
         System.out.println("size spot: "+spotList.size());
         System.out.println("size topo: "+topoList.size());
-       /* if(str.equals("")){
-            return vResult;
-        }else{
-            spotList=searchManager.findSpotByString(str);
-        }*/
         return ActionSupport.SUCCESS;
     }
-   /* public String doListCommentSpot() throws  NotFoundException{
-        *//* commentList = commentManager.getListComment();*//*
-        spot = spotManager.getSpotById(id);
-        if(spot!=null){
-            System.out.println("tried to get the comment liste");
-            commentListSpot = commentManager.getListCommentFromSpot(spot.getId());
-            System.out.println(spot.getName());
-        }
-        if(commentListSpot.size() > 0) {
-            System.out.println("text from comment: " + commentListSpot.get(0).getText());
-        }
-        return ActionSupport.SUCCESS;
-    }
-    public String doCreateCommentRoute() throws NotFoundException {
-        String vResult= ActionSupport.INPUT;
-        System.out.println("je suis suppose etre la");
 
-        if(comment!=null){
-            System.out.println("comment text: "+comment.getText());
-            System.out.println("comment member: "+comment.getMemberComment().getLogin());
-            System.out.println("comment route: "+comment.getRoute().getName());
-            commentManager.addComment(comment);
-            vResult = ActionSupport.SUCCESS;
-        }else{
-        }
-        return vResult;
-    }
-
-    public String doCreateCommentSpot() throws NotFoundException {
-        String vResult= ActionSupport.INPUT;
-        System.out.println("je suis suppose etre la");
-
-        if(comment!=null){
-            System.out.println("comment text: "+comment.getText());
-            System.out.println("comment member: "+comment.getMemberComment().getLogin());
-            System.out.println("comment route: "+comment.getSpot().getName());
-            commentManager.addComment(comment);
-            vResult = ActionSupport.SUCCESS;
-        }else{
-        }
-        return vResult;
-    }
-
-
-    public String doDetail() throws NotFoundException {
-        String vResult = ActionSupport.SUCCESS;
-        try {
-            route = routeManager.getRouteById(id);
-            System.out.println("getting route: " + route.getName());
-        }catch(NotFoundException e){
-            System.err.println("Route not found: "+e.getMessage());
-        }
-        if (this.hasErrors()) {
-            vResult = ActionSupport.ERROR;
-        }
-        return vResult;
-    }
-
-    public String doEdit() {
-        String vResult = ActionSupport.SUCCESS;
-
-        if (this.hasErrors()) {
-            vResult = ActionSupport.ERROR;
-        }
-        return vResult;
-    }
-    public String doUpdate() {
-        String vResult = ActionSupport.INPUT;
-
-
-        if (this.hasErrors()) {
-            System.out.println("Spot is null");
-            vResult = ActionSupport.ERROR;
-        }
-        return vResult;
-    }
-
-    public String doDelete() throws  NotFoundException{
-
-        return ActionSupport.SUCCESS;
-    }*/
 
 
     // Getters and Setters
-    public List<Topo> getTopoList() {
-        return topoList;
-    }
 
-    public void setTopoList(List<Topo> topoList) {
-        this.topoList = topoList;
-    }
     public Topo getTopo() {
         return topo;
     }
 
     public void setTopo(Topo topo) {
         this.topo = topo;
-    }
-
-    public String getStr() {
-        return str;
-    }
-
-    public void setStr(String str) {
-        this.str = str;
     }
 
     public int getId() {
@@ -182,14 +74,6 @@ public class SearchAction extends LoginAction implements SessionAware {
         this.id = id;
     }
 
-    public List<Spot> getSpotList() {
-        return spotList;
-    }
-
-    public void setSpotList(List<Spot> spotList) {
-        this.spotList = spotList;
-    }
-
     public Spot getSpot() {
         return spot;
     }
@@ -197,6 +81,14 @@ public class SearchAction extends LoginAction implements SessionAware {
     public void setSpot(Spot spot) {
         this.spot = spot;
     }
+    public String getStr() {
+        return str;
+    }
+
+    public void setStr(String str) {
+        this.str = str;
+    }
+
     public String getClimbingType() {
         return climbingType;
     }
@@ -212,4 +104,5 @@ public class SearchAction extends LoginAction implements SessionAware {
     public void setHasTopo(String hasTopo) {
         this.hasTopo = hasTopo;
     }
+
 }

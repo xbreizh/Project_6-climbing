@@ -5,12 +5,14 @@ import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
 import org.example.demo.climb.business.contract.RouteManager;
 import org.example.demo.climb.business.contract.SpotManager;
+import org.example.demo.climb.model.Grade;
 import org.example.demo.climb.model.bean.Route;
 import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.exception.NotFoundException;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -19,16 +21,12 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
 
     private Route route;
     private int id;
-
     private String country;
     private List<Integer> heighList=new ArrayList<>();
-    private List<String> gradeList=new ArrayList<>();
+    /*private List<String> gradeList=new ArrayList<>();*/
     private List<String> typeList=new ArrayList<>();
     private List<Route> routeList=new ArrayList<>();
-
-
-
-
+    private HashMap<Integer, String> gradeList= new HashMap<>();
     private Spot spot;
 
     @Inject
@@ -36,21 +34,25 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
     @Inject
     private RouteManager routeManager;
 
-    // Methodes
+    // METHODS
 
+    private void initLevelList() {
+        int index=0;
+        //adding default condition
+        gradeList.put(index, "0");
+        for(Grade g: Grade.values()){
+            index++;
+            gradeList.put(index,g.getValue());
+        }
 
-    public String doList() throws  NotFoundException{
-        spot = spotManager.getSpotById(id);
-        routeList = spot.getRouteList();
-        System.out.println("tried to get the route liste");
-        return ActionSupport.SUCCESS;
     }
+    /*CREATE*/
     public String doCreateRoute() throws NotFoundException {
         String vResult= ActionSupport.INPUT;
         System.out.println("je suis suppose etre la");
-
+        initLevelList();
         if(route!=null){
-            gradeList = routeManager.getListGrade();
+            /*gradeList = routeManager.getListGrade();*/
             typeList = routeManager.getListClimbingType();
             heighList= IntStream.range(1, 50).boxed().collect(Collectors.toList());
             if(routeManager.getRouteByName(route.getName().toUpperCase())==null){
@@ -71,14 +73,23 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
             }
         }else{
             spot = spotManager.getSpotById(id);
-            gradeList = routeManager.getListGrade();
+            /*gradeList = routeManager.getListGrade();*/
             typeList = routeManager.getListClimbingType();
             heighList= IntStream.range(1, 50).boxed().collect(Collectors.toList());
         }
         return vResult;
     }
 
+    /*READ ALL*/
+    public String doList() throws  NotFoundException{
+        spot = spotManager.getSpotById(id);
+        routeList = spot.getRouteList();
+        System.out.println("tried to get the route liste");
+        return ActionSupport.SUCCESS;
+    }
 
+
+    /*READ ONE*/
     public String doDetail() throws NotFoundException {
         String vResult = ActionSupport.SUCCESS;
         try {
@@ -93,10 +104,11 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
         return vResult;
     }
 
+    /*EDIT*/
     public String doEdit() {
         System.out.println("id: "+id);
         try {
-            gradeList = routeManager.getListGrade();
+           /* gradeList = routeManager.getListGrade();*/
             typeList = routeManager.getListClimbingType();
             heighList= IntStream.range(1, 50).boxed().collect(Collectors.toList());
             route = routeManager.getRouteById(id);
@@ -106,6 +118,8 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
         System.out.println("doedit id: "+route.getId());
         return ActionSupport.SUCCESS;
     }
+
+    /*EDIT*/
     public String doUpdate() {
         String vResult = ActionSupport.INPUT;
 
@@ -114,7 +128,6 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
             routeManager.updateRoute(route);
             System.out.println("Route: "+route);
             vResult = ActionSupport.SUCCESS;
-
         }
         if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;
@@ -122,6 +135,7 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
         return vResult;
     }
 
+    /*DELETE*/
     public String doDelete() throws  NotFoundException{
 
         return ActionSupport.SUCCESS;
@@ -152,11 +166,11 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
         this.heighList = heighList;
     }
 
-    public List<String> getGradeList() {
+    public HashMap<Integer, String> getGradeList() {
         return gradeList;
     }
 
-    public void setGradeList(List<String> gradeList) {
+    public void setGradeList(HashMap<Integer, String> gradeList) {
         this.gradeList = gradeList;
     }
 

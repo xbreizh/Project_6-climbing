@@ -11,7 +11,6 @@
 <s:if test="#session.user">
 
 <s:a action="index" >Back to Menu</s:a><br><br>
-<%--Continent: <s:property value="%{continent}"/><br>--%>
 <s:form action="choseCountry">
     <s:select id="selectContinent" name="continent" value="%{continent}"
               headerKey="" headerValue="--Select Continent--"

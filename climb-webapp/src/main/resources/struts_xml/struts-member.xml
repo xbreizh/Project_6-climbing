@@ -22,20 +22,6 @@
             <result name="success">/jsp/member/creationOk.jsp</result>
         </action>
 
-        <!--PASSWORD RESET-->
-
-        <action name="pwd_reset"
-                class="org.example.demo.climb.webapp.action.GestionMemberAction"
-                method="doReset">
-            <interceptor-ref name="store">
-                <param name="operationMode">RETRIEVE</param>
-            </interceptor-ref>
-            <interceptor-ref name="defaultStack"/>
-            <result name="input">/jsp/member/form/password_reset.jsp</result>
-            <result name="success">/jsp/member/resetOk.jsp</result>
-        </action>
-
-
         <!-- READ ALL -->
         <action name="member_list"
                 class="org.example.demo.climb.webapp.action.GestionMemberAction"
@@ -97,37 +83,18 @@
             </result>
         </action>
 
-
-        <!-- Action renvoyant la liste des Projets -->
-       <!-- <action name="demo_ajax_getListMember"
-                class="org.example.demo.climb.webapp.action.DemoAjaxAction"
-                method="doAjaxGetListMember">
-            <result name="success" type="json">
-                <param name="root">listMember</param>
-            </result>
-        </action>-->
-        <!-- Action renvoyant la liste des Spots -->
-        <!--<action name="demo_ajax_getListSpot"
-                class="org.example.demo.climb.webapp.action.DemoAjaxAction"
-                method="doAjaxGetListSpot">
-            <result name="input" type="json">
-                <param name="root">spotList</param>
-            </result>
-            <result name="success">jsp/demo/ajax.jsp</result>
-            &lt;!&ndash;<result name="input" type="json">
-                <param name="root">spotList</param>
-            </result>&ndash;&gt;
-        </action>-->
-
-       <!-- <action name="comboBoxAction"
-                class="org.example.demo.climb.webapp.action.DemoAjaxAction" method="display">
-            <result name="none">jsp/demo/ajax2.jsp</result>
+        <!--PASSWORD RESET-->
+        <action name="pwd_reset"
+                class="org.example.demo.climb.webapp.action.GestionMemberAction"
+                method="doReset">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+            <result name="input">/jsp/member/form/password_reset.jsp</result>
+            <result name="success">/jsp/member/resetOk.jsp</result>
         </action>
 
-        <action name="resultAction" class="org.example.demo.climb.webapp.action.DemoAjaxAction">
-            <result name="success">jsp/demo/ajax2.jsp</result>
-        </action>
--->
     </package>
-    <include file="struts_xml/struts-default2.xml"/>
+  <!--  <include file="struts_xml/struts-default2.xml"/>-->
 </struts>

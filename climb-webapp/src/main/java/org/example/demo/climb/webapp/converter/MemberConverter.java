@@ -45,9 +45,6 @@ public class MemberConverter extends StrutsTypeConverter {
         if (pObject instanceof Member) {
             Member vFraction = (Member) pObject;
             Member member = (Member) pObject;
-           /* vString = String.format("%d/%d",
-                    vFraction.getNumerator(),
-                    vFraction.getDenominator());*/
             vString=member.getLogin();
         } else {
             vString = "";

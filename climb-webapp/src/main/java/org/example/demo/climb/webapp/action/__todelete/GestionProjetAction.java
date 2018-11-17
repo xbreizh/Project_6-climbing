@@ -1,29 +1,24 @@
-package org.example.demo.climb.webapp.action;
+package org.example.demo.climb.webapp.action.__todelete;
 
-import com.opensymphony.xwork2.ActionSupport;
-import org.example.demo.climb.business.contract.ManagerFactory;
-import org.example.demo.climb.model.bean.projet.Projet;
-
-import javax.inject.Inject;
-import java.util.List;
+import org.example.demo.climb.webapp.action.LoginAction;
 
 public class GestionProjetAction extends LoginAction {
 
-    private Integer id;
+   /* private Integer id;
 
     private List<Projet> listProjet;
 
     private Projet projet;
 
-   /* private List<Utilisateur> listUtilisateur;*/
+   *//* private List<Utilisateur> listUtilisateur;*//*
 
     @Inject
     private ManagerFactory managerFactory;
 
-    /*Getters / Setters*/
-   /* public List<Utilisateur> getListUtilisateur() {
+    *//*Getters / Setters*//*
+   *//* public List<Utilisateur> getListUtilisateur() {
         return listUtilisateur;
-    }*/
+    }*//*
 
     public int getId() {
         return id;
@@ -45,15 +40,15 @@ public class GestionProjetAction extends LoginAction {
         return projet;
     }
 
-    /*Methodes*/
+    *//*Methodes*//*
 
     public String doList(){
-        /* listProjet = managerFactory.getProjetManager().getListProjet();*/
+        *//* listProjet = managerFactory.getProjetManager().getListProjet();*//*
         return ActionSupport.SUCCESS;
     }
 
     public String doDetail(){
-       /* if(id == null){
+       *//* if(id == null){
             this.addActionError("vous devez indiquer un id de projet");
         }else {
             try {
@@ -61,13 +56,13 @@ public class GestionProjetAction extends LoginAction {
             } catch (NotFoundException e) {
                 this.addActionError("Projet non trouvé: "+id);
             }
-        }*/
+        }*//*
         return(this.hasErrors()) ? ActionSupport.ERROR : ActionSupport.SUCCESS;
     }
 
     public String doCreate(){
         String vResult = ActionSupport.INPUT;
-        /*if(this.projet != null){
+        *//*if(this.projet != null){
             if(this.projet.getResponsable() == null ||
             this.projet.getResponsable().getId()==null){
                 this.addFieldError("projet.responsable.id", "ne doit pas être vide");
@@ -96,8 +91,8 @@ public class GestionProjetAction extends LoginAction {
         }
         if(vResult.equals(ActionSupport.INPUT)){
             this.listUtilisateur = managerFactory.getManager().getListMember();
-        }*/
+        }*//*
 
         return vResult;
-    }
+    }*/
 }

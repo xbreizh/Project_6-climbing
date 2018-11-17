@@ -2,8 +2,8 @@ package org.example.demo.climb.business.impl.manager;
 
 import org.example.demo.climb.business.contract.MemberManager;
 import org.example.demo.climb.business.contract.ProjetManager;
-import org.example.demo.climb.model.bean.projet.Projet;
-import org.example.demo.climb.model.bean.projet.Version;
+import org.example.demo.climb.model.bean.__to_delete.projet.Projet;
+import org.example.demo.climb.model.bean.__to_delete.projet.Version;
 import org.example.demo.climb.model.exception.FunctionalException;
 import org.example.demo.climb.model.exception.NotFoundException;
 

@@ -15,7 +15,7 @@ public interface SpotDao /*extends Dao*/ {
     // Get List
     List<Spot> ListSpotByContinent(String continent);
     List<Spot> ListSpotByCountry(Country country);
-    List<Spot> ListSpotByCriterias(String str, String climbingType, String hasTopo);
+    List<Spot> ListSpotByCriterias(String str, String climbingType, String hasTopo, int levelMin, int levelMax);
     List<Spot> ListSpotByCity(String continent, String country, String city);
     List<String> ListCity();
 

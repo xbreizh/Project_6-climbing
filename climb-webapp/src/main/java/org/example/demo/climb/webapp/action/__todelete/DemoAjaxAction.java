@@ -1,21 +1,12 @@
-package org.example.demo.climb.webapp.action;
-
-import java.util.List;
-import javax.inject.Inject;
-
-import com.opensymphony.xwork2.ActionSupport;
-
-import org.example.demo.climb.business.contract.ZoneManager;
-import org.example.demo.climb.model.bean.Spot;
-import org.example.demo.climb.model.bean.Zone;
+package org.example.demo.climb.webapp.action.__todelete;
 
 
 /**
  * Action de démo pour les appels AJAX
  */
-public class DemoAjaxAction extends ActionSupport{
+public class DemoAjaxAction /*extends ActionSupport*/{
 
-    @Inject
+   /* @Inject
     private ZoneManager zoneManager;
 
 
@@ -97,7 +88,7 @@ public class DemoAjaxAction extends ActionSupport{
     }
 
     public String execute() {
-       /* continentList = zoneManager.getListContinent();
+       *//* continentList = zoneManager.getListContinent();
         if(continent!=null && !continent.equals("-1")){
             countryList=zoneManager.getListCountry(continent);
             if(country!=null && !country.equals("-1")){
@@ -106,7 +97,7 @@ public class DemoAjaxAction extends ActionSupport{
         }else{
             country = null;
             region = null;
-        }*/
+        }*//*
         return ActionSupport.SUCCESS;
     }
 
@@ -118,5 +109,5 @@ public class DemoAjaxAction extends ActionSupport{
 
 
     public void setListZone(String listZone) {
-    }
+    }*/
 }

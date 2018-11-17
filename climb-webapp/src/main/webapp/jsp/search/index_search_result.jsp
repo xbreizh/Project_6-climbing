@@ -7,7 +7,6 @@
             <li>City: <s:property value="city" escapeHtml="false"/></li>
             <li>Name: <s:property value="name" escapeHtml="false"/></li>
             <li>Description: <s:property value="description" escapeHtml="false"/></li>
-           <%-- <li>GPS coordinates: <s:property value="latitude"/>,<s:property value="longitude"/></li>--%>
             <li>Creator:
                 <s:a action="member_detail">
                     <s:param name="id" value="memberSpot.id"/>

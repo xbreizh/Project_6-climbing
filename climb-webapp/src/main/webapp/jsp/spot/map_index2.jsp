@@ -1,3 +1,4 @@
+<%--
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <script src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0" type="text/javascript" charset="UTF-8"></script>
@@ -77,4 +78,4 @@ function btn2Handler()
 {
     console.log('plaf');
 }
-</script>
+</script>--%>

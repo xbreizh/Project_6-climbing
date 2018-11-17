@@ -1,4 +1,4 @@
-package org.example.demo.climb.model.bean;
+package org.example.demo.climb.model.bean.__to_delete;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

@@ -19,16 +19,8 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
 
     private Comment comment;
     private int id;
-
-    /*private String country;
-    private List<Integer> heighList=new ArrayList<>();
-    private List<String> gradeList=new ArrayList<>();
-    private List<String> typeList=new ArrayList<>();*/
     private List<Comment> commentListRoute=new ArrayList<>();
-
     private List<Comment> commentListSpot=new ArrayList<>();
-
-
     private Route route;
     private Spot spot;
 
@@ -40,11 +32,36 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
     @Inject
     private SpotManager spotManager;
 
-    // Methodes
+    // METHODS
 
+    //CREATE COMMENT ROUTE
+    public String doCreateCommentRoute() throws NotFoundException {
+        String vResult= ActionSupport.INPUT;
+        System.out.println("je suis suppose etre la");
 
+        if(comment!=null){
+            commentManager.addComment(comment);
+            vResult = ActionSupport.SUCCESS;
+        }else{
+        }
+        return vResult;
+    }
+
+    /*CREATE COMMENT SPOT*/
+    public String doCreateCommentSpot() throws NotFoundException {
+        String vResult= ActionSupport.INPUT;
+        System.out.println("je suis suppose etre la");
+
+        if(comment!=null){
+            commentManager.addComment(comment);
+            vResult = ActionSupport.SUCCESS;
+        }else{
+        }
+        return vResult;
+    }
+
+    /*READ ALL COMMENTS FROM ROUTE*/
     public String doListCommentRoute() throws  NotFoundException{
-       /* commentList = commentManager.getListComment();*/
         route = routeManager.getRouteById(id);
         if(route!=null){
             System.out.println("tried to get the comment liste");
@@ -56,8 +73,8 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
         }
         return ActionSupport.SUCCESS;
     }
+    /*READ ALL COMMENTS FROM SPOT*/
     public String doListCommentSpot() throws  NotFoundException{
-        /* commentList = commentManager.getListComment();*/
         spot = spotManager.getSpotById(id);
         if(spot!=null){
             System.out.println("tried to get the comment liste");
@@ -69,37 +86,8 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
         }
         return ActionSupport.SUCCESS;
     }
-    public String doCreateCommentRoute() throws NotFoundException {
-        String vResult= ActionSupport.INPUT;
-        System.out.println("je suis suppose etre la");
 
-        if(comment!=null){
-            System.out.println("comment text: "+comment.getText());
-            System.out.println("comment member: "+comment.getMemberComment().getLogin());
-            System.out.println("comment route: "+comment.getRoute().getName());
-            commentManager.addComment(comment);
-            vResult = ActionSupport.SUCCESS;
-        }else{
-        }
-        return vResult;
-    }
-
-    public String doCreateCommentSpot() throws NotFoundException {
-        String vResult= ActionSupport.INPUT;
-        System.out.println("je suis suppose etre la");
-
-        if(comment!=null){
-            System.out.println("comment text: "+comment.getText());
-            System.out.println("comment member: "+comment.getMemberComment().getLogin());
-            System.out.println("comment route: "+comment.getSpot().getName());
-            commentManager.addComment(comment);
-            vResult = ActionSupport.SUCCESS;
-        }else{
-        }
-        return vResult;
-    }
-
-
+    /*READ ONE*/
     public String doDetail() throws NotFoundException {
         String vResult = ActionSupport.SUCCESS;
         try {
@@ -114,6 +102,7 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
         return vResult;
     }
 
+    /*EDIT*/
     public String doEdit() {
         String vResult = ActionSupport.SUCCESS;
 
@@ -122,10 +111,10 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
         }
         return vResult;
     }
+
+    /*UPDATE*/
     public String doUpdate() {
         String vResult = ActionSupport.INPUT;
-
-
         if (this.hasErrors()) {
             System.out.println("Spot is null");
             vResult = ActionSupport.ERROR;
@@ -133,6 +122,7 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
         return vResult;
     }
 
+    /*DELETE*/
     public String doDelete() throws  NotFoundException{
 
         return ActionSupport.SUCCESS;
@@ -140,7 +130,6 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
 
 
     // Getters and Setters
-
 
     public Comment getComment() {
         return comment;

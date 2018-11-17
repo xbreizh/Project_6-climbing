@@ -45,9 +45,6 @@ public class SpotConverter extends StrutsTypeConverter {
         if (pObject instanceof Spot) {
             Spot vFraction = (Spot) pObject;
             Spot spot = (Spot) pObject;
-           /* vString = String.format("%d/%d",
-                    vFraction.getNumerator(),
-                    vFraction.getDenominator());*/
             vString=spot.getName();
         } else {
             vString = "";

@@ -1,5 +1,7 @@
 package org.example.demo.climb.model.bean;
 
+import org.example.demo.climb.model.Grade;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -33,8 +35,7 @@ import java.util.List;
         }
 
         @NotNull
-        @Size(min = 1, max = 5)
-        private String grade;
+        private int grade;
 
         @NotNull
         @Size(min = 1, max = 20)
@@ -97,11 +98,11 @@ import java.util.List;
             this.height = height;
         }
 
-        public String getGrade() {
+        public int getGrade() {
             return grade;
         }
 
-        public void setGrade(String grade) {
+        public void setGrade(int grade) {
             this.grade = grade;
         }
 

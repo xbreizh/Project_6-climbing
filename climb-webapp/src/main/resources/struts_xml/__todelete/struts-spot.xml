@@ -1,3 +1,4 @@
+<!--
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE struts PUBLIC
@@ -10,9 +11,9 @@
     <package name="Spot" extends="struts-default">
 
 
-        <!-- CREATE-->
+        &lt;!&ndash; CREATE&ndash;&gt;
         <action name="spot_new"
-                class="org.example.demo.climb.webapp.action.GestionSpotAction"
+                class="org.example.demo.climb.webapp.action.__todelete.GestionSpotAction"
                 method="doCreate">
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
@@ -26,7 +27,7 @@
         </action>
 
 
-        <!-- READ ALL -->
+        &lt;!&ndash; READ ALL &ndash;&gt;
         <action name="spot_list"
                 class="org.example.demo.climb.webapp.action.CreationSpotAction"
                 method="doList">
@@ -34,24 +35,24 @@
 
         </action>
 
-        <!--READ ONE -->
+        &lt;!&ndash;READ ONE &ndash;&gt;
         <action name="spot_detail"
-                class="org.example.demo.climb.webapp.action.GestionSpotAction"
+                class="org.example.demo.climb.webapp.action.__todelete.GestionSpotAction"
                 method="doDetail">
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
 
-            <result name="success">jsp/spot/detail.jsp</result>
+            <result name="success">../../../webapp/jsp/spot/detail.jsp</result>
         </action>
 
 
 
 
-       <!-- EDIT-->
+       &lt;!&ndash; EDIT&ndash;&gt;
         <action name="spot_edit"
-                class="org.example.demo.climb.webapp.action.GestionSpotAction"
+                class="org.example.demo.climb.webapp.action.__todelete.GestionSpotAction"
                 method="doEdit">
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
@@ -61,9 +62,9 @@
         </action>
 
 
-        <!-- DELETE -->
+        &lt;!&ndash; DELETE &ndash;&gt;
         <action name="spot_delete"
-                class="org.example.demo.climb.webapp.action.GestionSpotAction"
+                class="org.example.demo.climb.webapp.action.__todelete.GestionSpotAction"
                 method="doDelete">
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
@@ -78,4 +79,4 @@
 
     </package>
     <include file="struts_xml/struts-default2.xml"/>
-</struts>
+</struts>-->

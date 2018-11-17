@@ -10,10 +10,6 @@
 <br><br>
 <s:if test="#session.user">
 
-<%--Continent: <s:property value="%{continent}"/><br>--%>
-
-<%--<s:a action="choseContinent" >
-    change</s:a><br><br>--%>
 
 <s:form action="choseCity">
     <s:select id="selectCountry" name="country" value="%{country}"

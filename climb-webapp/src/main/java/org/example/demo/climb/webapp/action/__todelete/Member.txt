@@ -94,7 +94,7 @@
 
         &lt;!&ndash;Action listant les détails d'un projet&ndash;&gt;
         &lt;!&ndash; <action name="projet_detail"
-        class="org.example.demo.climb.webapp.action.GestionProjetAction"
+        class="org.example.demo.climb.webapp.action.__todelete.GestionProjetAction"
         method="doDetail">
         <interceptor-ref name="store">
         <param name="operationMode">RETRIEVE</param>
@@ -107,7 +107,7 @@
 
         &lt;!&ndash;Action listant les détails d'un projet&ndash;&gt;
         &lt;!&ndash; <action name="projet_detail"
-        class="org.example.demo.climb.webapp.action.GestionProjetAction"
+        class="org.example.demo.climb.webapp.action.__todelete.GestionProjetAction"
         method="doDetail">
         <interceptor-ref name="store">
         <param name="operationMode">RETRIEVE</param>
@@ -120,7 +120,7 @@
 
         &lt;!&ndash;Action listant les projets&ndash;&gt;
         &lt;!&ndash;<action name="projet_list"
-        class="org.example.demo.climb.webapp.action.GestionProjetAction"
+        class="org.example.demo.climb.webapp.action.__todelete.GestionProjetAction"
         method="doList">
         <result>jsp/projet/list.jsp</result>
 
@@ -129,7 +129,7 @@
 
         &lt;!&ndash;Action permettant de créer un projet&ndash;&gt;
         &lt;!&ndash;        <action name="projet_new"
-                class="org.example.demo.climb.webapp.action.GestionProjetAction"
+                class="org.example.demo.climb.webapp.action.__todelete.GestionProjetAction"
                 method="doCreate">
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>

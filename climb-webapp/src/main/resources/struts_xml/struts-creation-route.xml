@@ -12,30 +12,16 @@
         <action name="createRoute"
                 class="org.example.demo.climb.webapp.action.CreationRouteAction"
                 method="doCreateRoute">
-          <!--  <interceptor-ref name="store">
-                <param name="operationMode">STORE</param>
-            </interceptor-ref>-->
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
-           <!-- <result>/jsp/route/form/newRoute.jsp</result>-->
             <result name="input">/jsp/route/form/newRoute.jsp</result>
-
-           <!-- <result name="success" >/jsp/route/success.jsp</result>-->
             <result name="success" type="redirectAction">
                 <param name="actionName">spot_detail</param>
                 <param name="id">${route.spot.id}</param>
             </result>
-
-           <!-- <result name="error" type="redirect">
-                <param name="location">/createRoute.action?id=${spot.id}</param>
-            </result>-->
             <result name="error">/jsp/route/form/newRoute.jsp</result>
-           <!-- <result name="error" >
-                <param name="actionName">createRoute</param>
-                <param name="id">${spot.id}</param>
-            </result>-->
         </action>
 
         <!-- READ ALL -->
@@ -57,6 +43,7 @@
             <result name="success">jsp/spot/detail.jsp</result>
         </action>
 
+        <!--EDIT-->
         <action name="route_edit"
                 class="org.example.demo.climb.webapp.action.CreationRouteAction"
                 method="doEdit">
@@ -90,7 +77,6 @@
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
-           <!-- <result name="input">/jsp/spot/form/update.jsp</result>-->
             <result name="success" type="redirectAction">
                 <param name="actionName">spot_list</param>
             </result>

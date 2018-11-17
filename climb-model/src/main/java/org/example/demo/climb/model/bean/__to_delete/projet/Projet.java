@@ -1,4 +1,4 @@
-package org.example.demo.climb.model.bean.projet;
+package org.example.demo.climb.model.bean.__to_delete.projet;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;

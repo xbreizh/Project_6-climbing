@@ -19,29 +19,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
     @Inject
     private MemberManager memberManager;
 
-    //Getters / Setters
 
-    public Map<String, Object> getSession() {
-        return session;
-    }
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public String getPwd() {
-        return pwd;
-    }
-
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
-    }
-
-    //Méthodes
-
+    // Methods
     public String doLogin(){
         String vResult= ActionSupport.INPUT;
         if (!StringUtils.isAllEmpty(login, pwd)) {
@@ -74,5 +53,26 @@ public class LoginAction extends ActionSupport implements SessionAware {
     @Override
     public void setSession(Map<String, Object> session) {
         this.session = session;
+    }
+
+    //Getters / Setters
+
+    public Map<String, Object> getSession() {
+        return session;
+    }
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 }

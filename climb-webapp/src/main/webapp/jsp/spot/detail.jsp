@@ -7,9 +7,7 @@
 <body>
 <h1>Spot: <s:property value="spot.name"/></h1><br><br>
 <s:a action="index" >Back to Menu</s:a><br><br>
-<s:a action="spot_list" ><%--
-<s:param name="country" value="spot.country.name"/>
-&lt;%&ndash;<s:property value="spot.memberSpot.login"/>&ndash;%&gt;--%>
+<s:a action="spot_list" >
 Spot List</s:a>
 
 <br><br>
@@ -23,7 +21,6 @@ Spot List</s:a>
     <li>Country: <s:property value="spot.country.name"/></li>
     <li>City: <s:property value="spot.city"/></li>
     <li>Description: <s:property value="spot.description"/></li>
-    <%--<li><a href="https://maps.google.com/?q=<s:property value="spot.latitude"/>,<s:property value="spot.longitude"/>">See map</a></li>--%>
     <%@include file="map.jsp" %>
     <li>Creator:
         <s:a action="member_detail">
@@ -53,7 +50,6 @@ Spot List</s:a>
                 <s:param name="id" value="memberRoute.id"/>
                 <s:property value="memberRoute.login"/>
             </s:a>
-           <%-- <s:if test="commentList.size() ==0">--%>
             <s:a action="comment_list_route">
                 <s:param name="id" value="id"/>
                 Comment(s):
@@ -62,7 +58,6 @@ Spot List</s:a>
                 <s:param name="id" value="id"/>
                 Edit
             </s:a>
-            <%--</s:if>--%>
             <br>
             Description: <br><s:property value="description"/>
             <br>
@@ -71,22 +66,10 @@ Spot List</s:a>
     <s:else>
         <h2> No route yet for this Spot </h2>
     </s:else>
-    <%--<s:form action="createComment" method="POST">
-        <s:textarea type="text"  label="Comment" requiredLabel="true"/>
-        <s:textfield name="comment.memberComment.id" label="Member" value="%{session.user.id}" requiredLabel="true" />
-        <s:textfield name="route.id" value="%{route.id}" label="Route" requiredLabel="true" />
-        <s:submit value="OK"/>
-    </s:form>--%>
     <s:if test="#session.user">
     </s:if>
 
 
-    <%--<li>
-        <s:form action="createRoute" method="POST">
-            <s:textfield name="id" value="%{spot.id}" label="Description" requiredLabel="true" />
-            <s:submit value="Add Route"/>
-        </s:form>
-    </li>--%>
 </ul>
 </body>
 </html>

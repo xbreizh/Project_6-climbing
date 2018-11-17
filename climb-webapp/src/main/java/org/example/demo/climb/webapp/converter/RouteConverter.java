@@ -45,9 +45,6 @@ public class RouteConverter extends StrutsTypeConverter {
         if (pObject instanceof Route) {
             Route vFraction = (Route) pObject;
             Route route = (Route) pObject;
-           /* vString = String.format("%d/%d",
-                    vFraction.getNumerator(),
-                    vFraction.getDenominator());*/
             vString=route.getName();
         } else {
             vString = "";

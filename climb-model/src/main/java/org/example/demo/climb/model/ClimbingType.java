@@ -1,7 +1,7 @@
 package org.example.demo.climb.model;
 
 public enum ClimbingType {
-    All("ALL"), RockClimb("ROPECLIMB"),Boulder ("BOULDER");
+    RockClimb("ROPECLIMB"),Boulder ("BOULDER");
 
     private String name;
 

@@ -1,9 +1,9 @@
-package org.example.demo.climb.model.bean.climb;
+package org.example.demo.climb.model.bean.__to_delete;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.example.demo.climb.model.bean.projet.Version;
+import org.example.demo.climb.model.bean.__to_delete.projet.Version;
 
 
 /**

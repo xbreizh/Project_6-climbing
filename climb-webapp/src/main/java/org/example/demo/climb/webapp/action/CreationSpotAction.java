@@ -8,14 +8,14 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.example.demo.climb.business.contract.CountryManager;
 import org.example.demo.climb.business.contract.SpotManager;
 import org.example.demo.climb.model.ClimbingType;
+import org.example.demo.climb.model.Grade;
 import org.example.demo.climb.model.bean.Country;
 import org.example.demo.climb.model.bean.Route;
 import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.exception.NotFoundException;
-
 import javax.inject.Inject;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class CreationSpotAction extends LoginAction implements SessionAware {
@@ -35,112 +35,107 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     private String climbingType;
     private String hasTopo;
     public List<String> climbingList = new ArrayList<>();
-
-
-
     private double latitude;
     private double longitude;
-
-
-
     private final String token= "AlcwuVaVbdcepPJ0gbZ0Nd5prdkYHYS1LEEFEbUm2l0CfEe4XLUeDArvlkrXHcg2";
-
     public JsonArray getListo() {
         return listo;
     }
-
     public void setListo(JsonArray listo) {
         this.listo = listo;
     }
-
     private JsonArray listo = new JsonArray();
-
-
-
     private String[][] spotArray ;
+    private HashMap<Integer, String> levelList= new HashMap<>();
+    private int levelMin;
+    private int levelMax;
 
     @Inject
     private CountryManager countryManager;
     @Inject
     private SpotManager spotManager;
 
-    // Methodes
+    // METHODS
 
     public String doIndex() throws NotFoundException {
-        for(ClimbingType ct: ClimbingType.values()){
-            climbingList.add(ct.getName());
-        }
+        initClimbingTypeList();
+
+        initLevelList();
 
         String vResult= ActionSupport.SUCCESS;
         System.out.println("climbing list: "+climbingList);
-
-        /*continentList=countryManager.getListContinent();*/
-        if(str==null && climbingType==null && hasTopo == null) {
+        if(levelMin > levelMax){
+            this.addFieldError("levelMin", "Min Level should be lower than Max");
+        }
+        if(str==null && climbingType==null && hasTopo == null && !this.hasActionErrors()) {
             spotList = spotManager.getListSpot();
         }else{
             System.out.println("trying to get a list with keyword: "+str);
             System.out.println("climbing type passed: "+climbingType);
             System.out.println("has topo passed: "+hasTopo);
-            spotList = spotManager.getListSpot(str, climbingType, hasTopo);
+            spotList = spotManager.getListSpot(str, climbingType, hasTopo, levelMin, levelMax);
         }
-        System.out.println("spotList size: "+spotList.size());
+        System.out.println("level min: "+levelMin);
+        System.out.println("level max: "+levelMax);
+        /*System.out.println("spotList size: "+spotList.size());*/
         int i=0;
-        /*Spot[][] spotArray = spotList.toArray(new Spot[2][4]);*//*
-        spotArray = new String[spotList.size()][4];*/
-
-        for (Spot s: spotList
-             ) {
-            String lat = Double.toString(spotList.get(i).getLatitude());
-            String lon = Double.toString(spotList.get(i).getLongitude());
-            String name = spotList.get(i).getName();
-            String desc = spotList.get(i).getDescription();
-            int ref = spotList.get(i).getId();
-            JsonObject obj = new JsonObject();
-            obj.addProperty("ref", ref);
-            obj.addProperty("lat", lat);
-            obj.addProperty("lon", lon);
-            obj.addProperty("title", name);
-            obj.addProperty("description", desc);
-            listo.add(obj);
-            i++;
+        if(spotList!=null) {
+            for (Spot s : spotList
+            ) {
+                String lat = Double.toString(spotList.get(i).getLatitude());
+                String lon = Double.toString(spotList.get(i).getLongitude());
+                String name = spotList.get(i).getName();
+                String desc = spotList.get(i).getCountry().getName();
+                int ref = spotList.get(i).getId();
+                JsonObject obj = new JsonObject();
+                obj.addProperty("ref", ref);
+                obj.addProperty("lat", lat);
+                obj.addProperty("lon", lon);
+                obj.addProperty("title", name);
+                obj.addProperty("description", desc);
+                listo.add(obj);
+                i++;
+            }
+            if (listo == null) {
+                vResult = ActionSupport.ERROR;
+            }
         }
-    if(listo ==null){
-        vResult = ActionSupport.ERROR;
-    }
-
-
         return vResult;
     }
 
-    public String doListContinent() throws NotFoundException {
-        String vResult= ActionSupport.SUCCESS;
-
-        continentList=countryManager.getListContinent();
-        return vResult;
-    }
-    public String doListCountry() throws NotFoundException {
-        String vResult= ActionSupport.SUCCESS;
-        System.out.println("checking country");
-        System.out.println("id: "+id);
-        if(id!=0){
-            continent = countryManager.getCountry(id).getContinent();
+    private void initClimbingTypeList() {
+        climbingList.add("ALL");
+        for(ClimbingType ct: ClimbingType.values()){
+            climbingList.add(ct.getName());
         }
-        System.out.println("continent: "+continent);
-        countryList = countryManager.getListCountryByContinent(continent);
-        return vResult;
+        // adding condition for All
     }
-    public String doListCity() throws NotFoundException {
-        String vResult= ActionSupport.SUCCESS;
-        if(id!=0) {
-            System.out.println("c is null!");
-            c=countryManager.getCountry(id);
-        }else {
-            c = countryManager.getCountry(country);
-            /*System.out.println("setting up c: " + c.getName());*/
+
+    private void initLevelList() {
+        int index=0;
+        //adding default condition
+        levelList.put(index, "0");
+        for(Grade g: Grade.values()){
+            index++;
+            levelList.put(index,g.getValue());
         }
-        cityList = spotManager.getListCityByCountry(c);
+
+    }
+
+
+    /*CREATE*/
+    public String doCreateSpot() throws NotFoundException {
+        String vResult= ActionSupport.INPUT;
+        c = countryManager.getCountry(id);
+        System.out.println("city is here: "+city);
+        if(spot!=null){
+            spotManager.addSpot(spot);
+            vResult = ActionSupport.SUCCESS;
+        }
         return vResult;
     }
+
+    /*READ ALL SPOTS*/
     public String doList() throws  NotFoundException{
 
         if(country.equals("")){
@@ -154,7 +149,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
                 // Getting list of spots for that country
                 spotList = spotManager.getListSpotByCountry(c);
             }else{
-                spotList = spotManager.getListSpot(c.getContinent(), c.getName(), city);
+               /* spotList = spotManager.getListSpot(c.getContinent(), c.getName(), city);*/
             }
 
         }
@@ -163,17 +158,43 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
 
         return ActionSupport.SUCCESS;
     }
-    public String doCreateSpot() throws NotFoundException {
-        String vResult= ActionSupport.INPUT;
-        c = countryManager.getCountry(id);
-        System.out.println("city is here: "+city);
-        if(spot!=null){
-            spotManager.addSpot(spot);
-            vResult = ActionSupport.SUCCESS;
-        }
+
+    /*READ ALL CONTINENTS*/
+    public String doListContinent() throws NotFoundException {
+        String vResult= ActionSupport.SUCCESS;
+
+        continentList=countryManager.getListContinent();
         return vResult;
     }
 
+    /*READ ALL COUNTRIES*/
+    public String doListCountry() throws NotFoundException {
+        String vResult= ActionSupport.SUCCESS;
+        System.out.println("checking country");
+        System.out.println("id: "+id);
+        if(id!=0){
+            continent = countryManager.getCountry(id).getContinent();
+        }
+        System.out.println("continent: "+continent);
+        countryList = countryManager.getListCountryByContinent(continent);
+        return vResult;
+    }
+
+    /*READ ALL CITIES*/
+    public String doListCity() throws NotFoundException {
+        String vResult= ActionSupport.SUCCESS;
+        if(id!=0) {
+            System.out.println("c is null!");
+            c=countryManager.getCountry(id);
+        }else {
+            c = countryManager.getCountry(country);
+            /*System.out.println("setting up c: " + c.getName());*/
+        }
+        cityList = spotManager.getListCityByCountry(c);
+        return vResult;
+    }
+
+    /*READ ONE*/
     public String doDetail() throws NotFoundException {
         String vResult = ActionSupport.SUCCESS;
         System.out.println("tentative de recuperation de l'id: "+id);
@@ -193,6 +214,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         return ActionSupport.SUCCESS;
     }
 
+    /*EDIT*/
     public String doEdit() {
         String vResult = ActionSupport.SUCCESS;
         System.out.println("tentative de recuperation de l'id from doEdit: "+id);
@@ -207,6 +229,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         }
         return vResult;
     }
+    /*UPDATE*/
     public String doUpdate() {
         String vResult = ActionSupport.INPUT;
 
@@ -228,6 +251,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         return vResult;
     }
 
+    /*DELETE*/
     public String doDelete() {
         System.out.println("ici");
         String vResult = ActionSupport.SUCCESS;
@@ -244,16 +268,40 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
 
     }
 
-    public String doTestHtml(){
+   /* public String doTestHtml(){
         String vResult = ActionSupport.SUCCESS;
-        /*String name="Roger";*/
+        *//*String name="Roger";*//*
         return vResult;
-    }
+    }*/
     // Getters and Setters
+
+    public int getLevelMin() {
+        return levelMin;
+    }
+
+    public void setLevelMin(int levelMin) {
+        this.levelMin = levelMin;
+    }
+
+    public int getLevelMax() {
+        return levelMax;
+    }
+
+    public void setLevelMax(int levelMax) {
+        this.levelMax = levelMax;
+    }
+
+    public HashMap<Integer, String> getLevelList() {
+        return levelList;
+    }
+
+    public void setLevelList(HashMap<Integer, String> levelList) {
+        this.levelList = levelList;
+    }
+
     public List<Route> getRouteList() {
         return routeList;
     }
-
     public void setRouteList(List<Route> routeList) {
         this.routeList = routeList;
     }

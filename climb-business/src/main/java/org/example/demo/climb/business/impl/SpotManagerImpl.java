@@ -50,7 +50,7 @@ public class SpotManagerImpl  implements SpotManager {
 
     // Get List
     @Override
-    public List<Spot> getListSpot(String str, String climbingType, String hasTopo) {
+    public List<Spot> getListSpot(String str, String climbingType, String hasTopo, int levelMin, int levelMax) {
         String  ct = "ALL";
         String  htopo = "is null";
         for(ClimbingType clt: ClimbingType.values()){
@@ -69,7 +69,7 @@ public class SpotManagerImpl  implements SpotManager {
             str="";
         }
         System.out.println("str: "+str+" climb: "+ct+" topo: "+htopo);
-       return spotDao.ListSpotByCriterias(str, ct, htopo);
+       return spotDao.ListSpotByCriterias(str, ct, htopo, levelMin, levelMax);
     }
 
     @Override

@@ -1,8 +1,8 @@
-package org.example.demo.climb.model.bean.climb;
+package org.example.demo.climb.model.bean.__to_delete;
 
 import java.util.Date;
 
-import org.example.demo.climb.model.bean.projet.Projet;
+import org.example.demo.climb.model.bean.__to_delete.projet.Projet;
 
 
 /**

@@ -1,4 +1,4 @@
-package org.example.demo.climb.webapp.action;
+package org.example.demo.climb.webapp.action.__todelete;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.example.demo.climb.model.bean.Spot;

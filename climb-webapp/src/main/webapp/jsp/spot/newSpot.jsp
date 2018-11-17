@@ -9,9 +9,6 @@
 <h1>New Spot for <s:property value="%{c.continent}"/></h1>
 <br><br>
 <s:if test="#session.user">
-<%--Continent: <s:property value="%{c.continent}"/>
-<s:a action="choseContinent" ><br>
-change</s:a><br><br>--%>
 <s:form action="createSpot">
     <s:select class="form-control" id="selectCountry" name="country" value="%{country}"
               headerKey="" headerValue="--Select Country--"

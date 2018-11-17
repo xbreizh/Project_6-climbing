@@ -37,20 +37,11 @@
     <div class="form-group">
         <label class="sr-only">Name</label>
         <textarea name="member.description" class="form-control" rows="5" placeholder="Description"></textarea>
-        <%--<input name="member.description" type="text" class="form-control" placeholder="Description">--%>
     </div>
-    <%--<s:textfield type="text" name="member.login" placeholder="Login" requiredLabel="true"/>
-    <s:textfield type="email" name="member.email" inputPrepend="@" placeholder="Email" requiredLabel="true"/>
-    <s:textfield type="email" name="emailCheck" inputPrepend="@" placeholder="Repeat Email" requiredLabel="true"/>
-    <s:password name="member.password" placeholder="Password" requiredLabel="true" />
-    <s:password name="passwordCheck" placeholder="Repeat Password" requiredLabel="true" />
-    <s:textarea name="member.description" placeholder="Description" requiredLabel="true" />--%>
     <button type="submit" class="btn btn-success">okay, go!</button>
 </s:form>
             </div>
             <br>
-<%--
-            <r:a class="btn btn-success" action="member_new">Become Member</r:a>--%>
         </div>
     </div>
 </div>

@@ -24,8 +24,8 @@
             <file>file://$MODULE_DIR$/src/main/resources/struts_xml/struts-default2.xml</file>
             <file>file://$MODULE_DIR$/src/main/resources/struts_xml/struts-member.xml</file>
             <file>file://$MODULE_DIR$/src/main/resources/struts_xml/struts-session.xml</file>
-            <file>file://$MODULE_DIR$/src/main/resources/struts_xml/struts-site.xml</file>
-            <file>file://$MODULE_DIR$/src/main/resources/struts_xml/struts-spot.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/struts_xml/__todelete/struts-site.xml</file>
+            <file>file://$MODULE_DIR$/src/main/resources/struts_xml/__todelete/struts-spot.xml</file>
             <file>file://$MODULE_DIR$/src/main/resources/struts.xml</file>
             <file>jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-core/2.5.16/struts2-core-2.5.16.jar!/struts-default.xml</file>
             <file>jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-spring-plugin/2.5.16/struts2-spring-plugin-2.5.16.jar!/struts-plugin.xml</file>

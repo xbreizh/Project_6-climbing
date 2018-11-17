@@ -67,24 +67,35 @@ public class SpotDaoImpl implements SpotDao {
     }
 
     @Override
-    public List<Spot> ListSpotByCriterias(String str, String climbingType, String hasTopo) {
+    public List<Spot> ListSpotByCriterias(String str, String climbingType, String hasTopo, int levelMin, int levelMax) {
+
+        System.out.println("level min and max: "+ levelMin+" / "+levelMax);
         /*System.out.println("from dao str: "+str+" climb: "+climbingType+" topo: "+hasTopo);*/
         Query q;
         if(climbingType.equals("ALL")){
-            q = sessionFactory.getCurrentSession().createQuery("select spot.id from Route");
+            q = sessionFactory.getCurrentSession().createQuery("select spot.id from Route where grade >= :min and grade <= :max");
+            q.setParameter("min", levelMin);
+            q.setParameter("max", levelMax);
         }else {
-                    q = sessionFactory.getCurrentSession().createQuery("select spot.id from Route where type in (:Ctype)");
+                    q = sessionFactory.getCurrentSession().createQuery("select spot.id from Route where type in (:Ctype)" +
+                            "and grade >= :min and grade <= :max");
             q.setParameter("Ctype", climbingType.toUpperCase());
+            q.setParameter("min", levelMin);
+            q.setParameter("max", levelMax);
         }
         List<String> idList = q.getResultList();
      /*   System.out.println("list from dao: "+idList);
         System.out.println("l: "+idList);*/
-        Query query = sessionFactory.getCurrentSession().createQuery(
-                "From Spot  where id in (:list) and (upper(name) like :n or upper(city) like :n or upper(description) like :n " + "or upper(country.name) like :n or upper(country.continent) like :n )");
-        query.setParameter("n", "%"+str+"%".toUpperCase());
-        query.setParameter("list", idList);
-        /*System.out.println("param: "+query.getParameter("list").toString());*/
-        return query.getResultList();
+        if(!idList.isEmpty()) {
+            Query query = sessionFactory.getCurrentSession().createQuery(
+                    "From Spot  where id in (:list) and (upper(name) like :n or upper(city) like :n or upper(description) like :n " + "or upper(country.name) like :n or upper(country.continent) like :n )");
+            query.setParameter("n", "%" + str + "%".toUpperCase());
+            query.setParameter("list", idList);
+            /*System.out.println("param: "+query.getParameter("list").toString());*/
+            return query.getResultList();
+        }else{
+            return null;
+        }
     }
 
     @Override

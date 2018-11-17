@@ -39,10 +39,6 @@
     <li>Published Year: <s:property value="publishedYear"/></li>
     <li>Description: <s:property value="description"/></li>
     <li>
-       <%-- <s:a action="topo_detail" >
-            <s:property value="nom"/>
-            <s:param name="id" value="id"/>
-        </s:a>--%>
         Créateur:
         <s:a action="member_detail">
             <s:param name="id" value="owner.id" />

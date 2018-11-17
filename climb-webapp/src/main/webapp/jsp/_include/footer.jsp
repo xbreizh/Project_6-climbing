@@ -3,6 +3,6 @@
 
 
 
-</div>
 <footer>I am a footer</footer>
+</div>
 </html>

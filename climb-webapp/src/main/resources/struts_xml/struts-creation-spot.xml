@@ -8,30 +8,21 @@
 
     <package name="Spot" extends="struts-default">
 
-        <!-- CREATE-->
-    <action name="testHtml"
-            class="org.example.demo.climb.webapp.action.CreationSpotAction"
-            method="doTestHtml">
-        <result>css/testHtml.jsp</result>
-    </action>
+        <!--SELECT COUNTRY-->
     <action name="choseCountry"
             class="org.example.demo.climb.webapp.action.CreationSpotAction"
             method="doListCountry">
          <result>/jsp/spot/choseCountry.jsp</result>
         </action>
+
+        <!--SELECT CITY-->
         <action name="choseCity"
                 class="org.example.demo.climb.webapp.action.CreationSpotAction"
                 method="doListCity">
             <result>/jsp/spot/choseCity.jsp</result>
         </action>
-        <action name="createSpotAndCity"
-                         class="org.example.demo.climb.webapp.action.CreationSpotAction"
-                         method="doCreateSpot">
-            <result name="input">/jsp/spot/newSpotAndCity.jsp</result>
-            <result name="success" type="redirectAction">
-                <param name="actionName">createRoute</param>
-            </result>
-         </action>
+
+        <!-- CREATE SPOT-->
         <action name="createSpot"
                 class="org.example.demo.climb.webapp.action.CreationSpotAction"
                 method="doCreateSpot">
@@ -42,50 +33,15 @@
             </result>
         </action>
 
-        <!-- READ ALL -->
-        <action name="spot_list"
-                class="org.example.demo.climb.webapp.action.CreationSpotAction"
-                method="doList">
-            <result>/jsp/spot/list.jsp</result>
-        </action>
-
-        <!-- DELETE -->
-        <action name="spot_delete"
-                class="org.example.demo.climb.webapp.action.CreationSpotAction"
-                method="doDelete">
-            <interceptor-ref name="store">
-                <param name="operationMode">RETRIEVE</param>
-            </interceptor-ref>
-            <interceptor-ref name="defaultStack"/>
+        <!-- CREATE SPOT AND CITY-->
+        <action name="createSpotAndCity"
+                         class="org.example.demo.climb.webapp.action.CreationSpotAction"
+                         method="doCreateSpot">
+            <result name="input">/jsp/spot/newSpotAndCity.jsp</result>
             <result name="success" type="redirectAction">
-                <param name="actionName">spot_list</param>
-                <param name="id">${id}</param>
+                <param name="actionName">createRoute</param>
             </result>
-        </action>
-        <!--<action name="createComment"
-                class="org.example.demo.climb.webapp.action.CreationSpotAction"
-                method="doCreateCommentRoute">
-            <result name="input">/jsp/spot/newComment.jsp</result>
-            <result name="success" type="redirectAction">
-                <param name="actionName">spot_list</param>
-            </result>
-        </action>-->
-
-
-
-      <!--  &lt;!&ndash; CREATE&ndash;&gt;
-        <action name="createRoute"
-                class="org.example.demo.climb.webapp.action.CreationRouteAction"
-                method="doCreateRoute">
-             <interceptor-ref name="store">
-                 <param name="operationMode">RETRIEVE</param>
-             </interceptor-ref>
-             <interceptor-ref name="defaultStack"/>
-             <result name="input">/jsp/route/form/newRoute.jsp</result>
-             <result name="success" type="redirectAction">
-                 <param name="actionName">route_list</param>
-             </result>
-        </action>-->
+         </action>
 
         <!--READ ONE -->
         <action name="spot_detail"
@@ -99,6 +55,15 @@
             <result name="success">jsp/spot/detail.jsp</result>
         </action>
 
+
+        <!-- READ ALL -->
+        <action name="spot_list"
+                class="org.example.demo.climb.webapp.action.CreationSpotAction"
+                method="doList">
+            <result>/jsp/spot/list.jsp</result>
+        </action>
+
+        <!-- EDIT -->
         <action name="spot_edit"
                 class="org.example.demo.climb.webapp.action.CreationSpotAction"
                 method="doEdit">
@@ -122,5 +87,20 @@
                 <param name="actionName">spot_list</param>
             </result>
         </action>
+
+        <!-- DELETE -->
+        <action name="spot_delete"
+                class="org.example.demo.climb.webapp.action.CreationSpotAction"
+                method="doDelete">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="redirectAction">
+                <param name="actionName">spot_list</param>
+                <param name="id">${id}</param>
+            </result>
+        </action>
+
     </package>
 </struts>

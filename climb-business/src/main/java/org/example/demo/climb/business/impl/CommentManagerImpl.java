@@ -3,7 +3,7 @@ package org.example.demo.climb.business.impl;
 import org.example.demo.climb.business.contract.CommentManager;
 import org.example.demo.climb.consumer.contract.CommentDao;
 import org.example.demo.climb.model.bean.Comment;
-import org.example.demo.climb.model.bean.Zone;
+import org.example.demo.climb.model.bean.__to_delete.Zone;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 

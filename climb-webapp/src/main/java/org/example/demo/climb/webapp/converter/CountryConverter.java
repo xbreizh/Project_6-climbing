@@ -42,9 +42,6 @@ public class CountryConverter extends StrutsTypeConverter {
         if (pObject instanceof Country) {
             Country vFraction = (Country) pObject;
             Country country = (Country) pObject;
-           /* vString = String.format("%d/%d",
-                    vFraction.getNumerator(),
-                    vFraction.getDenominator());*/
             vString=country.getName();
         } else {
             vString = "";

@@ -1,15 +1,14 @@
-package org.example.demo.climb.model.bean.climb;
+package org.example.demo.climb.model.bean.__to_delete;
 
 /**
- * Bean représentant le Niveau d'un Bug.
+ * Bean représentant le Statut d'un climb.
  *
  * @author lgu
  */
-public class BugNiveau {
+public class ClimbStatut {
 
     // ==================== Attributs ====================
     private Integer id;
-    private Integer ordre;
     private String libelle;
 
 
@@ -17,7 +16,7 @@ public class BugNiveau {
     /**
      * Constructeur par défaut.
      */
-    public BugNiveau() {
+    public ClimbStatut() {
     }
 
     /**
@@ -25,7 +24,7 @@ public class BugNiveau {
      *
      * @param pId -
      */
-    public BugNiveau(Integer pId) {
+    public ClimbStatut(Integer pId) {
         id = pId;
     }
 
@@ -36,12 +35,6 @@ public class BugNiveau {
     }
     public void setId(Integer pId) {
         id = pId;
-    }
-    public Integer getOrdre() {
-        return ordre;
-    }
-    public void setOrdre(Integer pOrdre) {
-        ordre = pOrdre;
     }
     public String getLibelle() {
         return libelle;
@@ -61,7 +54,6 @@ public class BugNiveau {
         final String vSEP = ", ";
         vStB.append(" {")
             .append("id=").append(id)
-            .append(vSEP).append("ordre=").append(ordre)
             .append(vSEP).append("libelle=\"").append(libelle).append('"')
             .append("}");
         return vStB.toString();

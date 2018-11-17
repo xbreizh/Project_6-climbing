@@ -9,9 +9,6 @@
 <h1>New City and Spot for <s:property value="%{c.continent}"/></h1>
 <br><br>
 <s:if test="#session.user">
-<%--Continent: <s:property value="%{c.continent}"/>
-<s:a action="choseContinent" ><br>
-change</s:a><br><br>--%>
 Country: <s:property value="%{c.name}"/>
 <s:a action="choseCountry" ><br>
 change<s:param name="id" value="%{c.id}"/>  </s:a><br><br>

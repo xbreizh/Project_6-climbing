@@ -1,4 +1,4 @@
-package org.example.demo.climb.webapp.action;
+package org.example.demo.climb.webapp.action.__todelete;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.ServletActionContext;
@@ -10,13 +10,14 @@ import org.example.demo.climb.model.bean.Country;
 import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.bean.Member;
 import org.example.demo.climb.model.exception.NotFoundException;
+import org.example.demo.climb.webapp.action.LoginAction;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GestionSpotAction extends LoginAction implements SessionAware {
-
+/*
     private Spot spot;
     private List<Spot> listSpot=new ArrayList<>();
     private List<String> continentList=new ArrayList<>();
@@ -55,7 +56,7 @@ public class GestionSpotAction extends LoginAction implements SessionAware {
 
     public String doCreate() throws NotFoundException {
         String vResult=ActionSupport.INPUT;
-       /* if (checkSession()) return ActionSupport.ERROR;
+       *//* if (checkSession()) return ActionSupport.ERROR;
         if(c!=null) {
             System.out.println("country name from action: " + c.getName());
             cityList = spotManager.getListCityByCountry(c);
@@ -70,47 +71,47 @@ public class GestionSpotAction extends LoginAction implements SessionAware {
         }
         if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;
-        }*/
+        }*//*
         return vResult;
     }
 
     private boolean checkSpotCreatorNotLegit() {
-        /*member = (Member) ServletActionContext.getRequest().getSession().getAttribute("user");
+        *//*member = (Member) ServletActionContext.getRequest().getSession().getAttribute("user");
         System.out.println("Member id: "+member.getId());
         if(member.getId() != spot.getMemberSpot().getId()){
             System.out.println("member from spot: "+spot.getMemberSpot().getId());
             this.addActionError("Authentication issue, please log out, then try again. Member found: "+member.getId());
             return false;
-        }*/
+        }*//*
         return true;
     }
 
     private boolean checkSession() {
-        /*if(getSession().isEmpty()) {
+        *//*if(getSession().isEmpty()) {
             System.err.println("Vous devez vous connecter pour cette action!");
             return true;
-        }*/
+        }*//*
         return false;
     }
 
 
     public String doDetail() throws NotFoundException {
         String vResult = ActionSupport.SUCCESS;
-        /*System.out.println("Spot mgmt: " + spot);
-        System.out.println("Id: " + id);*/
+        *//*System.out.println("Spot mgmt: " + spot);
+        System.out.println("Id: " + id);*//*
 
-       /* spot = spotManager.getSpotById(9);
-       *//* System.out.println("Spot from doDetail: " + spot);*//*
+       *//* spot = spotManager.getSpotById(9);
+       *//**//* System.out.println("Spot from doDetail: " + spot);*//**//*
 
         if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;
-        }*/
+        }*//*
         return vResult;
     }
 
     public String doEdit() {
         String vResult = ActionSupport.SUCCESS;
-       /* try {
+       *//* try {
             spot = spotManager.getSpotById(id);
             System.out.println("doedit: " + id);
         } catch (NotFoundException e) {
@@ -118,14 +119,14 @@ public class GestionSpotAction extends LoginAction implements SessionAware {
         }
         if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;
-        }*/
+        }*//*
         return vResult;
     }
 
     public String doList() {
         System.out.println("test");
-    /*    *//*continentList=countryManager.getListContinent();*//*
-        *//*System.out.println("continentList: "+continentList);*//*
+    *//*    *//**//*continentList=countryManager.getListContinent();*//**//*
+        *//**//*System.out.println("continentList: "+continentList);*//**//*
         System.out.println("continent: continent");
         countryList=countryManager.getListCountryByContinent(continent);
         System.out.println("countryList: "+countryList);
@@ -150,19 +151,19 @@ public class GestionSpotAction extends LoginAction implements SessionAware {
     public String selectSpotList(){
         continentList=countryManager.getListContinent();
         countryList=countryManager.getListCountryByContinent(continent);
-        *//*cityList=countryManager.getListCityByCountry(country);*/
+        *//**//*cityList=countryManager.getListCityByCountry(country);*//*
         return ActionSupport.SUCCESS;
     }
-/*    public String doList() {
+*//*    public String doList() {
         countryList=countryManager.getListCountry();
         System.out.println("spot");
         listSpot = spotManager.getListSpotByCity("ssss");
         System.out.println("size: " + listSpot.size());
         return ActionSupport.SUCCESS;
-    }*/
+    }*//*
 
 
-/*    public String doUpdate() {
+*//*    public String doUpdate() {
         String vResult = ActionSupport.INPUT;
 
         if (this.spot != null) {
@@ -176,9 +177,9 @@ public class GestionSpotAction extends LoginAction implements SessionAware {
             vResult = ActionSupport.ERROR;
         }
         return vResult;
-    }*/
+    }*//*
 
-    /*public String doDelete() {
+    *//*public String doDelete() {
         System.out.println("ici");
         String vResult = ActionSupport.SUCCESS;
         System.out.println(this.hasActionErrors());
@@ -192,7 +193,7 @@ public class GestionSpotAction extends LoginAction implements SessionAware {
         }
         return vResult;
 
-    }*/
+    }*//*
 
     // Getters & Setters
     public String getCity() {
@@ -305,6 +306,6 @@ public class GestionSpotAction extends LoginAction implements SessionAware {
 
     public void setListSpot(List<Spot> listSpot) {
         this.listSpot = listSpot;
-    }
+    }*/
 
 }

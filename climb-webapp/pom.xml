@@ -60,7 +60,6 @@
 
 
         <!-- ===== Bibliothèques tierces ===== -->
-        <!-- https://mvnrepository.com/artifact/jstl/jstl -->
 
         <!-- https://mvnrepository.com/artifact/com.jgeppert.struts2.bootstrap/struts2-bootstrap-plugin -->
         <dependency>

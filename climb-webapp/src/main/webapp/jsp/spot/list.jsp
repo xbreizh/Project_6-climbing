@@ -10,26 +10,6 @@
 <br><br>
 
 <br><br>
-<%--<s:a action="spot_new">Create</s:a><br><br>
-<s:a action="index" >Back to Menu</s:a><br><br>
-<s:form action="spot_list">
-    <s:select id="selectContinent" name="continent" value="%{continent}"
-              headerKey="" headerValue="--Select Continent--"
-              list="continentList" onchange="this.form.submit()"/><br><br>
-    <s:if test="%{!continent.equals('')}">
-        <s:select id="selectCountry" name="country" value="%{country}"
-                  headerKey="" headerValue="--Select Country--"
-                  list="countryList" onchange="this.form.submit()"/><br><br>
-    </s:if>
-    Continent: <s:property value="%{continent}"/><br>
-    Country: <s:property value="%{c.name}"/><br>
-    Region: <s:property value="%{region}"/><br>
-</s:form>
-<s:form action="spot_new">
-    <s:textfield name="c" value="%{c.id}" requiredLabel="true"/>
-    <s:submit value="Create new Spot"/>
-</s:form>--%><%--
-Continent: <s:property value="continent"/><br>--%>
 Country: <s:property value="%{country}"/><br>
 <s:form class="form-group" action="spot_list">
     <s:select class="form-control" id="selectCountry" name="country" value="%{country}"
@@ -52,7 +32,6 @@ Country: <s:property value="%{country}"/><br>
 
         <s:hidden name="continent" value="%{continent}" />
         <s:hidden name="country" value="%{country}" />
-     <%--   <s:hidden name="city" value="%{city}" />--%>
 
     </s:form>
         <s:if test="#session.user">
@@ -66,11 +45,6 @@ Country: <s:property value="%{country}"/><br>
     <s:else>No spot created yet</s:else>
     <s:if test="#session.user">
     <s:form class="form-group" action="choseCity">
-       <%-- <s:select id="selectCountry" name="country" value="%{country}"
-                  headerKey="" headerValue="--Select Country--"
-                  list="countryList"
-                  onchange="this.form.submit()"
-        /><br><br>--%>
 
         <s:hidden name="continent" value="%{continent}" />
         <s:hidden name="country" value="%{country}" />
@@ -82,7 +56,6 @@ Country: <s:property value="%{country}"/><br>
 </s:if>
 <s:iterator value="spotList">
     <ul>
-        <%--<li>Continent: <s:property value="country.continent"/></li>--%>
             <s:a action="spot_detail"><s:property value="name"/>
                 <s:if test="routeList.size()>1">
                 (<s:property value="routeList.size()"/> routes)
@@ -94,7 +67,6 @@ Country: <s:property value="%{country}"/><br>
             </s:a>
         <li>Country: <s:property value="country.name"/></li>
         <li>City: <s:property value="city"/></li>
-        <%--<li>Name: <s:property value="name"/></li>--%>
         <li>Description: <s:property value="description"/></li>
         <li>GPS coordinates: <s:property value="latitude"/>,<s:property value="longitude"/></li>
         <li>Creator:

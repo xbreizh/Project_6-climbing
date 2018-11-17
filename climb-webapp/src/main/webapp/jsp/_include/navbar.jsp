@@ -50,7 +50,7 @@
                             window.open('login','popup','width=250,height=300,top=100,left=100');
                         }
                     </script>
-                <a  style="color: white ; text-decoration: none; text-align: left" href="javascript: popupLogin()"><span class="glyphicon glyphicon-log-out"></span>Connect<span style="color: black">spa</span></a>
+                <a  style="color: white ; text-decoration: none; text-align: left" href="javascript: popupLogin()"><span class="glyphicon glyphicon-log-out"></span>Connect<span style=" visibility: hidden;">spa</span></a>
                     </li>
                     <li> </li>
             </ul>

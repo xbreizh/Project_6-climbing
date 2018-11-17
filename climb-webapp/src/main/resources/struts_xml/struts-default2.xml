@@ -5,48 +5,26 @@
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
-
-
     <package name="Default" extends="struts-default, json-default">
 
-        <!--Action par défaut-->
+        <!--Default action-->
         <default-action-ref name="index"/>
 
-        <!--Resultats Globaux-->
+        <!--Global results-->
         <global-results>
-            <!--<result name="error">/jsp/error.jsp</result>-->
             <result name="error" type="json">
                 <param name="statusCode">400</param>
                 <param name="includeProperties">actionErrors.*,fieldErrors.*</param>
-                <!-- Pour accéder au attributs des classes parentes à la classe d'action -->
+                <!--To access the attributes from the parent action class-->
                 <param name="ignoreHierarchy">false</param>
             </result>
         </global-results>
 
-        <!--Action index-->
+        <!--Index Action-->
         <action name="index" class="org.example.demo.climb.webapp.action.CreationSpotAction"
                 method="doIndex">
             <result name="success">/jsp/index.jsp</result>
         </action>
 
-       <!-- <action name="demo_convert" class="org.example.demo.climb.webapp.action.DemoConvertAction">
-        <result name="input">/jsp/demo/convert.jsp</result>
-    </action>-->
-       <!-- <action name="demo_convert" class="org.example.demo.climb.webapp.action.DemoConvertAction"
-        method="memberConvert">
-            <result name="input">/jsp/demo/convert.jsp</result>
-        </action>
-        <action name="demo_convert" class="org.example.demo.climb.webapp.action.DemoConvertAction"
-                method="memberConvert">
-            <result name="input">/jsp/demo/convert.jsp</result>
-        </action>-->
-       <!-- <action name="demo_dropdown" class="org.example.demo.climb.webapp.action.DemoConvertAction"
-                method="droptest">
-            <result name="input">/jsp/demo/dropdown_test.jsp</result>
-        </action>
-        <action name="demo_dropdown_result" class="org.example.demo.climb.webapp.action.DemoConvertAction"
-                method="droptest_result">
-            <result name="success">/jsp/demo/dropdown_result.jsp</result>
-        </action>-->
     </package>
 </struts>

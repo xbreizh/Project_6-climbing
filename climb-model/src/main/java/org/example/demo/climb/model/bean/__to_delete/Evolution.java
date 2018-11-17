@@ -1,4 +1,4 @@
-package org.example.demo.climb.model.bean.climb;
+package org.example.demo.climb.model.bean.__to_delete;
 
 /**
  * Bean représentant un climb de type "Évolution".

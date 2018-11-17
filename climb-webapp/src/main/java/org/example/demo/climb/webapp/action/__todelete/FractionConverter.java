@@ -1,4 +1,4 @@
-package org.example.demo.climb.webapp.converter;
+package org.example.demo.climb.webapp.action.__todelete;
 
 import com.opensymphony.xwork2.conversion.TypeConversionException;
 import org.apache.commons.lang3.StringUtils;
@@ -7,8 +7,8 @@ import org.apache.struts2.util.StrutsTypeConverter;
 
 import java.util.Map;
 
-public class FractionConverter extends StrutsTypeConverter {
-    @Override
+public class FractionConverter /*extends StrutsTypeConverter*/ {
+   /* @Override
     public Object convertFromString(Map pContext, String[] pValues, Class pToClass) {
         Object vRetour = null;
 
@@ -41,5 +41,5 @@ public class FractionConverter extends StrutsTypeConverter {
             vString = "";
         }
         return vString;
-    }
+    }*/
 }
