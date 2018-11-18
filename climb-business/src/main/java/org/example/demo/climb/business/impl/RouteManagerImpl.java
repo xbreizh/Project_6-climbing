@@ -72,9 +72,9 @@ public class RouteManagerImpl implements RouteManager {
             if(!(route.getName()==null)){
                 s.setName(route.getName());
                 s.setDescription(route.getDescription());
-                s.setGrade(route.getGrade());
+                /*s.setGrade(route.getGrade());*/
                 s.setHeight(route.getHeight());
-                s.setType(route.getType());
+               /* s.setType(route.getType());*/
                 routeDao.update(s);
             }else{
                 System.out.println("route is null");

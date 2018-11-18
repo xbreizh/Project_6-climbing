@@ -19,7 +19,13 @@ import java.util.List;
     @Size(min = 3, max = 100)
     private String city;
 
-        public Spot(String city, String name, String description, double latitude, double longitude, int rateMore, int rateLess, Country country) {
+    @NotNull
+    @Size(min = 1, max = 20)
+    private String type;
+
+
+
+/*        public Spot(String city, String name, String description, double latitude, double longitude, int rateMore, int rateLess, Country country) {
             this.city = city;
             this.name = name;
             this.description = description;
@@ -28,7 +34,7 @@ import java.util.List;
             this.rateMore = rateMore;
             this.rateLess = rateLess;
             this.country = country;
-        }
+        }*/
 
         @NotNull
     @Size(min = 3, max = 100)
@@ -105,6 +111,13 @@ import java.util.List;
             this.rateMore = rateMore;
         }
 
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
         public int getRateLess() {
             return rateLess;
         }

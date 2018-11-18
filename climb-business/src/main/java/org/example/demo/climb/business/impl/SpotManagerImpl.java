@@ -68,6 +68,8 @@ public class SpotManagerImpl  implements SpotManager {
             System.out.println("str was null");
             str="";
         }
+        if(levelMin == 0){levelMin=1;}
+        if(levelMax == 0){levelMax=32;}
         System.out.println("str: "+str+" climb: "+ct+" topo: "+htopo);
        return spotDao.ListSpotByCriterias(str, ct, htopo, levelMin, levelMax);
     }

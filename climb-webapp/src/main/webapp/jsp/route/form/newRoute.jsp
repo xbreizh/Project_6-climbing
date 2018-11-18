@@ -14,7 +14,7 @@
     <s:select list="heighList" name="route.height" label="Height" requiredLabel="true"/>
     <s:select list="%{gradeList}" name="route.grade"  listKey="key" label="Grade" requiredLabel="true"/>
     <%--<s:select list="gradeList" type="text" name="route.grade" label="Grade" requiredLabel="true"/>--%>
-    <s:select list="typeList" name="route.type" label="Type" requiredLabel="true" />
+    <%--<s:select list="typeList" name="route.type" label="Type" requiredLabel="true" />--%>
     <s:textarea type="text" name="route.description" label="Description" requiredLabel="true"/>
     <s:textfield name="route.memberRoute.id" label="Member" value="%{session.user.id}" requiredLabel="true" />
     <s:textfield name="route.spot.id" value="%{spot.id}" label="Spot" requiredLabel="true" />

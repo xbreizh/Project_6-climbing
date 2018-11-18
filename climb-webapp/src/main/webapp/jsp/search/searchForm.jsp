@@ -7,10 +7,16 @@
 
 Min: <s:property value="%{levelMin}"/>
 Max: <s:property value="%{levelMax}"/>
+Climbing Type: <s:property value="%{climbingType}"/>
 <s:form class="justify-content-center"  action="index" method="POST">
 
     <s:textfield class="form-control" label="Keyword" placeholder="Keyword" name="str"  value = "%{str}" requiredLabel="false"/>
-    <s:radio list="climbingList" name="climbingType" label="Climbing Type" />
+    <s:if test="%{climbingType.equals('')}">
+        <s:radio list="climbingList" checked="checked" value="ALL" name="climbingType" label="Climbing Type" />
+    </s:if>
+    <s:else>
+        <s:radio list="climbingList"  name="climbingType" label="Climbing Type" />
+    </s:else>
 
     <s:select list="%{levelList}" name="levelMin" listKey="key" label="Level Min"/>
     <s:if test="%{levelMax==0}">

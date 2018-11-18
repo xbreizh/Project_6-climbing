@@ -32,7 +32,8 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     private Country c;
     private int id;
     private String str="";
-    private String climbingType;
+    private String climbingType="";
+    private List<String> typeList=new ArrayList<>();
     private String hasTopo;
     public List<String> climbingList = new ArrayList<>();
     private double latitude;
@@ -63,6 +64,10 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         initLevelList();
 
         String vResult= ActionSupport.SUCCESS;
+        /*for (ClimbingType ct: ClimbingType.values()
+             ) {
+            climbingList.add(ct.getName());
+        }*/
         System.out.println("climbing list: "+climbingList);
         if(levelMin > levelMax){
             this.addFieldError("levelMin", "Min Level should be lower than Max");
@@ -126,6 +131,9 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     /*CREATE*/
     public String doCreateSpot() throws NotFoundException {
         String vResult= ActionSupport.INPUT;
+        for(ClimbingType ct: ClimbingType.values()){
+            climbingList.add(ct.getName());
+        }
         c = countryManager.getCountry(id);
         System.out.println("city is here: "+city);
         if(spot!=null){
@@ -289,6 +297,13 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
 
     public void setLevelMax(int levelMax) {
         this.levelMax = levelMax;
+    }
+    public List<String> getTypeList() {
+        return typeList;
+    }
+
+    public void setTypeList(List<String> typeList) {
+        this.typeList = typeList;
     }
 
     public HashMap<Integer, String> getLevelList() {

@@ -30,6 +30,7 @@ change<s:param name="id" value="%{c.id}"/>  </s:a><br><br>
     <s:hidden name="spot.country" value="%{c.id}"/>
     <s:hidden name="continent" value="%{c.continent}"/>
     <s:hidden name="spot.city" value="%{city}"/>
+    <s:select list="climbingList" name="spot.type" label="Type" requiredLabel="true" />
     <s:textfield name="spot.memberSpot.id" value="%{session.user.id}" label="Member:"/>
     <s:textfield name="spot.name" value="Type Spot Name" requiredLabel="true"/>
     <s:textarea name="spot.latitude" label="Latitude" />

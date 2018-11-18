@@ -24,7 +24,7 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
     private String country;
     private List<Integer> heighList=new ArrayList<>();
     /*private List<String> gradeList=new ArrayList<>();*/
-    private List<String> typeList=new ArrayList<>();
+    /*private List<String> typeList=new ArrayList<>();*/
     private List<Route> routeList=new ArrayList<>();
     private HashMap<Integer, String> gradeList= new HashMap<>();
     private Spot spot;
@@ -53,7 +53,7 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
         initLevelList();
         if(route!=null){
             /*gradeList = routeManager.getListGrade();*/
-            typeList = routeManager.getListClimbingType();
+            /*typeList = routeManager.getListClimbingType();*/
             heighList= IntStream.range(1, 50).boxed().collect(Collectors.toList());
             if(routeManager.getRouteByName(route.getName().toUpperCase())==null){
                 route.setName(route.getName().toUpperCase());
@@ -74,7 +74,7 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
         }else{
             spot = spotManager.getSpotById(id);
             /*gradeList = routeManager.getListGrade();*/
-            typeList = routeManager.getListClimbingType();
+            /*typeList = routeManager.getListClimbingType();*/
             heighList= IntStream.range(1, 50).boxed().collect(Collectors.toList());
         }
         return vResult;
@@ -109,7 +109,7 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
         System.out.println("id: "+id);
         try {
            /* gradeList = routeManager.getListGrade();*/
-            typeList = routeManager.getListClimbingType();
+            /*typeList = routeManager.getListClimbingType();*/
             heighList= IntStream.range(1, 50).boxed().collect(Collectors.toList());
             route = routeManager.getRouteById(id);
         } catch (NotFoundException e) {
@@ -174,13 +174,7 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
         this.gradeList = gradeList;
     }
 
-    public List<String> getTypeList() {
-        return typeList;
-    }
 
-    public void setTypeList(List<String> typeList) {
-        this.typeList = typeList;
-    }
 
     public Route getRoute() {
         return route;

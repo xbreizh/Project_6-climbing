@@ -37,9 +37,9 @@ import java.util.List;
         @NotNull
         private int grade;
 
-        @NotNull
+        /*@NotNull
         @Size(min = 1, max = 20)
-        private String type;
+        private String type;*/
 
         @NotNull
         @Size(min = 1, max = 250)
@@ -106,13 +106,13 @@ import java.util.List;
             this.grade = grade;
         }
 
-        public String getType() {
+       /* public String getType() {
             return type;
         }
 
         public void setType(String type) {
             this.type = type;
-        }
+        }*/
 
         public Member getMemberRoute() {
             return memberRoute;
@@ -137,7 +137,6 @@ import java.util.List;
                     ", name='" + name + '\'' +
                     ", height=" + height +
                     ", grade='" + grade + '\'' +
-                    ", type='" + type + '\'' +
                     ", memberRoute=" + memberRoute +
                     ", spot=" + spot +
                     '}';
