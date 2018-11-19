@@ -10,26 +10,39 @@
 <br><br>
 <h2>Spot</h2>
 <s:iterator value="spotList">
-    <ul>
-        <li>Continent: <s:property value="country.continent"/></li>
-        <li>Country: <s:property value="country.name"/></li>
-        <li>City: <s:property value="city"/></li>
-        <li>Name: <s:property value="name"/></li>
-        <li>Description: <s:property value="description"/></li>
-        <li>GPS coordinates: <s:property value="latitude"/>,<s:property value="longitude"/></li>
-        <li>Creator:
-            <s:a action="member_detail">
-                <s:param name="id" value="memberSpot.id"/>
-                <s:property value="memberSpot.login"/>
-            </s:a>
-        </li>
-        <li>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>Continent </th>
+        <th>Country </th>
+        <th>City </th>
+        <th>Name </th>
+        <th>Description </th>
+        <th>GPS coordinates </th>
+        <th>Creator
+        </th>
+        <th>
             <s:a action="spot_detail">Details
                 <s:param name="id" value="id"/>
             </s:a>
 
-        </li>
-    </ul>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><s:property value="country.continent"/></td>
+        <td><s:property value="country.name"/></td>
+        <td><s:property value="city"/></td>
+        <td><s:property value="name"/></td>
+        <td><s:property value="description"/></td>
+        <td><s:property value="latitude"/>,<s:property value="longitude"/></td>
+        <td><s:a action="member_detail">
+                <s:param name="id" value="memberSpot.id"/>
+                <s:property value="memberSpot.login"/>
+            </s:a>
+        </td>
+</table>
 </s:iterator>
 <h2>Topo</h2>
 <s:iterator value="topoList">

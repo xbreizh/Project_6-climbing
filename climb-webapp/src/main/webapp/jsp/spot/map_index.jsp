@@ -62,7 +62,11 @@
                 //Add pushpin to the map.
                 map.entities.push(pin);
             }
+            //Create a legend.
+
         }
+
+
 
         function pushpinClicked(e) {
             //Make sure the infobox has metadata to display.
@@ -80,5 +84,19 @@
 </head>
 <body>
 <div id="myMap" style="height:600px;"></div>
+<fieldset style="position:absolute;bottom:27px;left:20px;width:160px;margin-top:10px; background-color:#fff9d1;border-radius:10px;">
+    <legend>Legend</legend>
+    <table>
+        <tr>
+            <th>Boulder</th>
+            <td><img src="../img/green_pin.jpg"></td>
+        </tr>
+        <tr>
+            <th>RopeClimbing</th>
+            <td><img src="../img/green_pin.jpg"></td>
+        </tr>
+
+    </table>
+</fieldset>
 </body>
 </html>

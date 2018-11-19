@@ -1,40 +1,74 @@
 <h2>Spot</h2>
 <div id="content">
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Continent </th>
+            <th>Country </th>
+            <th>City </th>
+            <th>Name </th>
+            <th>Description </th>
+            <th>Creator
+            </th>
+        </tr>
+        </thead>
+        <tbody>
     <s:iterator value="spotList">
-        <ul>
-            <li>Continent: <s:property value="country.continent" escapeHtml="false"/></li>
-            <li>Country: <s:property value="country.name" escapeHtml="false"/></li>
-            <li>City: <s:property value="city" escapeHtml="false"/></li>
-            <li>Name: <s:property value="name" escapeHtml="false"/></li>
-            <li>Description: <s:property value="description" escapeHtml="false"/></li>
-            <li>Creator:
-                <s:a action="member_detail">
+
+            <tr>
+                <td><s:property value="country.name" escapeHtml="false"/></td>
+                <td><s:property value="city" escapeHtml="false"/></td>
+                <td><s:property value="name" escapeHtml="false"/></td>
+                <td><s:property value="description" escapeHtml="false"/></td>
+                <td><s:a action="member_detail">
                     <s:param name="id" value="memberSpot.id"/>
                     <s:property value="memberSpot.login"/>
                 </s:a>
-            </li>
-            <li>
-                <s:a action="spot_detail">Details
-                    <s:param name="id" value="id"/>
-                </s:a>
+                </td>
+                <td>
+                    <s:a action="spot_detail">Details
+                        <s:param name="id" value="id"/>
+                    </s:a>
 
-            </li>
-        </ul>
+                </td>
+            </tr>
     </s:iterator>
+        </tbody>
+        </table>
     <h2>Topo</h2>
+    <s:if test="%{topoList.size()>0}">
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Name </th>
+            <th>Edition </th>
+            <th>Author </th>
+            <th>Published Year </th>
+            <th>Description </th>
+            <th>Creator
+            </th>
+        </tr>
+        </thead>
+        <tbody>
     <s:iterator value="topoList">
-        <li>Name: <s:property value="name" escapeHtml="false"/></li>
-        <li>Edition: <s:property value="edition"/></li>
-        <li>Author: <s:property value="author"/></li>
-        <li>Published Year: <s:property value="publishedYear"/></li>
-        <li>Description: <s:property value="description" escapeHtml="false"/></li>
-        <li>
-            Créateur:
+    <tr>
+    <td><s:property value="name" escapeHtml="false"/></td>
+    <td><s:property value="edition"/></td>
+    <td><s:property value="author"/></td>
+    <td><s:property value="publishedYear"/></td>
+    <td><s:property value="description" escapeHtml="false"/></td>
+    <td>
+            Creator:
             <s:a action="member_detail">
                 <s:param name="id" value="owner.id" />
                 <s:property value="owner.login"/>
             </s:a>
-        </li>
-        <br><br>
+        </td>
+    </tr>
     </s:iterator>
+        </tbody>
+    </table>
+    </s:if><s:else>
+    No Spot Found!
+</s:else>
 </div>
