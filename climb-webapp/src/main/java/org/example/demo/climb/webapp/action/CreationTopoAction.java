@@ -17,6 +17,7 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
     private Topo topo;
     private List<Topo> topoList;
     List<Integer> yearList = new ArrayList<>();
+    private int id;
 
 
 
@@ -96,6 +97,16 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
         return ActionSupport.SUCCESS;
     }
 
+    // BOOKING
+    public String doBooking(){
+        topo = topoManager.getTopo(id);
+        return ActionSupport.SUCCESS;
+    }
+
+    public String doValidateBooking(){
+        return ActionSupport.SUCCESS;
+    }
+
     // Getters and Setters
 
     public Topo getTopo() {
@@ -118,5 +129,13 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
 
     public void setYearList(List<Integer> yearList) {
         this.yearList = yearList;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

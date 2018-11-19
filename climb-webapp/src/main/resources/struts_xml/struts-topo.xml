@@ -23,7 +23,7 @@
             <result name="error">/jsp/login.jsp</result>
         </action>
 
-       
+
 
         <!-- READ ALL -->
         <action name="topo_list"
@@ -32,6 +32,23 @@
             <result>/jsp/topo/list.jsp</result>
 
         </action>
+        <!-- READ ALL -->
+        <action name="topo_booking"
+                class="org.example.demo.climb.webapp.action.CreationTopoAction"
+                method="doBooking">
+            <result>/jsp/topo/booking.jsp</result>
+
+        </action>
+        <action name="submitBooking"
+                class="org.example.demo.climb.webapp.action.CreationTopoAction"
+                method="doValidateBooking">
+            <result name="success" type="redirectAction">
+                <param name="actionName">index</param>
+            </result>
+
+        </action>
+
+
 
     </package>
 </struts>

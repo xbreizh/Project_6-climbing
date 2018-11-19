@@ -153,6 +153,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         return vResult;
     }
 
+    //Check submitted form
     public boolean checkSpotForm(Spot spot){
         int i=0;
         // check Country
@@ -255,6 +256,8 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
             countryList.put(c.getId(), c.getName());
         }
     }
+
+
 
     /*READ ALL CONTINENTS*/
     /*public String doListContinent() throws NotFoundException {
