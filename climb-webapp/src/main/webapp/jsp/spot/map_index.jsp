@@ -28,6 +28,7 @@
             });
 
             map.setView({
+               /* mapTypeId: Microsoft.Maps.MapTypeId.aerial,*/
                 zoom: 1.4 });
 
 
@@ -44,7 +45,7 @@
             for (var i = 0 ; i < pushpinInfos.length; i++) {
                 locs[i] = new Microsoft.Maps.Location(pushpinInfos[i].lat, pushpinInfos[i].lon);
                 var pin;
-                if(pushpinInfos[i].ref < 2) {
+                if(pushpinInfos[i].cType === 'BOULDER') {
                     pin = new Microsoft.Maps.Pushpin(locs[i], {color: 'green'});
                 }else{
                     pin = new Microsoft.Maps.Pushpin(locs[i], {color: 'red'});
@@ -53,7 +54,8 @@
                 pin.Ref = pushpinInfos[i].ref;
                 pin.Title = pushpinInfos[i].title;
                 pin.Description = pushpinInfos[i].description;
-                pin
+                pin.City = pushpinInfos[i].city;
+
                 //Add a click event handler to the pushpin.
                 Microsoft.Maps.Events.addHandler(pin, 'click', pushpinClicked);
 
@@ -66,8 +68,8 @@
             //Make sure the infobox has metadata to display.
                 //Set the infobox options with the metadata of the pushpin.
                 infobox.setOptions({
-                    title: e.target.Title,
-                    description: '<a href="spot_detail.action?id='+e.target.Ref+'" >'+e.target.Description+'</a>',
+                    title: e.target.City,
+                    description: '<a href="spot_detail.action?id='+e.target.Ref+'" >'+e.target.Title.toUpperCase()+'</a>',
                     visible: true
                 });
             infobox.setLocation(e.target.getLocation());

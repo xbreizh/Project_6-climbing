@@ -8,19 +8,19 @@
 
     <package name="Spot" extends="struts-default">
 
-        <!--SELECT COUNTRY-->
+        <!--&lt;!&ndash;SELECT COUNTRY&ndash;&gt;
     <action name="choseCountry"
             class="org.example.demo.climb.webapp.action.CreationSpotAction"
             method="doListCountry">
          <result>/jsp/spot/choseCountry.jsp</result>
-        </action>
+        </action>-->
 
-        <!--SELECT CITY-->
+       <!-- &lt;!&ndash;SELECT CITY&ndash;&gt;
         <action name="choseCity"
                 class="org.example.demo.climb.webapp.action.CreationSpotAction"
                 method="doListCity">
             <result>/jsp/spot/choseCity.jsp</result>
-        </action>
+        </action>-->
 
         <!-- CREATE SPOT-->
         <action name="createSpot"
@@ -28,12 +28,12 @@
                 method="doCreateSpot">
             <result name="input">/jsp/spot/newSpot.jsp</result>
             <result name="success" type="redirectAction">
-                <param name="actionName">spot_list</param>
-                <param name="continent">${spot.country.continent}</param>
+                <param name="actionName">spot_detail</param>
+                <param name="id">${spot.id}</param>
             </result>
         </action>
 
-        <!-- CREATE SPOT AND CITY-->
+       <!-- &lt;!&ndash; CREATE SPOT AND CITY&ndash;&gt;
         <action name="createSpotAndCity"
                          class="org.example.demo.climb.webapp.action.CreationSpotAction"
                          method="doCreateSpot">
@@ -41,7 +41,7 @@
             <result name="success" type="redirectAction">
                 <param name="actionName">createRoute</param>
             </result>
-         </action>
+         </action>-->
 
         <!--READ ONE -->
         <action name="spot_detail"

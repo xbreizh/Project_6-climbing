@@ -14,13 +14,11 @@
             </s:a>
         </div>
         <ul class="nav navbar-nav collapse navbar-collapse" id="myNavbar">
-            <li><s:a class="active" action="spot_list">
-                Africa
-                <s:param name="continent">Africa</s:param>
+            <li><s:a class="active" action="createSpot">
+                New Spot
             </s:a></li>
-                <li><s:a class="active" action="spot_list">
-                    America
-                    <s:param name="continent">America</s:param>
+                <li><s:a class="active" action="topo_new">
+                    Topos
                 </s:a></li> <li><s:a class="active" action="spot_list">
                 Asia
                 <s:param name="continent">Asia</s:param>

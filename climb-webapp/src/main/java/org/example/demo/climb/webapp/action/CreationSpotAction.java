@@ -20,8 +20,8 @@ import java.util.List;
 
 public class CreationSpotAction extends LoginAction implements SessionAware {
 
-    private List<String> continentList=new ArrayList<>();
-    private List<String> countryList=new ArrayList<>();
+    /*private List<String> continentList=new ArrayList<>();*/
+   /* private List<String> countryList=new ArrayList<>();*/
     private List<String> cityList=new ArrayList<>();
     private List<Spot> spotList = new ArrayList<>();
     private List<Route> routeList = new ArrayList<>();
@@ -48,6 +48,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     private JsonArray listo = new JsonArray();
     private String[][] spotArray ;
     private HashMap<Integer, String> levelList= new HashMap<>();
+    private HashMap<Integer, String> countryList= new HashMap<>();
     private int levelMin;
     private int levelMax;
 
@@ -64,11 +65,8 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         initLevelList();
 
         String vResult= ActionSupport.SUCCESS;
-        /*for (ClimbingType ct: ClimbingType.values()
-             ) {
-            climbingList.add(ct.getName());
-        }*/
         System.out.println("climbing list: "+climbingList);
+        if(climbingType.equals("")){climbingType="ALL";}
         if(levelMin > levelMax){
             this.addFieldError("levelMin", "Min Level should be lower than Max");
         }
@@ -91,6 +89,8 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
                 String lon = Double.toString(spotList.get(i).getLongitude());
                 String name = spotList.get(i).getName();
                 String desc = spotList.get(i).getCountry().getName();
+                String type = spotList.get(i).getType();
+                String city = spotList.get(i).getCity();
                 int ref = spotList.get(i).getId();
                 JsonObject obj = new JsonObject();
                 obj.addProperty("ref", ref);
@@ -98,6 +98,8 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
                 obj.addProperty("lon", lon);
                 obj.addProperty("title", name);
                 obj.addProperty("description", desc);
+                obj.addProperty("cType", type);
+                obj.addProperty("city", city);
                 listo.add(obj);
                 i++;
             }
@@ -131,6 +133,8 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     /*CREATE*/
     public String doCreateSpot() throws NotFoundException {
         String vResult= ActionSupport.INPUT;
+        initCountryList();
+        System.out.println("spot country id: "+spot);
         for(ClimbingType ct: ClimbingType.values()){
             climbingList.add(ct.getName());
         }
@@ -162,21 +166,29 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
 
         }
         // Init list of countries for the selected continent
-        countryList = countryManager.getListCountryByContinent(continent);
+        initCountryList();
+        /*countryList = countryManager.getListCountry();*/
 
         return ActionSupport.SUCCESS;
     }
 
+    private void initCountryList() {
+        for (Country c: countryManager.getListCountry()
+             ) {
+            countryList.put(c.getId(), c.getName());
+        }
+    }
+
     /*READ ALL CONTINENTS*/
-    public String doListContinent() throws NotFoundException {
+    /*public String doListContinent() throws NotFoundException {
         String vResult= ActionSupport.SUCCESS;
 
         continentList=countryManager.getListContinent();
         return vResult;
-    }
+    }*/
 
     /*READ ALL COUNTRIES*/
-    public String doListCountry() throws NotFoundException {
+   /* public String doListCountry() throws NotFoundException {
         String vResult= ActionSupport.SUCCESS;
         System.out.println("checking country");
         System.out.println("id: "+id);
@@ -184,9 +196,9 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
             continent = countryManager.getCountry(id).getContinent();
         }
         System.out.println("continent: "+continent);
-        countryList = countryManager.getListCountryByContinent(continent);
+        countryList = countryManager.getListCountry();
         return vResult;
-    }
+    }*/
 
     /*READ ALL CITIES*/
     public String doListCity() throws NotFoundException {
@@ -349,13 +361,8 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     public void setSpot(Spot spot) {
         this.spot = spot;
     }
-    public List<String> getCountryList() {
-        return countryList;
-    }
 
-    public void setCountryList(List<String> countryList) {
-        this.countryList = countryList;
-    }
+
 
     public List<String> getCityList() {
         return cityList;
@@ -365,13 +372,14 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         this.cityList = cityList;
     }
 
-    public List<String> getContinentList() {
-        return continentList;
+    public HashMap<Integer, String> getCountryList() {
+        return countryList;
     }
 
-    public void setContinentList(List<String> continentList) {
-        this.continentList = continentList;
+    public void setCountryList(HashMap<Integer, String> countryList) {
+        this.countryList = countryList;
     }
+
     public String getContinent() {
         return continent;
     }
