@@ -12,16 +12,18 @@
         <action name="topo_new"
                 class="org.example.demo.climb.webapp.action.CreationTopoAction"
                 method="doCreateTopo">
-            <interceptor-ref name="store">
+            <!--<interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
-            </interceptor-ref>
-            <interceptor-ref name="defaultStack"/>
-            <result name="input">/jsp/topo/form/new.jsp</result>
+            </interceptor-ref>-->
+            <!--<interceptor-ref name="defaultStack"/>-->
+            <result name="input">/jsp/topo/form/newTopo.jsp</result>
             <result name="success" type="redirectAction">
                 <param name="actionName">topo_list</param>
             </result>
             <result name="error">/jsp/login.jsp</result>
         </action>
+
+       
 
         <!-- READ ALL -->
         <action name="topo_list"

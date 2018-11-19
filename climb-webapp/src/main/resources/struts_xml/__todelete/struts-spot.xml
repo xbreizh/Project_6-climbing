@@ -19,7 +19,7 @@
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
-            <result name="input">/jsp/spot/form/new.jsp</result>
+            <result name="input">/jsp/spot/form/newTopo.jsp</result>
             <result name="success" type="redirectAction">
                 <param name="actionName">spot_list</param>
             </result>

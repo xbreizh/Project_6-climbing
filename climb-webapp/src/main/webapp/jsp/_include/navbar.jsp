@@ -17,18 +17,18 @@
             <li><s:a class="active" action="createSpot">
                 New Spot
             </s:a></li>
-                <li><s:a class="active" action="topo_new">
+                <li><s:a class="active" action="topo_list">
                     Topos
                 </s:a></li> <li><s:a class="active" action="spot_list">
-                Asia
+                My Space
                 <s:param name="continent">Asia</s:param>
-            </s:a></li> <li><s:a class="active" action="spot_list">
+            </s:a></li> <%--<li><s:a class="active" action="spot_list">
                 Europe
                 <s:param name="continent">Europe</s:param>
             </s:a></li> <li><s:a class="active" action="spot_list">
                 Oceania
                 <s:param name="continent">Oceania</s:param>
-            </s:a></li>
+            </s:a></li>--%>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">

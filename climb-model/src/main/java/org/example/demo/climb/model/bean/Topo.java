@@ -1,7 +1,10 @@
 package org.example.demo.climb.model.bean;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.*;
 
 @Entity
@@ -13,21 +16,26 @@ public class Topo {
     private int id;
 
     @NotNull
+    @Size(min = 2, max = 50)
     private String name;
 
     @NotNull
+    @Size(min = 2, max = 50)
     private String edition;
 
     @NotNull
+    @Size(min = 2, max = 50)
     private String author;
 
     @NotNull
     private int publishedYear;
 
     @NotNull
+    @Size(min = 3, max = 350)
     private String description;
 
     @NotNull
+    @Size(min = 3, max = 350)
     private String keywords;
 
     @NotNull
