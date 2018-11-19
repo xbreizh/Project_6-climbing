@@ -32,7 +32,7 @@ change<s:param name="id" value="%{c.id}"/>  </s:a><br><br>--%>
     <s:select list="%{countryList}" name="spot.country.id" listKey="key" headerKey="-1" headerValue="Select Country" />
     <s:textfield name="spot.city" requiredLabel="true" placeholder="Type City Name"/>
     <s:select list="climbingList" name="spot.type" placeholder="Type" requiredLabel="true" />
-    <s:textfield name="spot.memberSpot.id" value="%{session.user.id}" label="Member:"/>
+    <s:hidden name="spot.memberSpot.id" value="%{session.user.id}" label="Member:"/>
     <s:textfield name="spot.name" placeholder="Type Spot Name" requiredLabel="true"/>
     <s:textarea name="spot.latitude" placeholder="Latitude" />
     <s:textarea name="spot.longitude" placeholder="Longitude" /><a href="https://www.gps-coordinates.net/" target="_blank">Get coordinates</a>

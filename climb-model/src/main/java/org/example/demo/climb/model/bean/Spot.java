@@ -16,7 +16,7 @@ import java.util.List;
     private int id;
 
     @NotNull
-    @Size(min = 3, max = 100)
+    @Size(min = 3, max = 50)
     private String city;
 
     @NotNull
@@ -37,11 +37,11 @@ import java.util.List;
         }*/
 
         @NotNull
-    @Size(min = 3, max = 100)
+    @Size(min = 3, max = 50)
     private String name;
 
     @NotNull
-    @Size(min = 10, max = 1000)
+    @Size(min = 5, max = 250)
     private String description;
 
     @NotNull

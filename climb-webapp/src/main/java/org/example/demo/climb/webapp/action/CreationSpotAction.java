@@ -13,6 +13,8 @@ import org.example.demo.climb.model.bean.Country;
 import org.example.demo.climb.model.bean.Route;
 import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.exception.NotFoundException;
+import org.hibernate.annotations.Check;
+
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -138,13 +140,88 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         for(ClimbingType ct: ClimbingType.values()){
             climbingList.add(ct.getName());
         }
-        c = countryManager.getCountry(id);
-        System.out.println("city is here: "+city);
-        if(spot!=null){
-            spotManager.addSpot(spot);
-            vResult = ActionSupport.SUCCESS;
+        /*c = countryManager.getCountry(id);
+        System.out.println("city is here: "+city);*/
+        if(spot!=null) {
+            if (checkSpotForm(spot)){
+                spotManager.addSpot(spot);
+                vResult = ActionSupport.SUCCESS;
+            }else{
+                System.out.println("spot not validated! ");
+            }
         }
         return vResult;
+    }
+
+    public boolean checkSpotForm(Spot spot){
+        int i=0;
+        // check Country
+        if(countryManager.getCountry(spot.getCountry().getId())==null){
+            this.addFieldError("spot.country.id", "invalid country passed");
+            i++;
+        }
+        // check ClimbingType
+        int found=0;
+        for (ClimbingType ct:ClimbingType.values()
+             ) {
+            if(ct.getName().equals(spot.getType())){
+                found=1;
+            }
+        }
+        if(found!=1){
+            this.addFieldError("spot.type", "Incorrect type");
+            i++;
+        }
+
+        // Checks that coordinates aren't 0 / 0
+        if(spot.getLatitude()==0 && spot.getLongitude()==0){
+            this.addFieldError("spot.latitude", "Underwater spot really?!!;)");
+            this.addFieldError("spot.longitude", "You may want to recheck ");
+            i++;
+        }
+
+        // Check Latitude
+        try{Double.valueOf(spot.getLatitude());}catch(Exception e
+        ){
+            this.addFieldError("spot.latitude", "Latitude must be a number");
+            i++;
+        }
+        if(spot.getLongitude() < -90 || spot.getLatitude() > 90){
+            this.addFieldError("spot.latitude", "Latitude should be between -90 and 90");
+            i++;
+        }
+
+        // Check Longitude
+        try{Double.valueOf(spot.getLongitude());}catch(Exception e
+        ){
+            this.addFieldError("spot.longitude", "Longitude must be a number");
+            i++;
+        }
+        if(spot.getLongitude() < -90 || spot.getLongitude() > 90){
+            this.addFieldError("spot.longitude", "Longitude should be between -90 and 90");
+            i++;
+        }
+
+
+
+        // check City
+        if (spot.getCity() == null || spot.getCity().length() < 3 || spot.getCity().length() > 50) {
+            this.addFieldError("spot.city", "City should have 3-50 characters");
+            i++;
+        }
+        // check Name
+        if (spot.getName() == null || spot.getName().length() < 3 || spot.getName().length() > 50) {
+            this.addFieldError("spot.name", "Name should have 3-50 characters");
+            i++;
+        }
+        // check description
+        if (spot.getDescription()== null || spot.getDescription().length() < 5 || spot.getDescription().length() > 250) {
+            this.addFieldError("spot.description", "Description should have 3-50 characters");
+            i++;
+        }
+        if(i==0){return true;}else{
+            return false;
+        }
     }
 
     /*READ ALL SPOTS*/
@@ -201,18 +278,18 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     }*/
 
     /*READ ALL CITIES*/
-    public String doListCity() throws NotFoundException {
+    /*public String doListCity() throws NotFoundException {
         String vResult= ActionSupport.SUCCESS;
         if(id!=0) {
             System.out.println("c is null!");
             c=countryManager.getCountry(id);
         }else {
             c = countryManager.getCountry(country);
-            /*System.out.println("setting up c: " + c.getName());*/
+            *//*System.out.println("setting up c: " + c.getName());*//*
         }
         cityList = spotManager.getListCityByCountry(c);
         return vResult;
-    }
+    }*/
 
     /*READ ONE*/
     public String doDetail() throws NotFoundException {
@@ -229,11 +306,11 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         return vResult;
     }
 
-    public String doTest(){
+   /* public String doTest(){
         System.out.println("test ok");
         return ActionSupport.SUCCESS;
     }
-
+*/
     /*EDIT*/
     public String doEdit() {
         String vResult = ActionSupport.SUCCESS;
