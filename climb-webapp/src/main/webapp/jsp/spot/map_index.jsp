@@ -21,10 +21,19 @@
 
             var pinLayer = new Microsoft.Maps.EntityCollection();
             var locs = [];
-
-
+           /* var myStyle = {
+                "elements": {
+                    "water": { "fillColor": "#ffede3" },
+                    "structure": { "fillColor": "#62ff43" },
+                    "area": { "fillColor": "#f39ebd" },
+                },
+                "version": "1.0"
+            };
+*/
             map = new Microsoft.Maps.Map('#myMap', {
-                credentials: '${token}'
+                credentials: '${token}'/*,
+                customMapStyle: myStyle*/
+
             });
 
             map.setView({
@@ -62,7 +71,6 @@
                 //Add pushpin to the map.
                 map.entities.push(pin);
             }
-            //Create a legend.
 
         }
 
@@ -84,19 +92,6 @@
 </head>
 <body>
 <div id="myMap" style="height:600px;"></div>
-<fieldset style="position:absolute;bottom:27px;left:20px;width:160px;margin-top:10px; background-color:#fff9d1;border-radius:10px;">
-    <legend>Legend</legend>
-    <table>
-        <tr>
-            <th>Boulder</th>
-            <td><img src="../img/green_pin.jpg"></td>
-        </tr>
-        <tr>
-            <th>RopeClimbing</th>
-            <td><img src="../img/green_pin.jpg"></td>
-        </tr>
-
-    </table>
-</fieldset>
+<%@include file="index_map_legend.jsp" %>
 </body>
 </html>

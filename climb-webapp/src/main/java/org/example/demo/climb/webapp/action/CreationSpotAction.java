@@ -15,7 +15,10 @@ import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.exception.NotFoundException;
 import org.hibernate.annotations.Check;
 
+import javax.imageio.ImageIO;
 import javax.inject.Inject;
+import javax.swing.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -63,6 +66,13 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
 
     public String doIndex() throws NotFoundException {
         initClimbingTypeList();
+       /* try {
+            System.out.println(System.getProperty("user.dir"));
+            Icon green = new ImageIcon(ImageIO.read( CreationSpotAction.class.getResourceAsStream( "climb-webapp/src/main/webapp/img/green_pin.jpg" ) ) );
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }*/
+
 
         initLevelList();
 
