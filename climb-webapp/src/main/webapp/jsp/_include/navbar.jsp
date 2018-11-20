@@ -16,10 +16,21 @@
         <ul class="nav navbar-nav collapse navbar-collapse" id="myNavbar">
             <li><s:a class="active" action="createSpot">
                 New Spot
-            </s:a></li>
-                <li><s:a class="active" action="topo_list">
+            </s:a>
+            </li>
+            <li><s:a class="active" action="topo_list">
                     Topos
-                </s:a></li> <li><s:a class="active" action="spot_list">
+                </s:a>
+            </li>
+            <li><s:a class="active" action="spot_list">
+                Spots
+            </s:a>
+            </li>
+            <li><s:a class="active" action="member_list">
+                Members
+            </s:a>
+            </li>
+            <li><s:a class="active" action="spot_list">
                 My Space
                 <s:param name="continent">Asia</s:param>
             </s:a></li> <%--<li><s:a class="active" action="spot_list">

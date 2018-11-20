@@ -5,6 +5,7 @@
 <%@include file="_include/header.jsp" %>
 
 <body>
+<div id="content">
 <%--<div class="row">
 <div class="col-lg-12">
 <h1><s:text name="home.welcome"/></h1>
@@ -39,8 +40,10 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
-<%@include file="search/index_search_result.jsp" %>
+        <%@include file="topo/spotTable.jsp" %>
+        <%@include file="topo/topoTable.jsp" %>
     </div></div>
+</div>
 <div class="row">
     <div class="col-lg-12">
 <%@include file="_include/footer.jsp" %>

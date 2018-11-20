@@ -236,7 +236,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     }
 
     /*READ ALL SPOTS*/
-    public String doList() throws  NotFoundException{
+/*    public String doList() throws  NotFoundException{
 
         if(country.equals("")){
             // Getting list of spots for that continent
@@ -249,14 +249,21 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
                 // Getting list of spots for that country
                 spotList = spotManager.getListSpotByCountry(c);
             }else{
-               /* spotList = spotManager.getListSpot(c.getContinent(), c.getName(), city);*/
+               *//* spotList = spotManager.getListSpot(c.getContinent(), c.getName(), city);*//*
             }
 
         }
         // Init list of countries for the selected continent
         initCountryList();
-        /*countryList = countryManager.getListCountry();*/
+        *//*countryList = countryManager.getListCountry();*//*
 
+        return ActionSupport.SUCCESS;
+    }*/
+
+    public String doList() {
+        spotList=spotManager.getListSpot();
+        System.out.println("trying to get topoList");
+        System.out.println("size: " + spotList.size());
         return ActionSupport.SUCCESS;
     }
 

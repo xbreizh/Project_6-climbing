@@ -29,7 +29,7 @@
         <action name="topo_list"
                 class="org.example.demo.climb.webapp.action.CreationTopoAction"
                 method="doList">
-            <result>/jsp/topo/list.jsp</result>
+            <result>/jsp/topo/topoSpace.jsp</result>
 
         </action>
         <!-- READ ALL -->
@@ -47,7 +47,17 @@
             </result>
 
         </action>
+        <!--READ ONE -->
+        <action name="topo_detail"
+                class="org.example.demo.climb.webapp.action.CreationTopoAction"
+                method="doDetail">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
 
+            <result name="success">jsp/topo/detail.jsp</result>
+        </action>
 
 
     </package>

@@ -42,6 +42,21 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
         return vResult;
     }
 
+    /*READ ONE*/
+    public String doDetail() throws NotFoundException {
+        String vResult = ActionSupport.SUCCESS;
+        System.out.println("tentative de recuperation de l'id: "+id);
+        topo = topoManager.getTopo(id);
+
+        /*System.out.println(spot);*/
+
+        if (this.hasErrors()) {
+            vResult = ActionSupport.ERROR;
+        }
+        System.out.println("vresult: "+vResult.toString());
+        return vResult;
+    }
+
     public boolean checkTopoForm(Topo topo){
         int i=0;
         // Check Name

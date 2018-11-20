@@ -60,7 +60,7 @@
         <action name="spot_list"
                 class="org.example.demo.climb.webapp.action.CreationSpotAction"
                 method="doList">
-            <result>/jsp/spot/list.jsp</result>
+            <result>/jsp/spot/spotSpace.jsp</result>
         </action>
 
         <!-- EDIT -->
