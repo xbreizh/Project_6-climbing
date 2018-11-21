@@ -26,7 +26,7 @@
         <action name="member_list"
                 class="org.example.demo.climb.webapp.action.GestionMemberAction"
                 method="doList">
-            <result>/jsp/member/list.jsp</result>
+            <result>/jsp/member/memberSpace.jsp</result>
 
         </action>
 

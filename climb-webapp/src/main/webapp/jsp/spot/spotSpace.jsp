@@ -6,7 +6,9 @@
 
 <body>
 
-<button type="button" class="btn btn-warning"><s:a action="createSpot">New Topo</s:a></button>
+<a href="createSpot.action">
+    <button type="button" class="btn btn-warning">New Spot</button>
+</a>
 <br><br>
 <%@include file="../topo/spotTable.jsp" %>
 </body>

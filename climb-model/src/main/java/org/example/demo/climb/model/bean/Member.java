@@ -54,8 +54,8 @@ public class Member {
     @OneToMany(mappedBy = "owner",  fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<Topo> topoListOwned = new ArrayList<>();
 
-    @OneToMany(mappedBy = "borrower",  fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-    private List<Borrow> ListBorrows = new ArrayList<>();
+    @OneToMany(mappedBy = "booker",  fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    private List<Booking> listBookings = new ArrayList<>();
 
     public Member() {
     }
@@ -172,11 +172,11 @@ public class Member {
         this.topoListOwned = topoListOwned;
     }
 
-    public List<Borrow> getListBorrows() {
-        return ListBorrows;
+    public List<Booking> getListBookings() {
+        return listBookings;
     }
 
-    public void setListBorrows(List<Borrow> listBorrows) {
-        ListBorrows = listBorrows;
+    public void setListBookings(List<Booking> listBookings) {
+        this.listBookings = listBookings;
     }
 }

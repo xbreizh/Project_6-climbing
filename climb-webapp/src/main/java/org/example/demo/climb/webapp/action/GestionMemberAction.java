@@ -50,6 +50,7 @@ public class GestionMemberAction extends LoginAction {
 
     public String doList(){
         listMember = memberManager.getListMember();
+        System.out.println("list size: "+listMember.size());
         return ActionSupport.SUCCESS;
     }
 
@@ -234,5 +235,11 @@ public class GestionMemberAction extends LoginAction {
         this.id = id;
     }
 
+    public List<Member> getListMember() {
+        return listMember;
+    }
 
+    public void setListMember(List<Member> listMember) {
+        this.listMember = listMember;
+    }
 }

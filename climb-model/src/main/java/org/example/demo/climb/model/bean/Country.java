@@ -25,6 +25,9 @@ public class Country {
     @OneToMany(mappedBy = "country", fetch=FetchType.EAGER)
     private List<Spot> spotList= new ArrayList<>();
 
+    @OneToMany(mappedBy = "country", fetch=FetchType.EAGER)
+    private List<Topo> topoList= new ArrayList<>();
+
     public Country() {
     }
 
@@ -58,6 +61,14 @@ public class Country {
 
     public void setSpotList(List<Spot> spotList) {
         this.spotList = spotList;
+    }
+
+    public List<Topo> getTopoList() {
+        return topoList;
+    }
+
+    public void setTopoList(List<Topo> topoList) {
+        this.topoList = topoList;
     }
 
     @Override

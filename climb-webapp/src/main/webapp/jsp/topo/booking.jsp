@@ -7,7 +7,8 @@
 
 <h1>How to book a book!</h1>
 
-
+start book: <s:property value="%{beginDate}" /><br>
+end book: <s:property value="endDate" />
 <s:if test="#session.user">
     <s:form action="submitBooking" method="POST">
     <li>Name: <s:property value="topo.name"/></li>

@@ -8,23 +8,27 @@
 
 <body>
 <h2><s:property value="%{spot.name}"/> - New Route:</h2>
-<li>Id: <s:property value="id"/></li>
-<s:form action="createRoute" method="POST">
-    <s:textfield type="text" name="route.name" label="Name" requiredLabel="true"/>
-    <s:select list="heighList" name="route.height" label="Height" requiredLabel="true"/>
-    <s:select list="%{gradeList}" name="route.grade"  listKey="key" label="Grade" requiredLabel="true"/>
-    <%--<s:select list="gradeList" type="text" name="route.grade" label="Grade" requiredLabel="true"/>--%>
-    <%--<s:select list="typeList" name="route.type" label="Type" requiredLabel="true" />--%>
-    <s:textarea type="text" name="route.description" label="Description" requiredLabel="true"/>
-    <s:textfield name="route.memberRoute.id" label="Member" value="%{session.user.id}" requiredLabel="true" />
-    <s:textfield name="route.spot.id" value="%{spot.id}" label="Spot" requiredLabel="true" />
+<s:if test="#session.user">
+<s:form action="createRoute" method="POST" theme="xhtml">
+    <s:textfield type="text" name="route.name" placeholder="Name" requiredLabel="true"/>
+    <s:select list="heighList" name="route.height" placeholder="Height" requiredLabel="true" headerKey="-1" headerValue="-- Height --"/>
+    <s:select list="%{gradeList}"  name="route.grade"  listKey="key" placeholder="Grade" requiredLabel="true"
+              headerKey="-1" headerValue="-- Grade --"/>
+    <s:textarea type="text" name="route.description" placeholder="Description" requiredLabel="true"/>
+    <s:hidden name="route.memberRoute.id" placeholder="Member" value="%{session.user.id}" requiredLabel="true" />
+    <s:hidden name="route.spot.id" value="%{spot.id}" placeholder="Spot" requiredLabel="true" />
     <s:hidden name="id" value="%{id}" />
     <s:submit value="OK"/>
 </s:form>
-
+</s:if>
+<s:else>
+    Vous devez vous connecter pour cette action!
+    <s:a action="login">Connexion</s:a>
+</s:else><br><br>
 <s:a action="spot_detail">
     <s:param name="id" value="%{spot.id}"/>
     Back to List:
 </s:a>
+
 </body>
 </html>

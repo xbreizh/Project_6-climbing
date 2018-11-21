@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-public class Borrow {
+public class Booking {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,18 +13,18 @@ public class Borrow {
     private int id;
 
     @ManyToOne
-    private Member borrower;
+    private Member booker;
 
     @ManyToOne
     private Topo topo;
 
     @NotNull
-    private Date borrowDate;
+    private Date bookingDate;
 
-
+    @NotNull
     private Date returnDate;
 
-    public Borrow() {
+    public Booking() {
 
     }
 
@@ -36,12 +36,12 @@ public class Borrow {
         this.id = id;
     }
 
-    public Member getBorrower() {
-        return borrower;
+    public Member getBooker() {
+        return booker;
     }
 
-    public void setBorrower(Member borrower) {
-        this.borrower = borrower;
+    public void setBooker(Member borrower) {
+        this.booker = borrower;
     }
 
     public Topo getTopo() {
@@ -52,12 +52,12 @@ public class Borrow {
         this.topo = topo;
     }
 
-    public Date getBorrowDate() {
-        return borrowDate;
+    public Date getBookingDate() {
+        return bookingDate;
     }
 
-    public void setBorrowDate(Date borrowDate) {
-        this.borrowDate = borrowDate;
+    public void setBookingDate(Date bookingDate) {
+        this.bookingDate = bookingDate;
     }
 
     public Date getReturnDate() {

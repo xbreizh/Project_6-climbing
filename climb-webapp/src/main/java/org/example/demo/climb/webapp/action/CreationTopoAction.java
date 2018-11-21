@@ -3,12 +3,19 @@ package org.example.demo.climb.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
+import org.example.demo.climb.business.contract.BookingManager;
+import org.example.demo.climb.business.contract.CountryManager;
+import org.example.demo.climb.business.contract.MemberManager;
 import org.example.demo.climb.business.contract.TopoManager;
+import org.example.demo.climb.model.bean.Booking;
+import org.example.demo.climb.model.bean.Country;
 import org.example.demo.climb.model.bean.Topo;
 import org.example.demo.climb.model.exception.NotFoundException;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 public class CreationTopoAction extends LoginAction implements SessionAware {
@@ -18,17 +25,29 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
     private List<Topo> topoList;
     List<Integer> yearList = new ArrayList<>();
     private int id;
+    private HashMap<Integer, String> countryList= new HashMap<>();
+    private Date beginBook;
+    private Date endBook;
+    private int memberId;
+    Booking booking;
 
 
 
     @Inject
     private TopoManager topoManager;
+    @Inject
+    private CountryManager countryManager;
+    @Inject
+    private MemberManager memberManager;
+
+    @Inject
+    private BookingManager bookingManager;
 
     // Methods
     public String doCreateTopo() {
         System.out.println("trying to create a topo");
         String vResult= ActionSupport.INPUT;
-
+        initCountryList();
         for(int i = 1900;i<2222;i++){
             yearList.add(i);
         }
@@ -45,15 +64,11 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
     /*READ ONE*/
     public String doDetail() throws NotFoundException {
         String vResult = ActionSupport.SUCCESS;
-        System.out.println("tentative de recuperation de l'id: "+id);
         topo = topoManager.getTopo(id);
-
-        /*System.out.println(spot);*/
 
         if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;
         }
-        System.out.println("vresult: "+vResult.toString());
         return vResult;
     }
 
@@ -114,12 +129,49 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
 
     // BOOKING
     public String doBooking(){
-        topo = topoManager.getTopo(id);
-        return ActionSupport.SUCCESS;
+        int error=0;
+        String vResult = ActionSupport.INPUT;
+        if(beginBook == null || endBook == null){
+            this.addActionError("You must fill out both dates to book");
+            error++;
+        }else {
+            if (beginBook.after(endBook) || beginBook.equals(endBook)) {
+                System.out.println("end date must be after begin date");
+                this.addFieldError("endBook", "end date must be after begin date");
+                error++;
+            }
+            if (beginBook.before(new Date())) {
+                this.addFieldError("beginBook", "start date should be at least tomorrow");
+                System.out.println("start date should be at least tomorrow");
+                error++;
+            }
+            if (error == 0) {
+                System.out.println("begin book: "+beginBook);
+                System.out.println("end book: "+endBook);
+                System.out.println("today: "+new Date());
+
+                booking.setBookingDate(beginBook);
+                booking.setReturnDate(endBook);
+
+                bookingManager.addBooking(booking);
+
+                System.out.println("form checked, booking done");
+                vResult = ActionSupport.SUCCESS;
+            }
+        }
+        return vResult;
     }
 
     public String doValidateBooking(){
+
         return ActionSupport.SUCCESS;
+    }
+
+    private void initCountryList() {
+        for (Country c: countryManager.getListCountry()
+        ) {
+            countryList.put(c.getId(), c.getName());
+        }
     }
 
     // Getters and Setters
@@ -152,5 +204,45 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public HashMap<Integer, String> getCountryList() {
+        return countryList;
+    }
+
+    public void setCountryList(HashMap<Integer, String> countryList) {
+        this.countryList = countryList;
+    }
+
+    public Date getEndBook() {
+        return endBook;
+    }
+
+    public void setEndBook(Date endBook) {
+        this.endBook = endBook;
+    }
+
+    public Date getBeginBook() {
+        return beginBook;
+    }
+
+    public void setBeginBook(Date beginBook) {
+        this.beginBook = beginBook;
+    }
+
+    public int getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(int memberId) {
+        this.memberId = memberId;
+    }
+
+    public Booking getBooking() {
+        return booking;
+    }
+
+    public void setBooking(Booking booking) {
+        this.booking = booking;
     }
 }

@@ -36,7 +36,7 @@
             </tr>
             <tr>
                 <td><img height="42" width="42" alt="red_pin" src="<%=request.getContextPath()%>/img/red_pin.PNG"></td>
-                <td>Rope</td>
+                <td>Rope Climbing</td>
             </tr>
 
         </table>

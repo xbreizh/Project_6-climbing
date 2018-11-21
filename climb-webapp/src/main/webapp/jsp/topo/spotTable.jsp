@@ -1,4 +1,5 @@
 <h2>Spot</h2>
+<s:if test="%{spotList.size()>0}">
     <table class="table table-bordered table-hover">
         <thead>
         <tr>
@@ -44,3 +45,6 @@
         </s:iterator>
         </tbody>
     </table>
+</s:if><s:else>
+    No Topo Found!
+</s:else>

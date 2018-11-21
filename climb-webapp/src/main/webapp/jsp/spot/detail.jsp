@@ -32,10 +32,7 @@ Spot List</s:a>
         <s:param name="id" value="id"/>
         Edit
     </s:a></li><br>
-    <s:a action="createRoute">
-        <s:param name="id" value="id"/>
-        Add Route:
-    </s:a>
+
     <s:if test="spot.routeList.size() > 0">
         <img src="http://vincent.boulas.free.fr/teamgrimptout/topos/ainsavoiehautesavoie/topo_malpas.gif">
         <h2>Routes</h2>
@@ -68,7 +65,14 @@ Spot List</s:a>
     </s:else>
     <s:if test="#session.user">
     </s:if>
+    <s:a action="createRoute">
+        <s:param name="id" value="id"/>
+        <button type="button" class="btn btn-warning">New Route</button>
+    </s:a>
+   <%-- <a href="createRoute.action?"+<s:%{id}>
+        <button type="button" class="btn btn-warning">New Route</button>
 
+    </a>--%>
 
 </ul>
 </body>

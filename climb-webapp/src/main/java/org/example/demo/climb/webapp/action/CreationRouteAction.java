@@ -23,8 +23,6 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
     private int id;
     private String country;
     private List<Integer> heighList=new ArrayList<>();
-    /*private List<String> gradeList=new ArrayList<>();*/
-    /*private List<String> typeList=new ArrayList<>();*/
     private List<Route> routeList=new ArrayList<>();
     private HashMap<Integer, String> gradeList= new HashMap<>();
     private Spot spot;

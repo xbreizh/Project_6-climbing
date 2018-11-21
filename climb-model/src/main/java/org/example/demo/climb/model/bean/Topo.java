@@ -1,8 +1,6 @@
 package org.example.demo.climb.model.bean;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.*;
@@ -14,6 +12,10 @@ public class Topo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
+
+    @NotNull
+    @ManyToOne
+    private Country country;
 
     @NotNull
     @Size(min = 2, max = 50)
@@ -43,7 +45,7 @@ public class Topo {
     private Member owner;
 
     @OneToMany(mappedBy = "topo",  fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-    private List<Borrow> ListBorrows = new ArrayList<>();
+    private List<Booking> listBookings = new ArrayList<>();
 
     @NotNull
     private boolean available;
@@ -100,6 +102,14 @@ public class Topo {
         return edition;
     }
 
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
     public String getKeywords() {
         return keywords;
     }
@@ -116,12 +126,12 @@ public class Topo {
         this.owner = owner;
     }
 
-    public List<Borrow> getListBorrows() {
-        return ListBorrows;
+    public List<Booking> getListBookings() {
+        return listBookings;
     }
 
-    public void setListBorrows(List<Borrow> listBorrows) {
-        ListBorrows = listBorrows;
+    public void setListBookings(List<Booking> listBookings) {
+        this.listBookings = listBookings;
     }
 
     public boolean isAvailable() {
@@ -143,7 +153,7 @@ public class Topo {
                 ", description=" + description +
                 ", keywords='" + keywords + '\'' +
                 ", owner=" + owner +
-                ", ListBorrows=" + ListBorrows +
+                ", listBookings=" + listBookings +
                 ", available=" + available +
                 '}';
     }

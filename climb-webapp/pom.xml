@@ -37,6 +37,7 @@
     <!-- Dépendances -->
     <!-- =============================================================== -->
     <dependencies>
+
         <!-- ===== Modules ===== -->
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -96,6 +97,7 @@
             <artifactId>struts2-core</artifactId>
             <version>${struts.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.apache.struts</groupId>
             <artifactId>struts2-spring-plugin</artifactId>
@@ -122,6 +124,13 @@
             <artifactId>jetty-util</artifactId>
             <version>6.1.25</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-dojo-plugin -->
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-dojo-plugin</artifactId>
+            <version>2.3.35</version>
+        </dependency>
+
     </dependencies>
 
     <!-- =============================================================== -->

@@ -23,25 +23,12 @@ import java.util.List;
     @Size(min = 1, max = 20)
     private String type;
 
-
-
-/*        public Spot(String city, String name, String description, double latitude, double longitude, int rateMore, int rateLess, Country country) {
-            this.city = city;
-            this.name = name;
-            this.description = description;
-            this.latitude = latitude;
-            this.longitude = longitude;
-            this.rateMore = rateMore;
-            this.rateLess = rateLess;
-            this.country = country;
-        }*/
-
-        @NotNull
+    @NotNull
     @Size(min = 3, max = 50)
     private String name;
 
     @NotNull
-    @Size(min = 5, max = 250)
+    @Size(min = 3, max = 250)
     private String description;
 
     @NotNull
@@ -157,6 +144,7 @@ import java.util.List;
         public void setCommentList(List<Comment> commentList) {
             this.commentList = commentList;
         }
+
 
         public double getLatitude() {
             return latitude;
