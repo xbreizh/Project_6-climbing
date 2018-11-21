@@ -24,6 +24,6 @@
 
 </s:if>
 <s:else>
-Vous devez vous connecter pour cette action!
-<s:a action="login">Connexion</s:a>
+Connect to add a spot<br><br>
+    <%@include file="../_include/connectButton.jsp" %>
 </s:else>

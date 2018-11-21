@@ -3,30 +3,39 @@
     <table class="table table-bordered table-hover">
         <thead>
         <tr>
+            <th>Available </th>
             <th>Name </th>
             <th>Edition </th>
             <th>Author </th>
             <th>Published Year </th>
             <th>Description </th>
-            <th>Creator
-            </th>
+            <th>Creator</th>
         </tr>
         </thead>
         <tbody>
         <s:iterator value="topoList">
             <tr>
                 <td><s:a action="topo_detail" style="display:block;text-decoration:none;" >
+                    <s:if test="available == true">
+                        <i class="glyphicon glyphicon-ok" style="font-size:50px;color:green"></i>
+                    </s:if><s:else>
+                    <i class="glyphicon glyphicon-ban-circle" style="font-size:50px;color:red"></i>
+                </s:else>
+                    <s:param name="id" value="id"/>
+                </s:a>
+                </td>
+                <td><s:a action="topo_detail" style="display:block;text-decoration:none;" >
                     <s:property value="name" escapeHtml="false"/>
                     <s:param name="id" value="id"/>
                 </s:a>
                 </td>
                 <td><s:a action="topo_detail" style="display:block;text-decoration:none;" >
-                    <s:property value="edition"/>
+                    <s:property value="author"/>
                     <s:param name="id" value="id"/>
                 </s:a>
                 </td>
                 <td><s:a action="topo_detail" style="display:block;text-decoration:none;" >
-                    <s:property value="author"/>
+                    <s:property value="edition"/>
                     <s:param name="id" value="id"/>
                 </s:a>
                 </td>
@@ -39,7 +48,6 @@
                     <s:property value="description" escapeHtml="false"/>
                     <s:param name="id" value="id"/>
                 </s:a>
-                </td>
                 <td>
                     <s:a action="member_detail">
                         <s:param name="id" value="owner.id" />

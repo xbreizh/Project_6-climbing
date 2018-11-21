@@ -1,3 +1,4 @@
+<%--
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <html>
@@ -6,7 +7,7 @@
 
 <body>
 <h1>Liste Membres</h1>
-
+<s:if test="#session.user">
 <s:a action="index" >Back to Menu</s:a>
 <s:iterator value="listMember">
     <ul>
@@ -26,7 +27,12 @@
         </li>
     </ul>
 </s:iterator>
-
+</s:if>
+<s:else>
+    Connect to add a topo<br><br>
+    <%@include file="../_include/connectButton.jsp" %>
+</s:else>
 
 </body>
 </html>
+--%>

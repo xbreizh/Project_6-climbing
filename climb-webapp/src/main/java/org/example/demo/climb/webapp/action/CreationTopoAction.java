@@ -146,16 +146,12 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
                 error++;
             }
             if (error == 0) {
-                System.out.println("begin book: "+beginBook);
-                System.out.println("end book: "+endBook);
-                System.out.println("today: "+new Date());
 
                 booking.setBookingDate(beginBook);
                 booking.setReturnDate(endBook);
 
                 bookingManager.addBooking(booking);
 
-                System.out.println("form checked, booking done");
                 vResult = ActionSupport.SUCCESS;
             }
         }

@@ -45,7 +45,7 @@ public class TopoDaoImpl implements TopoDao {
     @Override
     public List<Topo> ListTopoByOwner(String name) {
         Query query=sessionFactory.getCurrentSession().createQuery(
-                "From Topo where owner.login=:name");
+                "From Topo where owner.login=:name order by available, name, publishedYear");
         query.setParameter("login", name);
         return query.getResultList();
     }

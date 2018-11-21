@@ -1,3 +1,4 @@
+<%--
 <form>
     <fieldset class="form-group">
         <div class="row">
@@ -40,4 +41,4 @@
             <button type="submit" class="btn btn-primary">Refresh</button>
         </div>
     </div>
-</form>
+</form>--%>

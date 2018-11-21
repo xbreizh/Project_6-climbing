@@ -23,7 +23,7 @@
 </s:if>
 <s:else>
     Vous devez vous connecter pour cette action!
-    <s:a action="login">Connexion</s:a>
+    <%@include file="../../_include/connectButton.jsp" %>
 </s:else><br><br>
 <s:a action="spot_detail">
     <s:param name="id" value="%{spot.id}"/>

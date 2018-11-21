@@ -21,7 +21,6 @@ public class BookingDaoImpl implements BookingDao {
 
     @Override
     public void add(Booking booking) {
-        System.out.println("booking is in the DAO");
         sessionFactory.getCurrentSession().persist(booking);
     }
 

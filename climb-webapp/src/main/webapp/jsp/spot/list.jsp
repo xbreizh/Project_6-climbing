@@ -1,3 +1,4 @@
+<%--
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <html>
@@ -80,3 +81,4 @@ Country: <s:property value="%{country}"/><br>
 
 </body>
 </html>
+--%>

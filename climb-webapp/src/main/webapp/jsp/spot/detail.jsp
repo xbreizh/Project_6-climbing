@@ -5,8 +5,8 @@
 <%@include file="../_include/header.jsp" %>
 
 <body>
-<h1>Spot: <s:property value="spot.name"/></h1><br><br>
-<s:a action="index" >Back to Menu</s:a><br><br>
+<h1>Spot: <s:property value="spot.name"/>
+    <a href="#comments">( Comment(s) )</a></h1><br><br><br>
 <s:a action="spot_list" >
 Spot List</s:a>
 
@@ -15,49 +15,118 @@ Spot List</s:a>
     <s:param name="id" value="id"/>
     Comment(s):
 </s:a><br>
-<ul>
-    <li>Id: <s:property value="id"/></li>
-    <li>Continent: <s:property value="spot.country.continent"/></li>
-    <li>Country: <s:property value="spot.country.name"/></li>
-    <li>City: <s:property value="spot.city"/></li>
-    <li>Description: <s:property value="spot.description"/></li>
-    <%@include file="map.jsp" %>
-    <li>Creator:
-        <s:a action="member_detail">
-            <s:param name="id" value="spot.memberSpot.id"/>
-            <s:property value="spot.memberSpot.login"/>
+<table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th>Continent </th>
+        <th>Country </th>
+        <th>City </th>
+        <th>Description</th>
+        <th>Creator</th>
+        <th>Comment(s)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><s:a action="spot_detail" style="display:block;text-decoration:none;" >
+            <s:property value="spot.country.continent" escapeHtml="false"/>
+            <s:param name="id" value="id"/>
         </s:a>
-    </li>
-    <li><s:a action="spot_edit">
-        <s:param name="id" value="id"/>
-        Edit
-    </s:a></li><br>
-
-    <s:if test="spot.routeList.size() > 0">
-        <img src="http://vincent.boulas.free.fr/teamgrimptout/topos/ainsavoiehautesavoie/topo_malpas.gif">
-        <h2>Routes</h2>
-        routeList size: <s:property value="%{routeList.size()}"/><br>
-        <s:iterator value="%{routeList}">
-            <strong><s:property value="name"/></strong>
-            Height: <s:property value="height"/>
-            Grade: <s:property value="grade"/>
-            Type: <s:property value="type"/>
-            Creator:
-            <s:a action="member_detail">
-                <s:param name="id" value="memberRoute.id"/>
-                <s:property value="memberRoute.login"/>
-            </s:a>
+        </td>
+        <td><s:a action="spot_detail" style="display:block;text-decoration:none;" >
+            <s:property value="spot.country.name" escapeHtml="false"/>
+            <s:param name="id" value="id"/>
+        </s:a>
+        </td>
+        <td><s:a action="spot_detail" style="display:block;text-decoration:none;" >
+            <s:property value="spot.city" escapeHtml="false"/>
+            <s:param name="id" value="id"/>
+        </s:a>
+        </td>
+        <td><s:a action="spot_detail" style="display:block;text-decoration:none;" >
+            <s:property value="spot.description" escapeHtml="false"/>
+            <s:param name="id" value="id"/>
+        </s:a>
+        </td>
+        <td><s:a action="spot_detail" style="display:block;text-decoration:none;" >
+            <s:property value="spot.memberSpot.login" escapeHtml="false"/>
+            <s:param name="id" value="id"/>
+        </s:a>
+        </td>
+        <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
             <s:a action="comment_list_route">
                 <s:param name="id" value="id"/>
                 Comment(s):
             </s:a>
-            <s:a action="route_edit">
+            <s:param name="id" value="id"/>
+        </s:a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+    <s:if test="spot.routeList.size() > 0">
+        <img src="http://vincent.boulas.free.fr/teamgrimptout/topos/ainsavoiehautesavoie/topo_malpas.gif">
+        <h2>Routes</h2>
+
+        <s:iterator value="%{routeList}">
+<table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th>Name </th>
+        <th>Height </th>
+        <th>Grade</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Creator</th>
+        <th>Comment(s)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
+            <s:property value="name" escapeHtml="false"/>
+            <s:param name="id" value="id"/>
+        </s:a>
+        </td>
+        <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
+            <s:property value="height" escapeHtml="false"/>
+            <s:param name="id" value="id"/>
+        </s:a>
+        </td>
+        <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
+            <s:property value="grade" escapeHtml="false"/>
+            <s:param name="id" value="id"/>
+        </s:a>
+        </td>
+        <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
+            <s:property value="type" escapeHtml="false"/>
+            <s:param name="id" value="id"/>
+        </s:a>
+        </td>
+        <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
+            <s:property value="description" escapeHtml="false"/>
+            <s:param name="id" value="id"/>
+        </s:a>
+        </td>
+        <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
+            <s:property value="memberRoute.login" escapeHtml="false"/>
+            <s:param name="id" value="id"/>
+        </s:a>
+        </td>
+        <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
+            <s:a action="comment_list_route">
                 <s:param name="id" value="id"/>
-                Edit
+                Comment(s):
             </s:a>
-            <br>
-            Description: <br><s:property value="description"/>
-            <br>
+            <s:param name="id" value="id"/>
+        </s:a>
+        </td>
+    </tr>
+    </tbody>
+</table>
         </s:iterator>
     </s:if>
     <s:else>
@@ -69,12 +138,78 @@ Spot List</s:a>
         <s:param name="id" value="id"/>
         <button type="button" class="btn btn-warning">New Route</button>
     </s:a>
-   <%-- <a href="createRoute.action?"+<s:%{id}>
-        <button type="button" class="btn btn-warning">New Route</button>
 
-    </a>--%>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<a name="comments"></a>
+<h2>Comments</h2>
 
-</ul>
-</body>
-</html>
+<s:iterator value="%{commentList}">
+<table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th>Name </th>
+        <th>Height </th>
+        <th>Grade</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Creator</th>
+        <th>Comment(s)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
+            <s:property value="name" escapeHtml="false"/>
+            <s:param name="id" value="id"/>
+        </s:a>
+        </td>
+        <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
+            <s:property value="height" escapeHtml="false"/>
+            <s:param name="id" value="id"/>
+        </s:a>
+        </td>
+        <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
+            <s:property value="grade" escapeHtml="false"/>
+            <s:param name="id" value="id"/>
+        </s:a>
+        </td>
+        <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
+            <s:property value="type" escapeHtml="false"/>
+            <s:param name="id" value="id"/>
+        </s:a>
+        </td>
+        <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
+            <s:property value="description" escapeHtml="false"/>
+            <s:param name="id" value="id"/>
+        </s:a>
+        </td>
+        <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
+            <s:property value="memberRoute.login" escapeHtml="false"/>
+            <s:param name="id" value="id"/>
+        </s:a>
+        </td>
+        <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
+            <s:a action="comment_list_route">
+                <s:param name="id" value="id"/>
+                Comment(s):
+            </s:a>
+            <s:param name="id" value="id"/>
+        </s:a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</s:iterator>
+
+<s:a action="comment_list_spot">
+    <s:param name="id" value="id"/>
+<button type="button" class="btn btn-warning">New Comment</button>
+</s:a>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+
 
