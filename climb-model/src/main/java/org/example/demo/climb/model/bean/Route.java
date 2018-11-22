@@ -53,7 +53,7 @@ import java.util.List;
         @ManyToOne()
         private Spot spot;
 
-        @OneToMany(mappedBy = "route", fetch=FetchType.EAGER, cascade=CascadeType.ALL, orphanRemoval = true)
+        @OneToMany(mappedBy = "route", fetch=FetchType.EAGER, cascade=CascadeType.REMOVE )
         private List<Comment> commentList= new ArrayList<>();
 
         public Route() {

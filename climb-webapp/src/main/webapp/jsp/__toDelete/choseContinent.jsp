@@ -1,3 +1,4 @@
+<%--
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <html>
@@ -24,4 +25,4 @@
 <s:else>
     Vous devez vous connecter pour cette action!
     <s:a action="login">Connexion</s:a>
-</s:else>
+</s:else>--%>

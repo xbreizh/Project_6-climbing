@@ -1,10 +1,10 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<html>
 
+<a name="top"></a>
 <%@include file="../_include/header.jsp" %>
 
-<body>
+
 <h1>
 
 <table class="table table-bordered table-hover">
@@ -136,16 +136,9 @@
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-
-
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <a name="comments"></a>
-<h2>Comments</h2>
+    <h2>Comments</h2><h4><a href="#top" >Top</a></h4>
+
 <%--<s:if test="#session.user">--%>
 <s:form action="createCommentSpot" method="POST">
     <s:hidden name="comment.spot.id" value="%{spot.id}"/>
@@ -176,6 +169,7 @@
             <s:a action="comment_delete" style="display:block;text-decoration:none;" >
                 Remove
                 <s:param name="id" value="id"/>
+                <s:param name="spot.id" value="spot.id"/>
             </s:a>
 
         </th>

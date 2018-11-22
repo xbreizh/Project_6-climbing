@@ -1,3 +1,4 @@
+<%--
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <html>
@@ -33,4 +34,4 @@ Country: <s:property value="%{c.name}"/>
 <s:else>
     Vous devez vous connecter pour cette action!
     <s:a action="login">Connexion</s:a>
-</s:else>
+</s:else>--%>

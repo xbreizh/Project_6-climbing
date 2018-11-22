@@ -1,3 +1,4 @@
+<%--
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <html>
@@ -13,3 +14,4 @@
     </s:a>
 </body>
 </html>
+--%>

@@ -36,9 +36,10 @@
         <action name="topo_booking"
                 class="org.example.demo.climb.webapp.action.CreationTopoAction"
                 method="doBooking">
-            <result name="input" type="redirectAction">
-                <param name="actionName">topo_detail</param>
-                <param name="id">${id}</param>
+            <result name="input">/jsp/topo/booking.jsp<!--</result>-->
+            <!--<result name="input" type="redirectAction">-->
+               <!-- <param name="actionName">topo_detail</param>-->
+                <!--<param name="id">${id}</param>-->
             </result>
             <result name="success" type="redirectAction">
                 <param name="actionName">topo_list</param>

@@ -11,7 +11,7 @@ import java.util.List;
 public interface BookingManager {
 
     // Create
-    void addBooking(Booking booking);
+    List<Booking> addBooking(Booking booking);
 
    /* // Get
     Booking getBookingByName(String name) throws NotFoundException;*/

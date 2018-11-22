@@ -39,7 +39,7 @@
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
 
-            <result name="success">jsp/member/detail.jsp</result>
+            <result name="success">../../webapp/jsp/__toDelete/detail.jsp</result>
         </action>
 
 

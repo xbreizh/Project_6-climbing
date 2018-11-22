@@ -49,10 +49,10 @@ import java.util.List;
     @ManyToOne
     private Member memberSpot;
 
-    @OneToMany(mappedBy = "spot", fetch=FetchType.EAGER, cascade=CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "spot", fetch=FetchType.EAGER, cascade=CascadeType.REMOVE )
     private List<Route> routeList= new ArrayList<>();
 
-    @OneToMany(mappedBy = "spot", fetch=FetchType.EAGER, cascade=CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "spot", fetch=FetchType.EAGER, cascade=CascadeType.REMOVE )
     private List<Comment> commentList= new ArrayList<>();
 
     public Spot() {

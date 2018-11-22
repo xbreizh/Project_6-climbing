@@ -37,14 +37,14 @@
         <action name="comment_list_route"
                 class="org.example.demo.climb.webapp.action.CreationCommentAction"
                 method="doListCommentRoute">
-            <result name="success">/jsp/comment/listCommentRoute.jsp</result>
+            <result name="success">/jsp/__toDelete/listCommentRoute.jsp</result>
         </action>
 
         <!-- READ ALL COMMENT SPOT -->
         <action name="comment_list_spot"
                 class="org.example.demo.climb.webapp.action.CreationCommentAction"
                 method="doListCommentSpot">
-            <result name="success">/jsp/comment/listCommentSpot.jsp</result>
+            <result name="success">/jsp/__toDelete/listCommentSpot.jsp</result>
         </action>
 
 
@@ -93,7 +93,8 @@
             <interceptor-ref name="defaultStack"/>
             <result name="success" type="redirectAction">
                 <param name="actionName">spot_detail</param>
-                <param name="id">${comment.spot.id}#comments</param>
+                <param name="id">${spot.id}</param>
+                <param name="anchor">comments</param>
             </result>
         </action>
     </package>

@@ -48,7 +48,7 @@ public class Member {
     @OneToMany(mappedBy = "memberRoute", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<Route> routeList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "memberComment", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "memberComment", fetch = FetchType.EAGER, cascade = {CascadeType.REMOVE })
     private List<Comment> commentList = new ArrayList<>();
 
     @OneToMany(mappedBy = "owner",  fetch = FetchType.EAGER, cascade = {CascadeType.ALL})

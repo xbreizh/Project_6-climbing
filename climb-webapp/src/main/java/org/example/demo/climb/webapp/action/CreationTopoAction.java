@@ -13,6 +13,7 @@ import org.example.demo.climb.model.bean.Topo;
 import org.example.demo.climb.model.exception.NotFoundException;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -29,6 +30,7 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
     private Date beginBook;
     private Date endBook;
     private int memberId;
+    private List<Booking> conflictList=new ArrayList<>();
     Booking booking;
 
 
@@ -131,28 +133,45 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
     public String doBooking(){
         int error=0;
         String vResult = ActionSupport.INPUT;
-        if(beginBook == null || endBook == null){
-            this.addActionError("You must fill out both dates to book");
-            error++;
-        }else {
-            if (beginBook.after(endBook) || beginBook.equals(endBook)) {
-                System.out.println("end date must be after begin date");
-                this.addFieldError("endBook", "end date must be after begin date");
+
+        topo = topoManager.getTopo(id);
+        if(booking != null) {
+            if (beginBook == null || endBook == null) {
+                this.addActionError("You must fill out both dates to book");
                 error++;
-            }
-            if (beginBook.before(new Date())) {
-                this.addFieldError("beginBook", "start date should be at least tomorrow");
-                System.out.println("start date should be at least tomorrow");
-                error++;
-            }
-            if (error == 0) {
+            } else {
+                if (beginBook.after(endBook) || beginBook.equals(endBook)) {
+                    System.out.println("end date must be after begin date");
+                    this.addFieldError("endBook", "end date must be after begin date");
+                    error++;
+                }
+                if (beginBook.before(new Date())) {
+                    this.addFieldError("beginBook", "start date should be at least tomorrow");
+                    System.out.println("start date should be at least tomorrow");
+                    error++;
+                }
+                if (error == 0) {
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-                booking.setBookingDate(beginBook);
-                booking.setReturnDate(endBook);
-
-                bookingManager.addBooking(booking);
-
-                vResult = ActionSupport.SUCCESS;
+                    booking.setBookingDate(beginBook);
+                    booking.setReturnDate(endBook);
+                    int i = booking.getReturnDate().compareTo(booking.getBookingDate());
+                    if (i > 7) {
+                        this.addActionError("You can book for maximum 7 days!");
+                    } else {
+                        System.out.println("diff between dates = " + i);
+                        if (bookingManager.addBooking(booking) == null) {
+                            vResult = ActionSupport.SUCCESS;
+                        } else {
+                            conflictList = bookingManager.addBooking(booking);
+                            for (Booking b : conflictList
+                            ) {
+                                System.out.println("conflict id: " + b.getId());
+                            }
+                            this.addActionError("there are some booking conflicts");
+                        }
+                    }
+                }
             }
         }
         return vResult;
@@ -240,5 +259,13 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
 
     public void setBooking(Booking booking) {
         this.booking = booking;
+    }
+
+    public List<Booking> getConflictList() {
+        return conflictList;
+    }
+
+    public void setConflictList(List<Booking> conflictList) {
+        this.conflictList = conflictList;
     }
 }
