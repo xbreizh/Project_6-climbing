@@ -78,7 +78,8 @@
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
             <result name="success" type="redirectAction">
-                <param name="actionName">spot_list</param>
+                <param name="actionName">spot_detail</param>
+                <param name="id">${route.spot.id}</param>
             </result>
         </action>
     </package>

@@ -27,9 +27,8 @@ public class CommentManagerImpl  implements CommentManager {
 
     @Override
     public void addComment(Comment comment) {
-        Date date = new Date();
-        System.out.println("date now: "+date);
-        comment.setDate(date);
+
+        System.out.println("date: "+comment.getDate());
         commentDao.add(comment);
     }
 
@@ -55,8 +54,13 @@ public class CommentManagerImpl  implements CommentManager {
 
     @Override
     public void deleteComment(int id) {
-        Comment comment = commentDao.getCommentById(id);
+        System.out.println("id received: "+id);
+        if(
+        commentDao.getCommentById(id) != null){
 
-        commentDao.delete(comment);
+            commentDao.delete(commentDao.getCommentById(id));
+        }else{
+            System.out.println("comment cannot be found: "+id);
+        }
     }
 }

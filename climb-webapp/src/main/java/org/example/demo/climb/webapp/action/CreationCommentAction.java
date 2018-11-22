@@ -13,6 +13,7 @@ import org.example.demo.climb.model.exception.NotFoundException;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class CreationCommentAction extends LoginAction implements SessionAware {
@@ -50,13 +51,24 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
     /*CREATE COMMENT SPOT*/
     public String doCreateCommentSpot() throws NotFoundException {
         String vResult= ActionSupport.INPUT;
-        System.out.println("je suis suppose etre la");
-
         if(comment!=null){
-            commentManager.addComment(comment);
-            vResult = ActionSupport.SUCCESS;
-        }else{
+            if(comment.getText().length()!=0) {
+                if(comment.getSpot() != null || comment.getRoute() != null) {
+                    if(comment.getMemberComment()!=null) {
+                        comment.setDate(new Date());
+                        commentManager.addComment(comment);
+                    }else{
+                        this.addActionError("you must login to comment");
+                    }
+                }else{
+                    this.addActionError("there is no reference for this message");
+                }
+            }else{
+                this.addFieldError("text","you must type something");
+            }
         }
+        vResult = ActionSupport.SUCCESS;
+
         return vResult;
     }
 
@@ -124,7 +136,8 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
 
     /*DELETE*/
     public String doDelete() throws  NotFoundException{
-
+        System.out.println("id received in action: "+id);
+        commentManager.deleteComment(id);
         return ActionSupport.SUCCESS;
     }
 

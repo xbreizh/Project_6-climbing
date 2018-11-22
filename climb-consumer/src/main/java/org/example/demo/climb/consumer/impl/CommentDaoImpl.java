@@ -35,6 +35,8 @@ public class CommentDaoImpl implements CommentDao {
 
     @Override
     public void add(Comment comment) {
+        System.out.println("comment is in DAO: "+comment.getText());
+        System.out.println("date: "+comment.getDate());
         sessionFactory.getCurrentSession().persist(comment);
     }
 

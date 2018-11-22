@@ -135,7 +135,7 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
 
     /*DELETE*/
     public String doDelete() throws  NotFoundException{
-
+        routeManager.deleteRoute(id);
         return ActionSupport.SUCCESS;
     }
 

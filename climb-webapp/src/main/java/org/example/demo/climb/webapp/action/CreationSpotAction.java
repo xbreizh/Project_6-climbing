@@ -5,6 +5,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
+import org.example.demo.climb.business.contract.CommentManager;
 import org.example.demo.climb.business.contract.CountryManager;
 import org.example.demo.climb.business.contract.SpotManager;
 import org.example.demo.climb.model.ClimbingType;
@@ -61,6 +62,8 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     private CountryManager countryManager;
     @Inject
     private SpotManager spotManager;
+    @Inject
+    private CommentManager commentManager;
 
     // METHODS
 

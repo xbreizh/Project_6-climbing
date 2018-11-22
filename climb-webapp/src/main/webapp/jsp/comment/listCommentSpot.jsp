@@ -1,3 +1,4 @@
+<%--
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <html>
@@ -15,9 +16,10 @@
 <br><br>
 <s:if test="#session.user">
     <s:form action="createCommentSpot" method="POST">
-        <s:hidden name="comment.spot.id" value="%{spot.id}"/>
-        <s:hidden name="comment.memberComment.id" value="%{session.user.id}" label="Member:"/>
-        <s:textarea name="comment.text" value="Type your comment"  requiredLabel="true" onclick=""/>
+        <s:textarea name="comment.spot.id" value="%{spot.id}"/>
+        <s:textarea name="comment.memberComment.id" value="%{session.user.id}" label="Member:"/>
+        <s:textarea name="comment.text" value="Type your comment" label="Date" requiredLabel="true" onclick=""/>
+        <s:textarea name="comment.date" value="%{new Date()}"/>
         <s:submit value="Create"/>
     </s:form>
 
@@ -40,3 +42,4 @@
 
 </body>
 </html>
+--%>

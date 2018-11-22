@@ -21,10 +21,15 @@
         <action name="createCommentSpot"
                 class="org.example.demo.climb.webapp.action.CreationCommentAction"
                 method="doCreateCommentSpot">
-            <result name="input">/jsp/spot/newComment.jsp</result>
-            <result name="success" type="redirectAction">
-                <param name="actionName">comment_list_spot</param>
+           <!-- <result name="input">/jsp/spot/newComment.jsp</result>-->
+            <result name="input" type="redirectAction">
+                <param name="actionName">spot_detail</param>
                 <param name="id">${comment.spot.id}</param>
+            </result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">spot_detail</param>
+                <param name="id">${comment.spot.id}</param>
+                <param name="anchor">comments</param>
             </result>
         </action>
 
@@ -75,6 +80,20 @@
             <result name="input">/jsp/spot/form/update.jsp</result>
             <result name="success" type="redirectAction">
                 <param name="actionName">spot_list</param>
+            </result>
+        </action>
+
+        <!-- DELETE -->
+        <action name="comment_delete"
+                class="org.example.demo.climb.webapp.action.CreationCommentAction"
+                method="doDelete">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="redirectAction">
+                <param name="actionName">spot_detail</param>
+                <param name="id">${comment.spot.id}#comments</param>
             </result>
         </action>
     </package>
