@@ -14,6 +14,7 @@ import org.example.demo.climb.model.exception.NotFoundException;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -156,14 +157,17 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
                     booking.setBookingDate(beginBook);
                     booking.setReturnDate(endBook);
                     int i = booking.getReturnDate().compareTo(booking.getBookingDate());
+                    System.out.println("duration: "+i);
                     if (i > 7) {
                         this.addActionError("You can book for maximum 7 days!");
                     } else {
                         System.out.println("diff between dates = " + i);
-                        if (bookingManager.addBooking(booking) == null) {
-                            vResult = ActionSupport.SUCCESS;
+                        conflictList = bookingManager.addBooking(booking);
+                        if (conflictList.size()==0) {
+                            return  ActionSupport.SUCCESS;
                         } else {
-                            conflictList = bookingManager.addBooking(booking);
+                            System.out.println(conflictList.size());
+
                             for (Booking b : conflictList
                             ) {
                                 System.out.println("conflict id: " + b.getId());

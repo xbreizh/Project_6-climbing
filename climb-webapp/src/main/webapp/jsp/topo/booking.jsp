@@ -32,7 +32,7 @@
         <s:iterator value="%{conflictList}">
             <tr  style="color:#ff8a82">
                 <td><s:property value="id"/></td>>
-                <td><s:date name = "bookingDate" format = "dd/MM/yyyy" /></td>
+                <td><s:date name = "bookingDate" format = "dd/MM/yyyy"/></td>
                 <td>  <s:date name = "returnDate" format = "dd/MM/yyyy" /></td>
             </tr>
         </s:iterator>
