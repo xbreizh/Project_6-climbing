@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="climb-webapp:war">
+    <output-path>$PROJECT_DIR$/climb-webapp/target</output-path>
+    <root id="archive" name="climb-webapp.war">
+      <element id="artifact" artifact-name="climb-webapp:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -9,6 +9,7 @@ import org.example.demo.climb.model.bean.Member;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.Map;
+
 @Named
 public class LoginAction extends ActionSupport implements SessionAware {
     private String login;

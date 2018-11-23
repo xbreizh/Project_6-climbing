@@ -47,8 +47,9 @@ import java.util.*;
     @OneToMany(mappedBy = "topo",  fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<Booking> listBookings = new ArrayList<>();
 
-    @ManyToMany(targetEntity=org.example.demo.climb.model.bean.Spot.class, mappedBy = "topoList")
-    private List<Spot> spotList = new ArrayList<>();
+    @ManyToMany(targetEntity=org.example.demo.climb.model.bean.Spot.class,
+            mappedBy = "topos", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    private List<Spot> spots = new ArrayList<>();
 
     @NotNull
     private boolean available;
@@ -145,14 +146,15 @@ import java.util.*;
         this.available = available;
     }
 
-    public List<Spot> getSpotList() {
-        return spotList;
-    }
+        public List<Spot> getSpots() {
+            return spots;
+        }
 
-    public void setSpotList(List<Spot> spotList) {
-        this.spotList = spotList;
-    }
-    @Override
+        public void setSpots(List<Spot> spots) {
+            this.spots = spots;
+        }
+
+        @Override
     public String toString() {
         return "Topo{" +
                 "id=" + id +

@@ -20,6 +20,7 @@ public class HibernateConf {
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan("org.example.demo.climb.consumer");
         sessionFactory.setPackagesToScan("org.example.demo.climb.model");
+       /* sessionFactory.setPackagesToScan("org.example.demo.climb.webapp");*/
         Properties hProperties = hibernateProperties();
         hProperties.setProperty("show_sql", "true");
         sessionFactory.setHibernateProperties(hProperties);

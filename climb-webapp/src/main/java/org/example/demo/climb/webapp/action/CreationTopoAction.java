@@ -80,17 +80,21 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
     /*READ ONE*/
     public String addSpotToTopo() throws NotFoundException {
         String vResult = ActionSupport.SUCCESS;
-        System.out.println("spot id: "+spotId);
-        System.out.println("topo id: "+id);
         spot = spotManager.getSpotById(spotId);
         topo = topoManager.getTopo(id);
         System.out.println("spot received: "+spot.getName());
         System.out.println("topo: "+topo.getName());
-        /*topo.getSpotList().add(spot);*/
+        topo.getSpots().add(spot);
+        System.out.println("topolist before integration: "+topo.getSpots());
         topoManager.updateTopo(topo);
         if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;
         }
+        spot.getTopos().add(topo);
+        spotManager.updateSpot(spot);
+        topo = topoManager.getTopo(1);
+        System.out.println("topolist after integration: "+topo.getSpots());
+        System.out.println("topo after integration: "+topo);
         return vResult;
     }
     public boolean checkTopoForm(Topo topo){

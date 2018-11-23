@@ -69,9 +69,11 @@ public class TopoManagerImpl implements TopoManager {
      /* if(topo.getSpotList().size()>0){
           System.out.println("spot List: "+topo.getSpotList().get(0));
       }*/
+
         System.out.println("updating topo from manager");
         /*topoDao.update(topoToUpdate);*/
         topoDao.update(topo);
+
     }
 
     @Override

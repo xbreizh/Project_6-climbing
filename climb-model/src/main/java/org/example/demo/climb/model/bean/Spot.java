@@ -49,8 +49,11 @@ import java.util.List;
     @ManyToOne
     private Member memberSpot;
 
-    @ManyToMany(targetEntity=org.example.demo.climb.model.bean.Topo.class, fetch=FetchType.LAZY, cascade=CascadeType.REMOVE )
-    private List<Topo> topoList;
+    @ManyToMany(targetEntity=org.example.demo.climb.model.bean.Topo.class, fetch=FetchType.EAGER, cascade=CascadeType.ALL )
+   /* @JoinTable(name = "Spot_topo",
+            joinColumns = { @JoinColumn(name = "topos_id") },
+            inverseJoinColumns = { @JoinColumn(name = "spots_id") })*/
+    private List<Topo> topos;
 
     @OneToMany(mappedBy = "spot", fetch=FetchType.EAGER, cascade=CascadeType.REMOVE )
     private List<Route> routeList= new ArrayList<>();
@@ -165,12 +168,12 @@ import java.util.List;
             this.longitude = longitude;
         }
 
-        public List<Topo> getTopoList() {
-            return topoList;
+        public List<Topo> getTopos() {
+            return topos;
         }
 
-        public void setTopoList(List<Topo> topoList) {
-            this.topoList = topoList;
+        public void setTopos(List<Topo> topos) {
+            this.topos = topos;
         }
 
         @Override
