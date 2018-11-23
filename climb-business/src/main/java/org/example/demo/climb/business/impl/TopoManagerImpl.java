@@ -4,6 +4,7 @@ import org.example.demo.climb.business.contract.TopoManager;
 import org.example.demo.climb.consumer.contract.CountryDao;
 import org.example.demo.climb.consumer.contract.TopoDao;
 import org.example.demo.climb.model.bean.Country;
+import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.bean.Topo;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,13 +56,22 @@ public class TopoManagerImpl implements TopoManager {
 
     @Override
     public void updateTopo(Topo topo) {
-        Topo topoToUpdate = topoDao.getById(topo.getId());
+      /*  Topo topoToUpdate = topoDao.getById(topo.getId());
         topoToUpdate.setName(topo.getName());
         topoToUpdate.setAvailable(topo.isAvailable());
         topoToUpdate.setKeywords(topo.getKeywords());
         topoToUpdate.setAuthor(topo.getAuthor());
         topoToUpdate.setEdition(topo.getEdition());
-        topoDao.update(topoToUpdate);
+        for (Spot s: topo.getListSpot()
+             ) {
+            topoToUpdate.getListSpot().add(s);
+        }*/
+     /* if(topo.getSpotList().size()>0){
+          System.out.println("spot List: "+topo.getSpotList().get(0));
+      }*/
+        System.out.println("updating topo from manager");
+        /*topoDao.update(topoToUpdate);*/
+        topoDao.update(topo);
     }
 
     @Override

@@ -5,8 +5,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.*;
 
-@Entity
-public class Topo {
+    @Entity
+    public class Topo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,6 +46,9 @@ public class Topo {
 
     @OneToMany(mappedBy = "topo",  fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<Booking> listBookings = new ArrayList<>();
+
+    @ManyToMany(targetEntity=org.example.demo.climb.model.bean.Spot.class, mappedBy = "topoList")
+    private List<Spot> spotList = new ArrayList<>();
 
     @NotNull
     private boolean available;
@@ -142,6 +145,13 @@ public class Topo {
         this.available = available;
     }
 
+    public List<Spot> getSpotList() {
+        return spotList;
+    }
+
+    public void setSpotList(List<Spot> spotList) {
+        this.spotList = spotList;
+    }
     @Override
     public String toString() {
         return "Topo{" +

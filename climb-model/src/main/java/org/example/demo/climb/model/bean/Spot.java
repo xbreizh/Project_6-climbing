@@ -49,6 +49,9 @@ import java.util.List;
     @ManyToOne
     private Member memberSpot;
 
+    @ManyToMany(targetEntity=org.example.demo.climb.model.bean.Topo.class, fetch=FetchType.LAZY, cascade=CascadeType.REMOVE )
+    private List<Topo> topoList;
+
     @OneToMany(mappedBy = "spot", fetch=FetchType.EAGER, cascade=CascadeType.REMOVE )
     private List<Route> routeList= new ArrayList<>();
 
@@ -160,6 +163,14 @@ import java.util.List;
 
         public void setLongitude(double longitude) {
             this.longitude = longitude;
+        }
+
+        public List<Topo> getTopoList() {
+            return topoList;
+        }
+
+        public void setTopoList(List<Topo> topoList) {
+            this.topoList = topoList;
         }
 
         @Override

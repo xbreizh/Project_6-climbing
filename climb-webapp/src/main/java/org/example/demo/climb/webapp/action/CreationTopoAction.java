@@ -3,12 +3,10 @@ package org.example.demo.climb.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
-import org.example.demo.climb.business.contract.BookingManager;
-import org.example.demo.climb.business.contract.CountryManager;
-import org.example.demo.climb.business.contract.MemberManager;
-import org.example.demo.climb.business.contract.TopoManager;
+import org.example.demo.climb.business.contract.*;
 import org.example.demo.climb.model.bean.Booking;
 import org.example.demo.climb.model.bean.Country;
+import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.bean.Topo;
 import org.example.demo.climb.model.exception.NotFoundException;
 import javax.inject.Inject;
@@ -24,6 +22,8 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
 
 
     private Topo topo;
+    private Spot spot;
+    private int spotId;
     private List<Topo> topoList;
     List<Integer> yearList = new ArrayList<>();
     private int id;
@@ -32,6 +32,7 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
     private Date endBook;
     private int memberId;
     private List<Booking> conflictList=new ArrayList<>();
+    private List<Spot> spotList=new ArrayList<>();
     Booking booking;
 
 
@@ -42,7 +43,8 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
     private CountryManager countryManager;
     @Inject
     private MemberManager memberManager;
-
+    @Inject
+    private SpotManager spotManager;
     @Inject
     private BookingManager bookingManager;
 
@@ -68,13 +70,29 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
     public String doDetail() throws NotFoundException {
         String vResult = ActionSupport.SUCCESS;
         topo = topoManager.getTopo(id);
-
+        spotList = spotManager.getListSpot();
         if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;
         }
         return vResult;
     }
 
+    /*READ ONE*/
+    public String addSpotToTopo() throws NotFoundException {
+        String vResult = ActionSupport.SUCCESS;
+        System.out.println("spot id: "+spotId);
+        System.out.println("topo id: "+id);
+        spot = spotManager.getSpotById(spotId);
+        topo = topoManager.getTopo(id);
+        System.out.println("spot received: "+spot.getName());
+        System.out.println("topo: "+topo.getName());
+        /*topo.getSpotList().add(spot);*/
+        topoManager.updateTopo(topo);
+        if (this.hasErrors()) {
+            vResult = ActionSupport.ERROR;
+        }
+        return vResult;
+    }
     public boolean checkTopoForm(Topo topo){
         int i=0;
         // Check Name
@@ -271,5 +289,29 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
 
     public void setConflictList(List<Booking> conflictList) {
         this.conflictList = conflictList;
+    }
+
+    public List<Spot> getSpotList() {
+        return spotList;
+    }
+
+    public void setSpotList(List<Spot> spotList) {
+        this.spotList = spotList;
+    }
+
+    public Spot getSpot() {
+        return spot;
+    }
+
+    public void setSpot(Spot spot) {
+        this.spot = spot;
+    }
+
+    public int getSpotId() {
+        return spotId;
+    }
+
+    public void setSpotId(int spotId) {
+        this.spotId = spotId;
     }
 }

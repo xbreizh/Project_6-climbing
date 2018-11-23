@@ -59,6 +59,8 @@ public class TopoDaoImpl implements TopoDao {
 
     @Override
     public void update(Topo topo) {
+        System.out.println("updating topo from DAO");
+       /* System.out.println("topo spot: "+topo.getSpotList().size());*/
         sessionFactory.getCurrentSession().update(cl.getName(), topo);
     }
 
