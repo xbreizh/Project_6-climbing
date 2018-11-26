@@ -56,22 +56,9 @@ public class TopoManagerImpl implements TopoManager {
 
     @Override
     public void updateTopo(Topo topo) {
-      /*  Topo topoToUpdate = topoDao.getById(topo.getId());
-        topoToUpdate.setName(topo.getName());
-        topoToUpdate.setAvailable(topo.isAvailable());
-        topoToUpdate.setKeywords(topo.getKeywords());
-        topoToUpdate.setAuthor(topo.getAuthor());
-        topoToUpdate.setEdition(topo.getEdition());
-        for (Spot s: topo.getListSpot()
-             ) {
-            topoToUpdate.getListSpot().add(s);
-        }*/
-     /* if(topo.getSpotList().size()>0){
-          System.out.println("spot List: "+topo.getSpotList().get(0));
-      }*/
 
         System.out.println("updating topo from manager");
-        /*topoDao.update(topoToUpdate);*/
+
         topoDao.update(topo);
 
     }

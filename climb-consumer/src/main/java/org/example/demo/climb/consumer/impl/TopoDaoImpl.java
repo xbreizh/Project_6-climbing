@@ -1,22 +1,13 @@
 package org.example.demo.climb.consumer.impl;
 
 import org.example.demo.climb.consumer.contract.MemberDao;
-import org.example.demo.climb.consumer.contract.RouteDao;
 import org.example.demo.climb.consumer.contract.TopoDao;
-import org.example.demo.climb.model.ClimbingType;
-import org.example.demo.climb.model.Grade;
-import org.example.demo.climb.model.bean.Member;
-import org.example.demo.climb.model.bean.Route;
-import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.bean.Topo;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.NoResultException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Named
@@ -61,7 +52,7 @@ public class TopoDaoImpl implements TopoDao {
     public void update(Topo topo) {
         System.out.println("updating topo from DAO");
         System.out.println("topo spot: "+topo.getSpots().get(0).getName());
-        topo.setName("test");
+        topo.setName("troko");
         sessionFactory.getCurrentSession().update(cl.getName(), topo);
     }
 

@@ -11,11 +11,11 @@
     <artifactId>climb</artifactId>
     <version>1.0-SNAPSHOT</version>
     <dependencies>
-        <dependency>
+        <!--<dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>org.eclipse.persistence.core</artifactId>
             <version>2.6.4</version>
-        </dependency>
+        </dependency>-->
     </dependencies>
     <packaging>pom</packaging>
 
@@ -111,7 +111,7 @@
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
-                <version>5.3.5.Final</version>
+                <version>5.3.7.Final</version>
             </dependency>
 
             <dependency>
@@ -261,14 +261,14 @@
     <reporting>
         <plugins>
             <!-- ===== Rapport d'information général sur le projet ===== -->
-            <plugin>
+           <!-- <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
                 <version>2.7</version>
-            </plugin>
+            </plugin>-->
 
             <!-- ===== Rapport sur les tests ===== -->
-            <plugin>
+          <!--  <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
                 <version>2.20</version>
@@ -277,22 +277,22 @@
                 </configuration>
                 <reportSets>
 
-                    <!-- reportSet d'agrégation des rapports des sous-projets (modules) -->
+                    &lt;!&ndash; reportSet d'agrégation des rapports des sous-projets (modules) &ndash;&gt;
                     <reportSet>
                         <reports>
                             <report>report</report>
                         </reports>
-                        <!-- ne pas exécuter ce sous-rapport dans les sous-projets -->
+                        &lt;!&ndash; ne pas exécuter ce sous-rapport dans les sous-projets &ndash;&gt;
                         <inherited>false</inherited>
                         <configuration>
                             <aggregate>true</aggregate>
                         </configuration>
                     </reportSet>
 
-                    <!-- reportSet non agrégé, exécuté dans tous les sous-projets (modules) -->
+                    &lt;!&ndash; reportSet non agrégé, exécuté dans tous les sous-projets (modules) &ndash;&gt;
                     <reportSet>
                         <id>modules</id>
-                        <!-- exécuter ce sous-rapport dans les sous-projets -->
+                        &lt;!&ndash; exécuter ce sous-rapport dans les sous-projets &ndash;&gt;
                         <inherited>true</inherited>
                         <reports>
                             <report>report</report>
@@ -302,10 +302,10 @@
                         </configuration>
                     </reportSet>
                 </reportSets>
-            </plugin>
+            </plugin>-->
 
             <!-- ===== Génération de la Javadoc ===== -->
-            <plugin>
+          <!--  <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>2.9</version>
@@ -315,13 +315,13 @@
                     <skip>true</skip>
                 </configuration>
                 <reportSets>
-                    <!-- reportSet exécuté dans tous les modules -->
+                    &lt;!&ndash; reportSet exécuté dans tous les modules &ndash;&gt;
                     <reportSet>
                         <reports>
                             <report>javadoc</report>
                         </reports>
                     </reportSet>
-                    <!-- reportSet d'agrégation des rapports des sous-modules -->
+                    &lt;!&ndash; reportSet d'agrégation des rapports des sous-modules &ndash;&gt;
                     <reportSet>
                         <id>aggregate</id>
                         <inherited>false</inherited>
@@ -330,7 +330,7 @@
                         </reports>
                     </reportSet>
                 </reportSets>
-            </plugin>
+            </plugin>-->
 
             <!-- ===== Rapport d'analyse du code par Checkstyle ===== -->
             <plugin>

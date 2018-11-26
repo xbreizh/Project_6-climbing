@@ -1,6 +1,13 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="climb-webapp:war exploded">
     <output-path>$PROJECT_DIR$/climb-webapp/target/climb-webapp</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>climb-webapp</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -28,7 +35,7 @@
           <element id="library" level="project" name="Maven: org.apache.bval:bval-jsr:1.1.2" />
           <element id="library" level="project" name="Maven: org.apache.bval:bval-core:1.1.2" />
           <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.2.4" />
-          <element id="library" level="project" name="Maven: org.hibernate:hibernate-core:5.3.5.Final" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-core:5.3.7.Final" />
           <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.3.2.Final" />
           <element id="library" level="project" name="Maven: javax.persistence:javax.persistence-api:2.2" />
           <element id="library" level="project" name="Maven: org.javassist:javassist:3.23.1-GA" />
@@ -38,7 +45,7 @@
           <element id="library" level="project" name="Maven: org.jboss:jandex:2.0.5.Final" />
           <element id="library" level="project" name="Maven: com.fasterxml:classmate:1.3.4" />
           <element id="library" level="project" name="Maven: javax.activation:javax.activation-api:1.2.0" />
-          <element id="library" level="project" name="Maven: dom4j:dom4j:1.6.1" />
+          <element id="library" level="project" name="Maven: org.dom4j:dom4j:2.1.1" />
           <element id="library" level="project" name="Maven: org.hibernate.common:hibernate-commons-annotations:5.0.4.Final" />
           <element id="library" level="project" name="Maven: net.sf.ehcache:ehcache-core:2.6.11" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.6.1" />
@@ -52,7 +59,6 @@
             <element id="module-output" name="climb-model" />
           </element>
           <element id="library" level="project" name="Maven: javax.validation:validation-api:1.1.0.Final" />
-          <element id="library" level="project" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final" />
           <element id="library" level="project" name="Maven: javax.inject:javax.inject:1" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:5.0.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.0.8.RELEASE" />
@@ -87,9 +93,6 @@
           <element id="library" level="project" name="Maven: org.apache.struts:struts2-spring-plugin:2.5.16" />
           <element id="library" level="project" name="Maven: org.apache.struts:struts2-json-plugin:2.5.16" />
           <element id="library" level="project" name="Maven: org.apache.struts:struts2-dojo-plugin:2.3.35" />
-          <element id="library" level="project" name="Maven: org.eclipse.persistence:org.eclipse.persistence.core:2.6.4" />
-          <element id="library" level="project" name="Maven: org.eclipse.persistence:org.eclipse.persistence.asm:2.6.4" />
-          <element id="library" level="project" name="Maven: org.glassfish:javax.json:1.0.4" />
         </element>
       </element>
       <element id="directory" name="META-INF">

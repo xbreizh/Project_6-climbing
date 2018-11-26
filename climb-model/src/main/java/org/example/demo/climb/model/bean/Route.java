@@ -2,6 +2,7 @@ package org.example.demo.climb.model.bean;
 
 import org.example.demo.climb.model.Grade;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;

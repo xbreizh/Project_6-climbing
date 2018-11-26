@@ -1,9 +1,9 @@
 package org.example.demo.climb.model.bean;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,10 +49,10 @@ import java.util.List;
     @ManyToOne
     private Member memberSpot;
 
-    @ManyToMany(targetEntity=org.example.demo.climb.model.bean.Topo.class, fetch=FetchType.EAGER, cascade=CascadeType.ALL )
-   /* @JoinTable(name = "Spot_topo",
-            joinColumns = { @JoinColumn(name = "topos_id") },
-            inverseJoinColumns = { @JoinColumn(name = "spots_id") })*/
+    @ManyToMany( fetch=FetchType.EAGER, cascade={CascadeType.ALL} )
+   /* @JoinTable(name = "spot_topo",
+            joinColumns = { @JoinColumn(name = "topo_id") },
+            inverseJoinColumns = { @JoinColumn(name = "spot_id") })*/
     private List<Topo> topos;
 
     @OneToMany(mappedBy = "spot", fetch=FetchType.EAGER, cascade=CascadeType.REMOVE )

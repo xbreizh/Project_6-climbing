@@ -112,7 +112,7 @@ public class SpotManagerImpl  implements SpotManager {
     // Update
     @Override
     public void updateSpot(Spot spot) {
-        int id = spot.getId();
+     /*   int id = spot.getId();
         System.out.println(spot.getName());
         System.out.println(spot.getCity());
         System.out.println(spot.getId());
@@ -142,8 +142,9 @@ public class SpotManagerImpl  implements SpotManager {
             s.setLongitude(spot.getLongitude());
             System.out.println("updated longitude");
         }
-
-        spotDao.update(s);
+        s.setTopos(spot.getTopos());
+        System.out.println(s.getTopos().get(0));*/
+        spotDao.update(spot);
     }
 
     @Override

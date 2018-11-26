@@ -1,5 +1,6 @@
 package org.example.demo.climb.model.bean;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;

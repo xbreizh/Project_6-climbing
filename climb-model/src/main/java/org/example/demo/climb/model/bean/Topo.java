@@ -1,5 +1,6 @@
 package org.example.demo.climb.model.bean;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -47,7 +48,7 @@ import java.util.*;
     @OneToMany(mappedBy = "topo",  fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<Booking> listBookings = new ArrayList<>();
 
-    @ManyToMany(targetEntity=org.example.demo.climb.model.bean.Spot.class,
+    @ManyToMany(
             mappedBy = "topos", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<Spot> spots = new ArrayList<>();
 
