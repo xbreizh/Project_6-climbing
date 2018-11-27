@@ -68,7 +68,7 @@
             <result name="success">jsp/topo/detail.jsp</result>
         </action>
 
-        <!--READ ONE -->
+        <!-- ADDING SPOT TO TOPO -->
         <action name="topo_addSpot"
                 class="org.example.demo.climb.webapp.action.CreationTopoAction"
                 method="addSpotToTopo">
@@ -83,6 +83,19 @@
             </result>
         </action>
 
+        <!-- REMOVING SPOT FROM TOPO -->
+        <action name="topo_removeSpot"
+                class="org.example.demo.climb.webapp.action.CreationTopoAction"
+                method="removeSpotFromTopo">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
 
+            <result name="success" type="redirectAction">
+                <param name="actionName">topo_detail</param>
+                <param name="id">${topo.id}</param>
+            </result>
+        </action>
     </package>
 </struts>

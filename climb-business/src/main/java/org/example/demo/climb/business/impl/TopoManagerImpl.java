@@ -92,6 +92,33 @@ public class TopoManagerImpl implements TopoManager {
 
     @Override
     public boolean removeSpotFromTopo(Spot spot, Topo topo) {
-        return false;
+        List<Spot> spotList = topo.getSpots();
+        topo.setSpots(new ArrayList<>());
+        System.out.println("spot : "+spot.getId());
+        System.out.println("topo : "+topo.getId());
+        for (Spot s: spotList
+             ) {
+            if(s.getId() != spot.getId()){
+                topo.getSpots().add(s);
+            }else{
+                System.out.println("not added: "+s.getId());
+            }
+        }
+
+        List<Topo> topoList = spot.getTopos();
+        spot.setTopos(new ArrayList<>());
+        for (Topo t: topoList
+        ) {
+            if(t.getId() != topo.getId()){
+                spot.getTopos().add(t);
+            }else{
+                System.out.println("not added: "+t.getId());
+            }
+        }
+        /*spot.setTopos(topoList);
+        topo.setSpots(spotList);*/
+        spotDao.update(spot);
+        topoDao.update(topo);
+        return true;
     }
 }

@@ -53,7 +53,7 @@ public class TopoDaoImpl implements TopoDao {
         /*System.out.println("updating topo from DAO");
         System.out.println("topo spot: "+topo.getSpots().get(0).getName());
         topo.setName("troko");*/
-
+        System.out.println("trying to update: "+topo.getName());
         sessionFactory.getCurrentSession().update(cl.getName(), topo);
       /*  sessionFactory.getCurrentSession().evict(topo);*/
     }

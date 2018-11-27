@@ -78,13 +78,24 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
         return vResult;
     }
 
-    /*READ ONE*/
+    /*Add Spot to Topo*/
     public String addSpotToTopo() throws NotFoundException {
         String vResult = ActionSupport.SUCCESS;
         System.out.println("topo id: "+id+"  spot id: "+spotId);
         spot = spotManager.getSpotById(spotId);
         topo = topoManager.getTopo(id);
         topoManager.addSpotToTopo(spot, topo);
+
+        return vResult;
+    }
+    /*Remove Spot from Topo*/
+    public String removeSpotFromTopo() throws NotFoundException {
+        String vResult = ActionSupport.SUCCESS;
+        topoId = topo.getId();
+        System.out.println("spot id: "+id+"  topo id: "+topoId);
+        spot = spotManager.getSpotById(id);
+        topo = topoManager.getTopo(topoId);
+        topoManager.removeSpotFromTopo(spot, topo);
 
         return vResult;
     }

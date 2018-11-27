@@ -118,13 +118,13 @@ public class SpotDaoImpl implements SpotDao {
 
 
    /* @Override*/
-    public void update(Spot o) {
-
-        sessionFactory.getCurrentSession().update(o);
+    public void update(Spot spot) {
+        System.out.println("trying to update: "+spot.getName());
+        sessionFactory.getCurrentSession().update(spot);
     }
 
     /*@Override*/
-    public void delete(Spot o) {
+    public void delete(Spot spot) {
         // removing object from memberSpotList
       /*  o.getMemberSpot().getSpotList().remove(o);
         System.out.println("remove routes");
@@ -132,7 +132,7 @@ public class SpotDaoImpl implements SpotDao {
         System.out.println("broke link with member");
         o.getRouteList().removeAll(o.getRouteList());
         System.out.println("remove comments");*/
-        sessionFactory.getCurrentSession().delete(cl.getName(), o);
+        sessionFactory.getCurrentSession().delete(cl.getName(), spot);
     }
 
     @Override
