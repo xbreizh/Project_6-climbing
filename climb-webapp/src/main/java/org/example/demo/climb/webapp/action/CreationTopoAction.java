@@ -24,6 +24,7 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
     private Topo topo;
     private Spot spot;
     private int spotId;
+    private int topoId;
     private List<Topo> topoList;
     List<Integer> yearList = new ArrayList<>();
     private int id;
@@ -80,21 +81,11 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
     /*READ ONE*/
     public String addSpotToTopo() throws NotFoundException {
         String vResult = ActionSupport.SUCCESS;
+        System.out.println("topo id: "+id+"  spot id: "+spotId);
         spot = spotManager.getSpotById(spotId);
         topo = topoManager.getTopo(id);
-        System.out.println("spot received: "+spot.getName());
-        System.out.println("topo: "+topo.getName());
-        topo.getSpots().add(spot);
-        System.out.println("topolist before integration: "+topo.getSpots());
-        topoManager.updateTopo(topo);
-        if (this.hasErrors()) {
-            vResult = ActionSupport.ERROR;
-        }
-        spot.getTopos().add(topo);
-        spotManager.updateSpot(spot);
-        topo = topoManager.getTopo(1);
-        System.out.println("topolist after integration: "+topo.getSpots());
-        System.out.println("topo after integration: "+topo);
+        topoManager.addSpotToTopo(spot, topo);
+
         return vResult;
     }
     public boolean checkTopoForm(Topo topo){
@@ -317,5 +308,13 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
 
     public void setSpotId(int spotId) {
         this.spotId = spotId;
+    }
+
+    public int getTopoId() {
+        return topoId;
+    }
+
+    public void setTopoId(int topoId) {
+        this.topoId = topoId;
     }
 }

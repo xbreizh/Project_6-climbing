@@ -49,7 +49,7 @@ import java.util.List;
     @ManyToOne
     private Member memberSpot;
 
-    @ManyToMany( fetch=FetchType.EAGER, cascade={CascadeType.ALL} )
+    @ManyToMany( fetch=FetchType.EAGER, cascade={CascadeType.REMOVE} )
    /* @JoinTable(name = "spot_topo",
             joinColumns = { @JoinColumn(name = "topo_id") },
             inverseJoinColumns = { @JoinColumn(name = "spot_id") })*/

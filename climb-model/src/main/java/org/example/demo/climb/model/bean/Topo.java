@@ -45,11 +45,11 @@ import java.util.*;
     @ManyToOne
     private Member owner;
 
-    @OneToMany(mappedBy = "topo",  fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "topo",  fetch = FetchType.EAGER, cascade = {CascadeType.REMOVE})
     private List<Booking> listBookings = new ArrayList<>();
 
     @ManyToMany(
-            mappedBy = "topos", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+            mappedBy = "topos", fetch = FetchType.EAGER, cascade = {CascadeType.REMOVE})
     private List<Spot> spots = new ArrayList<>();
 
     @NotNull

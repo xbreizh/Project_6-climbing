@@ -2,6 +2,7 @@ package org.example.demo.climb.business.impl;
 import org.example.demo.climb.business.contract.CountryManager;
 import org.example.demo.climb.business.contract.TopoManager;
 import org.example.demo.climb.consumer.contract.CountryDao;
+import org.example.demo.climb.consumer.contract.SpotDao;
 import org.example.demo.climb.consumer.contract.TopoDao;
 import org.example.demo.climb.model.bean.Country;
 import org.example.demo.climb.model.bean.Spot;
@@ -25,7 +26,8 @@ public class TopoManagerImpl implements TopoManager {
     private SessionFactory sessionFactory;
     @Inject
     private TopoDao topoDao;
-
+    @Inject
+    private SpotDao spotDao;
 
     @Override
     public List<String> getListTopoByString() {
@@ -68,5 +70,28 @@ public class TopoManagerImpl implements TopoManager {
         Topo topoToDelete = topoDao.getById(topo.getId());
 
         topoDao.delete(topoToDelete);
+    }
+
+    @Override
+    public boolean addSpotToTopo(Spot spot, Topo topo) {
+        System.out.println("getting into adding spot mgr");
+        for ( Spot s: topo.getSpots()
+             ) {
+            if(s.getId() == spot.getId()){
+                return false;
+            }
+        }
+        topo.getSpots().add(spot);
+        spot.getTopos().add(topo);
+        System.out.println("trying to update topo");
+        topoDao.update(topo);
+        System.out.println("trying to update spot");
+        spotDao.update(spot);
+        return true;
+    }
+
+    @Override
+    public boolean removeSpotFromTopo(Spot spot, Topo topo) {
+        return false;
     }
 }

@@ -119,7 +119,7 @@ public class SpotDaoImpl implements SpotDao {
 
    /* @Override*/
     public void update(Spot o) {
-        System.out.println("update spot from dao: "+o.getTopos().get(0));
+
         sessionFactory.getCurrentSession().update(o);
     }
 
