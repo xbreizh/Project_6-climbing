@@ -111,7 +111,7 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
         System.out.println("spot id: "+id+"  topo id: "+topoId);
         spot = spotManager.getSpotById(id);
         topo = topoManager.getTopo(topoId);
-        topoManager.removeSpotFromTopo(spot, topo);
+        System.out.println("result: "+topoManager.removeSpotFromTopo(spot, topo));
 
         return vResult;
     }

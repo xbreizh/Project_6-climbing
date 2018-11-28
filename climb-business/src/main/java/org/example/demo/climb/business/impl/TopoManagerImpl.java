@@ -88,13 +88,13 @@ public class TopoManagerImpl implements TopoManager {
     public boolean removeSpotFromTopo(Spot spot, Topo topo) {
         List<Spot> spotList = topo.getSpots();
         topo.setSpots(new ArrayList<>());
+        System.out.println("list spots mgr: "+spot.getTopos().size());
+        System.out.println("list: topos mgr: "+topo.getSpots().size());
 
         for (Spot s: spotList
              ) {
             if(s.getId() != spot.getId()){
                 topo.getSpots().add(s);
-            }else{
-                return false;
             }
         }
 
@@ -104,8 +104,6 @@ public class TopoManagerImpl implements TopoManager {
         ) {
             if(t.getId() != topo.getId()){
                 spot.getTopos().add(t);
-            }else{
-                return false;
             }
         }
         spotDao.update(spot);
