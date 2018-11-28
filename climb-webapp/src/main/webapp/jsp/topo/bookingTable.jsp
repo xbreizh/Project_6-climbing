@@ -58,7 +58,7 @@
                 <td>
                     <s:date name = "returnDate" format = "dd/MM/yyyy"/>
                 </td>
-                    <s:if test="#session.user.id == topo.owner.id">
+                    <s:if test="#session.user.id == topo.owner.id && returnDate == null">
                 <td style="border: none;">
 
                         <s:form action="endBooking" method="POST">

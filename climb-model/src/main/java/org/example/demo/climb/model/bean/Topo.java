@@ -131,11 +131,11 @@ import java.util.*;
         this.owner = owner;
     }
 
-    public List<Booking> getListBookings() {
+    public List<Booking> getBookingList() {
         return listBookings;
     }
 
-    public void setListBookings(List<Booking> listBookings) {
+    public void setBookingList(List<Booking> listBookings) {
         this.listBookings = listBookings;
     }
 

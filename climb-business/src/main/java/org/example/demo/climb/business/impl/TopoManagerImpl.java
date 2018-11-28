@@ -1,10 +1,8 @@
 package org.example.demo.climb.business.impl;
-import org.example.demo.climb.business.contract.CountryManager;
 import org.example.demo.climb.business.contract.TopoManager;
-import org.example.demo.climb.consumer.contract.CountryDao;
 import org.example.demo.climb.consumer.contract.SpotDao;
 import org.example.demo.climb.consumer.contract.TopoDao;
-import org.example.demo.climb.model.bean.Country;
+import org.example.demo.climb.model.bean.Booking;
 import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.bean.Topo;
 import org.hibernate.SessionFactory;
@@ -13,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Transactional
@@ -36,7 +35,21 @@ public class TopoManagerImpl implements TopoManager {
 
     @Override
     public List<Topo> getListTopo() {
+        updateTopoAvailabilityToday();
         return topoDao.getAll();
+    }
+
+    private void updateTopoAvailabilityToday() {
+        Date today = new Date();
+        for (Topo topo: topoDao.getAll()
+             ) {
+            for (Booking b: topo.getBookingList()
+                 ) {
+                if(b.getBookingDate().before(today)&& b.getReturnDate()==null){
+                    topo.setAvailable(false);
+                }
+            }
+        }
     }
 
     @Override

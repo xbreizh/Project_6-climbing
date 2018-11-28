@@ -3,7 +3,6 @@
     <table class="table table-bordered table-hover">
         <thead>
         <tr>
-            <th>Available </th>
             <th>Name </th>
             <th>Edition </th>
             <th>Author </th>
@@ -15,15 +14,7 @@
         <tbody>
         <s:iterator value="topoList">
             <tr>
-                <td><s:a action="topo_detail" style="display:block;text-decoration:none;" >
-                    <s:if test="available == true">
-                        <i class="glyphicon glyphicon-ok" style="font-size:50px;color:green"></i>
-                    </s:if><s:else>
-                    <i class="glyphicon glyphicon-ban-circle" style="font-size:50px;color:red"></i>
-                </s:else>
-                    <s:param name="id" value="id"/>
-                </s:a>
-                </td>
+
                 <td><s:a action="topo_detail" style="display:block;text-decoration:none;" >
                     <s:property value="name" escapeHtml="false"/>
                     <s:param name="id" value="id"/>
@@ -62,6 +53,22 @@
                         </s:a>
                     </s:else>
 
+                </td>
+                <td style="border: none;"><s:a action="topo_detail" style="display:block;text-decoration:none;" >
+                    <s:if test="available == true">
+                        <s:a action="topo_booking" style="display:block;text-decoration:none;" >
+                            <button type="button" class="btn btn-info">Get it!</button>
+                            <s:param name="id" value="id"/>
+                        </s:a>
+                    </s:if>
+                    <s:else>
+                        <s:a action="topo_booking" style="display:block;text-decoration:none;" >
+                            <button type="button" class="btn btn-warning">Book for later!</button>
+                            <s:param name="id" value="id"/>
+                        </s:a>
+                    </s:else>
+                    <s:param name="id" value="id"/>
+                </s:a>
                 </td>
             </tr>
         </s:iterator>

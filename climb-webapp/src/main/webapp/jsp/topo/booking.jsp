@@ -47,7 +47,7 @@
         </tr>
         </thead>
         <tbody>
-        <s:iterator value="%{topo.listBookings}">
+        <s:iterator value="%{topo.bookingList}">
             <tr>
                 <td><s:property value="id"/></td>>
                 <td><s:date name = "bookingDate" format = "dd/MM/yyyy" /></td>
