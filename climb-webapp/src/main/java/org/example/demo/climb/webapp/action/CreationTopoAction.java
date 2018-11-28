@@ -71,11 +71,27 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
     public String doDetail() throws NotFoundException {
         String vResult = ActionSupport.SUCCESS;
         topo = topoManager.getTopo(id);
-        spotList = spotManager.getListSpot();
+        spotList = createSpotListToBeAdded(topo);
+
         if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;
         }
         return vResult;
+    }
+
+    public List<Spot> createSpotListToBeAdded(Topo topo){
+        spotList = new ArrayList<>();
+        List<Integer> intList = new ArrayList<>();
+        for(Spot s: topo.getSpots()){
+            intList.add(s.getId());
+        }
+        for (Spot s: spotManager.getListSpot()){
+            if(!intList.contains(s.getId())){
+                spotList.add(s);
+            }
+        }
+
+        return spotList;
     }
 
     /*Add Spot to Topo*/

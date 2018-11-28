@@ -59,8 +59,6 @@ public class TopoManagerImpl implements TopoManager {
     @Override
     public void updateTopo(Topo topo) {
 
-        System.out.println("updating topo from manager");
-
         topoDao.update(topo);
 
     }
@@ -68,13 +66,11 @@ public class TopoManagerImpl implements TopoManager {
     @Override
     public void deleteTopo(Topo topo) {
         Topo topoToDelete = topoDao.getById(topo.getId());
-
         topoDao.delete(topoToDelete);
     }
 
     @Override
     public boolean addSpotToTopo(Spot spot, Topo topo) {
-        System.out.println("getting into adding spot mgr");
         for ( Spot s: topo.getSpots()
              ) {
             if(s.getId() == spot.getId()){
@@ -83,9 +79,7 @@ public class TopoManagerImpl implements TopoManager {
         }
         topo.getSpots().add(spot);
         spot.getTopos().add(topo);
-        System.out.println("trying to update topo");
         topoDao.update(topo);
-        System.out.println("trying to update spot");
         spotDao.update(spot);
         return true;
     }
@@ -94,14 +88,13 @@ public class TopoManagerImpl implements TopoManager {
     public boolean removeSpotFromTopo(Spot spot, Topo topo) {
         List<Spot> spotList = topo.getSpots();
         topo.setSpots(new ArrayList<>());
-        System.out.println("spot : "+spot.getId());
-        System.out.println("topo : "+topo.getId());
+
         for (Spot s: spotList
              ) {
             if(s.getId() != spot.getId()){
                 topo.getSpots().add(s);
             }else{
-                System.out.println("not added: "+s.getId());
+                return false;
             }
         }
 
@@ -112,11 +105,9 @@ public class TopoManagerImpl implements TopoManager {
             if(t.getId() != topo.getId()){
                 spot.getTopos().add(t);
             }else{
-                System.out.println("not added: "+t.getId());
+                return false;
             }
         }
-        /*spot.setTopos(topoList);
-        topo.setSpots(spotList);*/
         spotDao.update(spot);
         topoDao.update(topo);
         return true;
