@@ -26,14 +26,23 @@
                 Spots
             </s:a>
             </li>
+            <li><s:a class="active" action="route_list">
+                Route
+            </s:a>
+            </li>
             <li><s:a class="active" action="member_list">
                 Members
             </s:a>
             </li>
-            <li><s:a class="active" action="spot_list">
+            <r:if test="#session.user">
+            <li>
+                <s:a class="active" action="mySpace">
                 My Space
-                <s:param name="continent">Asia</s:param>
-            </s:a></li>
+                    <s:param name="id" >${session.user.id}</s:param>
+                </s:a>
+            </li>
+            </r:if>
+
         </ul>
 
         <ul class="nav navbar-nav navbar-right">

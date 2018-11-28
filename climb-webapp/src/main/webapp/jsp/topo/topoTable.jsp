@@ -49,10 +49,19 @@
                     <s:param name="id" value="id"/>
                 </s:a>
                 <td>
+                <s:if test="#session.user.id == owner.id">
                     <s:a action="member_detail">
                         <s:param name="id" value="owner.id" />
-                        <s:property value="owner.login"/>
+                        <span style=" font-weight: bold;color: #ffae6e">You</span>
                     </s:a>
+                </s:if>
+                    <s:else>
+                        <s:a action="member_detail">
+                            <s:param name="id" value="owner.id" />
+                            <s:property value="owner.login"/>
+                        </s:a>
+                    </s:else>
+
                 </td>
             </tr>
         </s:iterator>

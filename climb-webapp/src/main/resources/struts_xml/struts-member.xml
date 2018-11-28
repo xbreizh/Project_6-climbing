@@ -30,6 +30,18 @@
 
         </action>
 
+        <!-- CREATE-->
+        <action name="mySpace"
+                class="org.example.demo.climb.webapp.action.GestionMemberAction"
+                method="doShowMySpace">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+            <result name="input">/jsp/member/mySpace.jsp</result>
+            <result name="success">/jsp/member/mySpace.jsp</result>
+            <result name="error">/jsp/error.jsp</result>
+        </action>
         <!--READ ONE -->
         <action name="member_detail"
                 class="org.example.demo.climb.webapp.action.GestionMemberAction"

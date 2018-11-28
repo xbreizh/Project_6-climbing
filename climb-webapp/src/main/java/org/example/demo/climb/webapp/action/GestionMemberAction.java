@@ -3,6 +3,9 @@ package org.example.demo.climb.webapp.action;
 import com.opensymphony.xwork2.ActionSupport;
 import org.example.demo.climb.business.contract.MemberManager;
 import org.example.demo.climb.model.bean.Member;
+import org.example.demo.climb.model.bean.Route;
+import org.example.demo.climb.model.bean.Spot;
+import org.example.demo.climb.model.bean.Topo;
 import org.example.demo.climb.model.exception.NotFoundException;
 
 import javax.inject.Inject;
@@ -19,6 +22,9 @@ public class GestionMemberAction extends LoginAction {
     private List<Member> listMember;
     private String description;
     private boolean active;
+    private List<Spot> spotList;
+    private List<Topo> topoList;
+    private List<Route> routeList;
 
     @Inject
     private MemberManager memberManager;
@@ -39,7 +45,19 @@ public class GestionMemberAction extends LoginAction {
         return vResult;
     }
 
-
+public String doShowMySpace(){
+    System.out.println("id passed: "+id);
+    try {
+        member = memberManager.getMemberById(id);
+        spotList = member.getSpotList();
+        topoList = member.getTopoListOwned();
+        routeList = member.getRouteList();
+        System.out.println(spotList.size());
+    } catch (NotFoundException e) {
+        return ActionSupport.ERROR;
+    }
+    return ActionSupport.SUCCESS;
+}
 
 /*    public List<Member> getListMember() throws NotFoundException {
         System.out.println(memberManager.getMemberById(1));
@@ -241,5 +259,29 @@ public class GestionMemberAction extends LoginAction {
 
     public void setListMember(List<Member> listMember) {
         this.listMember = listMember;
+    }
+
+    public List<Spot> getSpotList() {
+        return spotList;
+    }
+
+    public void setSpotList(List<Spot> spotList) {
+        this.spotList = spotList;
+    }
+
+    public List<Topo> getTopoList() {
+        return topoList;
+    }
+
+    public void setTopoList(List<Topo> topoList) {
+        this.topoList = topoList;
+    }
+
+    public List<Route> getRouteList() {
+        return routeList;
+    }
+
+    public void setRouteList(List<Route> routeList) {
+        this.routeList = routeList;
     }
 }

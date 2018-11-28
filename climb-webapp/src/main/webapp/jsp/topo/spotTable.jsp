@@ -36,15 +36,25 @@
                     <s:param name="id" value="id"/>
                 </s:a>
                 </td>
-                <td><s:a action="member_detail">
-                    <s:param name="id" value="memberSpot.id"/>
-                    <s:property value="memberSpot.login"/>
-                </s:a>
+                <td>
+                    <s:if test="#session.user.id == memberSpot.id">
+                        <s:a action="member_detail">
+                            <s:param name="id" value="memberSpot.id" />
+                            <span style=" font-weight: bold;color: #ffae6e">You</span>
+                        </s:a>
+                    </s:if>
+                    <s:else>
+                        <s:a action="member_detail">
+                            <s:param name="id" value="memberSpot.id" />
+                            <s:property value="memberSpot.login"/>
+                        </s:a>
+                    </s:else>
+
                 </td>
             </tr>
         </s:iterator>
         </tbody>
     </table>
 </s:if><s:else>
-    No Topo Found!
+    No Spot Found!
 </s:else>
