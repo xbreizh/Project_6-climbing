@@ -34,6 +34,7 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
     private int memberId;
     private List<Booking> conflictList=new ArrayList<>();
     private List<Spot> spotList=new ArrayList<>();
+    private List<Booking> bookingList = new ArrayList<>();
     Booking booking;
 
 
@@ -232,6 +233,11 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
             countryList.put(c.getId(), c.getName());
         }
     }
+    public String doListBooking() throws Exception {
+
+        bookingList = bookingManager.getListBooking();
+        return "success";
+    }
 
     // Getters and Setters
 
@@ -343,5 +349,13 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
 
     public void setTopoId(int topoId) {
         this.topoId = topoId;
+    }
+
+    public List<Booking> getBookingList() {
+        return bookingList;
+    }
+
+    public void setBookingList(List<Booking> bookingList) {
+        this.bookingList = bookingList;
     }
 }

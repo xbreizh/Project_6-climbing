@@ -2,10 +2,7 @@ package org.example.demo.climb.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.example.demo.climb.business.contract.MemberManager;
-import org.example.demo.climb.model.bean.Member;
-import org.example.demo.climb.model.bean.Route;
-import org.example.demo.climb.model.bean.Spot;
-import org.example.demo.climb.model.bean.Topo;
+import org.example.demo.climb.model.bean.*;
 import org.example.demo.climb.model.exception.NotFoundException;
 
 import javax.inject.Inject;
@@ -25,6 +22,7 @@ public class GestionMemberAction extends LoginAction {
     private List<Spot> spotList;
     private List<Topo> topoList;
     private List<Route> routeList;
+    private List<Booking> bookingList;
 
     @Inject
     private MemberManager memberManager;
@@ -52,6 +50,7 @@ public String doShowMySpace(){
         spotList = member.getSpotList();
         topoList = member.getTopoListOwned();
         routeList = member.getRouteList();
+        bookingList = member.getListBookings();
         System.out.println(spotList.size());
     } catch (NotFoundException e) {
         return ActionSupport.ERROR;
@@ -283,5 +282,13 @@ public String doShowMySpace(){
 
     public void setRouteList(List<Route> routeList) {
         this.routeList = routeList;
+    }
+
+    public List<Booking> getBookingList() {
+        return bookingList;
+    }
+
+    public void setBookingList(List<Booking> bookingList) {
+        this.bookingList = bookingList;
     }
 }

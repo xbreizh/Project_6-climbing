@@ -78,6 +78,11 @@ public class BookingManagerImpl implements BookingManager {
     }
 
     @Override
+    public List<Booking> getListBooking() {
+        return bookingDao.getAll();
+    }
+
+    @Override
     public void updateBooking(Booking booking) {
 
     }

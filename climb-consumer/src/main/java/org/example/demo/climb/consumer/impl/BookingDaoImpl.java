@@ -62,6 +62,13 @@ public class BookingDaoImpl implements BookingDao {
     }
 
     @Override
+    public List<Booking> getAll() {
+        Query query = sessionFactory.getCurrentSession().createQuery(
+                "From Booking");
+        return (List<Booking>) query.getResultList();
+    }
+
+    @Override
     public boolean isAvailable(Topo topo) {
         Query query = sessionFactory.getCurrentSession().createQuery("" +
                 "From Booking where topo.id = :topoId and returnDate is not null");

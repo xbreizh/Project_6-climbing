@@ -44,6 +44,12 @@
                 method="doValidateBooking">
             <result>/jsp/topo/date.jsp</result>
         </action>
+
+        <action name="bookingList"
+                class="org.example.demo.climb.webapp.action.CreationTopoAction"
+                method="doListBooking">
+            <result>/jsp/topo/bookingSpace.jsp</result>
+        </action>
         <!--READ ONE -->
         <action name="topo_detail"
                 class="org.example.demo.climb.webapp.action.CreationTopoAction"

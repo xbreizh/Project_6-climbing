@@ -13,6 +13,7 @@ public interface BookingDao {
     List<Booking> getListBookingByTopo(int topoId);
     List<Booking> getListBooking(int bookerId, int topoId);
     List<Booking> getListBookingInProgress();
+    List<Booking> getAll();
     boolean isAvailable(Topo topo);
 
 

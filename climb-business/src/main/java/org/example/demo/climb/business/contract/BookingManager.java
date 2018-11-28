@@ -20,6 +20,8 @@ public interface BookingManager {
 
     List<Booking> getListBookingFromSpot(int id);
 
+    List<Booking> getListBooking();
+
     /*//Get list
     Booking getBookingById(Integer pId) throws NotFoundException;*/
 
