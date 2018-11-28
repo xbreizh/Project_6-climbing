@@ -23,7 +23,11 @@ public class Booking {
     private Date bookingDate;
 
     @NotNull
+    private Date plannedReturnDate;
+
+
     private Date returnDate;
+
 
     public Booking() {
 
@@ -67,5 +71,13 @@ public class Booking {
 
     public void setReturnDate(Date returnDate) {
         this.returnDate = returnDate;
+    }
+
+    public Date getPlannedReturnDate() {
+        return plannedReturnDate;
+    }
+
+    public void setPlannedReturnDate(Date plannedReturnDate) {
+        this.plannedReturnDate = plannedReturnDate;
     }
 }

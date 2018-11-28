@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Transactional
@@ -35,21 +36,14 @@ public class BookingManagerImpl implements BookingManager {
         }
         for (Booking b: bookingList
              ) {
-                if (booking.getBookingDate().equals(b.getBookingDate())||(booking.getBookingDate().after(b.getBookingDate()) && booking.getBookingDate().before(b.getReturnDate()))) {
+                if (booking.getBookingDate().equals(b.getBookingDate())||(booking.getBookingDate().after(b.getBookingDate()) && booking.getBookingDate().before(b.getPlannedReturnDate()))) {
                    conflictList.add(b);
-                    System.out.println("base: "+b.getBookingDate());
-                    System.out.println("base: "+b.getReturnDate());
-                    System.out.println("booking: "+booking.getBookingDate());
-                    System.out.println("booking: "+booking.getReturnDate());
-                    System.out.println("added 1");
                 }else if
-                (booking.getReturnDate().after(b.getBookingDate()) && booking.getReturnDate().before(b.getReturnDate())) {
+                (booking.getPlannedReturnDate().after(b.getBookingDate()) && booking.getPlannedReturnDate().before(b.getPlannedReturnDate())) {
                     conflictList.add(b);
-                    System.out.println("added 2");
                 }else if
-            (booking.getBookingDate().before(b.getBookingDate()) && booking.getReturnDate().after(b.getReturnDate())){
+            (booking.getBookingDate().before(b.getBookingDate()) && booking.getPlannedReturnDate().after(b.getPlannedReturnDate())){
                     conflictList.add(b);
-                    System.out.println("added 3");
         }
 
         }
@@ -83,8 +77,24 @@ public class BookingManagerImpl implements BookingManager {
     }
 
     @Override
-    public void updateBooking(Booking booking) {
+    public void endBooking(int id) {
+        Date today = new Date();
+        Booking booking = bookingDao.getBookingById(id);
+        booking.setReturnDate(today);
+        if(booking.getPlannedReturnDate().after(today)){
+            booking.setPlannedReturnDate(today);
+        }
+        updateBooking(booking);
+    }
 
+    @Override
+    public List<Booking> getBookedListByBooker(int id) {
+        return bookingDao.getListBookingByBooker(id);
+    }
+
+    @Override
+    public void updateBooking(Booking booking) {
+        bookingDao.update(booking);
     }
 
     @Override

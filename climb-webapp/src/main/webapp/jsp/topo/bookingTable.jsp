@@ -8,10 +8,11 @@
             <th>Owner </th>
             <th>Booker </th>
             <th>Date booking </th>
-            <th>Date return</th>
+            <th>Date return planned</th>
+            <th>Date return </th>
         </tr>
         </thead>
-        <tbody>
+        <tbody >
         <s:iterator value="bookingList">
             <tr>
                 <td><s:a action="topo_detail" style="display:block;text-decoration:none;" >
@@ -50,25 +51,25 @@
 
                 </td>
                 <td>
-                    <s:property value="bookingDate"/>
+                    <s:date name = "bookingDate" format = "dd/MM/yyyy"/>
 
                 </td>
-                <td> <s:property value="returnDate"/>
+                <td> <s:date name = "plannedReturnDate" format = "dd/MM/yyyy"/>
                 <td>
-                <s:if test="#session.user.id == booker.id">
-                    <s:a action="member_detail">
-                        <s:param name="id" value="booker.id" />
-                        <span style=" font-weight: bold;color: #ffae6e">You</span>
-                    </s:a>
-                </s:if>
-                    <s:else>
-                        <s:a action="member_detail">
-                            <s:param name="id" value="booker.id" />
-                            <s:property value="booker.login"/>
-                        </s:a>
-                    </s:else>
+                    <s:date name = "returnDate" format = "dd/MM/yyyy"/>
+                </td>
+                    <s:if test="#session.user.id == topo.owner.id">
+                <td style="border: none;">
+
+                        <s:form action="endBooking" method="POST">
+                            <s:hidden  name="id" value="%{id}" />
+                            <s:hidden  name="memberId" value="%{session.user.id}" />
+                            <s:submit value="Mark as returned"/>
+                        </s:form>
 
                 </td>
+                    </s:if>
+
             </tr>
         </s:iterator>
         </tbody>

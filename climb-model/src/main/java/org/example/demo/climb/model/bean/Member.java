@@ -173,7 +173,7 @@ public class Member {
         this.topoListOwned = topoListOwned;
     }
 
-    public List<Booking> getListBookings() {
+    public List<Booking> getBookingList() {
         return listBookings;
     }
 

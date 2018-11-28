@@ -81,5 +81,14 @@ public class BookingDaoImpl implements BookingDao {
         }
     }
 
+    @Override
+    public Booking getBookingById(int id) {
+        Query query = sessionFactory.getCurrentSession().createQuery(
+                "From Booking where id = :id");
+        query.setParameter("id", id);
+
+        return (Booking) query.getSingleResult();
+    }
+
 
 }

@@ -68,6 +68,13 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
         return vResult;
     }
 
+    public String doEndBooking(){
+        String vResult = ActionSupport.SUCCESS;
+        System.out.println("hello here: "+id);
+        bookingManager.endBooking(id);
+        return vResult;
+    }
+
     /*READ ONE*/
     public String doDetail() throws NotFoundException {
         String vResult = ActionSupport.SUCCESS;
@@ -196,8 +203,8 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
                     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
                     booking.setBookingDate(beginBook);
-                    booking.setReturnDate(endBook);
-                    int i = booking.getReturnDate().compareTo(booking.getBookingDate());
+                    booking.setPlannedReturnDate(endBook);
+                    int i = booking.getPlannedReturnDate().compareTo(booking.getBookingDate());
                     System.out.println("duration: "+i);
                     if (i > 7) {
                         this.addActionError("You can book for maximum 7 days!");

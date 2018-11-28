@@ -45,6 +45,18 @@
             <result>/jsp/topo/date.jsp</result>
         </action>
 
+        <action name="endBooking"
+                class="org.example.demo.climb.webapp.action.CreationTopoAction"
+                method="doEndBooking">
+            <result name="input" type="redirectAction">
+                <param name="actionName">mySpace</param>
+            </result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">mySpace</param>
+                <param name="id">${memberId}</param>
+            </result>
+        </action>
+
         <action name="bookingList"
                 class="org.example.demo.climb.webapp.action.CreationTopoAction"
                 method="doListBooking">

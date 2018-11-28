@@ -22,6 +22,10 @@ public interface BookingManager {
 
     List<Booking> getListBooking();
 
+    void endBooking(int id);
+
+    List<Booking> getBookedListByBooker(int id);
+
     /*//Get list
     Booking getBookingById(Integer pId) throws NotFoundException;*/
 

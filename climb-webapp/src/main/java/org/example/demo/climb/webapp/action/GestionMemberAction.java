@@ -1,6 +1,7 @@
 package org.example.demo.climb.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import org.example.demo.climb.business.contract.BookingManager;
 import org.example.demo.climb.business.contract.MemberManager;
 import org.example.demo.climb.model.bean.*;
 import org.example.demo.climb.model.exception.NotFoundException;
@@ -23,10 +24,11 @@ public class GestionMemberAction extends LoginAction {
     private List<Topo> topoList;
     private List<Route> routeList;
     private List<Booking> bookingList;
-
+    private List<Booking> bookedList;
     @Inject
     private MemberManager memberManager;
-
+    @Inject
+    private BookingManager bookingManager;
 
 
     /* Methods */
@@ -50,7 +52,8 @@ public String doShowMySpace(){
         spotList = member.getSpotList();
         topoList = member.getTopoListOwned();
         routeList = member.getRouteList();
-        bookingList = member.getListBookings();
+        bookingList = member.getBookingList();
+        bookedList = bookingManager.getBookedListByBooker(member.getId());
         System.out.println(spotList.size());
     } catch (NotFoundException e) {
         return ActionSupport.ERROR;
@@ -58,10 +61,7 @@ public String doShowMySpace(){
     return ActionSupport.SUCCESS;
 }
 
-/*    public List<Member> getListMember() throws NotFoundException {
-        System.out.println(memberManager.getMemberById(1));
-        return listMember;
-    }*/
+
 
     /*READ ALL*/
 
@@ -290,5 +290,13 @@ public String doShowMySpace(){
 
     public void setBookingList(List<Booking> bookingList) {
         this.bookingList = bookingList;
+    }
+
+    public List<Booking> getBookedList() {
+        return bookedList;
+    }
+
+    public void setBookedList(List<Booking> bookedList) {
+        this.bookedList = bookedList;
     }
 }
