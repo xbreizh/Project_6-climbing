@@ -1,4 +1,4 @@
-<h2>Routes</h2>
+<%--<h2>Routes</h2>--%>
 <s:if test="%{routeList.size()>0}">
     <table class="table table-bordered table-hover">
         <thead>

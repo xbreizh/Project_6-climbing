@@ -34,11 +34,12 @@
                 Members
             </s:a>
             </li>
+            <r:if test="#session.user">
             <li><s:a class="active" action="bookingList">
                 Booking
             </s:a>
             </li>
-            <r:if test="#session.user">
+
             <li>
                 <s:a class="active" action="mySpace">
                 My Space

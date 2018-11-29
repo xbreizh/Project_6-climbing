@@ -12,6 +12,7 @@
 
 <!-- Datepicker as text field -->
 <s:if test="#session.user">
+
     <s:form action="topo_booking" namespace="/" method="POST" >
         <s:hidden name="id" value="%{id}" requiredLabel="true"/>
         <s:hidden name="booking.topo.id" value="%{id}" requiredLabel="true" />
@@ -28,7 +29,8 @@
 
     </s:form>
     <s:if test="%{conflictList.size()>0}">
-        <table class="table table-bordered table-hover">
+
+        <table class="table table-bordered table-hover" style="border:none">
         <s:iterator value="%{conflictList}">
             <tr  style="color:#ff8a82">
                 <td><s:property value="id"/></td>>
@@ -38,6 +40,8 @@
         </s:iterator>
         </table>
     </s:if>
+
+    <h2>Bookings planned</h2>
     <table class="table table-bordered table-hover">
         <thead>
         <tr>
@@ -49,7 +53,7 @@
         <tbody>
         <s:iterator value="%{topo.bookingList}">
             <tr>
-                <td><s:property value="id"/></td>>
+                <td><s:property value="id"/></td>
                 <td><s:date name = "bookingDate" format = "dd/MM/yyyy" /></td>
                 <td>  <s:date name = "returnDate" format = "dd/MM/yyyy" /></td>
             </tr>

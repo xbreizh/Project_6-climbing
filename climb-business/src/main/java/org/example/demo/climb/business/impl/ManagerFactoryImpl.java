@@ -1,3 +1,4 @@
+/*
 package org.example.demo.climb.business.impl;
 
 import org.example.demo.climb.business.contract.ManagerFactory;
@@ -8,9 +9,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 
+*/
 /**
  * Implémentation de la {@link ManagerFactory}.
- */
+ *//*
+
 @Named("managerFactory")
 public class ManagerFactoryImpl implements ManagerFactory {
 
@@ -20,7 +23,9 @@ public class ManagerFactoryImpl implements ManagerFactory {
     private MemberManager memberManager;
 
 
-    /*@Override*/
+    */
+/*@Override*//*
+
     public ProjetManager getProjetManager() {
 
         return this.projetManager;
@@ -42,3 +47,4 @@ public class ManagerFactoryImpl implements ManagerFactory {
         memberManager = pMemberManager;
     }
 }
+*/

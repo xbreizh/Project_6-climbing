@@ -1,11 +1,17 @@
+/*
 package org.example.demo.climb.business.impl;
 
+*/
 /*@Transactional
-@Named("zoneManager")*/
-public class ZoneManagerImpl  /*implements ZoneManager*/ {
+@Named("zoneManager")*//*
+
+public class ZoneManagerImpl  */
+/*implements ZoneManager*//*
+ {
 
 
-   /* private Class cl=Zone.class;
+   */
+/* private Class cl=Zone.class;
 
     @Inject
     private SessionFactory sessionFactory;
@@ -15,7 +21,11 @@ public class ZoneManagerImpl  /*implements ZoneManager*/ {
     @Override
     public List<Zone> getListZone() {
         System.out.println("trying to get Zone list");
-        *//*return sessionFactory.getCurrentSession().createQuery("from Zone ").list();*//*
+        *//*
+*/
+/*return sessionFactory.getCurrentSession().createQuery("from Zone ").list();*//*
+*/
+/*
         return zoneDao.getAll();
 
     }
@@ -59,11 +69,20 @@ public class ZoneManagerImpl  /*implements ZoneManager*/ {
     @Override
     public void deleteZone(int id) {
         System.out.println("trying to delete zone: "+id);
-        *//*Zone m= (Zone) sessionFactory.getCurrentSession().get(cl, id);*//*
+        *//*
+*/
+/*Zone m= (Zone) sessionFactory.getCurrentSession().get(cl, id);*//*
+*/
+/*
         Zone m = (Zone) zoneDao.getById(id);
-        *//*sessionFactory.getCurrentSession().delete(cl.getName(), m);*//*
+        *//*
+*/
+/*sessionFactory.getCurrentSession().delete(cl.getName(), m);*//*
+*/
+/*
         zoneDao.delete(m);
-    }*/
+    }*//*
+
 
 
 
@@ -73,3 +92,4 @@ public class ZoneManagerImpl  /*implements ZoneManager*/ {
 
 
 }
+*/

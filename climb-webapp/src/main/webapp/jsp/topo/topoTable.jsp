@@ -1,7 +1,7 @@
-<h2>Topo</h2>
+<%--<h2>Topo</h2>--%>
 <s:if test="%{topoList.size()>0}">
-    <table class="table table-bordered table-hover">
-        <thead>
+    <table class="table table-bordered table-hover" >
+        <thead >
         <tr>
             <th>Name </th>
             <th>Edition </th>
