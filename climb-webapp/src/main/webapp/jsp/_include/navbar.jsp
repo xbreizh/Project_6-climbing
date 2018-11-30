@@ -55,26 +55,28 @@
                 <ul>
                     <span style="color:white">Connected: <r:property value="#session.user.login"/>!</span>
                 </ul><ul>
-                <r:a action="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</r:a>
+                <li> <a href="javascript: popupLogout()"><span class="glyphicon glyphicon-log-out"></span>Logout</a> </li>
             </ul>
             </r:if>
             <r:else>
                 <ul>
                     <li> </li>
                     <li>
-                    <script type="text/javascript">
-                        function popupLogin() {
-                            window.open('login','popup','width=300,height=300,top=-800,left=800');
-                        }
-                    </script>
+
                 <a  style="color: white ; text-decoration: none; text-align: left" href="javascript: popupLogin()"><span class="glyphicon glyphicon-log-out"></span>Connect<span style=" visibility: hidden;">spa</span></a>
                     </li>
                     <li> </li>
             </ul>
-                <script>
 
-                </script>
             </r:else>
         </ul>
     </div>
 </nav>
+<script type="text/javascript">
+    function popupLogin() {
+        window.open('login','popup','width=300,height=300,top=-800,left=800');
+    }
+    function popupLogout() {
+        window.open('logout','popup','width=300,height=300,top=-800,left=800');
+    }
+</script>

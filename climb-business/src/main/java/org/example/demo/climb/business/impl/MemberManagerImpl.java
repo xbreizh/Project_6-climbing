@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.NoResultException;
 import java.util.Date;
 import java.util.List;
 @Transactional
@@ -104,14 +105,14 @@ public class MemberManagerImpl  implements MemberManager {
 
     @Override
     public Member connect(String login, String password) {
-        System.out.println("yo!");
         Member m;
-        if(((m=getMemberByLogin(login.toUpperCase()))!=null)){
-            System.out.println("login ok :"+login);
-            if(m.getPassword().equals(password)){
-                System.out.println("login & pwd ok");
+        try {
+            m = getMemberByLogin(login.toUpperCase());
+            if (m.getPassword().equals(password)) {
                 return m;
             }
+        } catch (NoResultException e) {
+            System.out.println("wrong login or pwd");
         }
         return null;
     }

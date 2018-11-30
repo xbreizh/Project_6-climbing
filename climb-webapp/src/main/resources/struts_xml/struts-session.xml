@@ -15,14 +15,15 @@
                 method="doLogin">
             <result name="input">/jsp/member/login/login.jsp</result>
 
-            <result name="success">/jsp/member/login/done.jsp</result>
+            <result name="success">/jsp/member/login/loginOk.jsp</result>
+
         </action>
 
         <!--Logout-->
         <action name="logout"
                 class="org.example.demo.climb.webapp.action.LoginAction"
                 method="doLogout">
-            <result type="redirectAction">index</result>
+            <result name="success">/jsp/member/login/logoutOk.jsp</result>
         </action>
 
 

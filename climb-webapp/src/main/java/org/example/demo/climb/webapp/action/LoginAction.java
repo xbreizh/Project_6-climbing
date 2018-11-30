@@ -1,13 +1,16 @@
 package org.example.demo.climb.webapp.action;
 
+import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 import org.example.demo.climb.business.contract.MemberManager;
 import org.example.demo.climb.model.bean.Member;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @Named
@@ -24,6 +27,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
     // Methods
     public String doLogin(){
         String vResult= ActionSupport.INPUT;
+
         if (!StringUtils.isAllEmpty(login, pwd)) {
            Member member = memberManager.connect(login,pwd);
             if(member!=null){
@@ -76,4 +80,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
     public void setPwd(String pwd) {
         this.pwd = pwd;
     }
+
+
 }

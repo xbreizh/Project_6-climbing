@@ -4,6 +4,7 @@ package org.example.demo.climb.webapp.action;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 import org.example.demo.climb.business.contract.CommentManager;
 import org.example.demo.climb.business.contract.CountryManager;
