@@ -14,12 +14,14 @@
         <action name="member_new"
                 class="org.example.demo.climb.webapp.action.GestionMemberAction"
                 method="doCreate">
-            <interceptor-ref name="store">
+            <!--<interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
-            <interceptor-ref name="defaultStack"/>
+            <interceptor-ref name="defaultStack"/>-->
             <result name="input">/jsp/member/form/new.jsp</result>
-            <result name="success">/jsp/member/creationOk.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">index</param>
+            </result>
         </action>
 
         <!-- READ ALL -->
@@ -38,8 +40,8 @@
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
-            <result name="input">/jsp/member/mySpace.jsp</result>
-            <result name="success">/jsp/member/mySpace.jsp</result>
+            <result name="input">/jsp/member/mySpace/mySpace.jsp</result>
+            <result name="success">/jsp/member/mySpace/mySpace.jsp</result>
             <result name="error">/jsp/error.jsp</result>
         </action>
         <!--READ ONE -->
@@ -63,9 +65,15 @@
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
-            <result name="input">/jsp/member/form/update.jsp</result>
+            <result name="input" type="redirectAction">
+                <param name="actionName">mySpace</param>
+                <param name="id">${session.user.id}</param>
+                <param name="anchor">editProfile#edit</param>
+            </result>
             <result name="success" type="redirectAction">
-                <param name="actionName">member_list</param>
+                <param name="actionName">mySpace</param>
+                <param name="id">${session.user.id}</param>
+                <param name="anchor">MyProfile</param>
             </result>
         </action>
 

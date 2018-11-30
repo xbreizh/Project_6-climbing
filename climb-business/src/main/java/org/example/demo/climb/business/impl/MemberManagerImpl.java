@@ -76,6 +76,7 @@ public class MemberManagerImpl  implements MemberManager {
     @Override
     public void updateMember(Member member) {
         int id = member.getId();
+        System.out.println("reacher manager level");
         /*Member m = (Member) sessionFactory.getCurrentSession().get(cl, id);*/
         Member m = (Member) memberDao.getById(id);
         System.out.println("login: "+m.getLogin());

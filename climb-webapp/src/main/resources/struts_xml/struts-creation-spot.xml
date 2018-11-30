@@ -26,7 +26,7 @@
         <action name="createSpot"
                 class="org.example.demo.climb.webapp.action.CreationSpotAction"
                 method="doCreateSpot">
-            <result name="input">/jsp/spot/newSpot.jsp</result>
+            <result name="input">/jsp/spot/form/newSpot.jsp</result>
             <result name="success" type="redirectAction">
                 <param name="actionName">spot_detail</param>
                 <param name="id">${spot.id}</param>

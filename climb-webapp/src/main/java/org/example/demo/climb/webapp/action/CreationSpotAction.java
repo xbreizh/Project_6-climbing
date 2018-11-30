@@ -153,14 +153,10 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         for(ClimbingType ct: ClimbingType.values()){
             climbingList.add(ct.getName());
         }
-        /*c = countryManager.getCountry(id);
-        System.out.println("city is here: "+city);*/
         if(spot!=null) {
             if (checkSpotForm(spot)){
                 spotManager.addSpot(spot);
                 vResult = ActionSupport.SUCCESS;
-            }else{
-                System.out.println("spot not validated! ");
             }
         }
         return vResult;
@@ -216,8 +212,6 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
             i++;
         }
 
-
-
         // check City
         if (spot.getCity() == null || spot.getCity().length() < 3 || spot.getCity().length() > 50) {
             this.addFieldError("spot.city", "City should have 3-50 characters");
@@ -233,35 +227,13 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
             this.addFieldError("spot.description", "Description should have 3-50 characters");
             i++;
         }
-        if(i==0){return true;}else{
+        if(i==0){
+            return true;
+        }else{
             return false;
         }
     }
 
-    /*READ ALL SPOTS*/
-/*    public String doList() throws  NotFoundException{
-
-        if(country.equals("")){
-            // Getting list of spots for that continent
-            spotList = spotManager.getListSpotByContinent(continent);
-        }else{
-            c = countryManager.getCountry(country);
-            // Init cityList
-            cityList = spotManager.getListCityByCountry(c);
-            if(city.equals("")){
-                // Getting list of spots for that country
-                spotList = spotManager.getListSpotByCountry(c);
-            }else{
-               *//* spotList = spotManager.getListSpot(c.getContinent(), c.getName(), city);*//*
-            }
-
-        }
-        // Init list of countries for the selected continent
-        initCountryList();
-        *//*countryList = countryManager.getListCountry();*//*
-
-        return ActionSupport.SUCCESS;
-    }*/
 
     public String doList() {
         spotList=spotManager.getListSpot();

@@ -3,6 +3,7 @@
 
 <header>
     <link href="<s:url value="/css/style.css"/>" rel="stylesheet" type="text/css"/>
+    <script href="<s:url value="/js/colorSearch.js"/>" rel="stylesheet" type="text/javascript"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--  jQuery -->

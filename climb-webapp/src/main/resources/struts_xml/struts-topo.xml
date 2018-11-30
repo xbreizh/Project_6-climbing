@@ -12,12 +12,12 @@
         <action name="topo_new"
                 class="org.example.demo.climb.webapp.action.CreationTopoAction"
                 method="doCreateTopo">
-            <result name="input">/jsp/topo/form/newTopo.jsp</result>
+            <result name="input" >/jsp/topo/form/newTopo.jsp</result>
             <result name="success" type="redirectAction">
                 <param name="actionName">topo_detail</param>
                 <param name="id">${topo.id}</param>
             </result>
-            <result name="error">/jsp/login.jsp</result>
+            <result name="error">/jsp/member/login/login.jsp</result>
         </action>
 
 
@@ -33,7 +33,7 @@
         <action name="topo_booking"
                 class="org.example.demo.climb.webapp.action.CreationTopoAction"
                 method="doBooking">
-            <result name="input">/jsp/topo/booking.jsp?${id}</result>
+            <result name="input">/jsp/booking/booking.jsp?${id}</result>
             <result name="success" type="redirectAction">
                 <param name="actionName">topo_list</param>
 
@@ -43,7 +43,7 @@
         <action name="submitBooking"
                 class="org.example.demo.climb.webapp.action.CreationTopoAction"
                 method="doValidateBooking">
-            <result>/jsp/topo/date.jsp</result>
+            <result>/jsp/booking/date.jsp</result>
         </action>
 
         <action name="endBooking"
@@ -55,13 +55,14 @@
             <result name="success" type="redirectAction">
                 <param name="actionName">mySpace</param>
                 <param name="id">${memberId}</param>
+                <param name="anchor">MyBookings</param>
             </result>
         </action>
 
         <action name="bookingList"
                 class="org.example.demo.climb.webapp.action.CreationTopoAction"
                 method="doListBooking">
-            <result>/jsp/topo/bookingSpace.jsp</result>
+            <result>/jsp/booking/bookingSpace.jsp</result>
         </action>
         <!--READ ONE -->
         <action name="topo_detail"
@@ -102,6 +103,61 @@
             <result name="success" type="redirectAction">
                 <param name="actionName">topo_detail</param>
                 <param name="id">${topo.id}</param>
+            </result>
+        </action>
+
+        <!-- UPDATE -->
+        <action name="spot_update"
+                class="org.example.demo.climb.webapp.action.CreationTopoAction"
+                method="doUpdateTopo">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+            <result name="input" type="redirect">
+                <param name="location">/jsp/topo/form/updateTopo.jsp</param>
+                <param name="id">${topo.id}</param>
+            </result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">spot_list</param>
+            </result>
+        </action>
+<!--
+        &lt;!&ndash; EDIT &ndash;&gt;
+        <action name="topo_edit"
+                class="org.example.demo.climb.webapp.action.CreationTopoAction"
+                method="doEditTopo">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+            <result name="success">/jsp/topo/form/updateTopo.jsp</result>
+        </action>-->
+
+        <!-- UPDATE-->
+        <action name="topo_update"
+                class="org.example.demo.climb.webapp.action.CreationTopoAction"
+                method="doUpdateTopo">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+            <result name="input">
+                <param name="location">/jsp/topo/form/updateTopo.jsp</param>
+                <!--<param name="id">${id}</param>-->
+            </result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">topo_detail</param>
+                <param name="id">${topo.id}</param>
+            </result>
+            <result name="error">/jsp/member/login/login.jsp</result>
+        </action>
+        <!-- DELETE-->
+        <action name="topo_delete"
+                class="org.example.demo.climb.webapp.action.CreationTopoAction"
+                method="doDeleteTopo">
+            <result name="success" type="redirectAction">
+                <param name="actionName">index</param>
             </result>
         </action>
     </package>

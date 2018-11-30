@@ -98,10 +98,32 @@ public String doShowMySpace(){
 
 
     /*UPDATE*/
-    public String doUpdate() {
+    public String doUpdate() throws NotFoundException {
         String vResult = ActionSupport.INPUT;
-
         if (this.member != null) {
+            System.out.println("member received: "+member);
+            Member m = memberManager.getMemberById(member.getId());
+            if(member.getLogin() !=null || password!=null || passwordCheck !=null ||
+                    member.getEmail()!=null || emailCheck!=null || member.getDescription()!=null) {
+                if (member.getLogin().equals("") || member.getLogin().length() <3 || member.getLogin().length() >20) {
+                    this.addFieldError("login", "login length should be at least 3 characters");
+                    return vResult;
+                } else if (password.equals("******") || password.length() < 3 || password.length() > 8) {
+                    this.addFieldError("password", "must be between 3 and 8 characters");
+                    return vResult;
+                } else if (!member.getPassword().equals(passwordCheck)) {
+                    this.addFieldError("password", "password mismatch");
+                    return vResult;
+                } else if (!member.getEmail().equals(emailCheck)) {
+                    this.addFieldError("email", "password mismatch");
+                    return vResult;
+                }else if (member.getDescription().length() > 255 ) {
+                    this.addFieldError("email", "password mismatch");
+                    return vResult;
+                }
+
+            }
+            System.out.println("member before trying to update: "+member);
             memberManager.updateMember(member);
             System.out.println("Member: "+member);
             vResult = ActionSupport.SUCCESS;
@@ -130,7 +152,7 @@ public String doShowMySpace(){
     /*RESET*/
     public String doReset(){
         String vResult = ActionSupport.INPUT;
-        if(login !=null || password!=null || passwordCheck !=null) {
+/*        if(login !=null || password!=null || passwordCheck !=null) {
             if (login.equals("")) {
                 this.addFieldError("login", "you must provide a login");
                 return vResult;
@@ -146,7 +168,7 @@ public String doShowMySpace(){
             } else {
                 this.addFieldError("login", "Login or Email incorrect");
             }
-        }
+        }*/
         return vResult;
     }
 
@@ -174,7 +196,7 @@ public String doShowMySpace(){
                 try {
                     memberManager.addMember(member);
                     vResult = ActionSupport.SUCCESS;
-                    this.addActionMessage("Member added!");
+                    this.addActionMessage("Account created!");
                 } catch (NullPointerException e) {
                     this.addActionError(e.getMessage());
                 }

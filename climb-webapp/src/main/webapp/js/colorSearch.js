@@ -16,3 +16,9 @@ if (colors.indexOf(word) > -1) {
 
 
 document.getElementById("content").innerHTML = str;
+
+var toto
+    function init( toto) {
+        opener.location = toto;
+        this.close();
+    }

@@ -23,7 +23,7 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <%@include file="topo/spotTable.jsp" %>
+        <%@include file="spot/spotTable.jsp" %>
         <%@include file="topo/topoTable.jsp" %>
     </div></div>
 </div>

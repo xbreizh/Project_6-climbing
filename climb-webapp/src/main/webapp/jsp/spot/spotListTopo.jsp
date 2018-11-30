@@ -6,14 +6,14 @@
 </s:form>
 <br><br>
 <table class="table table-hover">
-    <thead class="noborders">
+    <thead>
     <tr>
         <th>Country </th>
         <th>City </th>
         <th>Name</th>
     </tr>
     </thead>
-    <tbody class="table table-bordered table-hover">
+    <tbody class="table  table-hover">
     <s:iterator value="topo.spots">
         <tr>
             <td><s:a action="spot_detail" style="display:block;text-decoration:none;" >
@@ -31,7 +31,7 @@
                 <s:param name="id" value="id"/>
             </s:a>
             </td>
-            <td class="noborders">
+            <td >
                 <s:form action="topo_removeSpot" method="POST">
                     <s:hidden name="id" placeholder="topo Id" requiredLabel="true"/>
                     <s:hidden name="topo.id" placeholder="topo Id" requiredLabel="true"/>

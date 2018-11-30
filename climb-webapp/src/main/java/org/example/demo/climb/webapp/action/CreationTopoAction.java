@@ -22,6 +22,7 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
 
 
     private Topo topo;
+    private boolean submit;
     private Spot spot;
     private int spotId;
     private int topoId;
@@ -35,6 +36,7 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
     private List<Booking> conflictList=new ArrayList<>();
     private List<Spot> spotList=new ArrayList<>();
     private List<Booking> bookingList = new ArrayList<>();
+    private String yourMonth;
     Booking booking;
 
 
@@ -141,12 +143,12 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
             i++;
         }
         // Check Published Year
-        if(topo.getPublishedYear() < 1700 || topo.getPublishedYear() > 2222){
+        if(topo.getPublishedYear() < 1900 || topo.getPublishedYear() > 2221){
             this.addFieldError("topo.name", "Year must be between 1900-today");
             i++;
         }
         // Check Description
-        if(topo.getDescription().length() < 3 || topo.getDescription().length() > 350){
+        if(topo.getDescription().length() < 2 || topo.getDescription().length() > 50){
             this.addFieldError("topo.description", "Description must be between 2-50");
             i++;
         }
@@ -246,6 +248,36 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
         return "success";
     }
 
+    public String doEditTopo() throws Exception {
+        return "success";
+    }
+    public String doUpdateTopo() throws Exception {
+        String vResult = ActionSupport.INPUT;
+
+        initCountryList();
+        for(int i = 1900;i<2222;i++){
+            yearList.add(i);
+        }
+        if(topo!=null && submit) {
+            id=topo.getId();
+            if (checkTopoForm(topo)) {
+                System.out.println("check topo happy");
+                topoManager.updateTopo(topo);
+                vResult = ActionSupport.SUCCESS;
+            }else{
+                System.out.println("check topo not happy");
+            }
+        }else{
+            System.out.println("getting topo");
+            topo = topoManager.getTopo(id);
+        }
+        return vResult;
+    }
+
+    public String doDeleteTopo() throws Exception {
+        topoManager.deleteTopo(topo);
+        return "success";
+    }
     // Getters and Setters
 
     public Topo getTopo() {
@@ -364,5 +396,23 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
 
     public void setBookingList(List<Booking> bookingList) {
         this.bookingList = bookingList;
+    }
+
+
+
+    public boolean isSubmit() {
+        return submit;
+    }
+
+    public void setSubmit(boolean submit) {
+        this.submit = submit;
+    }
+
+    public String getYourMonth() {
+        return yourMonth;
+    }
+
+    public void setYourMonth(String yourMonth) {
+        this.yourMonth = yourMonth;
     }
 }

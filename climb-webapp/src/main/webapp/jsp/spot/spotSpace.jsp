@@ -10,6 +10,6 @@
     <button type="button" class="btn btn-warning">New Spot</button>
 </a>
 <br><br>
-<%@include file="../topo/spotTable.jsp" %>
+<%@include file="spotTable.jsp" %>
 </body>
 </html>

@@ -16,7 +16,7 @@ public class Member {
     private int id;
 
     @NotNull
-    @Size(min = 3, max = 100)
+    @Size(min = 3, max = 20)
     private String login;
 
     @NotNull
@@ -179,5 +179,22 @@ public class Member {
 
     public void setListBookings(List<Booking> listBookings) {
         this.listBookings = listBookings;
+    }
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", login2='" + login2 + '\'' +
+                ", role='" + role + '\'' +
+                ", active=" + active +
+                ", password='" + password + '\'' +
+                ", description='" + description + '\'' +
+                ", datejoin=" + datejoin +
+                ", dateLastConnect=" + dateLastConnect +
+                ", email='" + email + '\'' +
+
+                '}';
     }
 }

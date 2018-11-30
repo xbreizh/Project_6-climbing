@@ -64,14 +64,16 @@
                     <li>
                     <script type="text/javascript">
                         function popupLogin() {
-                            window.open('login','popup','width=250,height=300,top=100,left=100');
+                            window.open('login','popup','width=300,height=300,top=-800,left=800');
                         }
                     </script>
                 <a  style="color: white ; text-decoration: none; text-align: left" href="javascript: popupLogin()"><span class="glyphicon glyphicon-log-out"></span>Connect<span style=" visibility: hidden;">spa</span></a>
                     </li>
                     <li> </li>
             </ul>
+                <script>
 
+                </script>
             </r:else>
         </ul>
     </div>

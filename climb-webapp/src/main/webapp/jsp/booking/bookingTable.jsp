@@ -55,9 +55,7 @@
 
                 </td>
                 <td> <s:date name = "plannedReturnDate" format = "dd/MM/yyyy"/>
-                <td>
-                    <s:date name = "returnDate" format = "dd/MM/yyyy"/>
-                </td>
+
                     <s:if test="#session.user.id == topo.owner.id && returnDate == null">
                 <td style="border: none;">
 
@@ -69,7 +67,12 @@
 
                 </td>
                     </s:if>
+                    <s:else>
+                        <td>
+                            <s:date name = "returnDate" format = "dd/MM/yyyy"/>
+                        </td>
 
+                    </s:else>
             </tr>
         </s:iterator>
         </tbody>
