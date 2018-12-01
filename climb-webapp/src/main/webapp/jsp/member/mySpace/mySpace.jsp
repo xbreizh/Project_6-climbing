@@ -14,7 +14,10 @@
 <div>
     <div id="MyProfile" style="display: block">
         <h2 style="display:inline">My Profile - </h2><h3 style="display:inline"></h3>
-        <s:a class="active" action="member_update">Update</s:a>
+        <s:form action="member_update" method="POST">
+            <s:hidden name="member" value="%{id}"  requiredLabel="true"/>
+            <s:submit class="btn btn-warning" value="Update"/>
+        </s:form>
             <%@include file="../profile.jsp" %>
 
     </div>

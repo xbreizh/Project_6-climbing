@@ -76,6 +76,9 @@
                 <param name="id">${session.user.id}</param>
                 <param name="anchor">MySpots</param>
             </result>
+            <result name="member" type="redirectAction">
+                <param name="actionName">member_list</param>
+            </result>
         </action>
 
         <!-- EDIT -->

@@ -41,9 +41,14 @@
                 </s:a>
                 </td>
                 <td>
+                    <s:form action="member_update" method="POST">
+                        <s:hidden name="member" value="%{id}"  requiredLabel="true"/>
+                        <s:submit class="btn btn-warning" value="Edit"/>
+                    </s:form>
+                </td>
+                <td>
                 <s:a action="member_delete" style="display:block;text-decoration:none;" >
                     <button type="button" class="btn btn-danger">Delete</button>
-                    <s:param name="id" value="id"/>
                 </s:a>
                 </td>
             </tr>
