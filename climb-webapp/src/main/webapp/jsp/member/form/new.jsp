@@ -5,13 +5,13 @@
 <%@include file="../../_include/header.jsp" %>
 
 
-<s:if test="!#session.user">
+<s:if test="!#session.user ">
 
             <h1 class="display-3">New Member</h1>
 
 
 <s:form action="member_new" method="POST">
-        <s:textfield name="member.login" placeholder="Login" requiredLabel="true"/>
+    <s:textfield name="member.login" placeholder="Login" requiredLabel="true"/>
     <s:textfield type="password" name="member.password" placeholder="Password" requiredLabel="true"/>
     <s:textfield type="password" name="passwordCheck" placeholder="Repeat Password" requiredLabel="true"/>
     <s:textfield type="email" name="member.email" placeholder="Email" requiredLabel="true"/>
