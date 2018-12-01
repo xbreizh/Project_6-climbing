@@ -1,6 +1,6 @@
 <h2>Members</h2>
 <s:if test="%{listMember.size()>0}">
-    <table class="table table-bordered table-hover">
+    <table class="table table-hover">
         <thead>
         <tr>
             <th>Id </th>
@@ -40,7 +40,12 @@
                     <s:param name="id" value="id"/>
                 </s:a>
                 </td>
-
+                <td>
+                <s:a action="member_delete" style="display:block;text-decoration:none;" >
+                    <button type="button" class="btn btn-danger">Delete</button>
+                    <s:param name="id" value="id"/>
+                </s:a>
+                </td>
             </tr>
         </s:iterator>
         </tbody>

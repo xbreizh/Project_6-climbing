@@ -30,10 +30,12 @@
                 Route
             </s:a>
             </li>
-            <li><s:a class="active" action="member_list">
-                Members
-            </s:a>
-            </li>
+            <r:if test="#session.user.role=='superadmin'">
+                <li>
+                    <s:a class="active" action="member_list">Members
+                    </s:a>
+                </li>
+            </r:if>
             <r:if test="#session.user">
             <li><s:a class="active" action="bookingList">
                 Booking

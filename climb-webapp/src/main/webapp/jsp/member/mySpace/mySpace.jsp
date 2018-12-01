@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 
 <%@include file="../../_include/header.jsp" %>
 
 
-<s:property value="#session.user.role"/>
+
 <s:if test="#session.user">
     <h1>My Space</h1>
 
@@ -14,12 +13,10 @@
         <%@include file="menuMySpace.jsp" %>
 <div>
     <div id="MyProfile" style="display: block">
-        <h2 style="display:inline">My Profile - </h2><h4 style="display:inline"><s:a href="#" rel="editProfile">Update</s:a>
-        <%@include file="../profile.jsp" %>
-    </div>
-    <div id="editProfile" style="display: none">
-        <%@include file="../form/profileForm.jsp" %>
-        <s:a href="#" rel="MyProfile">Cancel</s:a>
+        <h2 style="display:inline">My Profile - </h2><h3 style="display:inline"></h3>
+        <s:a class="active" action="member_update">Update</s:a>
+            <%@include file="../profile.jsp" %>
+
     </div>
     <div id="MyBookings" style="display: none">
     <h2>My Bookings</h2>
@@ -43,10 +40,15 @@
 
 
 </s:if>
-    <s:else><h2>There is an issue with your session, please log off then reconnect</h2></s:else>
+    <s:else><h2>There is an issue with your session, Get back to the index, then reconnect</h2>
+        <s:a  class="navbar-brand" action="index">
+            <s:text name="home.welcome"/>
+        </s:a>
+
+    </s:else>
 
 </s:if>
-<s:else><h2>You need to connect for accessing this page!</h2></s:else>
+<s:else><%@include file="../../_include/connectButton.jsp" %></s:else>
 
 <script >
     $('a').on('click', function(){
@@ -54,3 +56,4 @@
         $("#"+target).show().siblings("div").hide();
     });
 </script>
+</div>

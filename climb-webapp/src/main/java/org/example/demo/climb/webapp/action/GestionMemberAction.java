@@ -9,6 +9,8 @@ import org.example.demo.climb.model.exception.NotFoundException;
 import javax.inject.Inject;
 import java.util.List;
 
+import static org.apache.commons.lang3.ObjectUtils.allNotNull;
+
 public class GestionMemberAction extends LoginAction {
     private Member member;
     private int id;
@@ -31,10 +33,8 @@ public class GestionMemberAction extends LoginAction {
     private BookingManager bookingManager;
 
 
-    /* Methods */
 
-    /*CREATE*/
-
+    // CREATE
     public String doCreate() {
         String vResult = ActionSupport.INPUT;
 
@@ -45,21 +45,22 @@ public class GestionMemberAction extends LoginAction {
         return vResult;
     }
 
-public String doShowMySpace(){
-    System.out.println("id passed: "+id);
-    try {
-        member = memberManager.getMemberById(id);
-        spotList = member.getSpotList();
-        topoList = member.getTopoListOwned();
-        routeList = member.getRouteList();
-        bookingList = member.getBookingList();
-        bookedList = bookingManager.getBookedListByBooker(member.getId());
-        System.out.println(spotList.size());
-    } catch (NotFoundException e) {
-        return ActionSupport.ERROR;
+
+    public String doShowMySpace(){
+        System.out.println("id passed: "+id);
+        try {
+            member = memberManager.getMemberById(id);
+            spotList = member.getSpotList();
+            topoList = member.getTopoListOwned();
+            routeList = member.getRouteList();
+            bookingList = member.getBookingList();
+            bookedList = bookingManager.getBookedListByBooker(member.getId());
+            System.out.println(spotList.size());
+        } catch (NotFoundException e) {
+            return ActionSupport.ERROR;
+        }
+        return ActionSupport.SUCCESS;
     }
-    return ActionSupport.SUCCESS;
-}
 
 
 
@@ -102,31 +103,48 @@ public String doShowMySpace(){
         String vResult = ActionSupport.INPUT;
         if (this.member != null) {
             System.out.println("member received: "+member);
-            Member m = memberManager.getMemberById(member.getId());
+            /*Member m = memberManager.getMemberById(member.getId());*/
             if(member.getLogin() !=null || password!=null || passwordCheck !=null ||
-                    member.getEmail()!=null || emailCheck!=null || member.getDescription()!=null) {
+                    member.getEmail()!=null ||  member.getDescription()!=null) {
                 if (member.getLogin().equals("") || member.getLogin().length() <3 || member.getLogin().length() >20) {
-                    this.addFieldError("login", "login length should be at least 3 characters");
+                    System.out.println("login length should between 3 and 20 characters");
+                    this.addFieldError("member.login", "login length should be at least 3 characters");
                     return vResult;
-                } else if (password.equals("******") || password.length() < 3 || password.length() > 8) {
-                    this.addFieldError("password", "must be between 3 and 8 characters");
+                }
+                else if (password.length() < 3 || password.length() > 10) {
+                    System.out.println("Password must be between 3 and 10 characters");
+                    this.addFieldError("password", "Password must be between 3 and 8 characters");
                     return vResult;
-                } else if (!member.getPassword().equals(passwordCheck)) {
+                } else if (!password.equals(passwordCheck)) {
+                    System.out.println("password mismatch");
+                    System.out.println("password: "+password + " check: "+passwordCheck);
                     this.addFieldError("password", "password mismatch");
                     return vResult;
-                } else if (!member.getEmail().equals(emailCheck)) {
-                    this.addFieldError("email", "password mismatch");
+                }  else if (member.getEmail().length() == 0) {
+                    System.out.println("No email passed");
+                    this.addFieldError("member.email", "You must type an email");
                     return vResult;
-                }else if (member.getDescription().length() > 255 ) {
-                    this.addFieldError("email", "password mismatch");
+                } else if (member.getDescription().length() > 255 ) {
+                    System.out.println("description max: 255 characters");
+                    this.addFieldError("description", "description max: 255 characters");
                     return vResult;
                 }
 
+            }else{
+                System.out.println("something is missing in the form");
             }
             System.out.println("member before trying to update: "+member);
-            memberManager.updateMember(member);
-            System.out.println("Member: "+member);
-            vResult = ActionSupport.SUCCESS;
+            if (!password.equals("******") ) {
+                System.out.println("pwd unchanged");
+                /*password = member.getPassword();*/
+                member.setPassword(password);
+            }
+                member.setActive(true);
+                memberManager.updateMember(member);
+                updateSessionUser(member.getId()); // refreshing the session values
+                System.out.println("Member: " + member);
+                this.addActionMessage("Profile has been updated");
+                vResult = ActionSupport.SUCCESS;
 
         }
         if (this.hasErrors()) {
@@ -149,28 +167,7 @@ public String doShowMySpace(){
 
     }
 
-    /*RESET*/
-    public String doReset(){
-        String vResult = ActionSupport.INPUT;
-/*        if(login !=null || password!=null || passwordCheck !=null) {
-            if (login.equals("")) {
-                this.addFieldError("login", "you must provide a login");
-                return vResult;
-            } else if (this.password.length() < 3 || this.password.length() > 8) {
-                this.addFieldError("password", "must be between 3 and 8 characters");
-                return vResult;
-            } else if (!this.password.equals(passwordCheck)) {
-                this.addFieldError("password", "password mismatch");
-                return vResult;
-            }
-            if (memberManager.updatePassword(login, email, password)) {
-                return vResult = ActionSupport.SUCCESS;
-            } else {
-                this.addFieldError("login", "Login or Email incorrect");
-            }
-        }*/
-        return vResult;
-    }
+
 
     private String validDoCreate(String vResult) {
 
@@ -179,8 +176,10 @@ public String doShowMySpace(){
             boolean exist= memberManager.exists(this.member.getLogin());
             if (this.member.getLogin().equals("")) {
                 this.addFieldError("member.login", "is empty");
+            }else if (this.member.getLogin().length() < 3 || this.member.getLogin().length() > 10) {
+                this.addFieldError("member.login", "Login must be between 3and 10 characters");
             }
-            if(exist){
+            else if(exist){
                 System.out.println("Login1: "+member.getLogin()+ "exists: "+exist);
                 this.addFieldError("member.login", "Login already exists! Pick another one!");
             }
@@ -189,6 +188,9 @@ public String doShowMySpace(){
             }
             else if(!this.member.getPassword().equals(passwordCheck)){
                 this.addFieldError("member.password", "password mismatch");
+            }
+            else if(!this.member.getEmail().equals("")){
+                this.addFieldError("member.email", "You must type an email");
             }
             else if(!this.member.getEmail().equals(emailCheck)){
                 this.addFieldError("member.email", "email mismatch");

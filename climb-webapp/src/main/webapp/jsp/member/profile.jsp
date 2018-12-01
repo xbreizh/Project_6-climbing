@@ -1,7 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 
-<table class="table table-editable table-bordered table-hover">
+<table class="table  table-hover">
     <thead>
     <tr>
         <td>Login</td>

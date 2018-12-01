@@ -1,9 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 
-<%@include file="../_include/header.jsp" %>
-
-<s:if test="#session.user">
+<s:if test="#session.user.role =='superadmin'">
 <a href="member_new.action">
     <button type="button" class="btn btn-warning">New Member</button>
 </a>
@@ -12,6 +10,8 @@
 
 </s:if>
 <s:else>
-You must connect to access the page<br><br>
-    <%@include file="../_include/connectButton.jsp" %>
+
+    <img alt="Access forbidden!" style=" max-width: 50%; height: auto;" src=" https://previews.123rf.com/images/corund/corund1511/corund151100022/48297160-access-denied-sign-clipping-path-included.jpg">
+
 </s:else>
+</div>

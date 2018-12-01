@@ -27,3 +27,4 @@
 Connect to add a spot<br><br>
     <%@include file="../../_include/connectButton.jsp" %>
 </s:else>
+</div>

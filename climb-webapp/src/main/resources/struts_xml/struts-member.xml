@@ -14,10 +14,10 @@
         <action name="member_new"
                 class="org.example.demo.climb.webapp.action.GestionMemberAction"
                 method="doCreate">
-            <!--<interceptor-ref name="store">
+            <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
-            <interceptor-ref name="defaultStack"/>-->
+            <interceptor-ref name="defaultStack"/>
             <result name="input">/jsp/member/form/new.jsp</result>
             <result name="success" type="redirectAction">
                 <param name="actionName">index</param>
@@ -32,7 +32,7 @@
 
         </action>
 
-        <!-- CREATE-->
+        <!-- MY SPACE -->
         <action name="mySpace"
                 class="org.example.demo.climb.webapp.action.GestionMemberAction"
                 method="doShowMySpace">
@@ -53,7 +53,7 @@
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
 
-            <result name="success">../../webapp/jsp/__toDelete/detail.jsp</result>
+            <result name="success">jsp/member/memberDetail.jsp</result>
         </action>
 
 
@@ -65,15 +65,16 @@
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
-            <result name="input" type="redirectAction">
+            <!--<result name="input" type="redirectAction">
                 <param name="actionName">mySpace</param>
                 <param name="id">${session.user.id}</param>
-                <param name="anchor">editProfile#edit</param>
-            </result>
+                <param name="anchor">MyBookings</param>
+            </result>-->
+            <result name="input">jsp/member/form/profileForm.jsp</result>
             <result name="success" type="redirectAction">
                 <param name="actionName">mySpace</param>
                 <param name="id">${session.user.id}</param>
-                <param name="anchor">MyProfile</param>
+                <param name="anchor">MySpots</param>
             </result>
         </action>
 
@@ -85,7 +86,7 @@
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
-            <result name="success">/jsp/member/form/update.jsp</result>
+            <result name="success">/jsp/member/memberDetail.jsp</result>
         </action>
 
 
@@ -103,17 +104,7 @@
             </result>
         </action>
 
-        <!--PASSWORD RESET-->
-        <action name="pwd_reset"
-                class="org.example.demo.climb.webapp.action.GestionMemberAction"
-                method="doReset">
-            <interceptor-ref name="store">
-                <param name="operationMode">RETRIEVE</param>
-            </interceptor-ref>
-            <interceptor-ref name="defaultStack"/>
-            <result name="input">/jsp/member/form/password_reset.jsp</result>
-            <result name="success">/jsp/member/resetOk.jsp</result>
-        </action>
+
 
     </package>
   <!--  <include file="struts_xml/struts-default2.xml"/>-->

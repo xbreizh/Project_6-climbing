@@ -58,7 +58,7 @@
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
-            <result name="success">/jsp/spot/form/update.jsp</result>
+            <result name="success">/jsp/spot/form/memberDetail.jsp</result>
         </action>
 
 

@@ -5,6 +5,7 @@
 <%@include file="../../_include/header.jsp" %>
 
 
+<s:if test="!#session.user">
 
             <h1 class="display-3">New Member</h1>
 
@@ -19,4 +20,10 @@
     <s:submit class="btn btn-success" value="Create"/>
 
 </s:form>
+</s:if>
+<s:else>
+
+    <img alt="Access forbidden!"style=" max-width: 50%; height: auto;" src=" https://previews.123rf.com/images/corund/corund1511/corund151100022/48297160-access-denied-sign-clipping-path-included.jpg">
+
+</s:else>
 <%@include file="../../_include/footer.jsp" %>
