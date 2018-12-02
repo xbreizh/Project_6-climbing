@@ -29,5 +29,11 @@
                 <s:param name="id" value="id"/>
             </s:a>
         </th>
+       <%-- <th>
+            <s:a href="#" rel="MyComments">
+                <button type="button" class="btn btn-info">My Routes</button>
+                <s:param name="id" value="id"/>
+            </s:a>
+        </th>--%>
     </tr>
 </table>

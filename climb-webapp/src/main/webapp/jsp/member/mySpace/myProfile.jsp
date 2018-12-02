@@ -22,6 +22,10 @@
     </tbody>
 </table>
 
+<br><br>
+
+
+<%@include file="myStats_table.jsp" %>
 
 
 
