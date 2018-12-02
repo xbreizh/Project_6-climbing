@@ -14,6 +14,7 @@
         <%@include file="menuMySpace.jsp" %>
 
     <br><br>
+
 <div>
     <div id="MyProfile" style="display: block">
         <h2 style="display:inline">My Profile - </h2><h3 style="display:inline"></h3>
@@ -22,7 +23,6 @@
             <s:submit class="btn btn-warning" value="Update"/>
         </s:form>
             <%@include file="myProfile.jsp" %>
-
     </div>
 
     <div id="MyBookings" style="display: none">

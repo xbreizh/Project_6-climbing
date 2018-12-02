@@ -11,6 +11,11 @@
         </s:a>
     </li>
     <li>
+        <s:a class="active" action="bookingList">
+            Booking
+        </s:a>
+    </li>
+    <li>
         <s:a class="active" action="member_list">Members
         </s:a>
     </li>

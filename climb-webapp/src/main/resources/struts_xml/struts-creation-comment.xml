@@ -48,7 +48,7 @@
         </action>
 
 
-        <!--READ ONE -->
+       <!-- &lt;!&ndash;READ ONE &ndash;&gt;
         <action name="spot_detail"
                 class="org.example.demo.climb.webapp.action.CreationSpotAction"
                 method="doDetail">
@@ -56,20 +56,20 @@
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
-            <result name="success">jsp/spot/detail.jsp</result>
-        </action>
+            <result name="success">/jsp/spot/detail/spotDetail.jsp</result>
+        </action>-->
 
-        <action name="spot_edit"
+     <!--   <action name="spot_edit"
                 class="org.example.demo.climb.webapp.action.CreationSpotAction"
                 method="doEdit">
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
-            <result name="success">/jsp/spot/form/update.jsp</result>
+            <result name="success">/jsp/spot/form/spot_update.jsp</result>
         </action>
 
-        <!-- UPDATE -->
+        &lt;!&ndash; UPDATE &ndash;&gt;
         <action name="spot_update"
                 class="org.example.demo.climb.webapp.action.CreationSpotAction"
                 method="doUpdate">
@@ -77,14 +77,14 @@
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
-            <result name="input">/jsp/spot/form/update.jsp</result>
+            <result name="input">/jsp/spot/form/spot_update.jsp</result>
             <result name="success" type="redirectAction">
                 <param name="actionName">spot_list</param>
             </result>
-        </action>
+        </action>-->
 
         <!-- DELETE -->
-        <action name="comment_delete"
+        <action name="spot_comment_delete"
                 class="org.example.demo.climb.webapp.action.CreationCommentAction"
                 method="doDelete">
             <interceptor-ref name="store">
@@ -94,7 +94,36 @@
             <result name="success" type="redirectAction">
                 <param name="actionName">spot_detail</param>
                 <param name="id">${spot.id}</param>
-                <param name="anchor">comments</param>
+                <param name="anchor">Comments</param>
+            </result>
+        </action>
+
+        <!-- DELETE -->
+        <action name="route_comment_delete"
+                class="org.example.demo.climb.webapp.action.CreationCommentAction"
+                method="doDelete">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="redirectAction">
+                <param name="actionName">route_detail</param>
+                <param name="id">${route.id}</param>
+                <param name="anchor">Comments</param>
+            </result>
+        </action>
+        <!-- DELETE -->
+        <action name="topo_comment_delete"
+                class="org.example.demo.climb.webapp.action.CreationCommentAction"
+                method="doDelete">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="redirectAction">
+                <param name="actionName">topo_detail</param>
+                <param name="id">${topo.id}</param>
+                <param name="anchor">Comments</param>
             </result>
         </action>
     </package>

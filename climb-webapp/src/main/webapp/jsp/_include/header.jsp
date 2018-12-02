@@ -7,5 +7,7 @@
 
     <%@include file="navbar.jsp"%>
 
+    <s:if test="session.user.role == 'superadmin'">
         <s:actionerror/>
-<s:actionmessage/>
+        <s:actionmessage/>
+    </s:if>

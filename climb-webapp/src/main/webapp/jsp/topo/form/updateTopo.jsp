@@ -19,10 +19,10 @@
         <s:textarea label="Description" name="topo.description" placeholder="Description" requiredLabel="true"/>
         <s:textarea name="topo.keywords" placeholder="Keywords(add here the spotname to link with the main map)"
                     requiredLabel="true"/>
-        <s:textarea name="topo.owner.id"  placeholder="owner" requiredLabel="true" />
+        <s:hidden name="topo.owner.id"  placeholder="owner" requiredLabel="true" />
         <s:textarea  name="topo.available" placeholder="available" />
-        <s:textarea  name="topo.id" placeholder="topo id" />
-        <s:textfield name="submit" placeholder="submit" value="true"/>
+        <s:hidden  name="topo.id" placeholder="topo id" />
+        <s:hidden name="submit" placeholder="submit" value="true"/>
         <s:submit value="OK"/>
     </s:form>
 </s:if>

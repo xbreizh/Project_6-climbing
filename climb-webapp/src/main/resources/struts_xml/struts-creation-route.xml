@@ -40,7 +40,7 @@
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
 
-            <result name="success">jsp/spot/detail.jsp</result>
+            <result name="success">/jsp/route/routeDetail.jsp</result>
         </action>
 
         <!--EDIT-->
@@ -51,7 +51,7 @@
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
-            <result name="success">/jsp/spot/form/update.jsp</result>
+            <result name="success">/jsp/spot/form/spot_update.jsp</result>
         </action>
 
 
@@ -63,7 +63,7 @@
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
-            <result name="input">/jsp/spot/form/update.jsp</result>
+            <result name="input">/jsp/spot/form/spot_update.jsp</result>
             <result name="success" type="redirectAction">
                 <param name="actionName">spot_list</param>
             </result>

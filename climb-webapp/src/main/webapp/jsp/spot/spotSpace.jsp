@@ -5,10 +5,12 @@
 <%@include file="../_include/header.jsp" %>
 
 <body>
+<h2>Spot</h2>
+    <s:a action="createSpot">
+        <button type="button" class="btn btn-info">New Spot</button>
+    </s:a>
 
-<a href="createSpot.action">
-    <button type="button" class="btn btn-warning">New Spot</button>
-</a>
+
 <br><br>
 <%@include file="spotTable.jsp" %>
 </body>

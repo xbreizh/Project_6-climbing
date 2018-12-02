@@ -4,11 +4,16 @@
 
 <%@include file="../../_include/header.jsp" %>
 
-
-<h1>New Spot for <s:property value="%{c.continent}"/></h1>
-<br><br>
 <s:if test="#session.user">
 
+    <h1>New Spot</h1>
+    <p><div class="definition">
+After creating a Spot, you must provide some routes to complete the information.<br>
+Only the spots having at least a route will appear on the main map.
+    </div></p>
+    <br><br>
+    <a href="https://www.gps-coordinates.net/" class="btn btn-default" target="_blank">Get coordinates</a>
+    <br><br>
 <s:form action="createSpot" method="POST">
     <s:select list="%{countryList}" name="spot.country.id" listKey="key" headerKey="-1" headerValue="-- Country --" />
     <s:textfield name="spot.city" requiredLabel="true" placeholder="Type City Name"/>
@@ -17,7 +22,7 @@
     <s:hidden name="spot.memberSpot.id" value="%{session.user.id}" label="Member:"/>
     <s:textfield name="spot.name" placeholder="Type Spot Name" requiredLabel="true"/>
     <s:textarea name="spot.latitude" placeholder="Latitude" />
-    <s:textarea name="spot.longitude" placeholder="Longitude" /><a href="https://www.gps-coordinates.net/" target="_blank">Get coordinates</a>
+    <s:textarea name="spot.longitude" placeholder="Longitude" />
     <s:textarea name="spot.description" placeholder="Type Spot Description" requiredLabel="true"/>
     <s:submit class="btn btn-success" value="Create"/>
 </s:form>

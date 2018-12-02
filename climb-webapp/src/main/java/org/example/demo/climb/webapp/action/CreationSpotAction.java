@@ -27,8 +27,7 @@ import java.util.List;
 
 public class CreationSpotAction extends LoginAction implements SessionAware {
 
-    /*private List<String> continentList=new ArrayList<>();*/
-   /* private List<String> countryList=new ArrayList<>();*/
+
     private List<String> cityList=new ArrayList<>();
     private List<Spot> spotList = new ArrayList<>();
     private List<Route> routeList = new ArrayList<>();
@@ -58,6 +57,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     private HashMap<Integer, String> countryList= new HashMap<>();
     private int levelMin;
     private int levelMax;
+    private boolean submit =false;
 
     @Inject
     private CountryManager countryManager;
@@ -68,16 +68,27 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
 
     // METHODS
 
+    /*CREATE*/
+    public String doCreateSpot() throws NotFoundException {
+        String vResult= ActionSupport.INPUT;
+        initCountryList();
+        System.out.println("spot country id: "+spot);
+        for(ClimbingType ct: ClimbingType.values()){
+            climbingList.add(ct.getName());
+        }
+        if(spot!=null) {
+            if (checkSpotForm(spot)){
+                spotManager.addSpot(spot);
+                vResult = ActionSupport.SUCCESS;
+            }
+        }
+        return vResult;
+    }
+
+
+
     public String doIndex() throws NotFoundException {
         initClimbingTypeList();
-       /* try {
-            System.out.println(System.getProperty("user.dir"));
-            Icon green = new ImageIcon(ImageIO.read( CreationSpotAction.class.getResourceAsStream( "climb-webapp/src/main/webapp/img/green_pin.jpg" ) ) );
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }*/
-
-
         initLevelList();
 
         String vResult= ActionSupport.SUCCESS;
@@ -146,22 +157,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     }
 
 
-    /*CREATE*/
-    public String doCreateSpot() throws NotFoundException {
-        String vResult= ActionSupport.INPUT;
-        initCountryList();
-        System.out.println("spot country id: "+spot);
-        for(ClimbingType ct: ClimbingType.values()){
-            climbingList.add(ct.getName());
-        }
-        if(spot!=null) {
-            if (checkSpotForm(spot)){
-                spotManager.addSpot(spot);
-                vResult = ActionSupport.SUCCESS;
-            }
-        }
-        return vResult;
-    }
+
 
     //Check submitted form
     public boolean checkSpotForm(Spot spot){
@@ -224,7 +220,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
             i++;
         }
         // check description
-        if (spot.getDescription()== null || spot.getDescription().length() < 5 || spot.getDescription().length() > 250) {
+        if (spot.getDescription()== null || spot.getDescription().length() < 3 || spot.getDescription().length() > 50) {
             this.addFieldError("spot.description", "Description should have 3-50 characters");
             i++;
         }
@@ -251,42 +247,6 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     }
 
 
-
-    /*READ ALL CONTINENTS*/
-    /*public String doListContinent() throws NotFoundException {
-        String vResult= ActionSupport.SUCCESS;
-
-        continentList=countryManager.getListContinent();
-        return vResult;
-    }*/
-
-    /*READ ALL COUNTRIES*/
-   /* public String doListCountry() throws NotFoundException {
-        String vResult= ActionSupport.SUCCESS;
-        System.out.println("checking country");
-        System.out.println("id: "+id);
-        if(id!=0){
-            continent = countryManager.getCountry(id).getContinent();
-        }
-        System.out.println("continent: "+continent);
-        countryList = countryManager.getListCountry();
-        return vResult;
-    }*/
-
-    /*READ ALL CITIES*/
-    /*public String doListCity() throws NotFoundException {
-        String vResult= ActionSupport.SUCCESS;
-        if(id!=0) {
-            System.out.println("c is null!");
-            c=countryManager.getCountry(id);
-        }else {
-            c = countryManager.getCountry(country);
-            *//*System.out.println("setting up c: " + c.getName());*//*
-        }
-        cityList = spotManager.getListCityByCountry(c);
-        return vResult;
-    }*/
-
     /*READ ONE*/
     public String doDetail() throws NotFoundException {
         String vResult = ActionSupport.SUCCESS;
@@ -302,11 +262,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         return vResult;
     }
 
-   /* public String doTest(){
-        System.out.println("test ok");
-        return ActionSupport.SUCCESS;
-    }
-*/
+
     /*EDIT*/
     public String doEdit() {
         String vResult = ActionSupport.SUCCESS;
@@ -325,47 +281,49 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     /*UPDATE*/
     public String doUpdate() {
         String vResult = ActionSupport.INPUT;
-
-        if (spot != null) {
-            System.out.println("id de spot: "+spot.getId());
-            System.out.println("latitude: "+spot.getLatitude());
-            System.out.println("latitude: "+spot.getLongitude());
-            spotManager.updateSpot(spot);
-            vResult = ActionSupport.SUCCESS;
-            System.out.println("Spot: " + spot);
-
-        }else{
-            System.out.println("spot is null");
+        initCountryList();
+        for(ClimbingType ct: ClimbingType.values()){
+            climbingList.add(ct.getName());
         }
-        if (this.hasErrors()) {
-            System.out.println("Spot is null");
-            vResult = ActionSupport.ERROR;
+        System.out.println("from action spot");
+        if(submit) {
+            if (spot != null) {
+                if(checkSpotForm(spot)) {
+                    spotManager.updateSpot(spot);
+                    vResult = ActionSupport.SUCCESS;
+                }
+
+            } else {
+                System.out.println("spot is null");
+            }
+            /*if (this.hasErrors()) {
+                System.out.println("Spot is null");
+                vResult = ActionSupport.ERROR;
+            }*/
         }
         return vResult;
+
     }
 
     /*DELETE*/
     public String doDelete() {
-        System.out.println("ici");
         String vResult = ActionSupport.SUCCESS;
-        System.out.println(this.hasActionErrors());
-        System.out.println("delete id: " + id);
+        System.out.println("received: "+spot);
 
-        System.out.println("trying des trucs");
-        spotManager.deleteSpot(id);
-
-        if (this.hasErrors()) {
-            vResult = ActionSupport.ERROR;
+        if(spot !=null) {
+            System.out.println("received: "+spot);
+            spotManager.deleteSpot(spot);
+        }else{
+            this.addActionError("Issue while trying to delete, no Id found");
         }
+        /*if (this.hasErrors()) {
+            vResult = ActionSupport.ERROR;
+        }*/
         return vResult;
 
     }
 
-   /* public String doTestHtml(){
-        String vResult = ActionSupport.SUCCESS;
-        *//*String name="Roger";*//*
-        return vResult;
-    }*/
+
     // Getters and Setters
 
     public int getLevelMin() {
@@ -532,5 +490,13 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public boolean isSubmit() {
+        return submit;
+    }
+
+    public void setSubmit(boolean submit) {
+        this.submit = submit;
     }
 }

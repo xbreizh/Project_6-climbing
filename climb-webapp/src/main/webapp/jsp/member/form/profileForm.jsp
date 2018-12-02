@@ -10,16 +10,16 @@ Login: <s:property value="%{member.login}"/><br>
 Role: <s:property value="%{member.role}"/><br><br>
 
     <s:form action="member_update" method="POST">
-    <s:hidden name="member.id" value="%{member.id}"  requiredLabel="true"/>
-    <s:hidden name="member.login" value="%{member.login}" />
-    <s:textfield type="password" name="password" placeholder="Password"  value="******" requiredLabel="true"/>
-    <s:textfield type="password" name="passwordCheck" placeholder="Repeat Password" value="******"  requiredLabel="true"/>
-    <s:textfield type="email" name="member.email" value="%{member.email}"  placeholder="Email" requiredLabel="true"/>
-    <s:textarea name="member.description" value="%{member.description}" placeholder="Description" requiredLabel="true"/>
-    <s:hidden  name="submit" value="true"  placeholder="Email" requiredLabel="true"/>
-    <s:hidden  name="idSession" value="%{session.user.id}"  placeholder="Session id" requiredLabel="true"/>
-    <s:submit class="btn btn-success" value="Update Profile"/>
-</s:form>
+        <s:hidden name="member.id" value="%{member.id}"  requiredLabel="true"/>
+        <s:hidden name="member.login" value="%{member.login}" />
+        <s:textfield type="password" name="password" placeholder="Password" label="Password" value="******" requiredLabel="true"/>
+        <s:textfield type="password" name="passwordCheck" placeholder="Repeat Password" value="******"  requiredLabel="true"/>
+        <s:textfield type="email" name="member.email" value="%{member.email}"  placeholder="Email" requiredLabel="true"/>
+        <s:textarea name="member.description" value="%{member.description}" placeholder="Description" requiredLabel="true"/>
+        <s:hidden  name="submit" value="true"   requiredLabel="true"/>
+        <s:hidden  name="idSession" value="%{session.user.id}"  placeholder="Session id" requiredLabel="true"/>
+        <s:submit class="btn btn-success" value="Update Profile"/>
+    </s:form>
 
 
 </s:if>

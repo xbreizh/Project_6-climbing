@@ -112,6 +112,7 @@ public class SpotManagerImpl  implements SpotManager {
     // Update
     @Override
     public void updateSpot(Spot spot) {
+        System.out.println("spot received: "+spot);
      /*   int id = spot.getId();
         System.out.println(spot.getName());
         System.out.println(spot.getCity());
@@ -144,7 +145,12 @@ public class SpotManagerImpl  implements SpotManager {
         }
         s.setTopos(spot.getTopos());
         System.out.println(s.getTopos().get(0));*/
-        spotDao.update(spot);
+     try{spotDao.update(spot);}
+     catch(NullPointerException e){
+         System.out.println("spot couldn t be found: "+spot.getName());
+     }
+
+
     }
 
     @Override
@@ -156,10 +162,12 @@ public class SpotManagerImpl  implements SpotManager {
     // Delete
 
     @Override
-    public void deleteSpot(int id) {
-        System.out.println("trying to delete spot: "+id);
-        Spot m= (Spot) spotDao.getById(id);
-        spotDao.delete(m);
+    public void deleteSpot(Spot spot) {
+        try{
+            spotDao.delete(spot);}
+        catch(NullPointerException e){
+            System.out.println("spot couldn t be deleted: ");
+        }
     }
     public static String toCamelCase(final String init) {
         if (init==null)

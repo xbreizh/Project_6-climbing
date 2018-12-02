@@ -106,22 +106,7 @@
             </result>
         </action>
 
-        <!-- UPDATE -->
-        <action name="spot_update"
-                class="org.example.demo.climb.webapp.action.CreationTopoAction"
-                method="doUpdateTopo">
-            <interceptor-ref name="store">
-                <param name="operationMode">RETRIEVE</param>
-            </interceptor-ref>
-            <interceptor-ref name="defaultStack"/>
-            <result name="input" type="redirect">
-                <param name="location">/jsp/topo/form/updateTopo.jsp</param>
-                <param name="id">${topo.id}</param>
-            </result>
-            <result name="success" type="redirectAction">
-                <param name="actionName">spot_list</param>
-            </result>
-        </action>
+
 <!--
         &lt;!&ndash; EDIT &ndash;&gt;
         <action name="topo_edit"

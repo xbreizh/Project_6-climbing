@@ -1,4 +1,4 @@
-<%--<h2>Spot</h2>--%>
+
 <s:if test="%{spotList.size()>0}">
     <table class="table  table-hover" >
         <thead>
@@ -49,8 +49,22 @@
                             <s:property value="memberSpot.login"/>
                         </s:a>
                     </s:else>
-
                 </td>
+                <s:if test="session.user.role == 'superadmin' || session.user.id == spot.memberSpot.id">
+                    <td>
+                        <s:form action="spot_update" method="POST">
+                            <s:textfield name="spot" value="%{id}"  requiredLabel="true"/>
+                            <s:submit class="btn btn-warning" value="Edit"/>
+                        </s:form>
+                    </td>
+                    <td>
+                        <s:form action="spot_delete" method="POST">
+                            <s:textfield name="spot" value="%{id}"  requiredLabel="true"/>
+                            <s:submit class="btn btn-danger" value="Delete"/>
+                        </s:form>
+
+                    </td>
+                </s:if>
             </tr>
         </s:iterator>
         </tbody>

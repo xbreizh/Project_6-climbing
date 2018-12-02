@@ -18,7 +18,7 @@
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
-            <result name="input">/jsp/member/form/new.jsp</result>
+            <result name="input">/jsp/member/form/member_new.jsp</result>
             <result name="success" type="redirectAction">
                 <param name="actionName">index</param>
             </result>
@@ -40,7 +40,6 @@
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
-            <result name="input">/jsp/member/mySpace/mySpace.jsp</result>
             <result name="success">/jsp/member/mySpace/mySpace.jsp</result>
             <result name="error">/jsp/error.jsp</result>
         </action>
@@ -65,11 +64,6 @@
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
-            <!--<result name="input" type="redirectAction">
-                <param name="actionName">mySpace</param>
-                <param name="id">${session.user.id}</param>
-                <param name="anchor">MyBookings</param>
-            </result>-->
             <result name="input">jsp/member/form/profileForm.jsp</result>
             <result name="success" type="redirectAction">
                 <param name="actionName">mySpace</param>

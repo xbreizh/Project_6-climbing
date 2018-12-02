@@ -37,7 +37,7 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
     private List<Spot> spotList=new ArrayList<>();
     private List<Booking> bookingList = new ArrayList<>();
     private String yourMonth;
-    Booking booking;
+    private Booking booking;
 
 
 

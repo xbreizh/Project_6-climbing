@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-lg-1"></div>
     <div class="col-lg-10">
-<%@include file="spot/map_index.jsp" %>
+<%@include file="map/map_index.jsp" %>
     </div>
     <div class="col-lg-1"></div>
 </div>

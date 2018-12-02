@@ -120,12 +120,12 @@ public class SpotDaoImpl implements SpotDao {
    /* @Override*/
     public void update(Spot spot) {
         System.out.println("trying to update: "+spot.getName());
-        System.out.println("list: "+spot.getTopos().size());
         sessionFactory.getCurrentSession().update(spot);
     }
 
     /*@Override*/
     public void delete(Spot spot) {
+        System.out.println("spot received in dao: "+spot);
         // removing object from memberSpotList
       /*  o.getMemberSpot().getSpotList().remove(o);
         System.out.println("remove routes");

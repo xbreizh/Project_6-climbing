@@ -200,7 +200,7 @@ public class GestionMemberAction extends LoginAction {
             else if(!this.member.getPassword().equals(passwordCheck)){
                 this.addFieldError("member.password", "password mismatch");
             }
-            else if(!this.member.getEmail().equals("")){
+            else if(this.member.getEmail().equals("")){
                 this.addFieldError("member.email", "You must type an email");
             }
             else if(!this.member.getEmail().equals(emailCheck)){

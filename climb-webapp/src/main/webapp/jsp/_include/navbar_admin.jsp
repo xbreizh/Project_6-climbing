@@ -10,11 +10,6 @@
             Topos
         </s:a>
     </li>
-    <li>
-        <s:a class="active" action="bookingList">
-            Booking
-        </s:a>
-    </li>
     <r:if test="#session.user.role=='superadmin'">
         <%@include file="navbar_superAdmin.jsp"%>
     </r:if>

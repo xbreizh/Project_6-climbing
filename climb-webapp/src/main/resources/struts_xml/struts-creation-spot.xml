@@ -51,8 +51,7 @@
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
-
-            <result name="success">jsp/spot/detail.jsp</result>
+            <result name="success">/jsp/spot/detail/spotDetail.jsp</result>
         </action>
 
 
@@ -71,9 +70,8 @@
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
-            <result name="success">/jsp/spot/form/update.jsp</result>
+            <result name="success">/jsp/spot/form/spot_update.jsp</result>
         </action>
-
         <!-- UPDATE -->
         <action name="spot_update"
                 class="org.example.demo.climb.webapp.action.CreationSpotAction"
@@ -82,11 +80,24 @@
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
-            <result name="input">/jsp/spot/form/update.jsp</result>
+            <result name="input">/jsp/spot/form/spot_update.jsp</result>
             <result name="success" type="redirectAction">
                 <param name="actionName">spot_list</param>
             </result>
         </action>
+        <!--&lt;!&ndash; UPDATE &ndash;&gt;
+        <action name="spot_update"
+                class="org.example.demo.climb.webapp.action.CreationSpotAction"
+                method="doUpdate">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+            <result name="input">/jsp/spot/form/spot_update.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">spot_list</param>
+            </result>
+        </action>-->
 
         <!-- DELETE -->
         <action name="spot_delete"

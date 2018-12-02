@@ -44,7 +44,7 @@
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
 
-            <result name="success">../../../webapp/jsp/spot/detail.jsp</result>
+            <result name="success">../../../webapp/jsp/spot/routeDetail.jsp</result>
         </action>
 
 
