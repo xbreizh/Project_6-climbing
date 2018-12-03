@@ -18,6 +18,13 @@
             </result>
         </action>
 
+        <action name="contactAdmin"
+                class="org.example.demo.climb.webapp.action.CreationCommentAction"
+                method="doContactAdmin">
+            <result name="input">/jsp/comment/newMessage.jsp</result>
+            <result name="success">/jsp/comment/messageSentOk.jsp</result>
+        </action>
+
         <action name="createCommentSpot"
                 class="org.example.demo.climb.webapp.action.CreationCommentAction"
                 method="doCreateCommentSpot">

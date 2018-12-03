@@ -113,38 +113,6 @@ public class SpotManagerImpl  implements SpotManager {
     @Override
     public void updateSpot(Spot spot) {
         System.out.println("spot received: "+spot);
-     /*   int id = spot.getId();
-        System.out.println(spot.getName());
-        System.out.println(spot.getCity());
-        System.out.println(spot.getId());
-        System.out.println("got spot from dao ok");
-        Spot s = (Spot) spotDao.getById(id);
-        if(!(spot.getName().equals(""))){
-            s.setName(spot.getName());
-            System.out.println("updated name");
-        }
-        if(!spot.getCity().equals("")){
-            s.setCity(spot.getCity());
-            System.out.println("updated city");
-        }
-        if(!spot.getDescription().equals("")){
-            s.setDescription(spot.getDescription());
-            System.out.println("updated description");
-        }
-        if(!spot.getDescription().equals("")){
-            s.setDescription(spot.getDescription());
-            System.out.println("updated description");
-        }
-        if(spot.getLatitude()!=0){
-            s.setLatitude(spot.getLatitude());
-            System.out.println("updated latitude");
-        }
-        if(spot.getLongitude()!=0){
-            s.setLongitude(spot.getLongitude());
-            System.out.println("updated longitude");
-        }
-        s.setTopos(spot.getTopos());
-        System.out.println(s.getTopos().get(0));*/
      try{spotDao.update(spot);}
      catch(NullPointerException e){
          System.out.println("spot couldn t be found: "+spot.getName());

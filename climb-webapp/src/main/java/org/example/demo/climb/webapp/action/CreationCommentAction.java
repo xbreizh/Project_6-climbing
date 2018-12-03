@@ -141,6 +141,14 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
         return ActionSupport.SUCCESS;
     }
 
+    public String doContactAdmin(){
+        String vResult = ActionSupport.INPUT;
+        if(1==1){
+            vResult = ActionSupport.SUCCESS;
+        }
+        return vResult;
+    }
+
 
     /***********************************************************************/
     /************************ GETTERS - SETTERS ***************************/

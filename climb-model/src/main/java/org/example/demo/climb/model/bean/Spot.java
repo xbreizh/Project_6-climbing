@@ -50,9 +50,6 @@ import java.util.List;
     private Member memberSpot;
 
     @ManyToMany( fetch=FetchType.EAGER, cascade={CascadeType.REMOVE} )
-   /* @JoinTable(name = "spot_topo",
-            joinColumns = { @JoinColumn(name = "topo_id") },
-            inverseJoinColumns = { @JoinColumn(name = "spot_id") })*/
     private List<Topo> topos;
 
     @OneToMany(mappedBy = "spot", fetch=FetchType.EAGER, cascade=CascadeType.REMOVE )

@@ -47,9 +47,18 @@
                     </s:form>
                 </td>
                 <td>
-                <s:a action="member_delete" style="display:block;text-decoration:none;" >
-                    <button type="button" class="btn btn-danger">Delete</button>
-                </s:a>
+                    <s:if test="active == true">
+                        <s:a action="member_disable" style="display:block;text-decoration:none;" >
+                            <button type="button" class="btn btn-danger">Disable</button>
+                            <s:param name="id" value="id"/>
+                        </s:a>
+                    </s:if>
+                    <s:else>
+                        <s:a action="member_enable" style="display:block;text-decoration:none;" >
+                            <button type="button" class="btn btn-success">Enable</button>
+                            <s:param name="id" value="id"/>
+                        </s:a>
+                    </s:else>
                 </td>
             </tr>
         </s:iterator>

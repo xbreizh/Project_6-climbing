@@ -101,6 +101,33 @@
             </result>
         </action>
 
+        <!-- DELETE -->
+        <action name="member_disable"
+                class="org.example.demo.climb.webapp.action.GestionMemberAction"
+                method="doDisable">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+
+            <result name="success" type="redirectAction">
+                <param name="actionName">member_list</param>
+            </result>
+        </action>
+
+        <!-- DELETE -->
+        <action name="member_enable"
+                class="org.example.demo.climb.webapp.action.GestionMemberAction"
+                method="doEnable">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+
+            <result name="success" type="redirectAction">
+                <param name="actionName">member_list</param>
+            </result>
+        </action>
 
 
     </package>

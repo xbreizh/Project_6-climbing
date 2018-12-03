@@ -15,9 +15,9 @@
     <s:select list="%{gradeList}"  name="route.grade"  listKey="key" placeholder="Grade" requiredLabel="true"
               headerKey="-1" headerValue="-- Grade --"/>
     <s:textarea type="text" name="route.description" placeholder="Description" requiredLabel="true"/>
-    <s:hidden name="route.memberRoute.id" placeholder="Member" value="%{session.user.id}" requiredLabel="true" />
-    <s:hidden name="route.spot.id" value="%{spot.id}" placeholder="Spot" requiredLabel="true" />
-    <s:hidden name="id" value="%{id}" />
+    <s:textfield name="route.memberRoute.id" placeholder="Member" value="%{session.user.id}" requiredLabel="true" />
+    <s:textfield name="route.spot.id" value="%{spot.id}" placeholder="Spot" requiredLabel="true" />
+    <s:textfield name="id" value="%{id}" />
     <s:submit value="OK"/>
 </s:form>
 </s:if>

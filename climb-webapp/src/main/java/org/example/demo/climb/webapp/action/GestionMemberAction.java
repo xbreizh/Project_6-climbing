@@ -171,11 +171,23 @@ public class GestionMemberAction extends LoginAction {
 
         memberManager.deleteMember(id);
 
-        if (this.hasErrors()) {
+       /* if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;
-        }
+        }*/
         return vResult;
 
+    }
+
+    public String doDisable() throws Exception {
+        String vResult = ActionSupport.SUCCESS;
+        memberManager.disableMember(id);
+        return vResult;
+    }
+
+    public String doEnable() throws Exception {
+        String vResult = ActionSupport.SUCCESS;
+        memberManager.enableMember(id);
+        return vResult;
     }
 
 
@@ -219,6 +231,8 @@ public class GestionMemberAction extends LoginAction {
         }
         return vResult;
     }
+
+
 
     /***********************************************************************/
     /************************ GETTERS - SETTERS ***************************/
@@ -354,4 +368,6 @@ public class GestionMemberAction extends LoginAction {
     public void setIdSession(int idSession) {
         this.idSession = idSession;
     }
+
+
 }

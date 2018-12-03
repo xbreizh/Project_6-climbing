@@ -83,11 +83,37 @@ public class MemberManagerImpl  implements MemberManager {
 
     }
 
+    // Disable Member
+    @Override
+    public void disableMember(int id) {
+        Member m= (Member) memberDao.getById(id);
+        /*spotManager.updateWhenDeletingMember(id);*/
+        System.out.println("member received to disable: "+m);
+        m.setActive(false);
+        m.setLogin("Inactive User");
+
+        memberDao.update(m);
+    }
+
+    // Enable Member
+    @Override
+    public void enableMember(int id) {
+        Member m= (Member) memberDao.getById(id);
+        /*spotManager.updateWhenDeletingMember(id);*/
+        System.out.println("member received to enable: "+m);
+        m.setActive(true);
+        m.setLogin(m.getLogin2());
+
+        memberDao.update(m);
+    }
+
     // Delete Member
     @Override
     public void deleteMember(int id) {
        Member m= (Member) memberDao.getById(id);
-        spotManager.updateWhenDeletingMember(id);
+        /*spotManager.updateWhenDeletingMember(id);*/
+
+
         memberDao.delete(m);
     }
 
