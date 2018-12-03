@@ -5,7 +5,7 @@
 <%@include file="../_include/header.jsp" %>
 
 <body>
-<h2>Spot</h2>
+<h2>Spots</h2>
     <s:a action="createSpot">
         <button type="button" class="btn btn-info">New Spot</button>
     </s:a>

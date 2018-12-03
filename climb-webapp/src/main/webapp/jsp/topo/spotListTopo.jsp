@@ -1,9 +1,12 @@
 <h2>Spots</h2>
+
+<s:if test="#session.user.id == topo.owner.id || session.user.role == 'superadmin'">
 <s:form style="display:inline!important;" action="topo_addSpot" method="POST">
     <s:select list="%{spotList}" name="spotId" listKey="id" headerKey="-1" headerValue="-- Spot --" />
     <s:hidden name="id" placeholder="topo Id" requiredLabel="true"/><br>
     <s:submit class="btn btn-success" value="Add"/>
 </s:form>
+    </s:if>
 <br><br>
 <table class="table table-hover">
     <thead>
@@ -31,6 +34,7 @@
                 <s:param name="id" value="id"/>
             </s:a>
             </td>
+            <s:if test="#session.user.id == topo.owner.id || session.user.role == 'superadmin'">
             <td >
                 <s:form action="topo_removeSpot" method="POST">
                     <s:hidden name="id" placeholder="topo Id" requiredLabel="true"/>
@@ -39,6 +43,7 @@
                 </s:form>
 
             </td>
+            </s:if>
         </tr>
 
     </s:iterator>

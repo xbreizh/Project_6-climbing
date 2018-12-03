@@ -11,7 +11,7 @@
     </li>
     <li>
         <s:a class="active" action="member_new">
-            Create an Account
+            Become Member
         </s:a>
     </li>
 </ul>

@@ -6,6 +6,11 @@
         </s:a>
     </li>
     <li>
+        <s:a class="active" action="spot_list">
+            Spots
+        </s:a>
+    </li>
+    <li>
         <s:a class="active" action="topo_list">
             Topos
         </s:a>

@@ -211,17 +211,20 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
 
         // check City
         if (spot.getCity() == null || spot.getCity().length() < 3 || spot.getCity().length() > 50) {
-            this.addFieldError("spot.city", "City should have 3-50 characters");
+            this.addFieldError("spot.city", "City should have 3-50 characters ("
+                    +spot.getCity().length()+")");
             i++;
         }
         // check Name
         if (spot.getName() == null || spot.getName().length() < 3 || spot.getName().length() > 50) {
-            this.addFieldError("spot.name", "Name should have 3-50 characters");
+            this.addFieldError("spot.name", "Name should have 3-50 characters ("
+                    +spot.getName().length()+")");
             i++;
         }
         // check description
-        if (spot.getDescription()== null || spot.getDescription().length() < 3 || spot.getDescription().length() > 50) {
-            this.addFieldError("spot.description", "Description should have 3-50 characters");
+        if (spot.getDescription()== null || spot.getDescription().length() < 3 || spot.getDescription().length() > 250) {
+            this.addFieldError("spot.description","Description should have 3-50 characters ("
+                            +spot.getDescription().length()+")");
             i++;
         }
         if(i==0){
@@ -324,7 +327,9 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     }
 
 
-    // Getters and Setters
+    /***********************************************************************/
+    /************************ GETTERS - SETTERS ***************************/
+    /***********************************************************************/
 
     public int getLevelMin() {
         return levelMin;

@@ -29,10 +29,14 @@
     </s:form>
 
 <br>
-    <s:form action="spot_delete" method="POST">
+<s:form action="spot_delete" method="POST">
     <s:textfield name="spot.id" />
-        <s:submit class="btn btn-danger" value="Delete"/>
-    </s:form>
+    <s:submit class="btn btn-danger" value="Delete"/>
+</s:form>
+<s:a action="spot_detail" style="display:block;text-decoration:none;" >
+    cancel
+    <s:param name="id" value="spot.id"/>
+</s:a>
 </s:if>
 <s:else>
     <%@include file="../../_include/connectButton.jsp" %>

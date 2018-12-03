@@ -3,6 +3,7 @@
     <table class="table  table-hover" >
         <thead>
         <tr>
+            <th></th>
             <th>Country </th>
             <th>City </th>
             <th>Name </th>
@@ -14,6 +15,14 @@
         <s:iterator value="spotList">
 
             <tr>
+                <td>
+
+                    <s:a action="spot_detail" style="display:block;text-decoration:none;" >
+                        <button type="button" class="btn btn-warning">Details</button>
+                        <s:param name="id" value="id"/>
+                    </s:a>
+
+                </td>
 
                 <td><s:a action="spot_detail" style="display:block;text-decoration:none;">
                     <s:property value="country.name" escapeHtml="false"/>
@@ -50,13 +59,14 @@
                         </s:a>
                     </s:else>
                 </td>
-                <s:if test="session.user.role == 'superadmin' || session.user.id == spot.memberSpot.id">
+                <s:if test="session.user.role == 'superadmin' || session.user.id == memberSpot.id">
                     <td>
                         <s:form action="spot_update" method="POST">
                             <s:textfield name="spot" value="%{id}"  requiredLabel="true"/>
                             <s:submit class="btn btn-warning" value="Edit"/>
                         </s:form>
                     </td>
+                    <s:if test="session.user.role == 'superadmin'">
                     <td>
                         <s:form action="spot_delete" method="POST">
                             <s:textfield name="spot" value="%{id}"  requiredLabel="true"/>
@@ -64,6 +74,7 @@
                         </s:form>
 
                     </td>
+                    </s:if>
                 </s:if>
             </tr>
         </s:iterator>

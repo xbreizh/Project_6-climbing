@@ -220,6 +220,10 @@ public class GestionMemberAction extends LoginAction {
         return vResult;
     }
 
+    /***********************************************************************/
+    /************************ GETTERS - SETTERS ***************************/
+    /***********************************************************************/
+
     public Member getMember() {
         return member;
     }

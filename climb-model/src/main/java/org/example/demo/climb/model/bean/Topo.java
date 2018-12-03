@@ -166,7 +166,6 @@ import java.util.*;
                 ", description=" + description +
                 ", keywords='" + keywords + '\'' +
                 ", owner=" + owner +
-                ", listBookings=" + listBookings +
                 ", available=" + available +
                 '}';
     }

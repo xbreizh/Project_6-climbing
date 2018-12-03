@@ -78,8 +78,23 @@ public class TopoManagerImpl implements TopoManager {
 
     @Override
     public void deleteTopo(Topo topo) {
-        Topo topoToDelete = topoDao.getById(topo.getId());
-        topoDao.delete(topoToDelete);
+        System.out.println("topo received from manager: "+topo);
+        System.out.println("removing spots and bookings");
+        if(topo.getSpots().size() >0) {
+            System.out.println("size before: " + topo.getSpots().size());
+            for (Spot s : topo.getSpots()
+            ) {
+                removeSpotFromTopo(s, topo);
+                System.out.println("spot id: " + s.getId() + "  topo id: " + topo.getId());
+            }
+            System.out.println("size after: " + topo.getSpots().size());
+        }
+       /* for (Booking b: topo.getBookingList()
+        ) {
+            topo.getBookingList().remove(b);
+        }*/
+        System.out.println("trying to delete");
+        topoDao.delete(topo);
     }
 
     @Override

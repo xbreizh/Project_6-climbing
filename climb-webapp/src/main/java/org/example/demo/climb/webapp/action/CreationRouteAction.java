@@ -140,7 +140,9 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
     }
 
 
-    // Getters and Setters
+    /***********************************************************************/
+    /************************ GETTERS - SETTERS ***************************/
+    /***********************************************************************/
 
     public List<Route> getRouteList() {
         return routeList;

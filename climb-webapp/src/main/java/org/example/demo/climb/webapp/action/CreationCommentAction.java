@@ -142,7 +142,9 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
     }
 
 
-    // Getters and Setters
+    /***********************************************************************/
+    /************************ GETTERS - SETTERS ***************************/
+    /***********************************************************************/
 
     public Comment getComment() {
         return comment;

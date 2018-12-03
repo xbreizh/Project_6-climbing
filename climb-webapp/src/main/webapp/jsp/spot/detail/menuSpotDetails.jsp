@@ -27,3 +27,6 @@
 
     </tr>
 </table>
+<s:a class="active" action="spot_list">
+    - Back to Spot List
+</s:a>

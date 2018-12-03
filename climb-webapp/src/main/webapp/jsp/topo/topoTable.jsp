@@ -71,7 +71,7 @@
                         <s:if test="#session.user.id == owner.id">
 
                             <s:a action="topo_update" style="display:block;text-decoration:none;" >
-                                <button type="button" class="btn btn-info">Edit</button>
+                                <button type="button" class="btn btn-warning">Edit</button>
                                 <s:param name="id" value="id"/>
                             </s:a>
 

@@ -13,10 +13,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class CreationTopoAction extends LoginAction implements SessionAware {
 
@@ -27,7 +24,7 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
     private int spotId;
     private int topoId;
     private List<Topo> topoList;
-    List<Integer> yearList = new ArrayList<>();
+    private List<Integer> yearList = new ArrayList<>();
     private int id;
     private HashMap<Integer, String> countryList= new HashMap<>();
     private Date beginBook;
@@ -52,14 +49,12 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
     @Inject
     private BookingManager bookingManager;
 
-    // Methods
+    // CREATE
     public String doCreateTopo() {
         System.out.println("trying to create a topo");
         String vResult= ActionSupport.INPUT;
         initCountryList();
-        for(int i = 1900;i<2222;i++){
-            yearList.add(i);
-        }
+        initYearlist();
         if(topo!=null){
             if(checkTopoForm(topo)){
                 System.out.println("topo as such: "+topo);
@@ -70,6 +65,14 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
         return vResult;
     }
 
+    public void initYearlist(){
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        System.out.println("year found: "+year);
+        for(int i = year; i>1900;i--){
+            yearList.add(i);
+        }
+        System.out.println("yearList size: "+yearList.size());
+    }
     public String doEndBooking(){
         String vResult = ActionSupport.SUCCESS;
         System.out.println("hello here: "+id);
@@ -126,46 +129,46 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
         return vResult;
     }
     public boolean checkTopoForm(Topo topo){
-        int i=0;
+        int error=0;
         // Check Name
         if(topo.getName().length() < 2 || topo.getName().length() >50){
-            this.addFieldError("topo.name", "name must be between 2-50");
-            i++;
+            this.addFieldError("topo.name", "name must be between 2-50 characters (" +
+                   topo.getName().length()+")");
+            error++;
         }
         // Check Edition
         if(topo.getEdition().length() < 2 || topo.getEdition().length() > 50){
-            this.addFieldError("topo.edition", "edition must be between 2-50");
-            i++;
+            this.addFieldError("topo.edition", "edition must be between 2-50  characters (" +
+                    topo.getEdition().length()+")");
+            error++;
         }
         // Check Author
         if(topo.getAuthor().length() < 2 || topo.getAuthor().length() > 50){
-            this.addFieldError("topo.author", "author must be between 2-50");
-            i++;
+            this.addFieldError("topo.author", "author must be between 2-50 characters (" +
+                    topo.getAuthor().length()+")");
+            error++;
         }
         // Check Published Year
         if(topo.getPublishedYear() < 1900 || topo.getPublishedYear() > 2221){
             this.addFieldError("topo.name", "Year must be between 1900-today");
-            i++;
+            error++;
         }
         // Check Description
         if(topo.getDescription().length() < 2 || topo.getDescription().length() > 50){
-            this.addFieldError("topo.description", "Description must be between 2-50");
-            i++;
+            this.addFieldError("topo.description", "Description must be between 2-50 characters (" +
+                   topo.getDescription().length()+")");
+            error++;
         }
         // Check Keywords
         if(topo.getKeywords().length() < 2 || topo.getKeywords().length() >50){
-            this.addFieldError("topo.keywords", "Keywords must be between 3-350");
-            i++;
+            this.addFieldError("topo.keywords", "Keywords must be between 3-350  characters )" +
+                   topo.getKeywords().length()+")");
+            error++;
         }
 
-        // Check Owner
-        System.out.println("id "+getSession().get("id"));
-        System.out.println("name"+getSession().get("name"));
-        System.out.println("values: "+getSession().values().toString());
+        // Checks if any error during the checking
 
-        System.out.println("name: "+getSession().get("name"));
-        System.out.println("id: "+getSession().get("id"));
-        if(i>0){
+        if(error>0){
             return false;
         }else{
             return true;
@@ -255,9 +258,7 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
         String vResult = ActionSupport.INPUT;
 
         initCountryList();
-        for(int i = 1900;i<2222;i++){
-            yearList.add(i);
-        }
+        initYearlist();
         if(topo!=null && submit) {
             id=topo.getId();
             if (checkTopoForm(topo)) {
@@ -274,11 +275,19 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
         return vResult;
     }
 
+    // DELETE
     public String doDeleteTopo() throws Exception {
+        String vResult = ActionSupport.SUCCESS;
+        topo = topoManager.getTopo(id);
+        System.out.println("trying to delete topo from action: "+topo);
+        System.out.println("name: "+topo.getName());
         topoManager.deleteTopo(topo);
-        return "success";
+        return vResult;
     }
-    // Getters and Setters
+
+    /***********************************************************************/
+    /************************ GETTERS - SETTERS ***************************/
+    /***********************************************************************/
 
     public Topo getTopo() {
         return topo;

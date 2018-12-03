@@ -73,7 +73,7 @@
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
 
-            <result name="success">jsp/topo/detail.jsp</result>
+            <result name="success">jsp/topo/topoDetail.jsp</result>
         </action>
 
         <!-- ADDING SPOT TO TOPO -->
@@ -128,8 +128,7 @@
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
             <result name="input">
-                <param name="location">/jsp/topo/form/updateTopo.jsp</param>
-                <!--<param name="id">${id}</param>-->
+                /jsp/topo/form/updateTopo.jsp
             </result>
             <result name="success" type="redirectAction">
                 <param name="actionName">topo_detail</param>
@@ -138,9 +137,21 @@
             <result name="error">/jsp/member/login/login.jsp</result>
         </action>
         <!-- DELETE-->
+        <!--<action name="topo_delete"
+                class="org.example.demo.climb.webapp.action.CreationTopoAction"
+                method="doDeleteTopo">
+            <result name="success" type="redirectAction">
+                <param name="actionName">index</param>
+            </result>
+        </action>-->
+        <!-- DELETE -->
         <action name="topo_delete"
                 class="org.example.demo.climb.webapp.action.CreationTopoAction"
                 method="doDeleteTopo">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
             <result name="success" type="redirectAction">
                 <param name="actionName">index</param>
             </result>
