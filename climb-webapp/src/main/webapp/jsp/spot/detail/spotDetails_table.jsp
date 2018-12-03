@@ -45,7 +45,7 @@
     </td>
     <td>
         <s:form action="spot_delete" method="POST">
-            <s:textfield name="spot" value="%{id}"  requiredLabel="true"/>
+            <s:hidden name="spot" value="%{id}"  requiredLabel="true"/>
             <s:submit class="btn btn-danger" value="Delete"/>
         </s:form>
 

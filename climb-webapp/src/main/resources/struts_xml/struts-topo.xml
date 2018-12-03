@@ -153,7 +153,7 @@
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
             <result name="success" type="redirectAction">
-                <param name="actionName">index</param>
+                <param name="actionName">topo_list</param>
             </result>
         </action>
     </package>

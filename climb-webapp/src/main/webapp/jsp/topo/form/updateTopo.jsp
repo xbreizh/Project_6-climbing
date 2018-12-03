@@ -32,7 +32,7 @@
 
     <br>
     <s:form action="topo_delete" method="POST">
-        <s:textfield name="topo.id" />
+        <s:textfield name="id" value="%{id}" />
         <s:submit class="btn btn-danger" value="Delete"/>
     </s:form>
     <s:a action="topo_detail" style="display:block;text-decoration:none;" >
