@@ -41,9 +41,14 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
         System.out.println("je suis suppose etre la");
 
         if(comment!=null){
-            commentManager.addComment(comment);
-            vResult = ActionSupport.SUCCESS;
-        }else{
+            System.out.println("comment received: "+comment.getText());
+            if(comment.getText().length() > 0 && comment.getText().length() <100) {
+                comment.setDate(new Date());
+                commentManager.addComment(comment);
+                vResult = ActionSupport.SUCCESS;
+            }else{
+                this.addFieldError("text", "You must type something");
+            }
         }
         return vResult;
     }

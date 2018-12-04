@@ -1,6 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<s:if test="%{route.commentList.size()>0}">
+<s:if test="%{commentList.size()>0}">
     <table class="table  table-hover" >
         <thead>
         <tr>

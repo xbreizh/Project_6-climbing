@@ -49,16 +49,12 @@
                     <a href="#" onclick="toggle_visibility('${id}');">
                         <button type="button" class="btn btn-primary">Comments</button>
                     </a>
-                    <div id="${id}" style="display: none">
-                        <%@include file="../../comment/commentRouteTableDetail.jsp" %>
-                    </div>
-
 
                 </td>
                 <s:if test="session.user.role == 'superadmin' || session.user.id == route.memberRoute.id">
                     <td>
                         <s:form action="route_update" method="POST">
-                            <s:hidden name="route" value="%{id}"  requiredLabel="true"/>
+                            <s:textfield name="route" value="%{id}"  requiredLabel="true"/>
                             <s:submit class="btn btn-warning" value="Edit"/>
                         </s:form>
                     </td>
@@ -71,6 +67,20 @@
                     </td>
                 </s:if>
             </tr>
+    <tr>
+        <td  colspan="8">
+            <div id="${id}" style="display: none">
+                <s:form style="display: inline;" action="createCommentRoute" method="POST">
+                    <s:hidden name="comment.route.id" value="%{id}"/>
+                    <s:hidden name="comment.memberComment.id" value="%{session.user.id}" label="Member:"/>
+                    <s:textarea name="comment.text" placeholder="New Comment"  requiredLabel="true" onclick=""/>
+                    <s:submit class="btn btn-success" value="Comment"/>
+
+                </s:form>
+                <%@include file="../../comment/commentRouteTableDetail.jsp" %>
+            </div>
+        </td>
+    </tr>
     </s:iterator>
             </tbody>
         </table>
