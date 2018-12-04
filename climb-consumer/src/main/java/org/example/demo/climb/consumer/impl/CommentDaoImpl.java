@@ -40,25 +40,6 @@ public class CommentDaoImpl implements CommentDao {
         sessionFactory.getCurrentSession().persist(comment);
     }
 
-   /* @Override
-    public List<Comment> getAllRouteComment(int id) {
-        Query query=sessionFactory.getCurrentSession().createQuery("from Comment where route.id=:id");
-        query.setParameter("id", id);
-        return query.getResultList();
-    }
-
-    @Override
-    public List<Comment> getAllSpotComment(int id) {
-        Query query=sessionFactory.getCurrentSession().createQuery("from Comment where spot.id=:id");
-        query.setParameter("id", id);
-        return query.getResultList();
-    }*/
-/*
-    @Override
-    public Object getById(int id) {
-        return(Comment) sessionFactory.getCurrentSession().get(cl, id);
-    }
-*/
     @Override
     public void update(Comment comment) {
         sessionFactory.getCurrentSession().update(comment);
@@ -74,16 +55,18 @@ public class CommentDaoImpl implements CommentDao {
         return (Comment) sessionFactory.getCurrentSession().get(cl, id);
     }
 
+    @Override
+    public List<Comment> getAllCommentsSpot() {
+        Query query=sessionFactory.getCurrentSession().createQuery("from Comment where spot.id != null order by date desc");
+        return query.getResultList();
+    }
 
-   /* @Override
-    public void updateWhenDeletingMember(int id1, int id2){
-        Member m = (Member) memberDao.getById(id1);
-        Query query=sessionFactory.getCurrentSession().createQuery("update Comment set member= :member1 where member.id=:member2");
-        query.setParameter("member1", m);
-        query.setParameter("member2", id2);
-        int result = query.executeUpdate();
-        System.out.println("updated list?");
-    }*/
+    @Override
+    public List<Comment> getAllCommentsRoute() {
+        Query query=sessionFactory.getCurrentSession().createQuery("from Comment where route.id != null order by date desc");
+        return query.getResultList();
+    }
+
 
 
 }

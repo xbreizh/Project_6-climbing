@@ -57,6 +57,7 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
                     if(comment.getMemberComment()!=null) {
                         comment.setDate(new Date());
                         commentManager.addComment(comment);
+                        return ActionSupport.SUCCESS;
                     }else{
                         this.addActionError("you must login to comment");
                     }
@@ -67,7 +68,8 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
                 this.addFieldError("text","you must type something");
             }
         }
-        vResult = ActionSupport.SUCCESS;
+        System.out.println("result from comment: "+vResult);
+        /*vResult = ActionSupport.SUCCESS;*/
 
         return vResult;
     }
@@ -97,6 +99,13 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
             System.out.println("text from comment: " + commentListSpot.get(0).getText());
         }
         return ActionSupport.SUCCESS;
+    }
+    public String doListComments() throws Exception {
+        commentListSpot = commentManager.getListCommentsSpot();
+        System.out.println("trying to get comment spots: "+commentListSpot.size());
+        commentListRoute = commentManager.getListCommentsRoute();
+        System.out.println("trying to get comment routes: "+commentListRoute.size());
+        return "success";
     }
 
     /*READ ONE*/
@@ -137,7 +146,8 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
     /*DELETE*/
     public String doDelete() throws  NotFoundException{
         System.out.println("id received in action: "+id);
-        commentManager.deleteComment(id);
+        comment = commentManager.getComment(id);
+        commentManager.deleteComment(comment);
         return ActionSupport.SUCCESS;
     }
 
@@ -200,4 +210,7 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
     public void setSpot(Spot spot) {
         this.spot = spot;
     }
+
+
+
 }

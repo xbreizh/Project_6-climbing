@@ -66,5 +66,8 @@
 </s:if>
 <s:else>
     <h2> That spot hasn't been added yet to any topo </h2>
+    <s:a action="topo_list">
+        <button type="button" class="btn btn-success">Add it!</button>
+    </s:a>
 </s:else>
 

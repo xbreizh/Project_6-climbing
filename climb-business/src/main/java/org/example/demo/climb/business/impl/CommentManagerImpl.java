@@ -42,6 +42,21 @@ public class CommentManagerImpl  implements CommentManager {
         return commentDao.getListCommentBySpot(id);
     }
 
+    @Override
+    public List<Comment> getListCommentsSpot() {
+        return commentDao.getAllCommentsSpot();
+    }
+
+    @Override
+    public List<Comment> getListCommentsRoute() {
+        return commentDao.getAllCommentsRoute();
+    }
+
+    @Override
+    public Comment getComment(int id) {
+        return commentDao.getCommentById(id);
+    }
+
 
     @Override
     public void updateComment(Comment comment) {
@@ -53,14 +68,15 @@ public class CommentManagerImpl  implements CommentManager {
     }
 
     @Override
-    public void deleteComment(int id) {
-        System.out.println("id received: "+id);
-        if(
+    public void deleteComment(Comment comment) {
+        System.out.println("comment received in manager: "+comment);
+        commentDao.delete(comment);
+       /* if(
         commentDao.getCommentById(id) != null){
 
             commentDao.delete(commentDao.getCommentById(id));
         }else{
             System.out.println("comment cannot be found: "+id);
-        }
+        }*/
     }
 }

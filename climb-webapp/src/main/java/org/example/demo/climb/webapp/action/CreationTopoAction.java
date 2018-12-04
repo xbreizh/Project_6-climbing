@@ -154,8 +154,8 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
             error++;
         }
         // Check Description
-        if(topo.getDescription().length() < 2 || topo.getDescription().length() > 50){
-            this.addFieldError("topo.description", "Description must be between 2-50 characters (" +
+        if(topo.getDescription().length() < 2 || topo.getDescription().length() > 350){
+            this.addFieldError("topo.description", "Description must be between 2-350 characters (" +
                    topo.getDescription().length()+")");
             error++;
         }

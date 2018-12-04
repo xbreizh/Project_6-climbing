@@ -19,12 +19,12 @@
             <tbody>
     <s:iterator value="%{routeList}">
             <tr>
-                   <td>
-                       <s:form action="route_detail" method="POST">
-                           <s:hidden name="route" value="%{id}"  requiredLabel="true"/>
-                           <s:submit class="btn btn-light" value="Details"/>
-                       </s:form>
-                   </td>
+                <td>
+                    <s:a action="route_detail" style="display:block;text-decoration:none;" >
+                        <button type="button" class="btn btn-light">Details</button>
+                        <s:param name="id" value="id"/>
+                    </s:a>
+                </td>
                 <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
                     <s:property value="name" escapeHtml="false"/>
                     <s:param name="id" value="id"/>
@@ -40,28 +40,17 @@
                     <s:param name="id" value="id"/>
                 </s:a>
                 </td>
-              <%--  <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
-                    <s:property value="type" escapeHtml="false"/>
-                    <s:param name="id" value="id"/>
-                </s:a>
-                </td>--%>
-               <%-- <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
-                    <s:property value="description" escapeHtml="false"/>
-                    <s:param name="id" value="id"/>
-                </s:a>
-                </td>--%>
                 <td><s:a action="member_detail" style="display:block;text-decoration:none;" >
                     <s:property value="memberRoute.login" escapeHtml="false"/>
                     <s:param name="id" value="memberRoute.id"/>
                 </s:a>
                 </td>
-                <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
+                <td>
                     <s:a action="comment_list_route">
                         <s:param name="id" value="id"/>
-                        Comment(s):
+                        <button type="button" class="btn btn-primary">Comments</button>
                     </s:a>
                     <s:param name="id" value="id"/>
-                </s:a>
                 </td>
                 <s:if test="session.user.role == 'superadmin' || session.user.id == route.memberRoute.id">
                     <td>

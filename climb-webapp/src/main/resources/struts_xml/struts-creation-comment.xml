@@ -40,6 +40,27 @@
             </result>
         </action>
 
+        <!-- READ ALL COMMENTS -->
+        <action name="comment_lists"
+                class="org.example.demo.climb.webapp.action.CreationCommentAction"
+                method="doListComments">
+            <result name="success">/jsp/comment/listAllComment.jsp</result>
+        </action>
+
+
+        <!-- DELETE COMMENT -->
+        <action name="comment_delete"
+                class="org.example.demo.climb.webapp.action.CreationCommentAction"
+                method="doDelete">
+            <result name="input" type="redirectAction">
+                <param name="actionName">comment_lists</param>
+            </result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">comment_lists</param>
+            </result>
+
+        </action>
+
         <!-- READ ALL COMMENT ROUTE -->
         <action name="comment_list_route"
                 class="org.example.demo.climb.webapp.action.CreationCommentAction"
@@ -54,41 +75,6 @@
             <result name="success">/jsp/__toDelete/listCommentSpot.jsp</result>
         </action>
 
-
-       <!-- &lt;!&ndash;READ ONE &ndash;&gt;
-        <action name="spot_detail"
-                class="org.example.demo.climb.webapp.action.CreationSpotAction"
-                method="doDetail">
-            <interceptor-ref name="store">
-                <param name="operationMode">RETRIEVE</param>
-            </interceptor-ref>
-            <interceptor-ref name="defaultStack"/>
-            <result name="success">/jsp/spot/detail/spotDetail.jsp</result>
-        </action>-->
-
-     <!--   <action name="spot_edit"
-                class="org.example.demo.climb.webapp.action.CreationSpotAction"
-                method="doEdit">
-            <interceptor-ref name="store">
-                <param name="operationMode">RETRIEVE</param>
-            </interceptor-ref>
-            <interceptor-ref name="defaultStack"/>
-            <result name="success">/jsp/spot/form/spot_update.jsp</result>
-        </action>
-
-        &lt;!&ndash; UPDATE &ndash;&gt;
-        <action name="spot_update"
-                class="org.example.demo.climb.webapp.action.CreationSpotAction"
-                method="doUpdate">
-            <interceptor-ref name="store">
-                <param name="operationMode">RETRIEVE</param>
-            </interceptor-ref>
-            <interceptor-ref name="defaultStack"/>
-            <result name="input">/jsp/spot/form/spot_update.jsp</result>
-            <result name="success" type="redirectAction">
-                <param name="actionName">spot_list</param>
-            </result>
-        </action>-->
 
         <!-- DELETE -->
         <action name="spot_comment_delete"

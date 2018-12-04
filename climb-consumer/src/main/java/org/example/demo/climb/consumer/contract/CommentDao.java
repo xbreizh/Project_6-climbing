@@ -16,4 +16,7 @@ public interface CommentDao {
     Comment getCommentById(int id);
 
 
+    List<Comment> getAllCommentsSpot();
+
+    List<Comment> getAllCommentsRoute();
 }

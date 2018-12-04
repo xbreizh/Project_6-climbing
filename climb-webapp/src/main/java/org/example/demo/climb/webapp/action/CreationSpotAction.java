@@ -225,7 +225,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         }
         // check description
         if (spot.getDescription()== null || spot.getDescription().length() < 3 || spot.getDescription().length() > 250) {
-            this.addFieldError("spot.description","Description should have 3-50 characters ("
+            this.addFieldError("spot.description","Description should have 3-250 characters ("
                             +spot.getDescription().length()+")");
             i++;
         }
