@@ -6,7 +6,7 @@
 
 <s:if test="#session.user">
 
-    <h1>New Spot</h1>
+    <h2>New Spot</h2>
     <p><div class="definition">
 After creating a Spot, you must provide some routes to complete the information.<br>
 Only the spots having at least a route will appear on the main map.
@@ -14,12 +14,13 @@ Only the spots having at least a route will appear on the main map.
     <br><br>
     <a href="https://www.gps-coordinates.net/" class="btn btn-default" target="_blank">Get coordinates</a>
     <br><br>
+
 <s:form action="createSpot" method="POST">
     <s:select list="%{countryList}" name="spot.country.id" listKey="key" headerKey="-1" headerValue="-- Country --" />
     <s:textfield name="spot.city" requiredLabel="true" placeholder="Type City Name"/>
     <s:select list="climbingList" name="spot.type" placeholder="Type" headerKey="-1" headerValue="-- Climbing Type --"
               requiredLabel="true" />
-    <s:hidden name="spot.memberSpot.id" value="%{session.user.id}" label="Member:"/>
+    <s:textfield name="spot.memberSpot.id" value="%{session.user.id}" label="Member:"/>
     <s:textfield name="spot.name" placeholder="Type Spot Name" requiredLabel="true"/>
     <s:textarea name="spot.latitude" placeholder="Latitude" />
     <s:textarea name="spot.longitude" placeholder="Longitude" />

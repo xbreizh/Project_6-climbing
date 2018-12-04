@@ -90,10 +90,10 @@ public class RouteManagerImpl implements RouteManager {
     }
 
     @Override
-    public void deleteRoute(int id) {
-        System.out.println("trying to delete route: "+id);
-        Route m= (Route) routeDao.getById(id);
-        routeDao.delete(m);
+    public void deleteRoute(Route route) {
+        System.out.println("trying to delete route: "+route.getName());
+        /*Route m= (Route) routeDao.getById(id);*/
+        routeDao.delete(route);
     }
 
     @Override

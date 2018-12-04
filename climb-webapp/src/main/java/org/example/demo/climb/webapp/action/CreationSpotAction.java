@@ -4,7 +4,6 @@ package org.example.demo.climb.webapp.action;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.opensymphony.xwork2.ActionSupport;
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 import org.example.demo.climb.business.contract.CommentManager;
 import org.example.demo.climb.business.contract.CountryManager;
@@ -15,12 +14,7 @@ import org.example.demo.climb.model.bean.Country;
 import org.example.demo.climb.model.bean.Route;
 import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.exception.NotFoundException;
-import org.hibernate.annotations.Check;
-
-import javax.imageio.ImageIO;
 import javax.inject.Inject;
-import javax.swing.*;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -58,6 +52,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     private int levelMin;
     private int levelMax;
     private boolean submit =false;
+    private HashMap<Integer, String> gradeList= new HashMap<>();
 
     @Inject
     private CountryManager countryManager;
@@ -72,10 +67,11 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     public String doCreateSpot() throws NotFoundException {
         String vResult= ActionSupport.INPUT;
         initCountryList();
+        initClimbingTypeList();
         System.out.println("spot country id: "+spot);
-        for(ClimbingType ct: ClimbingType.values()){
+       /* for(ClimbingType ct: ClimbingType.values()){
             climbingList.add(ct.getName());
-        }
+        }*/
         if(spot!=null) {
             if (checkSpotForm(spot)){
                 spotManager.addSpot(spot);
@@ -89,7 +85,13 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
 
     public String doIndex() throws NotFoundException {
         initClimbingTypeList();
-        initLevelList();
+        int index=0;
+        //adding default condition
+        gradeList.put(index, "0");
+        for(Grade g: Grade.values()){
+            index++;
+            gradeList.put(index,g.getValue());
+        }
 
         String vResult= ActionSupport.SUCCESS;
         System.out.println("climbing list: "+climbingList);
@@ -145,7 +147,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         // adding condition for All
     }
 
-    private void initLevelList() {
+   /* private void initLevelList() {
         int index=0;
         //adding default condition
         levelList.put(index, "0");
@@ -154,7 +156,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
             levelList.put(index,g.getValue());
         }
 
-    }
+    }*/
 
 
 
@@ -398,7 +400,13 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         this.spot = spot;
     }
 
-
+    public HashMap<Integer, String> getGradeList() {
+        return gradeList;
+    }
+/*
+    public void setGradeList(HashMap<Integer, String> gradeList) {
+        this.gradeList = gradeList;
+    }*/
 
     public List<String> getCityList() {
         return cityList;

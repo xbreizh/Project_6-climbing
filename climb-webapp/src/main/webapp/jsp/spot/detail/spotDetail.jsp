@@ -6,6 +6,7 @@
 <br><br>
 
 <div>
+    <h2>Spot Details</h2>
     <div id="Details" style="display: block">
         <%@include file="spotDetails_table.jsp" %>
     </div>

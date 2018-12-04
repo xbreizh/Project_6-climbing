@@ -11,7 +11,6 @@
                 <th>Name </th>
                 <th>Height </th>
                 <th>Grade</th>
-                <th>Type</th>
                 <th>Description</th>
                 <th>Creator</th>
                 <th>Comment(s)</th>
@@ -58,6 +57,21 @@
                     <s:param name="id" value="id"/>
                 </s:a>
                 </td>
+                <s:if test="session.user.role == 'superadmin' || session.user.id == route.memberRoute.id">
+                    <td>
+                        <s:form action="route_update" method="POST">
+                            <s:hidden name="route" value="%{id}"  requiredLabel="true"/>
+                            <s:submit class="btn btn-warning" value="Edit"/>
+                        </s:form>
+                    </td>
+                    <td>
+                        <s:form action="route_delete" method="POST">
+                            <s:hidden name="route" value="%{id}"  requiredLabel="true"/>
+                            <s:submit class="btn btn-danger" value="Delete"/>
+                        </s:form>
+
+                    </td>
+                </s:if>
             </tr>
     </s:iterator>
             </tbody>

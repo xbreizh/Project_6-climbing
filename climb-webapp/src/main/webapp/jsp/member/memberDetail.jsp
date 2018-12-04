@@ -40,7 +40,7 @@
                 <s:property value="member.active" />
 
             </td>
-            <s:if test="#session.user.role =='superadmin'">
+            <s:if test="#session.user.role =='superadmin' && session.user.id != member.id">
                 <td>
                     <s:if test="member.active == true">
                         <s:a action="member_disable" style="display:block;text-decoration:none;" >
