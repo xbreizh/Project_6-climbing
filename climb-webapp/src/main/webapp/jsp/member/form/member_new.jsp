@@ -22,7 +22,9 @@
 </s:form>
 </s:if>
 <s:else>
-
+    <s:if test="#session.user.role =='superadmin'">
+    <h2>You must be logged out for creating a new user!!</h2>
+    </s:if>
     <img alt="Access forbidden!"style=" max-width: 50%; height: auto;" src=" https://previews.123rf.com/images/corund/corund1511/corund151100022/48297160-access-denied-sign-clipping-path-included.jpg">
 
 </s:else>

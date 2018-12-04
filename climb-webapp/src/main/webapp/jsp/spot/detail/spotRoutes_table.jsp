@@ -8,10 +8,10 @@
         <table class="table  table-hover">
             <thead>
             <tr>
+                <th></th>
                 <th>Name </th>
                 <th>Height </th>
                 <th>Grade</th>
-                <th>Description</th>
                 <th>Creator</th>
                 <th>Comment(s)</th>
             </tr>
@@ -19,31 +19,37 @@
             <tbody>
     <s:iterator value="%{routeList}">
             <tr>
+                   <td>
+                       <s:form action="route_detail" method="POST">
+                           <s:hidden name="route" value="%{id}"  requiredLabel="true"/>
+                           <s:submit class="btn btn-light" value="Details"/>
+                       </s:form>
+                   </td>
                 <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
                     <s:property value="name" escapeHtml="false"/>
                     <s:param name="id" value="id"/>
-                </s:a>
+                    </s:a>
                 </td>
                 <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
                     <s:property value="height" escapeHtml="false"/>
                     <s:param name="id" value="id"/>
-                </s:a>
+                    </s:a>
                 </td>
                 <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
                     <s:property value="grade" escapeHtml="false"/>
                     <s:param name="id" value="id"/>
                 </s:a>
                 </td>
-                <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
+              <%--  <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
                     <s:property value="type" escapeHtml="false"/>
                     <s:param name="id" value="id"/>
                 </s:a>
-                </td>
-                <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
+                </td>--%>
+               <%-- <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
                     <s:property value="description" escapeHtml="false"/>
                     <s:param name="id" value="id"/>
                 </s:a>
-                </td>
+                </td>--%>
                 <td><s:a action="member_detail" style="display:block;text-decoration:none;" >
                     <s:property value="memberRoute.login" escapeHtml="false"/>
                     <s:param name="id" value="memberRoute.id"/>

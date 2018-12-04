@@ -16,13 +16,12 @@
 
             <tr>
                 <td>
-
                     <s:a action="spot_detail" style="display:block;text-decoration:none;" >
-                        <button type="button" class="btn btn-warning">Details</button>
+                        <button type="button" class="btn btn-light">Details</button>
                         <s:param name="id" value="id"/>
                     </s:a>
-
                 </td>
+
 
                 <td><s:a action="spot_detail" style="display:block;text-decoration:none;">
                     <s:property value="country.name" escapeHtml="false"/>

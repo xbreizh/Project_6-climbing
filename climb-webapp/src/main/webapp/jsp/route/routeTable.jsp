@@ -1,8 +1,9 @@
 <%--<h2>Routes</h2>--%>
 <s:if test="%{routeList.size()>0}">
-    <table class="table table-bordered table-hover">
+    <table class="table  table-hover">
         <thead>
         <tr>
+            <th></th>
             <th>Name </th>
             <th>Spot </th>
             <th>Grade </th>
@@ -14,6 +15,12 @@
         <tbody>
         <s:iterator value="routeList">
             <tr>
+                <td>
+                    <s:form action="route_detail" method="POST">
+                        <s:hidden name="route" value="%{id}"  requiredLabel="true"/>
+                        <s:submit class="btn btn-light" value="Details"/>
+                    </s:form>
+                </td>
                 <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
                     <s:property value="name" escapeHtml="false"/>
                     <s:param name="id" value="id"/>
@@ -51,8 +58,21 @@
                             <s:property value="memberRoute.login"/>
                         </s:a>
                     </s:else>
-
                 </td>
+                <s:if test="session.user.role == 'superadmin' || session.user.id == route.memberRoute.id">
+                    <td>
+                        <s:form action="route_update" method="POST">
+                            <s:hidden name="route" value="%{id}"  requiredLabel="true"/>
+                            <s:submit class="btn btn-warning" value="Edit"/>
+                        </s:form>
+                    </td>
+                    <td>
+                        <s:form action="route_delete" method="POST">
+                            <s:hidden name="route" value="%{id}"  requiredLabel="true"/>
+                            <s:submit class="btn btn-danger" value="Delete"/>
+                        </s:form>
+                    </td>
+                </s:if>
             </tr>
         </s:iterator>
         </tbody>

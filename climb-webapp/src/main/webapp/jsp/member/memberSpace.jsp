@@ -4,9 +4,14 @@
 <%@include file="../_include/header.jsp" %>
 
 <s:if test="#session.user.role =='superadmin'">
+    <h2>Members</h2>
+    <br>
+    <s:a action="member_new">
+        <button type="button" class="btn btn-info">New Member</button>
+    </s:a>
 
 
-<br><br>
+    <br><br>
 <%@include file="../member/memberTable.jsp" %>
 
 </s:if>

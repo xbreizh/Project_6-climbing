@@ -1,8 +1,9 @@
-<h2>Members</h2>
+
 <s:if test="%{listMember.size()>0}">
     <table class="table table-hover">
         <thead>
         <tr>
+            <th></th>
             <th>Id </th>
             <th>Role </th>
             <th>Login</th>
@@ -14,6 +15,14 @@
         <s:iterator value="listMember">
 
             <tr>
+                <td>
+
+                    <s:a action="member_detail" style="display:block;text-decoration:none;" >
+                        <button type="button" class="btn btn-light">Details</button>
+                        <s:param name="id" value="id"/>
+                    </s:a>
+
+                </td>
 
                 <td><s:a action="member_detail" style="display:block;text-decoration:none;">
                     <s:property value="id" escapeHtml="false"/>

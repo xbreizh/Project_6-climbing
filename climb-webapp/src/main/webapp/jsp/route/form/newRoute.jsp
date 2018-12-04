@@ -17,9 +17,7 @@
               headerKey="-1" headerValue="-- Grade --"/>
     <s:textarea type="text" name="route.description" placeholder="Description" requiredLabel="true"/>
     <s:textfield name="route.memberRoute.id" placeholder="Member" value="%{session.user.id}" requiredLabel="true" />
-   <%-- <s:textfield name="route.spot.id" value="%{spotId}" placeholder="Spot" requiredLabel="true" />--%>
     <s:textfield name="route.spot.id" value="%{id}" />
-   <%-- <s:textfield name="submit" value="true" />--%>
     <s:submit class="btn btn-success" value="Create"/>
 </s:form>
 

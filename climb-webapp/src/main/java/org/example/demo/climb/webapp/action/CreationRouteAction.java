@@ -172,8 +172,8 @@ return true;
 
     /*READ ALL*/
     public String doList() throws  NotFoundException{
-        spot = spotManager.getSpotById(id);
-        routeList = spot.getRouteList();
+        /*spot = spotManager.getSpotById(id);*/
+        routeList = routeManager.getListRoute();
         System.out.println("tried to get the route liste");
         return ActionSupport.SUCCESS;
     }

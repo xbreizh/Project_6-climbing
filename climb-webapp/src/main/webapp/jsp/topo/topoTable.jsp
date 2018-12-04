@@ -19,7 +19,7 @@
                 <td>
 
                     <s:a action="topo_detail" style="display:block;text-decoration:none;" >
-                        <button type="button" class="btn btn-warning">Details</button>
+                        <button type="button" class="btn btn-light">Details</button>
                         <s:param name="id" value="id"/>
                     </s:a>
 
@@ -74,7 +74,14 @@
                                 <button type="button" class="btn btn-warning">Edit</button>
                                 <s:param name="id" value="id"/>
                             </s:a>
-
+                             <s:if test="#session.user.role == 'superadmin'">
+                            <td>
+                                <s:form action="route_delete" method="POST">
+                                    <s:hidden name="route" value="%{id}"  requiredLabel="true"/>
+                                    <s:submit class="btn btn-danger" value="Delete"/>
+                                </s:form>
+                            </td>
+                            </s:if>
                         </s:if>
                         <s:else>
 

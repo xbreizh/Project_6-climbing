@@ -25,7 +25,7 @@
         <action name="route_list"
                 class="org.example.demo.climb.webapp.action.CreationRouteAction"
                 method="doList">
-            <result>/jsp/route/list.jsp</result>
+            <result>/jsp/route/routeSpace.jsp</result>
         </action>
 
         <!--READ ONE -->
