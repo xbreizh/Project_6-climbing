@@ -46,11 +46,14 @@
                 </s:a>
                 </td>
                 <td>
-                    <s:a action="comment_list_route">
-                        <s:param name="id" value="id"/>
+                    <a href="#" onclick="toggle_visibility('${id}');">
                         <button type="button" class="btn btn-primary">Comments</button>
-                    </s:a>
-                    <s:param name="id" value="id"/>
+                    </a>
+                    <div id="${id}" style="display: none">
+                        <%@include file="../../comment/commentRouteTableDetail.jsp" %>
+                    </div>
+
+
                 </td>
                 <s:if test="session.user.role == 'superadmin' || session.user.id == route.memberRoute.id">
                     <td>
@@ -82,3 +85,33 @@
         <button type="button" class="btn btn-warning">New Route</button>
     </s:a>
 </s:if>
+<%--<table class="table  table-hover">
+    <ul>
+
+    <td><span onclick="Collapser(this)">month1</span>
+        <tr>
+            <td>article1</td>
+            <td>article2</td>
+            <td>etc...</td>
+        </tr>
+    </td>
+    <td><span onclick="Collapser(this)">month2</span>
+        <tr>
+            <td>article1</td>
+            <td>article2</td>
+            <td>etc...</td>
+        </tr>
+    </td>
+    </ul>
+</table>--%>
+<%--<script type="text/javascript">
+    <!--
+    function toggle_visibility(id) {
+        var e = document.getElementById(id);
+        if(e.style.display == 'none')
+            e.style.display = 'block';
+        else
+            e.style.display = 'none';
+    }
+    //-->
+</script>--%>
