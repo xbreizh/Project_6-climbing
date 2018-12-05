@@ -37,7 +37,7 @@
 
         <ul>
             <li>
-            <span style="color:white">Connected: <r:property value="#session.user.login"/>!</span>
+            <span style="color:white;">Connected: <r:property value="#session.user.login"/>!</span>
             </li>
         </ul>
         <ul>

@@ -11,7 +11,7 @@
 @media (min-width: 1200px) {
     .container {
         width: 1170px;
-        background-color: white;
+        background-color: #5eb0ff;
     }
 }
 #login{
@@ -34,4 +34,10 @@ body {
 
 a {
     text-decoration: none;
-} 
+}
+.menu1, .menu2 {
+    position: fixed;
+}
+.menu2{
+    top:70px;
+}

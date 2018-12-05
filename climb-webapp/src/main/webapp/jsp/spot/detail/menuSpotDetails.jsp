@@ -1,5 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<table  style="border:none">
+<div class="menu2">
+<table   style="border:none">
     <tr>
 
         <th>
@@ -30,3 +31,4 @@
 <s:a class="active" action="spot_list">
     - Back to Spot List
 </s:a>
+</div>
