@@ -59,19 +59,21 @@
                         </s:a>
                     </s:else>
                 </td>
-                <s:if test="session.user.role == 'superadmin' || session.user.id == route.memberRoute.id">
+                <s:if test="session.user.role == 'superadmin' || session.user.id == memberRoute.id">
                     <td>
                         <s:form action="route_update" method="POST">
                             <s:hidden name="route" value="%{id}"  requiredLabel="true"/>
                             <s:submit class="btn btn-warning" value="Edit"/>
                         </s:form>
                     </td>
+                <s:if test="session.user.role == 'superadmin'">
                     <td>
                         <s:form action="route_delete" method="POST">
                             <s:hidden name="route" value="%{id}"  requiredLabel="true"/>
                             <s:submit class="btn btn-danger" value="Delete"/>
                         </s:form>
                     </td>
+                </s:if>
                 </s:if>
             </tr>
         </s:iterator>

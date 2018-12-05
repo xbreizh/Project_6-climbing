@@ -1,34 +1,18 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<html>
-
 <%@include file="_include/header.jsp" %>
+<div class="container">
+        <%@include file="map/map_index.jsp" %>
+</div>
+<div class="container">
 
-<body>
-<div id="content">
-<div class="row">
-    <div class="col-lg-1"></div>
-    <div class="col-lg-10">
-<%@include file="map/map_index.jsp" %>
-    </div>
-    <div class="col-lg-1"></div>
+    <%@include file="search/searchForm.jsp" %>
 </div>
-<div class="row">
-    <div class="col-lg-1"></div>
+<div class="container">
+            <%@include file="spot/spotTable.jsp" %>
+            <%@include file="topo/topoTable.jsp" %>
+</div>
 
-    <div class="col-lg-10">
-<%@include file="search/searchForm.jsp" %>
-    </div>
-    <div class="col-lg-1"></div>
 </div>
-<div class="row">
-    <div class="col-lg-12">
-        <%@include file="spot/spotTable.jsp" %>
-        <%@include file="topo/topoTable.jsp" %>
-    </div></div>
-</div>
-<div class="row">
-    <div class="col-lg-12">
-<%@include file="_include/footer.jsp" %>
-    </div></div>
-<s:property value="#session."/>
+    <%@include file="_include/footer.jsp" %>
+

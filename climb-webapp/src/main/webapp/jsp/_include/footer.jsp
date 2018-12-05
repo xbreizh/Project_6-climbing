@@ -1,8 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="r" uri="/struts-tags" %>
 
 
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container">
+footer
+       <%-- <div class="navbar-header">
+            <button type="button" class="col-sm-2  navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-brand">
+                <s:a  action="index">
+                    <s:text name="home.welcome"/>
+                </s:a>
+            </div>
+        </div>--%>
 
-<footer>I am a footer</footer>
-</div>
+    </div>
+
+</nav>
+</body>
 </html>

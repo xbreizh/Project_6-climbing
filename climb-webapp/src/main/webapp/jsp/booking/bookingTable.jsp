@@ -1,7 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<%--<h2>Bookings</h2>--%>
 <s:if test="%{bookingList.size()>0}">
-    <table class="table table-bordered table-hover">
+    <table class="table  table-hover">
         <thead>
         <tr>
             <th>Topo </th>

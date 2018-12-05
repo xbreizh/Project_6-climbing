@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-    <meta charset="utf-8" />
+
     <script type='text/javascript'
             src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap'
             async defer></script>
@@ -76,7 +72,7 @@
 
 
 
-        function pushpinClicked(e) {
+        /*function pushpinClicked(e) {
             //Make sure the infobox has metadata to display.
                 //Set the infobox options with the metadata of the pushpin.
                 infobox.setOptions({
@@ -85,13 +81,12 @@
                     visible: true
                 });
             infobox.setLocation(e.target.getLocation());
-        }
+        }*/
 
 
     </script>
-</head>
-<body>
-<div id="myMap" style="height:600px;"></div>
+
+<div id="myMap" style="height:600px;">
 <%@include file="index_map_legend.jsp" %>
-</body>
-</html>
+
+</div>

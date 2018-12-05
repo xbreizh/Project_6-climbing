@@ -22,11 +22,10 @@ public class SpotDaoImpl implements SpotDao {
 
     /*@Override*/
     public void add(Spot o) {
-        /*sessionFactory.getCurrentSession().save(o);*/
         sessionFactory.getCurrentSession().persist(o);
     }
 
-    // Get
+
     /*@Override*/
     public Spot getById(int id) {
         Query query=sessionFactory.getCurrentSession().createQuery(
@@ -70,7 +69,6 @@ public class SpotDaoImpl implements SpotDao {
     public List<Spot> ListSpotByCriterias(String str, String climbingType, String hasTopo, int levelMin, int levelMax) {
 
         System.out.println("level min and max: "+ levelMin+" / "+levelMax);
-        /*System.out.println("from dao str: "+str+" climb: "+climbingType+" topo: "+hasTopo);*/
         Query q;
             q = sessionFactory.getCurrentSession().createQuery("select spot.id from Route where grade >= :min and grade <= :max");
             q.setParameter("min", levelMin);
@@ -126,24 +124,11 @@ public class SpotDaoImpl implements SpotDao {
     /*@Override*/
     public void delete(Spot spot) {
         System.out.println("spot received in dao: "+spot);
-        // removing object from memberSpotList
-      /*  o.getMemberSpot().getSpotList().remove(o);
-        System.out.println("remove routes");
-        o.getCommentList().removeAll(o.getCommentList());
-        System.out.println("broke link with member");
-        o.getRouteList().removeAll(o.getRouteList());
-        System.out.println("remove comments");*/
         sessionFactory.getCurrentSession().delete(cl.getName(), spot);
     }
 
     @Override
     public void updateWhenDeletingMember(int id1, int id2){
-       /* Member m = (Member) memberDao.getById(id1);
-        Query query=sessionFactory.getCurrentSession().createQuery("update Spot set creatorSpot= :member1 where creatorSpot.id=:member2");
-        query.setParameter("member1", m);
-        query.setParameter("member2", id2);
-        int result = query.executeUpdate();
-        System.out.println("updated list?");*/
     }
 
 

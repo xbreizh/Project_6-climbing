@@ -1,6 +1,6 @@
 <style>
     fieldset{
-        position:absolute;
+        position:fixed;
         bottom:47px;left:40px;
         background-color:#ffede3;
         padding-left: 30px;
