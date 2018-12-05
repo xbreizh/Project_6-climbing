@@ -1,6 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<s:if test="%{commentList.size()>0}">
+<s:if test="%{route.commentList.size()>0}">
     <table class="table  table-hover" >
         <thead>
         <tr>
@@ -13,9 +13,8 @@
         </tr>
         </thead>
         <tbody>
-        <s:iterator value="commentList">
+        <s:iterator value="route.commentList">
 
-            <tr>
                 <td>
                     <s:property value="date" escapeHtml="false"/>
                 </td>
@@ -28,16 +27,19 @@
                     </s:if>
                     <s:else>
                         <s:a action="member_detail">
-                            <s:param name="id" value="memberRoute.id" />
-                            <s:property value="memberRoute.login"/>
+                            <s:param name="id" value="route.memberRoute.id" />
+                            <s:property value="route.memberRoute.login"/>
                         </s:a>
                     </s:else>
                 </td>
-                <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
-                    <s:property value="route.name" escapeHtml="false"/>
-                    <s:param name="id" value="id"/>
-                </s:a>
-                </td>
+                    <s:if test="session.user.role == 'superadmin'">
+                        <td>
+                            <s:a action="route_detail" style="display:block;text-decoration:none;" >
+                                <s:property value="route.name" escapeHtml="false"/>
+                                <s:param name="id" value="id"/>
+                            </s:a>
+                        </td>
+                    </s:if>
                 <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
                     <s:property value="route.id" escapeHtml="false"/>
                     <s:param name="id" value="id"/>
@@ -46,6 +48,7 @@
                 <td>
                     <s:property value="text" escapeHtml="false"/>
                 </td>
+                <s:if test="session.user.role == 'superadmin' || session.user.id == route.memberRoute.id">
                 <td>
                     <s:a action="comment_delete" style="display:block;text-decoration:none;" >
                         Remove
@@ -53,10 +56,12 @@
                         <s:param name="spot.id" value="spot.id"/>
                     </s:a>
                 </td>
+                </s:if>
             </tr>
         </s:iterator>
         </tbody>
     </table>
-</s:if><s:else>
+</s:if>
+<s:else>
     No Message on routes yet!
 </s:else>

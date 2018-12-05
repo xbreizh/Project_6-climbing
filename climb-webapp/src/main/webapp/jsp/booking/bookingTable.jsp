@@ -15,10 +15,11 @@
         <tbody >
         <s:iterator value="bookingList">
             <tr>
-                <td><s:a action="topo_detail" style="display:block;text-decoration:none;" >
-                    <s:property value="topo.name" escapeHtml="false"/>
-                    <s:param name="id" value="topo.id"/>
-                </s:a>
+                <td>
+                    <s:a action="topo_detail" style="display:block;text-decoration:none;" >
+                        <s:property value="topo.name" escapeHtml="false"/>
+                        <s:param name="id" value="topo.id"/>
+                    </s:a>
                 </td>
                 <td>
                     <s:if test="#session.user.id == topo.owner.id">

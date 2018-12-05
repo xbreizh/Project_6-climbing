@@ -2,6 +2,8 @@ package org.example.demo.climb.webapp.action;
 
 
 import com.opensymphony.xwork2.ActionSupport;
+import freemarker.template.utility.DateUtil;
+import org.apache.commons.lang3.time.DateUtils;
 import org.apache.struts2.interceptor.SessionAware;
 import org.example.demo.climb.business.contract.*;
 import org.example.demo.climb.model.bean.Booking;
@@ -11,6 +13,7 @@ import org.example.demo.climb.model.bean.Topo;
 import org.example.demo.climb.model.exception.NotFoundException;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.*;
@@ -185,51 +188,55 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
 
     // BOOKING
     public String doBooking(){
-        int error=0;
         String vResult = ActionSupport.INPUT;
 
         topo = topoManager.getTopo(id);
         if(booking != null) {
-            if (beginBook == null || endBook == null) {
-                this.addActionError("You must fill out both dates to book");
-                error++;
+            if (booking.getBookingDate() == null || booking.getPlannedReturnDate() == null) {
+                this.addFieldError("booking.plannedReturnDate","You must fill out both dates to book");
+                return vResult;
             } else {
-                if (beginBook.after(endBook) || beginBook.equals(endBook)) {
+                System.out.println("booking beg: "+booking.getBookingDate());
+                System.out.println("booking end: "+booking.getPlannedReturnDate());
+                if (booking.getBookingDate().after(booking.getPlannedReturnDate()) ||
+                        booking.getBookingDate().equals(booking.getPlannedReturnDate())) {
                     System.out.println("end date must be after begin date");
-                    this.addFieldError("endBook", "end date must be after begin date");
-                    error++;
+                    this.addFieldError("booking.plannedReturnDate", "end date must be after begin date");
+                    return vResult;
                 }
-                if (beginBook.before(new Date())) {
-                    this.addFieldError("beginBook", "start date should be at least tomorrow");
+                Date tomo = DateUtils.addDays(new Date(), 1);
+                Calendar today = new GregorianCalendar();
+                today.set(Calendar.HOUR_OF_DAY, 0);
+                today.set(Calendar.MINUTE, 0);
+                today.set(Calendar.SECOND, 0);
+                today.set(Calendar.MILLISECOND, 0);
+                System.out.println("tomorrow: "+today+1);
+                System.out.println("today: "+today);
+                if (booking.getBookingDate().before(today.getTime())) { // converts calendar into date
+                    this.addFieldError("booking.bookingDate", "date can't be in the past");
+                    System.out.println("date can't be in the past");
+                    return vResult;
+                }
+                if (booking.getPlannedReturnDate().compareTo(booking.getBookingDate() )>7) {
+                    this.addFieldError("booking.plannedReturnDate","You can book for maximum 7 days!");
                     System.out.println("start date should be at least tomorrow");
-                    error++;
+                    return vResult;
                 }
-                if (error == 0) {
-                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-                    booking.setBookingDate(beginBook);
-                    booking.setPlannedReturnDate(endBook);
-                    int i = booking.getPlannedReturnDate().compareTo(booking.getBookingDate());
-                    System.out.println("duration: "+i);
-                    if (i > 7) {
-                        this.addActionError("You can book for maximum 7 days!");
-                    } else {
-                        System.out.println("diff between dates = " + i);
-                        conflictList = bookingManager.addBooking(booking);
-                        if (conflictList.size()==0) {
-                            return  ActionSupport.SUCCESS;
-                        } else {
-                            System.out.println(conflictList.size());
-
-                            for (Booking b : conflictList
-                            ) {
-                                System.out.println("conflict id: " + b.getId());
-                            }
-                            this.addActionError("there are some booking conflicts");
-                        }
-                    }
+                conflictList = bookingManager.addBooking(booking);
+                if (conflictList.size()==0) {
+                     return  ActionSupport.SUCCESS;
+                } else {
+                System.out.println(conflictList.size());
+                for (Booking b : conflictList
+                ) {
+                System.out.println("conflict id: " + b.getId());
                 }
-            }
+                this.addFieldError("booking.plannedReturnDate", "there are some booking conflicts");
+                      }
+                }
+
+
         }
         return vResult;
     }

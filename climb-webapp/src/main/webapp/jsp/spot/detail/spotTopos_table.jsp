@@ -3,6 +3,12 @@
 <s:if test="spot.topos.size() > 0">
     <img alt="mapRoute" src="https://misanimales.com/wp-content/uploads/2018/02/topo-caracteristicas.jpg">
     <h2>Topos</h2>
+    <s:if test="#session.user">
+        <s:a action="topo_new">
+            <button type="button" class="btn btn-info">New Topo</button>
+        </s:a>
+    </s:if>
+    <br><br>
 
 
     <table class="table  table-hover">
@@ -58,6 +64,40 @@
                         </s:a>
                     </s:else>
                 </td>
+                <s:if test="#session.user.id">
+                    <s:if test="#session.user.id != owner.id">
+                        <td >
+                            <s:a action="topo_booking" style="display:block;text-decoration:none;" >
+                                <button type="button" class="btn btn-success">Book it!</button>
+                                <s:param name="id" value="id"/>
+                            </s:a>
+                        </td>
+                    </s:if>
+
+                    <s:if test="#session.user.id == owner.id || session.user.role == 'superadmin'">
+                        <td>
+                            <s:a action="topo_update" style="display:block;text-decoration:none;" >
+                                <button type="button" class="btn btn-warning">Edit</button>
+                                <s:param name="id" value="id"/>
+                            </s:a>
+                        </td>
+                        <td>
+                            <s:form action="topo_delete" method="POST">
+                                <s:hidden name="id" value="%{id}" />
+                                <s:submit class="btn btn-danger" value="Delete"/>
+                            </s:form>
+                        </td>
+                    </s:if>
+
+
+                </s:if>
+                <s:else>
+                    <td>
+                        <a href="javascript: popupLogin()">
+                            <button type="button" class="btn btn-warning">Connect to Book!</button>
+                        </a>
+                    </td>
+                </s:else>
             </tr>
         </s:iterator>
         </tbody>

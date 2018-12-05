@@ -77,7 +77,14 @@
                     <s:submit class="btn btn-success" value="Comment"/>
 
                 </s:form>
-                <%@include file="../../comment/commentRouteTableDetail.jsp" %>
+                <s:if test="%{commentList.size()>0}">
+                    <s:a action="route_detail" style="display:block;text-decoration:none;" >
+                        See <s:property value="%{commentList.size()}"/> comments
+                        <s:param name="id" value="id"/>
+                    </s:a>
+                </s:if><s:else>
+                Be the first to comment!
+            </s:else>
             </div>
         </td>
     </tr>
