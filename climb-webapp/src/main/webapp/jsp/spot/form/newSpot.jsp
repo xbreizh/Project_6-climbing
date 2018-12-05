@@ -21,10 +21,10 @@ Only the spots having at least a route will appear on the main map.
     <s:select list="climbingList" name="spot.type" placeholder="Type" headerKey="-1" headerValue="-- Climbing Type --"
               requiredLabel="true" />
     <s:textfield name="spot.memberSpot.id" value="%{session.user.id}" label="Member:"/>
-    <s:textfield name="spot.name" placeholder="Type Spot Name" requiredLabel="true"/>
+    <s:textfield name="spot.name" placeholder="Spot Name" requiredLabel="true"/>
     <s:textarea name="spot.latitude" placeholder="Latitude" />
     <s:textarea name="spot.longitude" placeholder="Longitude" />
-    <s:textarea name="spot.description" placeholder="Type Spot Description" requiredLabel="true"/>
+    <s:textarea name="spot.description" placeholder="Spot Description" requiredLabel="true"/>
     <s:submit class="btn btn-success" value="Create"/>
 </s:form>
 

@@ -2,16 +2,6 @@
 
 <s:if test="%{route.commentList.size()>0}">
     <table class="table  table-hover" >
-        <thead>
-        <tr>
-            <th>Date </th>
-            <th>Member </th>
-            <th>Route name</th>
-            <th>Route id</th>
-            <th>Comment</th>
-            <th></th>
-        </tr>
-        </thead>
         <tbody>
         <s:iterator value="route.commentList">
 
@@ -39,22 +29,21 @@
                                 <s:param name="id" value="id"/>
                             </s:a>
                         </td>
+                        <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
+                            <s:property value="route.id" escapeHtml="false"/>
+                            <s:param name="id" value="id"/>
+                        </s:a>
+                        </td>
                     </s:if>
-                <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
-                    <s:property value="route.id" escapeHtml="false"/>
-                    <s:param name="id" value="id"/>
-                </s:a>
-                </td>
                 <td>
                     <s:property value="text" escapeHtml="false"/>
                 </td>
                 <s:if test="session.user.role == 'superadmin' || session.user.id == route.memberRoute.id">
                 <td>
-                    <s:a action="comment_delete" style="display:block;text-decoration:none;" >
-                        Remove
-                        <s:param name="id" value="id"/>
-                        <s:param name="spot.id" value="spot.id"/>
-                    </s:a>
+                    <s:form action="route_comment_delete" method="POST">
+                        <s:textfield name="id" value="%{id}"  requiredLabel="true"/>
+                        <s:submit class="btn btn-danger" value="Remove"/>
+                    </s:form>
                 </td>
                 </s:if>
             </tr>
@@ -63,5 +52,5 @@
     </table>
 </s:if>
 <s:else>
-    No Message on routes yet!
+    No Message on this route yet!
 </s:else>

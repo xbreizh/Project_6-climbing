@@ -1,8 +1,8 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <s:if test="spot.routeList.size() > 0">
-    <img alt="mapRoute" src="http://vincent.boulas.free.fr/teamgrimptout/topos/ainsavoiehautesavoie/topo_malpas.gif">
-    <h2>Routes</h2>
+    <div id="Routes" ><h2>Routes</h2></div>
+    <%-- <img alt="mapRoute" src="http://vincent.boulas.free.fr/teamgrimptout/topos/ainsavoiehautesavoie/topo_malpas.gif">--%>
 
 
         <table class="table  table-hover">

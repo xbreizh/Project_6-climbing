@@ -66,6 +66,7 @@
         </s:if>
     </tr>
     <tr>
+        <s:if test="session.user">
         <td  colspan="8">
 
                 <s:form style="display: inline;" action="createCommentRoute" method="POST">
@@ -76,6 +77,7 @@
 
                 </s:form>
         </td>
+        </s:if>
     </tr>
     <tr>
 

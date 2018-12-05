@@ -3,23 +3,23 @@
     <tr>
 
         <th>
-            <s:a href="#" rel="Details">
+            <s:a href="#Details" rel="Details">
                 <button type="button" class="btn btn-info">Details</button>
             </s:a>
         </th>
         <th>
-            <s:a href="#" rel="Routes">
+            <s:a href="#Routes" rel="Routes">
                 <button type="button" class="btn btn-info">Routes</button>
             </s:a>
         </th>
         <th>
-            <s:a href="#" rel="Topos">
+            <s:a href="#Topos" rel="Topos">
                 <button type="button" class="btn btn-info">Topos</button>
                 <s:param name="id" value="id"/>
             </s:a>
         </th>
         <th>
-            <s:a href="#" rel="Comments">
+            <s:a href="#Comments" rel="Comments">
                 <button type="button" class="btn btn-info">Comment</button>
                 <s:param name="id" value="id"/>
             </s:a>

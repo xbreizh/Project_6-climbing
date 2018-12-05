@@ -13,7 +13,7 @@
                 method="doCreateCommentRoute">
             <result name="input">/jsp/spot/newComment.jsp</result>
             <result name="success" type="redirectAction">
-                <param name="actionName">route</param>
+                <param name="actionName">route_detail</param>
                 <param name="id">${comment.route.id}</param>
             </result>
         </action>
@@ -32,11 +32,12 @@
             <result name="input" type="redirectAction">
                 <param name="actionName">spot_detail</param>
                 <param name="id">${comment.spot.id}</param>
+                <param name="anchor">Comments</param>
             </result>
             <result name="success" type="redirectAction">
                 <param name="actionName">spot_detail</param>
                 <param name="id">${comment.spot.id}</param>
-                <param name="anchor">comments</param>
+                <param name="anchor">Comments</param>
             </result>
         </action>
 
@@ -101,7 +102,7 @@
             <interceptor-ref name="defaultStack"/>
             <result name="success" type="redirectAction">
                 <param name="actionName">route_detail</param>
-                <param name="id">${route.id}</param>
+                <param name="id">${comment.route.id}</param>
                 <param name="anchor">Comments</param>
             </result>
         </action>

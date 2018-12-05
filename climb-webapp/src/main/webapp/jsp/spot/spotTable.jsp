@@ -4,10 +4,11 @@
         <thead>
         <tr>
             <th></th>
-            <th>Country </th>
-            <th>City </th>
-            <th>Name </th>
-            <th>Description </th>
+            <th>Country</th>
+            <th>City</th>
+            <th>Name</th>
+            <th>Number Routes</th>
+            <th>Description</th>
             <th>Creator </th>
         </tr>
         </thead>
@@ -36,6 +37,11 @@
                 </td>
                 <td><s:a action="spot_detail" style="display:block;text-decoration:none;" >
                     <s:property value="name" escapeHtml="false"/>
+                    <s:param name="id" value="id"/>
+                </s:a>
+                </td>
+                <td><s:a action="spot_detail" style="display:block;text-decoration:none;" >
+                    <s:property value="routeList.size()" escapeHtml="false"/>
                     <s:param name="id" value="id"/>
                 </s:a>
                 </td>

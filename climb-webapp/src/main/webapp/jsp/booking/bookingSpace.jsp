@@ -4,7 +4,7 @@
 
 <%@include file="../_include/header.jsp" %>
 
-<s:if test="#session.user.role == superadmin">
+<s:if test="#session.user.role == 'superadmin'">
 
 
 <%@include file="bookingTable.jsp" %>

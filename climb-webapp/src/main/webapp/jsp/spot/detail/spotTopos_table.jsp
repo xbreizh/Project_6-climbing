@@ -1,8 +1,9 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
+<div id="Topos" ><h2>Topos</h2></div>
 <s:if test="spot.topos.size() > 0">
-    <img alt="mapRoute" src="https://misanimales.com/wp-content/uploads/2018/02/topo-caracteristicas.jpg">
-    <h2>Topos</h2>
+    <%--<img alt="mapRoute" src="https://misanimales.com/wp-content/uploads/2018/02/topo-caracteristicas.jpg">--%>
+
     <s:if test="#session.user">
         <s:a action="topo_new">
             <button type="button" class="btn btn-info">New Topo</button>

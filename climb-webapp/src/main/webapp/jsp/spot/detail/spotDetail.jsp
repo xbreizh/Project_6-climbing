@@ -6,31 +6,31 @@
 <br><br>
 
 <div>
-    <h2>Spot Details</h2>
-    <div id="Details" style="display: block">
+
         <%@include file="spotDetails_table.jsp" %>
-    </div>
+    <br><br><br><br><br>   <br><br><br><br><br>
 
-    <div id="Routes" style="display: none">
+
         <%@include file="spotRoutes_table.jsp" %>
-    </div>
+    <br><br><br><br><br>   <br><br><br><br><br>
 
-    <div id="Topos" style="display: none">
+
         <%@include file="spotTopos_table.jsp" %>
-    </div>
+    </div><br><br><br><br><br>   <br><br><br><br><br>
 
-    <div id="Comments" style="display: none">
+
         <%@include file="spotComments_table.jsp" %>
-    </div>
+   <br><br><br><br><br>   <br><br><br><br><br>   <br><br><br><br><br>   <br><br><br><br><br>   <br><br><br><br><br>
+<br><br><br><br><br>   <br><br><br><br><br>   <br><br><br><br><br>
 </div>
 
 
-<script>
+<%--<script>
     $('a').on('click', function(){
         var target = $(this).attr('rel');
         $("#"+target).show().siblings("div").hide();
     });
-</script>
+</script>--%>
 </div>
 
 

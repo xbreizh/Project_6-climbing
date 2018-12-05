@@ -1,6 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%--<a name="comments"></a>--%>
-<h2>Comments</h2><h4><%--<a href="#top" >Top</a>--%></h4>
+<div id="Comments" ><h2>Comments</h2></div>
 
 <%--<s:if test="#session.user">--%>
 <s:form action="createCommentSpot" method="POST">
