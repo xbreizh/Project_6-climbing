@@ -86,7 +86,7 @@
 
     </script>
 
-<div id="myMap" style="height:600px;">
+<div id="myMap" >
 
 
 </div>
