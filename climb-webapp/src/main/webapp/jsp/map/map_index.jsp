@@ -34,7 +34,7 @@
 
             map.setView({
                /* mapTypeId: Microsoft.Maps.MapTypeId.aerial,*/
-                zoom: 1.4 });
+                zoom: 2.7 });
 
 
             //Create an infobox at the center of the map but don't show it.
@@ -72,7 +72,7 @@
 
 
 
-        /*function pushpinClicked(e) {
+        function pushpinClicked(e) {
             //Make sure the infobox has metadata to display.
                 //Set the infobox options with the metadata of the pushpin.
                 infobox.setOptions({
@@ -81,12 +81,12 @@
                     visible: true
                 });
             infobox.setLocation(e.target.getLocation());
-        }*/
+        }
 
 
     </script>
 
 <div id="myMap" style="height:600px;">
-<%@include file="index_map_legend.jsp" %>
+
 
 </div>

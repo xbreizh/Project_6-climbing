@@ -1,0 +1,22 @@
+/*fieldset{
+    position:absolute;
+    padding-bottom:47px;left:40px;
+    background-color:#ffede3;
+    !*padding-left: 30px;
+    padding-right: 10px;*!
+    border-radius:10px;
+    width:120px;
+}*/
+.legend{
+    position:fixed;
+   /* margin-left:15px;
+    margin-right:15px;
+    padding-bottom:50px;*/
+    font-size: 12px;
+    text-align: justify-all;
+    /*padding:auto;*/
+}
+
+.legend img{
+    height:30px; width:30px;
+}

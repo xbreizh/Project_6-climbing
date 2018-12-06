@@ -1,18 +1,33 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<%@include file="_include/header.jsp" %>
-<div class="container">
-        <%@include file="map/map_index.jsp" %>
-</div>
-<div class="container">
+    <%@include file="_include/head.jsp" %>
 
-    <%@include file="search/searchForm.jsp" %>
-</div>
-<div class="container">
-            <%@include file="spot/spotTable.jsp" %>
-            <%@include file="topo/topoTable.jsp" %>
-</div>
+    <%@include file="_include/navbar.jsp" %>
+<div class="container-fluid">
+    <div class="row ">
+        <div class="col-lg-6 col-md-12 col-sm-12 sidebar-nav-fixed affix">
+                <%@include file="/jsp/map/index_map_legend.jsp" %>
+                <%@include file="/jsp/map/map_index.jsp" %>
+                <%@include file="search/searchForm.jsp" %>
+
+
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12 pull-right jumbotron">
+
+            <%@include file="spot/spotMapTable.jsp" %>
+            <%@include file="topo/topoMapTable.jsp" %>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+        </div>
+    </div>
+
+
 
 </div>
-    <%@include file="_include/footer.jsp" %>
+   <%-- <%@include file="_include/footer.jsp" %>--%>
+</body>
 
+</html>
