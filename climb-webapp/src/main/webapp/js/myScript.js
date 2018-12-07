@@ -15,6 +15,14 @@ function toggle_visibility(id) {
         e.style.visibility = 'hidden';
 }
 
+function toggle_display(id) {
+    var e = document.getElementById(id);
+    if(e.style.display == 'none')
+        e.style.display = 'block';
+
+    else
+        e.style.display = 'none';
+}
 function resizeElement(){
     var element1 = document.getElementById('skra');
     var element2 = document.getElementById('index_result');

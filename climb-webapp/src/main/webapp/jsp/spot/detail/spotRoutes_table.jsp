@@ -1,7 +1,9 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
+<div id="Routes" ></div>
+<br><br><br><br><br><br><br><br><br><br>
 <s:if test="spot.routeList.size() > 0">
-    <div id="Routes" ><h2>Routes</h2></div>
+    <h2>Routes</h2>
 
         <table class="table  table-hover">
             <thead>
@@ -101,3 +103,4 @@
     </s:a>
 </s:if>
 
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

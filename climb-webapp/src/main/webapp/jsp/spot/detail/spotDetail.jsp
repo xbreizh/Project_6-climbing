@@ -3,7 +3,7 @@
 <%@include file="../../_include/header.jsp" %>
 
 <%@include file="menuSpotDetails.jsp" %>
-<br><br>
+
 
 
 

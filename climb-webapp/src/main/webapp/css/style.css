@@ -15,8 +15,30 @@
         width: 1170px;
     }
 }
+
+/**************************************************************/
+/**************************************************************/
+html{
+    background: #d1e0d2;
+}
+form{
+    position:center;
+    border:aliceblue;
+    background-color: #dfd3cc;
+}
+.container{
+    justify-content:center;
+
+}
 .main-container{
+    margin:3%;
     padding: 3%;
+    background: #d1e0d2;
+}
+.index-container{
+    margin-top:3%;
+    margin-bottom:0%;
+    background: #d1e0d2;
 }
 .navbar, .footer{
     height: 7%;
@@ -28,7 +50,9 @@
     margin: auto;
     padding: 0;
 }
-
+.menu2{
+    position: fixed;
+}
 #leftmenu {
     position: fixed;
     top: 0;
@@ -38,7 +62,9 @@
     background-color: red;
 }
 
-
+.index_result{
+    background-color: #e6f9e4;
+}
 #maincontent {
     /*float: right;*/
     left: 30%;

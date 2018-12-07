@@ -1,3 +1,7 @@
+<div id="Details" ></div>
+
+    <br><br><br><br><br><br><br><br><br><br>
+    <h2>Spot Details</h2>
 
 <table class="table table-hover">
     <thead>
@@ -9,6 +13,7 @@
         <th>Creator</th>
     </tr>
     </thead>
+
     <tbody>
     <tr>
         <td>
@@ -40,7 +45,7 @@
         <s:if test="session.user.role == 'superadmin' || session.user.id == spot.memberSpot.id">
             <td>
                 <s:form action="spot_update" method="POST">
-                    <s:textfield name="spot" value="%{id}"  requiredLabel="true"/>
+                    <s:hidden name="spot" value="%{id}"  requiredLabel="true"/>
                     <s:submit class="btn btn-warning" value="Edit"/>
                 </s:form>
             </td>
@@ -56,9 +61,11 @@
     </tbody>
 </table>
 <s:if test="spot.routeList.size() < 1">
-    A spot with no route won't appear on the main map!<br><br>
+    <div class="alert alert-danger">A spot with no route won't appear on the main map!</div>
     <s:a action="createRoute">
         <s:param name="id" value="id"/>
         <button type="button" class="btn btn-warning">New Route</button>
+
     </s:a>
 </s:if>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

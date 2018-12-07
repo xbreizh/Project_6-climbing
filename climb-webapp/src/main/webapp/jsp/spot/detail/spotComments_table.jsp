@@ -1,7 +1,8 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<div id="Comments" ><h2>Comments</h2></div>
-
+<div id="Comments" ></div>
+<br><br><br><br><br><br><br><br><br><br>
+<h2>Comments</h2>
 
 <s:form action="createCommentSpot" method="POST">
     <s:hidden name="comment.spot.id" value="%{spot.id}"/>
@@ -50,3 +51,5 @@
         <h2> No Comment yet! </h2>
     </s:else>
 </s:else>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

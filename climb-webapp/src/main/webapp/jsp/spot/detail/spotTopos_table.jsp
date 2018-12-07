@@ -1,6 +1,9 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<div id="Topos" ><h2>Topos</h2></div>
+<div id="Topos" ></div>
+<br><br><br><br><br><br><br><br><br><br>
+
+<h2>Topos</h2>
 <s:if test="spot.topos.size() > 0">
 
     <s:if test="#session.user">
@@ -111,3 +114,4 @@
     </s:a>
 </s:else>
 
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

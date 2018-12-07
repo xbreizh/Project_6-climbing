@@ -1,4 +1,6 @@
-<h2>Spots</h2>
+
+<div style="display: none" id="menu-spot-result">
+    <h2>Spots</h2>
 <s:if test="%{spotList.size()>0}">
     <table class="table  table-hover" >
         <thead>
@@ -30,4 +32,7 @@
         </s:iterator>
         </tbody>
     </table>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </s:if>
+</div>
+

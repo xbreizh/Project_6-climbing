@@ -128,42 +128,19 @@ return true;
     /*CREATE*/
     public String doCreateRoute() throws NotFoundException {
         String vResult= ActionSupport.INPUT;
+        spot = spotManager.getSpotById(id);
         initGradeList();
         System.out.println("init grade list");
         initHeightList();
         System.out.println("init height list");
         if(route!=null){
             id=route.getSpot().getId();
-          /*  if(submit) {*/
             System.out.println("route received: "+route);
                 if (checkRouteForm(route)) {
                     System.out.println("trying to add route: "+route);
                     routeManager.addRoute(route);
                     return ActionSupport.SUCCESS;
-                /*}*/
-            }/*;
-            if(routeManager.getRouteByName(route.getName().toUpperCase())==null){
-                route.setName(route.getName().toUpperCase());
-                routeManager.addRoute(route);
-                this.addActionMessage("Route "+route.getName()+" successfully created");
-                vResult = ActionSupport.SUCCESS;
-            }else{
-                System.out.println("id from route: "+route.getSpot().getId());
-                spot = spotManager.getSpotById(route.getSpot().getId());
-                System.out.println("id found: "+spot.getId());
-
-                System.out.println("error found");
-
-                this.addActionError("That route already exists, " +
-                        "if you wish to add some new information, please add a comment ");
-                *//*return ActionSupport.ERROR;*//*
             }
-        }else{
-            spot = spotManager.getSpotById(id);
-            *//*gradeList = routeManager.getListGrade();*//*
-            *//*typeList = routeManager.getListClimbingType();*//*
-            *//*heightList= IntStream.range(1, 50).boxed().collect(Collectors.toList());*//*
-            initHeightList();*/
         }else{
             System.out.println("route is null");
         }
@@ -193,22 +170,6 @@ return true;
         }
         return vResult;
     }
-
-   /* *//*EDIT*//*
-    public String doEdit() {
-        System.out.println("id: "+id);
-        try {
-           *//* gradeList = routeManager.getListGrade();*//*
-            *//*typeList = routeManager.getListClimbingType();*//*
-            initHeightList();
-            route = routeManager.getRouteById(id);
-        } catch (NotFoundException e) {
-            e.printStackTrace();
-        }
-        System.out.println("doedit id: "+route.getId());
-        return ActionSupport.SUCCESS;
-    }*/
-
 
 
     /*DELETE*/

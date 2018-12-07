@@ -67,14 +67,14 @@
                 <s:if test="session.user.role == 'superadmin' || session.user.id == memberSpot.id">
                     <td>
                         <s:form action="spot_update" method="POST">
-                            <s:textfield name="spot" value="%{id}"  requiredLabel="true"/>
+                            <s:hidden name="spot" value="%{id}"  requiredLabel="true"/>
                             <s:submit class="btn btn-warning" value="Edit"/>
                         </s:form>
                     </td>
                     <s:if test="session.user.role == 'superadmin'">
                     <td>
                         <s:form action="spot_delete" method="POST">
-                            <s:textfield name="spot" value="%{id}"  requiredLabel="true"/>
+                            <s:hidden name="spot" value="%{id}"  requiredLabel="true"/>
                             <s:submit class="btn btn-danger" value="Delete"/>
                         </s:form>
 
