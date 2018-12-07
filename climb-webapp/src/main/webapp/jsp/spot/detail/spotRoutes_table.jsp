@@ -46,10 +46,10 @@
                 </s:a>
                 </td>
                 <td>
-                    <a href="#" onclick="toggle_visibility('${id}');">
+                    <s:a action="route_detail" style="display:block;text-decoration:none;" >
                         <button type="button" class="btn btn-primary">Comments</button>
-                    </a>
-
+                        <s:param name="id" value="id"/>
+                    </s:a>
                 </td>
                 <s:if test="session.user.role == 'superadmin' || session.user.id == route.memberRoute.id">
                     <td>

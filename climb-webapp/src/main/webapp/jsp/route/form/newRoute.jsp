@@ -34,6 +34,5 @@
     </div>
 </s:if>
 <s:else>
-    Connect to add a Route<br><br>
     <%@include file="../../_include/connectButton.jsp" %>
 </s:else>

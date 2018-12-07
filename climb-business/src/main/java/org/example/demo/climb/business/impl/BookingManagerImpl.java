@@ -19,10 +19,6 @@ public class BookingManagerImpl implements BookingManager {
     BookingDao bookingDao;
     @Override
     public List<Booking> addBooking(Booking booking) {
-       /* String str="";
-        String checkDate1="";
-        String checkDate2="";
-        String checkDate3="";*/
         List<Booking> bookingList = bookingDao.getListBookingByTopo(booking.getTopo().getId());
         if(bookingList.size() == 0){
             System.out.println("bookingList is empty");
@@ -30,10 +26,6 @@ public class BookingManagerImpl implements BookingManager {
             System.out.println("bookingList is not empty: "+bookingList.get(0));
         }
         List<Booking> conflictList=new ArrayList<>();
-       /* if(conflictList.size() > 0) {
-            System.out.println("cl list manager debu: " + conflictList.get(0));
-            System.out.println("cl list manager debu size: " + conflictList.size());
-        }*/
         for (Booking b: bookingList
              ) {
                 if (booking.getBookingDate().equals(b.getBookingDate())||(booking.getBookingDate().after(b.getBookingDate()) && booking.getBookingDate().before(b.getPlannedReturnDate()))) {

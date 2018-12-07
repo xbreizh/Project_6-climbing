@@ -72,10 +72,7 @@ form{
     height: 100%;
     background-color: blue;
 }
-/*.navbar{
-    background-color: #1c354c;
 
-}*/
 .index-content{
     top: 10px;
 }
@@ -90,31 +87,4 @@ form{
 }
 input:hover{box-shadow:0px 0px 4px #fff;}
 input:active{top:1px;}
-/*footer{
-    position:fixed;
-    bottom:0px;
-}*/
 
-
-/*
-[class*="col-"] {
-    background-color: #d3d6ee;
-    border: 2px solid black;
-    border-radius: 6px;
-    line-height: 40px;
-    text-align: center;
-}
-
-a {
-    text-decoration: none;
-}
-.menu1, .menu2 {
-    position: fixed;
-}
-.menu2{
-    top:70px;
-}
-.form-inline {
-    flex-direction: column;
-    align-items: stretch;
-}*/

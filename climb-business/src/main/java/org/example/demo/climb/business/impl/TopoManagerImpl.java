@@ -89,10 +89,6 @@ public class TopoManagerImpl implements TopoManager {
             }
             System.out.println("size after: " + topo.getSpots().size());
         }
-       /* for (Booking b: topo.getBookingList()
-        ) {
-            topo.getBookingList().remove(b);
-        }*/
         System.out.println("trying to delete");
         topoDao.delete(topo);
     }

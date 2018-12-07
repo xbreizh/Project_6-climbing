@@ -69,9 +69,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         initCountryList();
         initClimbingTypeList();
         System.out.println("spot country id: "+spot);
-       /* for(ClimbingType ct: ClimbingType.values()){
-            climbingList.add(ct.getName());
-        }*/
+
         if(spot!=null) {
             if (checkSpotForm(spot)){
                 spotManager.addSpot(spot);
@@ -109,7 +107,6 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         }
         System.out.println("level min: "+levelMin);
         System.out.println("level max: "+levelMax);
-        /*System.out.println("spotList size: "+spotList.size());*/
         int i=0;
         if(spotList!=null) {
             for (Spot s : spotList
@@ -140,23 +137,13 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     }
 
     private void initClimbingTypeList() {
+        // adding condition for All
         climbingList.add("ALL");
         for(ClimbingType ct: ClimbingType.values()){
             climbingList.add(ct.getName());
         }
-        // adding condition for All
     }
 
-   /* private void initLevelList() {
-        int index=0;
-        //adding default condition
-        levelList.put(index, "0");
-        for(Grade g: Grade.values()){
-            index++;
-            levelList.put(index,g.getValue());
-        }
-
-    }*/
 
 
 
@@ -301,10 +288,6 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
             } else {
                 System.out.println("spot is null");
             }
-            /*if (this.hasErrors()) {
-                System.out.println("Spot is null");
-                vResult = ActionSupport.ERROR;
-            }*/
         }
         return vResult;
 
@@ -321,9 +304,6 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         }else{
             this.addActionError("Issue while trying to delete, no Id found");
         }
-        /*if (this.hasErrors()) {
-            vResult = ActionSupport.ERROR;
-        }*/
         return vResult;
 
     }
@@ -403,10 +383,6 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     public HashMap<Integer, String> getGradeList() {
         return gradeList;
     }
-/*
-    public void setGradeList(HashMap<Integer, String> gradeList) {
-        this.gradeList = gradeList;
-    }*/
 
     public List<String> getCityList() {
         return cityList;

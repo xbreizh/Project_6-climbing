@@ -92,7 +92,6 @@ public class MemberManagerImpl  implements MemberManager {
     @Override
     public void disableMember(int id) {
         Member m= (Member) memberDao.getById(id);
-        /*spotManager.updateWhenDeletingMember(id);*/
         System.out.println("member received to disable: "+m);
         m.setActive(false);
         m.setLogin("Inactive User");
@@ -104,7 +103,6 @@ public class MemberManagerImpl  implements MemberManager {
     @Override
     public void enableMember(int id) {
         Member m= (Member) memberDao.getById(id);
-        /*spotManager.updateWhenDeletingMember(id);*/
         System.out.println("member received to enable: "+m);
         m.setActive(true);
         m.setLogin(m.getLogin2());
@@ -116,9 +114,6 @@ public class MemberManagerImpl  implements MemberManager {
     @Override
     public void deleteMember(int id) {
        Member m= (Member) memberDao.getById(id);
-        /*spotManager.updateWhenDeletingMember(id);*/
-
-
         memberDao.delete(m);
     }
 

@@ -40,17 +40,6 @@
             <result name="success">/jsp/route/routeDetail.jsp</result>
         </action>
 
-       <!-- &lt;!&ndash;EDIT&ndash;&gt;
-        <action name="route_edit"
-                class="org.example.demo.climb.webapp.action.CreationRouteAction"
-                method="doEdit">
-            <interceptor-ref name="store">
-                <param name="operationMode">RETRIEVE</param>
-            </interceptor-ref>
-            <interceptor-ref name="defaultStack"/>
-            <result name="success">/jsp/spot/form/spot_update.jsp</result>
-        </action>-->
-
 
         <!-- UPDATE -->
         <action name="route_update"

@@ -169,12 +169,8 @@ public class GestionMemberAction extends LoginAction {
     public String doDelete() {
         String vResult = ActionSupport.SUCCESS;
 
-
         memberManager.deleteMember(id);
 
-       /* if (this.hasErrors()) {
-            vResult = ActionSupport.ERROR;
-        }*/
         return vResult;
 
     }

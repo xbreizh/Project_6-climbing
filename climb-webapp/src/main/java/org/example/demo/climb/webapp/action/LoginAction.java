@@ -1,7 +1,6 @@
 package org.example.demo.climb.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-import javassist.bytecode.stackmap.TypeData;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.interceptor.SessionAware;
 import org.example.demo.climb.business.contract.MemberManager;

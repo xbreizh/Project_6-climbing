@@ -19,8 +19,8 @@ public class CommentManagerImpl  implements CommentManager {
 
     private Class cl= Zone.class;
 
-    @Inject
-    private SessionFactory sessionFactory;
+   /* @Inject
+    private SessionFactory sessionFactory;*/
     @Inject
     private CommentDao commentDao;
 
@@ -71,12 +71,5 @@ public class CommentManagerImpl  implements CommentManager {
     public void deleteComment(Comment comment) {
         System.out.println("comment received in manager: "+comment);
         commentDao.delete(comment);
-       /* if(
-        commentDao.getCommentById(id) != null){
-
-            commentDao.delete(commentDao.getCommentById(id));
-        }else{
-            System.out.println("comment cannot be found: "+id);
-        }*/
     }
 }

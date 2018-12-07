@@ -72,9 +72,7 @@ public class RouteManagerImpl implements RouteManager {
             if(!(route.getName()==null)){
                 s.setName(route.getName());
                 s.setDescription(route.getDescription());
-                /*s.setGrade(route.getGrade());*/
                 s.setHeight(route.getHeight());
-               /* s.setType(route.getType());*/
                 routeDao.update(s);
             }else{
                 System.out.println("route is null");
@@ -83,16 +81,12 @@ public class RouteManagerImpl implements RouteManager {
         }catch(NullPointerException e){
             System.err.println("route couldn't be found: "+id);
         }
-       /* if(!(route.getNb_ways()==0)){
-            s.setNb_ways(route.getNb_ways());
-        }*/
 
     }
 
     @Override
     public void deleteRoute(Route route) {
         System.out.println("trying to delete route: "+route.getName());
-        /*Route m= (Route) routeDao.getById(id);*/
         routeDao.delete(route);
     }
 

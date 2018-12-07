@@ -46,14 +46,6 @@ public class CountryDaoImpl  implements CountryDao {
     }
 
 
-
-   /* @Override
-    public List<String> getListContinent() {
-      List<Country> continentList=sessionFactory.getCurrentSession().createQuery(
-                "select distinct z.continent from Country z", String.class).getResultList();
-        return continentList;
-    }*/
-
     @Override
     public List<Country> getAllByContinent(String continent) {
         Query query = sessionFactory.getCurrentSession().createQuery(

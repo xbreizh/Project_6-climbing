@@ -28,7 +28,6 @@ public class CountryManagerImpl implements CountryManager {
 
     @Override
     public List<Country> getListCountry() {
-       /* System.out.println("trying to get Country list");*/
         return countryDao.getAll();
 
     }

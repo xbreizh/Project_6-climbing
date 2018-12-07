@@ -414,8 +414,6 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
         this.bookingList = bookingList;
     }
 
-
-
     public boolean isSubmit() {
         return submit;
     }

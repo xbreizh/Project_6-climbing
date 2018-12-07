@@ -52,13 +52,13 @@
         <s:if test="session.user.role == 'superadmin' || session.user.id == route.memberRoute.id">
             <td>
                 <s:form action="route_update" method="POST">
-                    <s:textfield name="route" value="%{route.id}"  requiredLabel="true"/>
+                    <s:hidden name="route" value="%{route.id}"  requiredLabel="true"/>
                     <s:submit class="btn btn-warning" value="Edit"/>
                 </s:form>
             </td>
             <td>
                 <s:form action="route_delete" method="POST">
-                    <s:textfield name="route" value="%{route.id}"  requiredLabel="true"/>
+                    <s:hidden name="route" value="%{route.id}"  requiredLabel="true"/>
                     <s:submit class="btn btn-danger" value="Delete"/>
                 </s:form>
 
@@ -82,7 +82,7 @@
     <tr>
 
         <td colspan="8">
-            <a href="#" onclick="toggle_visibility('${id}');">
+            <a href="#" onclick="toggle_display('${id}');">
                 See all comments
             </a><br>
             <div id="${id}" style="display: none">

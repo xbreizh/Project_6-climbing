@@ -24,7 +24,6 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
     private int id;
     private int spotId;
     private String country;
-   /* private List<Integer> heightList=new ArrayList<>();*/
     private List<Route> routeList=new ArrayList<>();
     private HashMap<Integer, String> gradeList= new HashMap<>();
     private HashMap<Integer, Integer> heightList= new HashMap<>();
@@ -52,7 +51,6 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
     private void initHeightList(){
         int index=0;
         //adding default condition
-        /*heightList.put(index, "0");*/
         for(int i=0; i <50; i++){
             i++;
             heightList.put(i, i);
@@ -76,9 +74,6 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
                     vResult = ActionSupport.SUCCESS;
                 }
             }
-            /*if (this.hasErrors()) {
-                vResult = ActionSupport.ERROR;
-            }*/
         }
         return vResult;
     }
@@ -128,12 +123,16 @@ return true;
     /*CREATE*/
     public String doCreateRoute() throws NotFoundException {
         String vResult= ActionSupport.INPUT;
-        spot = spotManager.getSpotById(id);
+        if(spot!=null){
+            System.out.println("spot received");
+        }
+
         initGradeList();
         System.out.println("init grade list");
         initHeightList();
         System.out.println("init height list");
         if(route!=null){
+            spot = spotManager.getSpotById(route.getSpot().getId());
             id=route.getSpot().getId();
             System.out.println("route received: "+route);
                 if (checkRouteForm(route)) {
@@ -143,13 +142,13 @@ return true;
             }
         }else{
             System.out.println("route is null");
+            spot = spotManager.getSpotById(id);
         }
         return vResult;
     }
 
     /*READ ALL*/
     public String doList() throws  NotFoundException{
-        /*spot = spotManager.getSpotById(id);*/
         routeList = routeManager.getListRoute();
         System.out.println("tried to get the route liste");
         return ActionSupport.SUCCESS;
