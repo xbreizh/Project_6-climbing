@@ -55,6 +55,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-context:5.0.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.0.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.0.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:5.1.0.RELEASE" />
           <element id="archive" name="climb-model-1.0-SNAPSHOT.jar">
             <element id="module-output" name="climb-model" />
           </element>

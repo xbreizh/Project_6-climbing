@@ -14,7 +14,7 @@
                 </div>
                 <div class="row">
                     <div class="col-2">
-                        <button type="button" class="block" onclick="resizeElement()">Show Result</button>
+                        <button type="button" class="block" onclick="resizeElement()">Show / Hide Result</button>
                     </div>
                     <div class="col-2">
                          <%@include file="search/searchForm.jsp" %>

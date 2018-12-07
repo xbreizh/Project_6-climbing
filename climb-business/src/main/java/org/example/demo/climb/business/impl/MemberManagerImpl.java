@@ -3,6 +3,7 @@ import org.example.demo.climb.business.contract.MemberManager;
 import org.example.demo.climb.business.contract.SpotManager;
 import org.example.demo.climb.consumer.contract.MemberDao;
 import org.example.demo.climb.model.bean.Member;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
 
@@ -34,12 +35,15 @@ public class MemberManagerImpl  implements MemberManager {
         member.setActive(true);//activating user
         member.setLogin2(member.getLogin().toUpperCase());//setting backup login
         member.setLogin(member.getLogin().toUpperCase());//setting upper case login
+        member.setPassword( encryptPassword(member.getPassword())); // encrypting password
+        System.out.println("password crypted");
         member.setDatejoin(new Date());
         member.setRole("admin");
         System.out.println("Member to be added: "+member);
         memberDao.add(member);
         System.out.println("Checking if member is added: "+getMemberById(member.getId()));
     }
+
 
     // Read one member by Id
     @Override
@@ -71,7 +75,8 @@ public class MemberManagerImpl  implements MemberManager {
             m.setActive(false);
         }else{
             if(member.getPassword()!= null) { // checks if any password passed
-                m.setPassword(member.getPassword());
+
+                m.setPassword(encryptPassword(member.getPassword()));
             }
             m.setEmail(member.getEmail());
             m.setLogin(m.getLogin2());
@@ -139,7 +144,8 @@ public class MemberManagerImpl  implements MemberManager {
         Member m;
         try {
             m = getMemberByLogin(login.toUpperCase());
-            if (m.getPassword().equals(password)) {
+            // checking password match
+            if (checkPassword(password, m.getPassword())) {
                 if(!m.isActive()){
                     System.out.println("member exista but inactive: " +m.getLogin());
                 }
@@ -149,6 +155,22 @@ public class MemberManagerImpl  implements MemberManager {
             System.out.println("wrong login or pwd");
         }
         return null;
+    }
+
+    @Override
+    public String encryptPassword(String password) {
+        BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+        String pwd =bcrypt.encode(password);
+        System.out.println("hashed pwd: "+pwd);
+        return pwd;
+    }
+
+    @Override
+    public boolean checkPassword(String pwd1, String pwd2) {
+        BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+
+
+        return bcrypt.matches(pwd1, pwd2);
     }
 
     // Logout

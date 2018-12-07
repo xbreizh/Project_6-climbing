@@ -29,7 +29,7 @@ public class Member {
     private boolean active;
 
     @NotNull
-    @Size(min = 3, max = 10)
+    @Size(min = 3, max = 100)
     private String password;
 
     @Size(max = 255)
