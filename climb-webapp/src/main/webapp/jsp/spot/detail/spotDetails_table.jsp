@@ -1,4 +1,3 @@
-<div id="Details" ><h2>Spot Details</h2></div>
 
 <table class="table table-hover">
     <thead>

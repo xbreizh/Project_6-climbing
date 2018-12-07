@@ -72,4 +72,4 @@
         </tbody>
     </table>
 
-
+<%@include file="../_include/footer.jsp" %>

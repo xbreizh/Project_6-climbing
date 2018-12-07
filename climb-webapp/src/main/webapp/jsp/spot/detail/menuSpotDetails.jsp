@@ -1,4 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<div id="Details" ><h2>Spot Details</h2></div>
 <div class="menu2">
 <table   style="border:none">
     <tr>

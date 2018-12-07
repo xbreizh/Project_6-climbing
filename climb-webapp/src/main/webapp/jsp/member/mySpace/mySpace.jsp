@@ -44,10 +44,8 @@
         <h2><a ></a>My Routes</h2>
         <%@include file="../../route/routeTable.jsp" %>
     </div>
-<%--    <h2><a ></a>My Comments</h2>
-    <%@include file="../../route/routeTable.jsp" %>--%>
 </div>
-</div>
+
 
 
 
@@ -70,4 +68,4 @@
         $("#"+target).show().siblings("div").hide();
     });
 </script>
-</div>
+<%@include file="../../_include/footer.jsp" %>

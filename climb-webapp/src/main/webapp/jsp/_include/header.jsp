@@ -8,3 +8,4 @@
             <s:actionerror/>
             <s:actionmessage/>
         </s:if>
+<div class="container main-container">

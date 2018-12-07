@@ -1,8 +1,8 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<%--<a name="comments"></a>--%>
+
 <div id="Comments" ><h2>Comments</h2></div>
 
-<%--<s:if test="#session.user">--%>
+
 <s:form action="createCommentSpot" method="POST">
     <s:hidden name="comment.spot.id" value="%{spot.id}"/>
     <s:hidden name="comment.memberComment.id" value="%{session.user.id}" label="Member:"/>

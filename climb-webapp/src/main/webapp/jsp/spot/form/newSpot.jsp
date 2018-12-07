@@ -1,7 +1,4 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-
-
-
 <%@include file="../../_include/header.jsp" %>
 
 <s:if test="#session.user">
@@ -33,4 +30,4 @@ Only the spots having at least a route will appear on the main map.
 Connect to add a spot<br><br>
     <%@include file="../../_include/connectButton.jsp" %>
 </s:else>
-</div>
+<%@include file="../../_include/header.jsp" %>

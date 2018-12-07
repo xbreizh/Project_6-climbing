@@ -1,7 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-
-
 <%@include file="../../_include/header.jsp" %>
 
 
@@ -30,7 +28,7 @@
 
 <br>
 <s:form action="spot_delete" method="POST">
-    <s:textfield name="spot.id" />
+    <s:hidden name="spot.id" />
     <s:submit class="btn btn-danger" value="Delete"/>
 </s:form>
 <s:a action="spot_detail" style="display:block;text-decoration:none;" >
@@ -41,3 +39,4 @@
 <s:else>
     <%@include file="../../_include/connectButton.jsp" %>
 </s:else>
+<%@include file="../../_include/header.jsp" %>

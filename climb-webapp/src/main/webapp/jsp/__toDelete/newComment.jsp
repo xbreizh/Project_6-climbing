@@ -1,12 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%--
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<html>
+
 
 <%@include file="../_include/header.jsp" %>
 
-<body>
+
 
 
 <h2>Creation d'un comment</h2>
@@ -26,5 +25,6 @@
     Vous devez vous connecter pour cette action!
     <s:a action="login">Connexion</s:a>
 </s:else>
-</body>
-</html>
+
+
+<%@include file="../_include/header.jsp" %>--%>

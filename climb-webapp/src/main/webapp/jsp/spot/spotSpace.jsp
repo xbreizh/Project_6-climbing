@@ -13,4 +13,5 @@
 
 <br><br>
 <%@include file="spotTable.jsp" %>
+<%@include file="../_include/footer.jsp" %>
 

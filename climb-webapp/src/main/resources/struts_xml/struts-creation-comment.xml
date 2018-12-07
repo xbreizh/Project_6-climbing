@@ -11,7 +11,7 @@
         <action name="createCommentRoute"
                 class="org.example.demo.climb.webapp.action.CreationCommentAction"
                 method="doCreateCommentRoute">
-            <result name="input">/jsp/spot/newComment.jsp</result>
+            <result name="input">/jsp/__toDelete/newComment.jsp</result>
             <result name="success" type="redirectAction">
                 <param name="actionName">route_detail</param>
                 <param name="id">${comment.route.id}</param>

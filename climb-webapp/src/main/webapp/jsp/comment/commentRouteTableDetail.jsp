@@ -41,7 +41,7 @@
                 <s:if test="session.user.role == 'superadmin' || session.user.id == route.memberRoute.id">
                 <td>
                     <s:form action="route_comment_delete" method="POST">
-                        <s:textfield name="id" value="%{id}"  requiredLabel="true"/>
+                        <s:hidden name="id" value="%{id}"  requiredLabel="true"/>
                         <s:submit class="btn btn-danger" value="Remove"/>
                     </s:form>
                 </td>

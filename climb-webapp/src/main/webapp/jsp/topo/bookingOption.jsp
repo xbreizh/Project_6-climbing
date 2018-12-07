@@ -1,4 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
+
 <s:if test="#session.user.id">
     <td style="border: none;">
     <s:if test="#session.user.id == owner.id">

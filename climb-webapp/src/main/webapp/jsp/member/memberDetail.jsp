@@ -65,3 +65,5 @@
 <s:else>
     <%@include file="../_include/connectButton.jsp" %>
 </s:else>
+
+<%@include file="../_include/header.jsp" %>

@@ -1,6 +1,6 @@
 .mapContainer, #myMap{
     position:relative;
-    height:800px;
+    height:650px;
 }
 .panButtonPanel{
     border: black double;

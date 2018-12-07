@@ -13,3 +13,5 @@
 <s:else>
     <%@include file="../member/forbidden.jsp" %>
 </s:else>
+
+<%@include file="../_include/footer.jsp" %>

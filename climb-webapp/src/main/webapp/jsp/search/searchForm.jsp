@@ -21,8 +21,7 @@
     </s:checkbox>
 
 
-
-    <s:submit value="Refresh"/>
+    <s:submit class="btn btn-success" value="Search"/>
 
 </s:form>
 

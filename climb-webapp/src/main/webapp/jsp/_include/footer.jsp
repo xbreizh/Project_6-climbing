@@ -1,9 +1,9 @@
 
-
+</div>
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
     <div class="container">
-footer
-       <%-- <div class="navbar-header">
+
+        <div class="navbar-header">
             <button type="button" class="col-sm-2  navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -12,12 +12,13 @@ footer
             <div class="navbar-brand">
                 <s:a  action="index">
                     <s:text name="home.welcome"/>
-                </s:a>
+                </s:a>footer
             </div>
-        </div>--%>
+        </div>
 
     </div>
 
 </nav>
+
 </body>
 </html>
