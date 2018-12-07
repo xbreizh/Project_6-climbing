@@ -10,6 +10,7 @@ import org.example.demo.climb.model.exception.NotFoundException;
 import javax.inject.Inject;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 
 public class GestionMemberAction extends LoginAction {

@@ -188,7 +188,7 @@ public class MemberManagerImpl  implements MemberManager {
         if(exists(login.toUpperCase())){
             Member m = getMemberByLogin(login.toUpperCase());
             if(m.getEmail().equals(email)) {
-                m.setPassword(password);
+                m.setPassword(encryptPassword(password));
                 memberDao.update(m);
                 return true;
             }

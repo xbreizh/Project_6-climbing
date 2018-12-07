@@ -1,9 +1,8 @@
 package org.example.demo.climb.webapp.action;
 
-import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.ActionSupport;
+import javassist.bytecode.stackmap.TypeData;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 import org.example.demo.climb.business.contract.MemberManager;
 import org.example.demo.climb.model.bean.Member;
@@ -11,18 +10,19 @@ import org.example.demo.climb.model.exception.NotFoundException;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
+import org.apache.log4j.Logger;
 
-import static org.apache.commons.lang3.ObjectUtils.allNotNull;
 
 @Named
 public class LoginAction extends ActionSupport implements SessionAware {
+    Logger logger = Logger.getLogger(this.getClass().getName());
     private String login;
     private String email;
     private String emailCheck;
     private String password;
     private String passwordCheck;
+    private String error;
 
     private Map<String, Object> session;
 
@@ -33,14 +33,18 @@ public class LoginAction extends ActionSupport implements SessionAware {
     // LOGIN
     public String doLogin(){
         String vResult= ActionSupport.INPUT;
-
+        System.out.println("logger level: "+logger.getLevel());
         if (!StringUtils.isAllEmpty(login, password)) {
            Member member = memberManager.connect(login,password);
+
             if(member!=null){
                 this.session.put("user", member);
+                logger.info("Connection ok "+login);
                 vResult = ActionSupport.SUCCESS;
             }else{
-                this.addFieldError("login","Identifiant ou mot de passe invalide");
+                error = "Identifiant ou mot de passe invalide";
+                this.addFieldError("login",error);
+                logger.info(error+login);
             }
 
         }
@@ -50,7 +54,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
     // LOGIN
     public void updateSessionUser(int id) throws NotFoundException {
                 this.session.remove("user");
-
+                logger.info("updating session: "+login);
                 this.session.put("user", memberManager.getMemberById(id));
 
     }
@@ -59,18 +63,16 @@ public class LoginAction extends ActionSupport implements SessionAware {
     public String doLogout(){
         try{
             Member m = (Member) session.get("user");
-            System.out.println("trying to update the lastconnect date before disconnecting: "+m.getLogin());
-            System.out.println("last connect: "+m.getDateLastConnect());
-            System.out.println("role: "+session.get("user.role"));
+            logger.debug("trying to logout: "+m.getLogin());
             memberManager.disconnect(m.getLogin());
-            System.out.println("session: "+session.get("user"));
+            logger.debug("deconnection ok");
             session.remove("user");
         }catch(NullPointerException e){
             this.addActionError(e.getMessage());
-            this.addActionError("Disconnection error");
+            error = "Disconnection error";
+            this.addActionError(error);
+            logger.warn(error);
         }
-        session.remove("user");
-        System.out.println("session: "+session.get("user"));
         return ActionSupport.SUCCESS;
     }
 
@@ -93,12 +95,14 @@ public class LoginAction extends ActionSupport implements SessionAware {
                 this.addFieldError("password", "password mismatch");
                 return vResult;
             } else if (memberManager.updatePassword(login, email, password)) {
+                logger.info("update password form validated: "+login);
                 return vResult = ActionSupport.SUCCESS;
             } else {
                 this.addFieldError("login", "Login or Email incorrect");
+                logger.warn("password reset form issue: "+login);
             }
         }else{
-            System.out.println("all is null");
+            logger.warn("reset password form is empty");
         }
         return vResult;
     }
