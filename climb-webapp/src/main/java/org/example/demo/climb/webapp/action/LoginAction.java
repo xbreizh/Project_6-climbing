@@ -16,7 +16,7 @@ import org.apache.log4j.Logger;
 
 @Named
 public class LoginAction extends ActionSupport implements SessionAware {
-    Logger logger = Logger.getLogger(this.getClass().getName());
+    private Logger logger = Logger.getLogger(this.getClass().getName());
     private String login;
     private String email;
     private String emailCheck;

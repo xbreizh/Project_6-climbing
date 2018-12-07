@@ -2,6 +2,7 @@ package org.example.demo.climb.webapp.converter;
 
 import com.opensymphony.xwork2.conversion.TypeConversionException;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.apache.struts2.util.StrutsTypeConverter;
 import org.example.demo.climb.business.contract.RouteManager;
 import org.example.demo.climb.model.bean.Route;
@@ -11,13 +12,13 @@ import javax.inject.Inject;
 import java.util.Map;
 
 public class RouteConverter extends StrutsTypeConverter {
-
+    private Logger logger = Logger.getLogger(this.getClass().getName());
     @Inject
     RouteManager routeManager;
     @Override
     public Object convertFromString(Map pContext, String[] pValues, Class pToClass) {
         Object vRetour = null;
-        System.out.println("trying to convert: "+pValues[0]);
+        logger.debug("trying to convert: "+pValues[0]);
         if (pValues != null) {
             if (pValues.length == 1) {
                 String vValue = pValues[0];
@@ -25,12 +26,13 @@ public class RouteConverter extends StrutsTypeConverter {
                     vRetour = StringUtils.isEmpty(vValue) ? null : routeManager.getRouteById(Integer.parseInt(vValue));
                     System.out.println(vRetour);
                 } catch (NumberFormatException pEx) {
-                    throw new TypeConversionException("Issue while trying to convert", pEx);
+                    logger.error("Issue while trying to convert", pEx);
                 } catch (NotFoundException e) {
-                    System.err.println("id not found in converter: "+vValue);
+                    logger.error("id not found in converter: "+vValue);
                 }
             } else {
                 vRetour = performFallbackConversion(pContext, pValues, pToClass);
+                logger.debug(vRetour.toString());
             }
         }
 
@@ -40,7 +42,7 @@ public class RouteConverter extends StrutsTypeConverter {
 
     @Override
     public String convertToString(Map pContext, Object pObject) {
-        System.out.println("trying to convert into string");
+        logger.debug("trying to convert into string");
         String vString;
         if (pObject instanceof Route) {
             Route vFraction = (Route) pObject;

@@ -1,7 +1,7 @@
 package org.example.demo.climb.webapp.converter;
 
-import com.opensymphony.xwork2.conversion.TypeConversionException;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.apache.struts2.util.StrutsTypeConverter;
 import org.example.demo.climb.business.contract.CommentManager;
 import org.example.demo.climb.model.bean.Comment;
@@ -10,13 +10,14 @@ import javax.inject.Inject;
 import java.util.Map;
 
 public class CommentConverter extends StrutsTypeConverter {
+    private Logger logger = Logger.getLogger(this.getClass().getName());
 
     @Inject
     CommentManager CommentManager;
     @Override
     public Object convertFromString(Map pContext, String[] pValues, Class pToClass) {
         Object vRetour = null;
-        System.out.println("trying to convert: "+pValues[0]);
+        logger.debug("trying to convert: "+pValues[0]);
         if (pValues != null) {
             if (pValues.length == 1) {
                 String vValue = pValues[0];
@@ -24,9 +25,9 @@ public class CommentConverter extends StrutsTypeConverter {
                     vRetour = StringUtils.isEmpty(vValue) ? null : CommentManager.getComment(Integer.parseInt(vValue));
                     System.out.println(vRetour);
                 } catch (NumberFormatException pEx) {
-                    throw new TypeConversionException("Format de fraction invalide", pEx);
+                    logger.error("Format de fraction invalide", pEx);
                 } catch (Exception e) {
-                    System.err.println("Comment not found in converter");
+                    logger.error("Comment not found in converter");
                 }
             } else {
                 vRetour = performFallbackConversion(pContext, pValues, pToClass);
@@ -39,7 +40,7 @@ public class CommentConverter extends StrutsTypeConverter {
 
     @Override
     public String convertToString(Map pContext, Object pObject) {
-        System.out.println("trying to convert into string");
+        logger.debug("trying to convert into string");
         String vString;
         if (pObject instanceof Comment) {
             Comment vFraction = (Comment) pObject;

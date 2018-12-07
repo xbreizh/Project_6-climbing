@@ -1,7 +1,7 @@
 package org.example.demo.climb.webapp.converter;
 
-import com.opensymphony.xwork2.conversion.TypeConversionException;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.apache.struts2.util.StrutsTypeConverter;
 import org.example.demo.climb.business.contract.MemberManager;
 import org.example.demo.climb.model.bean.Member;
@@ -11,13 +11,13 @@ import javax.inject.Inject;
 import java.util.Map;
 
 public class MemberConverter extends StrutsTypeConverter {
-
+    private Logger logger = Logger.getLogger(this.getClass().getName());
     @Inject
     MemberManager memberManager;
     @Override
     public Object convertFromString(Map pContext, String[] pValues, Class pToClass) {
         Object vRetour = null;
-        System.out.println("trying to convert: "+pValues[0]);
+        logger.debug("trying to convert: "+pValues[0]);
         if (pValues != null) {
             if (pValues.length == 1) {
                 String vValue = pValues[0];
@@ -25,12 +25,13 @@ public class MemberConverter extends StrutsTypeConverter {
                     vRetour = StringUtils.isEmpty(vValue) ? null : memberManager.getMemberById(Integer.parseInt(vValue));
                     System.out.println(vRetour);
                 } catch (NumberFormatException pEx) {
-                    throw new TypeConversionException("Format de fraction invalide", pEx);
+                    logger.error("Format de fraction invalide", pEx);
                 } catch (NotFoundException e) {
-                    System.err.println("Format de fraction invalide"+ e.getMessage());
+                    logger.error("Format de fraction invalide"+ e.getMessage());
                 }
             } else {
                 vRetour = performFallbackConversion(pContext, pValues, pToClass);
+                logger.debug(vRetour.toString());
             }
         }
 
@@ -40,7 +41,7 @@ public class MemberConverter extends StrutsTypeConverter {
 
     @Override
     public String convertToString(Map pContext, Object pObject) {
-        System.out.println("trying to convert into string");
+        logger.debug("trying to convert into string");
         String vString;
         if (pObject instanceof Member) {
             Member vFraction = (Member) pObject;
