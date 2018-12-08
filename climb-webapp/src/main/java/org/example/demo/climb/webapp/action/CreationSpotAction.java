@@ -63,21 +63,6 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
 
     // METHODS
 
-    /*CREATE*/
-    public String doCreateSpot() throws NotFoundException {
-        String vResult= ActionSupport.INPUT;
-        initCountryList();
-        initClimbingTypeList();
-        System.out.println("spot country id: "+spot);
-
-        if(spot!=null) {
-            if (checkSpotForm(spot)){
-                spotManager.addSpot(spot);
-                vResult = ActionSupport.SUCCESS;
-            }
-        }
-        return vResult;
-    }
 
 
 
@@ -136,6 +121,24 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         return vResult;
     }
 
+
+    /*CREATE*/
+    public String doCreateSpot() throws NotFoundException {
+        String vResult= ActionSupport.INPUT;
+        initCountryList();
+        initClimbingTypeList();
+        System.out.println("spot country id: "+spot);
+
+        if(spot!=null) {
+            if (checkSpotForm(spot)){
+                spotManager.addSpot(spot);
+                vResult = ActionSupport.SUCCESS;
+            }
+        }
+        return vResult;
+    }
+
+    //Initiates the climbingType List
     private void initClimbingTypeList() {
         // adding condition for All
         climbingList.add("ALL");
@@ -271,6 +274,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         }
         return vResult;
     }
+
     /*UPDATE*/
     public String doUpdate() {
         String vResult = ActionSupport.INPUT;

@@ -67,12 +67,26 @@ public class SpotDaoImpl implements SpotDao {
 
     @Override
     public List<Spot> ListSpotByCriterias(String str, String climbingType, String hasTopo, int levelMin, int levelMax) {
-
-        System.out.println("level min and max: "+ levelMin+" / "+levelMax);
         Query q;
-            q = sessionFactory.getCurrentSession().createQuery("select spot.id from Route where grade >= :min and grade <= :max");
+        if(!hasTopo.equals("")){
+            Query TopoQuery = sessionFactory.getCurrentSession().createQuery(
+                    "select id from Spot where topos.size > 0");
+            List<String> idList = TopoQuery.getResultList();
+            // Getting list of Spot ids based on route grade criterias
+
+            q = sessionFactory.getCurrentSession().createQuery(
+                    "select spot.id from Route where grade >= :min and grade <= :max and spot.id in(:topoList)");
             q.setParameter("min", levelMin);
             q.setParameter("max", levelMax);
+            q.setParameter("topoList", idList);
+        }else{
+        // Getting list of Spot ids based on route grade criterias
+
+            q = sessionFactory.getCurrentSession().createQuery(
+                    "select spot.id from Route where grade >= :min and grade <= :max");
+            q.setParameter("min", levelMin);
+            q.setParameter("max", levelMax);
+            }
 
         List<String> idList = q.getResultList();
         if(climbingType.equals("ALL")){climbingType="";}

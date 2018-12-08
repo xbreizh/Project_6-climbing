@@ -52,14 +52,15 @@ public class SpotManagerImpl  implements SpotManager {
     @Override
     public List<Spot> getListSpot(String str, String climbingType, String hasTopo, int levelMin, int levelMax) {
         String  ct = "ALL";
-        String  htopo = "is null";
+        String  htopo = "";
         for(ClimbingType clt: ClimbingType.values()){
             if(clt.getName().equals(climbingType)){
                 ct = clt.getName().toUpperCase();
             }
         }
+        System.out.println("Has topo: "+hasTopo);
         if(hasTopo!=null) {
-            if (hasTopo.equals("on")) {
+            if (hasTopo.equals("true")) {
                 htopo = "is not null";
             }
         }

@@ -18,6 +18,7 @@ import java.util.List;
 public class MemberManagerImpl  implements MemberManager {
 
    /* private Member member;*/
+    /*private final String tok = RandomString.hashOf(3232323);*/
     private final String pepper ="Tipiak";
     private Class cl=Member.class;
     @Inject

@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- =============================================================== -->
-    <!-- Informations du projet -->
+    <!-- Informations about the project -->
     <!-- =============================================================== -->
-    <!-- ===== Projet Parent Maven ===== -->
+    <!-- =====  Parent Projet Maven ===== -->
     <parent>
         <groupId>org.example.demo</groupId>
         <artifactId>climb</artifactId>
@@ -23,7 +23,7 @@
 
 
     <!-- =============================================================== -->
-    <!-- Propriétés -->
+    <!-- Properties -->
     <!-- =============================================================== -->
     <properties>
         <application.name>climbTac</application.name>
@@ -112,19 +112,11 @@
         </dependency>
 
 
-
-
         <!-- ===== Tests ===== -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
-        <!--<dependency>
-            <groupId>org.mortbay.jetty</groupId>
-            <artifactId>jetty-util</artifactId>
-            <version>6.1.25</version>
-        </dependency>-->
-        <!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-dojo-plugin -->
         <dependency>
             <groupId>org.apache.struts</groupId>
             <artifactId>struts2-dojo-plugin</artifactId>
