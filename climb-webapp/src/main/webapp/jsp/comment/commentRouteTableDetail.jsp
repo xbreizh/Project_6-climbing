@@ -1,5 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-
+<s:property value="%{route.commentList.size()}" escapeHtml="false"/>
 <s:if test="%{route.commentList.size()>0}">
     <table class="table  table-hover" >
         <tbody>

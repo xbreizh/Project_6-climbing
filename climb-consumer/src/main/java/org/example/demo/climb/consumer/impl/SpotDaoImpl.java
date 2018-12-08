@@ -68,7 +68,9 @@ public class SpotDaoImpl implements SpotDao {
     @Override
     public List<Spot> ListSpotByCriterias(String str, String climbingType, String hasTopo, int levelMin, int levelMax) {
         Query q;
-        if(!hasTopo.equals("")){
+        int topoSize=sessionFactory.getCurrentSession().createQuery("From Topo ").getResultList().size();
+        System.out.println("topo size: "+topoSize);
+        if(!hasTopo.equals("") && topoSize >0 ){
             Query TopoQuery = sessionFactory.getCurrentSession().createQuery(
                     "select id from Spot where topos.size > 0");
             List<String> idList = TopoQuery.getResultList();

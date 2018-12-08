@@ -126,14 +126,16 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
 
     private List<Topo> generateTopoListFromSpotList(List<Spot> spotList) {
         ArrayList<Topo> tList = new ArrayList<>();
-        for(Spot s: spotList){
-            for(Topo t: s.getTopos()){
-                tList.add(t);
+        if(spotList !=null) {
+            for (Spot s : spotList) {
+                for (Topo t : s.getTopos()) {
+                    tList.add(t);
+                }
             }
-        }
-        for(Topo t:tList){
-            if(!topoList.contains(t)){
-                topoList.add(t);
+            for (Topo t : tList) {
+                if (!topoList.contains(t)) {
+                    topoList.add(t);
+                }
             }
         }
         return topoList;
