@@ -53,6 +53,7 @@ public class MemberDaoImpl  implements MemberDao {
     @Override
     public void delete(Object o) {
         Member m = (Member) o;
+        System.out.println("member received to be deleted: "+m);
         sessionFactory.getCurrentSession().delete(cl.getName(), m);
     }
 }

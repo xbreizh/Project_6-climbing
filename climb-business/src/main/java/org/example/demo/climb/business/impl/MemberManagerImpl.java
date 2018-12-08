@@ -113,11 +113,24 @@ public class MemberManagerImpl  implements MemberManager {
         memberDao.update(m);
     }
 
+    // switch role admin <--> superadmin
+    @Override
+    public void updateRole(int id) {
+        Member m= (Member) memberDao.getById(id);
+       if(m.getRole().equals("admin")){
+           m.setRole("superadmin");
+       }else{
+           m.setRole("admin");
+       }
+
+        memberDao.update(m);
+    }
+
     // Delete Member
     @Override
-    public void deleteMember(int id) {
-       Member m= (Member) memberDao.getById(id);
-        memberDao.delete(m);
+    public void deleteMember(Member member) {
+        System.out.println("from manager: "+member);
+        memberDao.delete(member);
     }
 
     // Checks if the login exists
@@ -182,13 +195,20 @@ public class MemberManagerImpl  implements MemberManager {
     // Update Password
     @Override
     public boolean updatePassword(String login, String email, String password){
+        System.out.println("member received: "+login);
+        System.out.println("email received: "+email);
+        System.out.println("pwd received: "+password);
+
         if(exists(login.toUpperCase())){
             Member m = getMemberByLogin(login.toUpperCase());
             if(m.getEmail().equals(email)) {
-                m.setPassword(encryptPassword(password+ pepper));
+                System.out.println("email passed");
+                m.setPassword(encryptPassword(password));
                 memberDao.update(m);
                 return true;
             }
+        }else{
+            System.out.println("member couldn't be found");
         }
         return false;
     }

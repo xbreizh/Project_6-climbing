@@ -13,7 +13,7 @@ import java.util.List;
     public class Route {
 
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @GeneratedValue(strategy = GenerationType.AUTO )
         @Column(name = "id", updatable = false, nullable = false)
         private int id;
 

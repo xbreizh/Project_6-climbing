@@ -10,7 +10,7 @@ import java.util.*;
     public class Topo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO )
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
 

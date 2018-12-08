@@ -56,6 +56,20 @@
                     </s:form>
                 </td>
                 <td>
+                    <s:if test="role == 'admin'">
+                        <s:a action="member_updateRole" style="display:block;text-decoration:none;" >
+                            <button type="button" class="btn btn-success">make SuperAdmin</button>
+                            <s:param name="id" value="id"/>
+                        </s:a>
+                    </s:if>
+                    <s:else>
+                        <s:a action="member_updateRole" style="display:block;text-decoration:none;" >
+                            <button type="button" class="btn btn-primary">make Admin</button>
+                            <s:param name="id" value="id"/>
+                        </s:a>
+                    </s:else>
+                </td>
+                <td>
                     <s:if test="active == true">
                         <s:a action="member_disable" style="display:block;text-decoration:none;" >
                             <button type="button" class="btn btn-danger">Disable</button>
@@ -68,6 +82,12 @@
                             <s:param name="id" value="id"/>
                         </s:a>
                     </s:else>
+                </td>
+                <td>
+                    <s:form action="member_delete" method="POST">
+                        <s:hidden name="member" value="%{id}"  requiredLabel="true"/>
+                        <s:submit class="btn btn-danger" value="Delete"/>
+                    </s:form>
                 </td>
             </tr>
         </s:iterator>

@@ -101,7 +101,7 @@
             </result>
         </action>
 
-        <!-- DELETE -->
+        <!-- DISABLE -->
         <action name="member_disable"
                 class="org.example.demo.climb.webapp.action.GestionMemberAction"
                 method="doDisable">
@@ -128,6 +128,23 @@
                 <param name="actionName">member_list</param>
             </result>
         </action>
+
+        <!-- UPDATE ROLE -->
+
+        <action name="member_updateRole"
+                class="org.example.demo.climb.webapp.action.GestionMemberAction"
+                method="doUpdateRole">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+
+            <result name="success" type="redirectAction">
+                <param name="actionName">member_list</param>
+            </result>
+        </action>
+
+
 
 
     </package>

@@ -49,6 +49,11 @@ public class GestionMemberAction extends LoginAction {
         return vResult;
     }
 
+    public String doUpdateRole(){
+        String vResult = ActionSupport.SUCCESS;
+        memberManager.updateRole(id);
+        return vResult;
+    }
 
     public String doShowMySpace(){
         System.out.println("id passed: "+id);
@@ -168,8 +173,8 @@ public class GestionMemberAction extends LoginAction {
     /*DELETE*/
     public String doDelete() {
         String vResult = ActionSupport.SUCCESS;
-
-        memberManager.deleteMember(id);
+        System.out.println("member received from action to be deleted: "+member);
+        memberManager.deleteMember(member);
 
         return vResult;
 
@@ -177,6 +182,7 @@ public class GestionMemberAction extends LoginAction {
 
     public String doDisable() throws Exception {
         String vResult = ActionSupport.SUCCESS;
+
         memberManager.disableMember(id);
         return vResult;
     }

@@ -11,7 +11,7 @@ public class Member {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE )
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
 
