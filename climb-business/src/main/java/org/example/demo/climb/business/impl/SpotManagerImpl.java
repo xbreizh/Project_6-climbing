@@ -43,10 +43,10 @@ public class SpotManagerImpl  implements SpotManager {
         return spotDao.getById(id);
     }
 
-    @Override
+   /* @Override
     public Spot getSpotByName(String login) {
         return spotDao.getSpotByName(login);
-    }
+    }*/
 
     // Get List
     @Override
@@ -79,7 +79,7 @@ public class SpotManagerImpl  implements SpotManager {
     public List<Spot> getListSpot() {
         return spotDao.getAll();
     }
-    @Override
+   /* @Override
     public List<String> getListCityByCountry(Country country) {
         List<String> cityList = new ArrayList<>();
         for (Spot spot:spotDao.ListSpotByCountry(country)
@@ -109,7 +109,7 @@ public class SpotManagerImpl  implements SpotManager {
         return spotDao.ListSpotByCountry(country);
     }
 
-
+*/
     // Update
     @Override
     public void updateSpot(Spot spot) {
@@ -122,11 +122,11 @@ public class SpotManagerImpl  implements SpotManager {
 
     }
 
-    @Override
+   /* @Override
     public void updateWhenDeletingMember(int id) {
         System.out.println("trying to update member spots before deleting");
         spotDao.updateWhenDeletingMember(1, id);
-    }
+    }*/
 
     // Delete
 
