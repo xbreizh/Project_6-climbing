@@ -78,5 +78,5 @@
         </tbody>
     </table>
 </s:if><s:else>
-    No Topo Found!
+    No Booking Found!
 </s:else>

@@ -17,10 +17,19 @@
                         <div class="col-lg-6 col-centered">
                              <%@include file="search/searchForm.jsp" %>
                         </div>
-                        <div style="font-size: 30px;justify-content:center; align-self:center; "
-                             class=" d-flex justify-content-center col-lg-2 col-md-2">
-                            <button type="button" class="<%--vertical-btn--%> btn-primary"
-                                    onclick="resizeElement()">Show / Hide Result</button>
+                        <div id="btn-menu1" style="font-size: 30px;justify-content:center;
+                        display:block; align-self:center; "
+                             class="btn-menu1 justify-content-center col-lg-2 col-md-2">
+                            <button type="button" class=" btn-primary"
+                                    onclick="resizeElement()">Show Result<br>
+                                (<s:property value="%{spotList.size()}"/>)
+                            </button>
+                        </div>
+                        <div id="btn-menu2" style="display:none; font-size: 30px;
+                        justify-content:center; align-self:center; "
+                             class=" justify-content-center col-lg-2 col-md-2">
+                            <button type="button" class="btn-warning"
+                                    onclick="resizeElement()">Hide Result</button>
                         </div>
                         <div class="col-lg-2 visible-lg">
 

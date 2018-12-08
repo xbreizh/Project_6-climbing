@@ -10,7 +10,7 @@
 <br><br>
 
 
-
+    <%@include file="menu_all_comments.jsp" %>
     <%@include file="commentRouteTable.jsp" %>
     <%@include file="commentSpotTable.jsp" %>
 

@@ -1,5 +1,5 @@
 
-<div style="display: none" id="menu-spot-result">
+<div style="display: block" id="menu-spot-result">
     <h2>Spots</h2>
 <s:if test="%{spotList.size()>0}">
     <table class="table  table-hover" >
@@ -8,6 +8,7 @@
             <th>City</th>
             <th>Name</th>
             <th>Description</th>
+            <th>Number Routes</th>
         </tr>
         </thead>
         <tbody>
@@ -28,11 +29,15 @@
                     <s:param name="id" value="id"/>
                 </s:a>
                 </td>
+                <td><s:a action="spot_detail" style="display:block;text-decoration:none;" >
+                    <s:property value="routeList.size()" escapeHtml="false"/>
+                    <s:param name="id" value="id"/>
+                </s:a>
+                </td>
             </tr>
         </s:iterator>
         </tbody>
     </table>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </s:if>
 </div>
 

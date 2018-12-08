@@ -158,9 +158,10 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         }
         // check ClimbingType
         int found=0;
-        for (ClimbingType ct:ClimbingType.values()
+        System.out.println("climbing list: "+climbingList);
+        for (String type:climbingList
              ) {
-            if(ct.getName().equals(spot.getType())){
+            if(type.equals(spot.getType())){
                 found=1;
             }
         }

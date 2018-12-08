@@ -24,19 +24,21 @@ function toggle_display(id) {
         e.style.display = 'none';
 }
 function resizeElement(){
-    var element1 = document.getElementById('skra');
-    var element2 = document.getElementById('index_result');
+    let element1 = document.getElementById('skra');
+    let element2 = document.getElementById('index_result');
     console.log(element1.classList);
 
     if(element1.classList.contains('col-lg-12')){
         element1.classList.remove("col-lg-12");
         element1.classList.remove("col-md-12");
-        /*toggle_visibility('index_result');*/
+        toggle_display('btn-menu1');
+        toggle_display('btn-menu2');
         element1.classList.toggle("col-lg-6");
         element1.classList.toggle("col-md-6");
         element2.classList.remove("hidden");
     }else{
-       /* toggle_visibility('index_result');*/
+        toggle_display('btn-menu1');
+        toggle_display('btn-menu2');
         element1.classList.remove("col-lg-6");
         element1.classList.remove("col-md-6");
         element1.classList.toggle("col-lg-12");

@@ -35,7 +35,9 @@
                 method="doBooking">
             <result name="input">/jsp/booking/booking.jsp?${id}</result>
             <result name="success" type="redirectAction">
-                <param name="actionName">topo_list</param>
+                <param name="actionName">mySpace</param>
+                <param name="id">${booking.booker.id}</param>
+                <param name="anchor">MyBookings</param>
 
             </result>
 

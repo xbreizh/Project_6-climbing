@@ -1,4 +1,5 @@
 package org.example.demo.climb.business.impl;
+import net.bytebuddy.utility.RandomString;
 import org.example.demo.climb.business.contract.MemberManager;
 import org.example.demo.climb.business.contract.SpotManager;
 import org.example.demo.climb.consumer.contract.MemberDao;
@@ -17,6 +18,7 @@ import java.util.List;
 public class MemberManagerImpl  implements MemberManager {
 
    /* private Member member;*/
+    private final String pepper ="Tipiak";
     private Class cl=Member.class;
     @Inject
     private MemberDao memberDao;
@@ -155,7 +157,7 @@ public class MemberManagerImpl  implements MemberManager {
     @Override
     public String encryptPassword(String password) {
         BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
-        String pwd =bcrypt.encode(password);
+        String pwd =bcrypt.encode(password+ pepper);
         System.out.println("hashed pwd: "+pwd);
         return pwd;
     }
@@ -164,8 +166,7 @@ public class MemberManagerImpl  implements MemberManager {
     public boolean checkPassword(String pwd1, String pwd2) {
         BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
 
-
-        return bcrypt.matches(pwd1, pwd2);
+        return bcrypt.matches(pwd1+ pepper, pwd2);
     }
 
     // Logout
@@ -183,7 +184,7 @@ public class MemberManagerImpl  implements MemberManager {
         if(exists(login.toUpperCase())){
             Member m = getMemberByLogin(login.toUpperCase());
             if(m.getEmail().equals(email)) {
-                m.setPassword(encryptPassword(password));
+                m.setPassword(encryptPassword(password+ pepper));
                 memberDao.update(m);
                 return true;
             }

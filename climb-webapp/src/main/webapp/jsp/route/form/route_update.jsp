@@ -8,24 +8,22 @@
     <h1><s:property value="%{route.name}"/>- EDIT(Route)</h1>
 
 <s:form action="route_update" method="POST" theme="xhtml">
-    <s:textfield name="route.id" value="%{route.id}"/>
-    <s:textfield type="text" name="route.name" placeholder="Name" requiredLabel="true"/>
-   <%-- <s:select list="%{heighList}" name="route.height"  listKey="key"  headerKey="-1" headerValue="-- Height --"/>--%>
-    <s:select list="%{heightList}"  name="route.height"  listKey="key" placeholder="Height" requiredLabel="true"
+    <s:hidden name="route.id" value="%{route.id}"/>
+    <s:textfield label="Name" type="text" name="route.name" placeholder="Name" requiredLabel="true"/>
+    <s:select label="Height" list="%{heightList}"  name="route.height"  listKey="key" placeholder="Height" requiredLabel="true"
               headerKey="-1" headerValue="-- Height --"/>
-    <s:select list="%{gradeList}"  name="route.grade"  listKey="key" placeholder="Grade" requiredLabel="true"
+    <s:select label="Grade" list="%{gradeList}"  name="route.grade"  listKey="key" placeholder="Grade" requiredLabel="true"
               headerKey="-1" headerValue="-- Grade --"/>
-    <s:textarea type="text" name="route.description" placeholder="Description" requiredLabel="true"/>
+    <s:textarea label="Description" type="text" name="route.description" placeholder="Description" requiredLabel="true"/>
     <s:textfield name="route.memberRoute.id" placeholder="Member" value="%{session.user.id}" requiredLabel="true" />
     <s:textfield name="route.spot.id" value="%{route.spot.id}" placeholder="Spot" requiredLabel="true" />
-    <s:textfield name="id" value="%{id}" />
-    <s:hidden name="submit" placeholder="submit" value="true"/>
+    <s:textfield name="submit" placeholder="submit" value="true"/>
     <s:submit class="btn btn-warning" value="Update Route"/>
 </s:form>
 <br>
 
     <s:form action="route_delete" method="POST">
-        <s:textfield name="route.id" />
+        <s:hidden name="route.id" />
         <s:submit class="btn btn-danger" value="Delete"/>
     </s:form>
     <s:a action="route_detail" style="display:block;text-decoration:none;" >

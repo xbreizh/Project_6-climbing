@@ -1,5 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<h3>Comments Route</h3><br><br>
+<div style="display: block" id="Route-Comment">
+    <br><br><br><br><br><br><br><br><br><br>
+<h3>Comments Route (<s:property value="%{commentListRoute.size()}"/>)</h3><br><br>
 <s:if test="%{commentListRoute.size()>0}">
     <table class="table  table-hover" >
         <thead>
@@ -20,16 +22,16 @@
                     <s:property value="date" escapeHtml="false"/>
                 </td>
                 <td>
-                    <s:if test="#session.user.id == memberRoute.id">
+                    <s:if test="#session.user.id == route.memberroute.id">
                         <s:a action="member_detail">
-                            <s:param name="id" value="memberRoute.id" />
+                            <s:param name="id" value="route.memberroute.id" />
                             <span style=" font-weight: bold;color: #ffae6e">You</span>
                         </s:a>
                     </s:if>
                     <s:else>
                         <s:a action="member_detail">
-                            <s:param name="id" value="memberRoute.id" />
-                            <s:property value="memberRoute.login"/>
+                            <s:param name="id" value="route.memberroute.id" />
+                            <s:property value="route.memberroute.login"/>
                         </s:a>
                     </s:else>
                 </td>

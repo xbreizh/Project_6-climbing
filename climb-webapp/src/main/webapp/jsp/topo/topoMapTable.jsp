@@ -1,5 +1,5 @@
 
-<div style="display: none" id="menu-topo-result">
+<div style="display: block" id="menu-topo-result">
     <h2>Topos</h2>
 <s:if test="%{topoList.size()>0}">
     <table class="table  table-hover" >

@@ -26,6 +26,9 @@ form{
     border:aliceblue;
     background-color: #dfd3cc;
 }
+table, th, td{
+    align:center;
+}
 .container{
     justify-content:center;
 

@@ -6,9 +6,11 @@
 <table class="table table-hover">
     <thead>
     <tr>
+        <th>Name</th>
         <th>Continent </th>
         <th>Country </th>
         <th>City </th>
+        <th>Type</th>
         <th>Description</th>
         <th>Creator</th>
     </tr>
@@ -17,6 +19,9 @@
     <tbody>
     <tr>
         <td>
+            <s:property value="spot.name" escapeHtml="false"/>
+        </td>
+        <td>
             <s:property value="spot.country.continent" escapeHtml="false"/>
         </td>
         <td>
@@ -24,6 +29,9 @@
         </td>
         <td>
             <s:property value="spot.city" escapeHtml="false"/>
+        </td>
+        <td>
+            <s:property value="spot.type" escapeHtml="false"/>
         </td>
         <td>
             <s:property value="spot.description" escapeHtml="false"/>

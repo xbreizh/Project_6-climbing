@@ -24,12 +24,12 @@
             <s:param name="id" >${session.user.id}</s:param>
         </s:a>
     </li>
-    <li>
+    <%--<li>
         <s:a class="active" action="contactAdmin">
             Contact
             <s:param name="id" >${session.user.id}</s:param>
         </s:a>
-    </li>
+    </li>--%>
 
 </ul>
 

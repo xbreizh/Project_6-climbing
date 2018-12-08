@@ -1,5 +1,8 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<h3>Comments Spot</h3><br><br>
+
+<div style="display: block; display: block" id="Spot-Comment">
+    <br><br><br><br><br><br><br><br><br><br>
+<h3>Comments Spot (<s:property value="%{commentListSpot.size()}"/>)</h3><br><br>
 <s:if test="%{commentListSpot.size()>0}">
     <table class="table  table-hover" >
         <thead>

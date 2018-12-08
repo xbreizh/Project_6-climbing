@@ -1,13 +1,13 @@
 <h3>My Stats</h3>
 
-<table class="table table-condensed table-hover">
+<table class="table table-striped table-hover">
     <thead>
     <tr>
         <td>Bookings</td>
         <td>Topos</td>
         <td>Spots</td>
         <td>Routes</td>
-        <td>Comments</td>
+       <%-- <td>Comments</td>--%>
     </tr>
     </thead>
     <tbody>
@@ -32,11 +32,11 @@
                 <s:property value="member.routeList.size()" />
             </s:a>
         </td>
-        <td>
+       <%-- <td>
             <s:a href="#" rel="MyComments">
                 <s:property value="member.commentList.size()" />
             </s:a>
-        </td>
+        </td>--%>
     </tr>
     </tbody>
 </table>
