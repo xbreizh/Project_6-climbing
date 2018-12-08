@@ -22,13 +22,19 @@
             <s:property value="spot.name" escapeHtml="false"/>
         </td>
         <td>
-            <s:property value="spot.country.continent" escapeHtml="false"/>
+            <a style="text-decoration: none; color: inherit;" target="_blank" href="https://en.wikipedia.org/wiki/<s:property value="spot.country.continent" escapeHtml="false"/>">
+                <s:property value="spot.country.continent" escapeHtml="false"/>
+            </a>
         </td>
         <td>
-            <s:property value="spot.country.name" escapeHtml="false"/>
+            <a style="text-decoration: none; color: inherit;" target="_blank" href="https://en.wikipedia.org/wiki/<s:property value="spot.country.name" escapeHtml="false"/>">
+                <s:property value="spot.country.name" escapeHtml="false"/>
+            </a>
         </td>
         <td>
-            <s:property value="spot.city" escapeHtml="false"/>
+            <a style="text-decoration: none; color: inherit;" target="_blank" href="https://en.wikipedia.org/wiki/<s:property value="spot.city" escapeHtml="false"/>">
+                <s:property value="spot.city" escapeHtml="false"/>
+            </a>
         </td>
         <td>
             <s:property value="spot.type" escapeHtml="false"/>

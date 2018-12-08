@@ -5,6 +5,7 @@
     <table class="table  table-hover" >
         <thead>
         <tr>
+            <th>Country</th>
             <th>City</th>
             <th>Name</th>
             <th>Description</th>
@@ -14,10 +15,14 @@
         <tbody>
         <s:iterator value="spotList">
             <tr>
-                <td><s:a action="spot_detail" style="display:block;text-decoration:none;" >
+                <td>
+                    <a target="_blank" href="https://en.wikipedia.org/wiki/<s:property value="country.name" escapeHtml="false"/>">
+                        <s:property value="country.name" escapeHtml="false"/>
+                    </a>
+                </td>
+                <td><a target="_blank" href="https://en.wikipedia.org/wiki/<s:property value="city" escapeHtml="false"/>">
                     <s:property value="city" escapeHtml="false"/>
-                    <s:param name="id" value="id"/>
-                </s:a>
+                     </a>
                 </td>
                 <td><s:a action="spot_detail" style="display:block;text-decoration:none;" >
                     <s:property value="name" escapeHtml="false"/>
