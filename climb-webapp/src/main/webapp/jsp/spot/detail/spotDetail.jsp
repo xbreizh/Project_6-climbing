@@ -2,6 +2,9 @@
 
 <%@include file="../../_include/header.jsp" %>
 
+
+<h2>Spot - <s:property value="spot.name" /></h2>
+
 <%@include file="menuSpotDetails.jsp" %>
 
 

@@ -1,6 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <%@include file="../_include/header.jsp" %>
+<h2>Route - <s:property value="route.name" /></h2>
 <s:a action="spot_detail">
     <s:param name="id" value="route.spot.id" />
    Back to Route list

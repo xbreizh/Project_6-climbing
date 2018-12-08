@@ -11,8 +11,11 @@
             </button>
             <div class="navbar-brand">
                 <s:a  action="index">
-                    <s:text name="home.welcome"/>
-                </s:a>footer
+                    <s:text name="home.welcome"/>  </s:a> ---
+                    <a href="mail:<s:text name="contact.email"/>"><s:text name="contact.email"/></a>
+                    ---  <s:a  action="index">
+                <s:text name="home.welcome"/>  </s:a>
+
             </div>
         </div>
 

@@ -1,7 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <div id="Comments" ></div>
-<br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br>
 <h2>Comments</h2>
 
 <s:form action="createCommentSpot" method="POST">

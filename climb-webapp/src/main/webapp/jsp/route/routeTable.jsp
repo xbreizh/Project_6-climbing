@@ -3,7 +3,6 @@
     <table class="table  table-hover">
         <thead>
         <tr>
-            <th></th>
             <th>Name </th>
             <th>Spot </th>
             <th>Grade </th>
@@ -15,12 +14,6 @@
         <tbody>
         <s:iterator value="routeList">
             <tr>
-                <td>
-                    <s:form action="route_detail" method="POST">
-                        <s:hidden name="route" value="%{id}"  requiredLabel="true"/>
-                        <s:submit class="btn btn-light" value="Details"/>
-                    </s:form>
-                </td>
                 <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
                     <s:property value="name" escapeHtml="false"/>
                     <s:param name="id" value="id"/>

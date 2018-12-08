@@ -1,6 +1,6 @@
 <div id="Details" ></div>
 
-    <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br>
     <h2>Spot Details</h2>
 
 <table class="table table-hover">

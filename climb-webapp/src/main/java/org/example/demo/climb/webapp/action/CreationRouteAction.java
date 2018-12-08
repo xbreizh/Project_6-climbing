@@ -160,7 +160,6 @@ return true;
         String vResult = ActionSupport.SUCCESS;
         try {
             route = routeManager.getRouteById(id);
-            System.out.println("getting route: " + route.getName());
         }catch(NotFoundException e){
             System.err.println("Route not found: "+e.getMessage());
         }

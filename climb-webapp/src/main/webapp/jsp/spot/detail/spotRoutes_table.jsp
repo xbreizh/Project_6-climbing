@@ -1,10 +1,16 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <div id="Routes" ></div>
-<br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br>
 <s:if test="spot.routeList.size() > 0">
     <h2>Routes</h2>
-
+    <div class="info">
+        <p>
+            The best way to identify routes is with a photo or a schema.<br>
+            While we work on implementing a better solution, please send us your document at<br>
+            <a href="mail:<s:text name="contact.email"/>"><s:text name="contact.email"/></a>
+        </p>
+    </div>
         <table class="table  table-hover">
             <thead>
             <tr>
