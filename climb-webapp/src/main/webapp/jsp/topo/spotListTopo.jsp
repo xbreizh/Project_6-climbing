@@ -1,6 +1,6 @@
 <h2>Spots</h2>
 
-<s:if test="#session.user.id == topo.owner.id || session.user.role == 'superadmin'">
+<s:if test="#session.user">
 <s:form style="display:inline!important;" action="topo_addSpot" method="POST">
     <s:select list="%{spotList}" name="spotId" listKey="id" headerKey="-1" headerValue="-- Spot --" />
     <s:hidden name="id" placeholder="topo Id" requiredLabel="true"/><br>
@@ -8,6 +8,7 @@
 </s:form>
     </s:if>
 <br><br>
+<s:if test="topo.spots.size() >0">
 <table class="table table-hover">
     <thead>
     <tr>
@@ -49,5 +50,8 @@
     </s:iterator>
     </tbody>
 </table>
-
+</s:if>
+<s:else>
+    No spot yet for that Topo
+</s:else>
 
