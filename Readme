@@ -5,3 +5,78 @@ Application web permettant :
     de laisser des commentaires
     de présenter les topo qui existent et les sites/secteurs qu’ils couvrent
     d’avoir un espace de prêt de topo (les propriétaires de topo peuvent proposer le prêt de leur topo et les gens intéressés peuvent voir les topo disponibles et les réserver pour une période)
+
+
+
+How to setup?
+
+Pour installer ce projet, vous avez besoin:
+1 IDE
+1 server PostgresSQL
+
+Installation de la base de donnees:
+
+Pgadmin:
+Creer une base de donnees 'ClimbingWorld' (click droit sur Database, puis create).
+Le projet est prevu pour un login 'ocp', mais la configuration peut etre ajustee par la suite.
+Ouvrir une nouvelle fenetre de requete sur cette BDD et lancer le contenu du script PGADMIN.sql
+
+Si vous n'utilisez pas PGadmin, lancez le script postgres.sql sur le serveur afin de creer la base de donnees.
+
+A noter que les scripts sus-cites contiennent le jeu de demo.
+Pour supprimer ce jeu de demo, supprimer les differentes tables avec les lignes suivantes. celles-ci seront recrees vides au lancement de l'application:
+
+drop table spot_topo;
+drop table comment;
+drop table route;
+drop table spot;
+drop table booking;
+drop table topo;
+drop table member;
+drop table country;
+
+Import du projet sur l'IDE
+
+Dezipper le fichier climb.zip
+
+Importer le dossier en tant que projet dans l'IDE
+
+// configuration de la connection vers la base de donnees
+Dans le module climb-consumer
+Naviguer jusqu'au package org.example.demo.climb.consumer.config et ouvrir la classe HibernateConf
+Ligne 34: ajuster le port et eventuellement le nom de la base de donnees au besoin
+ligne 35, 36: ajuster les identifiants de votre base de donnees si besoin
+
+// configuration de Tomcat
+
+Dans la barre d'outil, selectionner l'option 'Edit configuration'
+
+Ajouter un server Tomcat depuis le menu deroulant.
+Ajouter le chemin vers le dossier ou est heberge Tomcat (voir point 1 sur le fichier tomcat1.PNG)
+
+Creer l'artefact en cliquant sur l'option "fix" (voir point 2 sur le fichier tomcat1.PNG)
+
+Depuis l'onglet Deployment, ajouter "/climb" a Application context (voir tomcat2.PNG) 
+Puis cliquer successivement sur Apply, puis Ok
+
+Vous pouvez ensuite demarrer le serveur, l'application se lance alors automatiquement
+
+// Test de l'application
+
+L'application est livree avec un jeu de demo, contenant 5 utilisateurs
+1 superadmin (Login: loki  / password: 123)
+4 admins (ex:  Bob)
+
+L'application est concue pour fonctionner selon 3 roles:
+visiteur (aucune session)
+admin
+superadmin
+
+Credentiels test superadmin:
+Login: loki  / password: 123
+
+Credentiels test admin:
+Login: bob  / password: 123
+
+
+Enjoy!
