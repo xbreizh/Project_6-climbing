@@ -13,6 +13,7 @@ import org.example.demo.climb.model.Grade;
 import org.example.demo.climb.model.bean.Country;
 import org.example.demo.climb.model.bean.Route;
 import org.example.demo.climb.model.bean.Spot;
+import org.example.demo.climb.model.bean.Topo;
 import org.example.demo.climb.model.exception.NotFoundException;
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
 
     private List<String> cityList=new ArrayList<>();
     private List<Spot> spotList = new ArrayList<>();
+    private List<Topo> topoList = new ArrayList<>();
     private List<Route> routeList = new ArrayList<>();
     private String continent="";
     private String country="";
@@ -90,6 +92,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
             System.out.println("has topo passed: "+hasTopo);
             spotList = spotManager.getListSpot(str, climbingType, hasTopo, levelMin, levelMax);
         }
+        topoList = generateTopoListFromSpotList(spotList);
         System.out.println("level min: "+levelMin);
         System.out.println("level max: "+levelMax);
         int i=0;
@@ -119,6 +122,21 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
             }
         }
         return vResult;
+    }
+
+    private List<Topo> generateTopoListFromSpotList(List<Spot> spotList) {
+        ArrayList<Topo> tList = new ArrayList<>();
+        for(Spot s: spotList){
+            for(Topo t: s.getTopos()){
+                tList.add(t);
+            }
+        }
+        for(Topo t:tList){
+            if(!topoList.contains(t)){
+                topoList.add(t);
+            }
+        }
+        return topoList;
     }
 
 
@@ -492,5 +510,13 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
 
     public void setSubmit(boolean submit) {
         this.submit = submit;
+    }
+
+    public List<Topo> getTopoList() {
+        return topoList;
+    }
+
+    public void setTopoList(List<Topo> topoList) {
+        this.topoList = topoList;
     }
 }

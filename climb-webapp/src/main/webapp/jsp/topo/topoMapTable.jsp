@@ -7,6 +7,7 @@
         <tr>
             <th>Name </th>
             <th>Description </th>
+            <th>Number Spots</th>
         </tr>
         </thead>
         <tbody>
@@ -22,6 +23,11 @@
                         <s:property value="description" escapeHtml="false"/>
                         <s:param name="id" value="id"/>
                     </s:a>
+                </td>
+                <td><s:a action="topo_detail" style="display:block;text-decoration:none;" >
+                    <s:property value="spots.size()" escapeHtml="false"/>
+                    <s:param name="id" value="id"/>
+                </s:a>
                 </td>
             </tr>
         </s:iterator>
