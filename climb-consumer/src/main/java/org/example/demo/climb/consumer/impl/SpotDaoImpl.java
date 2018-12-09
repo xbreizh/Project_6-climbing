@@ -1,4 +1,5 @@
 package org.example.demo.climb.consumer.impl;
+import org.apache.log4j.Logger;
 import org.example.demo.climb.consumer.contract.MemberDao;
 import org.example.demo.climb.consumer.contract.SpotDao;
 import org.example.demo.climb.model.bean.Country;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @Named
 public class SpotDaoImpl implements SpotDao {
-
+    private Logger logger = Logger.getLogger(this.getClass().getName());
     private Class cl = Spot.class;
     @Inject
     private SessionFactory sessionFactory;
@@ -90,15 +91,15 @@ public class SpotDaoImpl implements SpotDao {
 
         List<String> idList = q.getResultList();
         if(climbingType.equals("ALL")){climbingType="";}
-        System.out.println("list from dao: "+idList);
-        System.out.println("climbing type: "+climbingType);
+        logger.debug("list from dao: "+idList);
+        logger.debug("climbing type: "+climbingType);
         if(!idList.isEmpty()) {
             Query query = sessionFactory.getCurrentSession().createQuery(
                     "From Spot  where id in (:list) and type like :t and (upper(name) like :n or upper(city) like :n or upper(description) like :n " + "or upper(country.name) like :n or upper(country.continent) like :n )");
             query.setParameter("n", "%" + str + "%".toUpperCase());
             query.setParameter("list", idList);
             query.setParameter("t", "%"+climbingType+"%");
-            /*System.out.println("param: "+query.getParameter("list").toString());*/
+            /*logger.debug("param: "+query.getParameter("list").toString());*/
             return query.getResultList();
         }else{
             return null;
@@ -131,13 +132,13 @@ public class SpotDaoImpl implements SpotDao {
 
    /* @Override*/
     public void update(Spot spot) {
-        System.out.println("trying to update: "+spot.getName());
+        logger.debug("trying to update: "+spot.getName());
         sessionFactory.getCurrentSession().update(spot);
     }
 
     /*@Override*/
     public void delete(Spot spot) {
-        System.out.println("spot received in dao: "+spot);
+        logger.debug("spot received in dao: "+spot);
         sessionFactory.getCurrentSession().delete(cl.getName(), spot);
     }
 

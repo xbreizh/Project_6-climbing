@@ -1,5 +1,6 @@
 package org.example.demo.climb.business.impl;
 
+import org.apache.log4j.Logger;
 import org.example.demo.climb.business.contract.SearchManager;
 import org.example.demo.climb.consumer.contract.SearchDao;
 import org.example.demo.climb.model.bean.Spot;
@@ -17,8 +18,7 @@ import java.util.List;
 public class SearchManagerImpl implements SearchManager {
 
 
-   /* @Inject
-    private SessionFactory sessionFactory;*/
+    private Logger logger = Logger.getLogger(this.getClass().getName());
     @Inject
     private SearchDao searchDao;
 

@@ -1,5 +1,5 @@
 package org.example.demo.climb.consumer.impl;
-
+import org.apache.log4j.Logger;
 import org.example.demo.climb.consumer.contract.BookingDao;
 import org.example.demo.climb.model.bean.Booking;
 import org.example.demo.climb.model.bean.Topo;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Named
 public class BookingDaoImpl implements BookingDao {
-
+    private Logger logger = Logger.getLogger(this.getClass().getName());
     private Class cl= Booking.class;
 
     @Inject

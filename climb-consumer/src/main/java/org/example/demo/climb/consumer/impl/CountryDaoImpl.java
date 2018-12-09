@@ -1,5 +1,6 @@
 package org.example.demo.climb.consumer.impl;
 
+import org.apache.log4j.Logger;
 import org.example.demo.climb.consumer.contract.CountryDao;
 import org.example.demo.climb.model.bean.Country;
 import org.hibernate.SessionFactory;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Named
 public class CountryDaoImpl  implements CountryDao {
-
+    private Logger logger = Logger.getLogger(this.getClass().getName());
     private Class cl= Country.class;
 
     @Inject
@@ -23,7 +24,7 @@ public class CountryDaoImpl  implements CountryDao {
         Query query = sessionFactory.getCurrentSession().createQuery(
                 "From Country where name=:n");
         query.setParameter("n", name);
-        System.out.println("result from dao: "+query.uniqueResult());
+        logger.debug("result from dao: "+query.uniqueResult());
        return (Country) query.uniqueResult();
     }
 

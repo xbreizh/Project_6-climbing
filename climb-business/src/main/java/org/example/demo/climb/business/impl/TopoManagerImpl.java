@@ -1,4 +1,5 @@
 package org.example.demo.climb.business.impl;
+import org.apache.log4j.Logger;
 import org.example.demo.climb.business.contract.TopoManager;
 import org.example.demo.climb.consumer.contract.SpotDao;
 import org.example.demo.climb.consumer.contract.TopoDao;
@@ -18,7 +19,7 @@ import java.util.List;
 @Named("topoManager")
 public class TopoManagerImpl implements TopoManager {
 
-
+    private Logger logger = Logger.getLogger(this.getClass().getName());
     private Class cl= Topo.class;
 
     @Inject
@@ -78,18 +79,18 @@ public class TopoManagerImpl implements TopoManager {
 
     @Override
     public void deleteTopo(Topo topo) {
-        System.out.println("topo received from manager: "+topo);
-        System.out.println("removing spots and bookings");
+        logger.debug("topo received from manager: "+topo);
+        logger.debug("removing spots and bookings");
         if(topo.getSpots().size() >0) {
-            System.out.println("size before: " + topo.getSpots().size());
+            logger.debug("size before: " + topo.getSpots().size());
             for (Spot s : topo.getSpots()
             ) {
                 removeSpotFromTopo(s, topo);
-                System.out.println("spot id: " + s.getId() + "  topo id: " + topo.getId());
+                logger.debug("spot id: " + s.getId() + "  topo id: " + topo.getId());
             }
-            System.out.println("size after: " + topo.getSpots().size());
+            logger.debug("size after: " + topo.getSpots().size());
         }
-        System.out.println("trying to delete");
+        logger.debug("trying to delete");
         topoDao.delete(topo);
     }
 
@@ -112,8 +113,8 @@ public class TopoManagerImpl implements TopoManager {
     public boolean removeSpotFromTopo(Spot spot, Topo topo) {
         List<Spot> spotList = topo.getSpots();
         topo.setSpots(new ArrayList<>());
-        System.out.println("list spots mgr: "+spot.getTopos().size());
-        System.out.println("list: topos mgr: "+topo.getSpots().size());
+        logger.debug("list spots mgr: "+spot.getTopos().size());
+        logger.debug("list: topos mgr: "+topo.getSpots().size());
 
         for (Spot s: spotList
              ) {

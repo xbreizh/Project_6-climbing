@@ -1,6 +1,7 @@
 package org.example.demo.climb.business.impl;
 
 
+import org.apache.log4j.Logger;
 import org.example.demo.climb.business.contract.CountryManager;
 import org.example.demo.climb.business.contract.MemberManager;
 import org.example.demo.climb.business.contract.RouteManager;
@@ -16,7 +17,7 @@ import java.util.List;
 @Transactional
 @Named("routeManager")
 public class RouteManagerImpl implements RouteManager {
-
+    private Logger logger = Logger.getLogger(this.getClass().getName());
     private Class cl= Route.class;
     @Inject
     private RouteDao routeDao;
@@ -65,7 +66,7 @@ public class RouteManagerImpl implements RouteManager {
 
     @Override
     public void updateRoute(Route route) {
-        System.out.println("id from route: "+route.getId());
+        logger.debug("id from route: "+route.getId());
         int id = route.getId();
         try {
             Route s = (Route) routeDao.getById(id);
@@ -75,7 +76,7 @@ public class RouteManagerImpl implements RouteManager {
                 s.setHeight(route.getHeight());
                 routeDao.update(s);
             }else{
-                System.out.println("route is null");
+                logger.debug("route is null");
 
             }
         }catch(NullPointerException e){
@@ -86,13 +87,13 @@ public class RouteManagerImpl implements RouteManager {
 
     @Override
     public void deleteRoute(Route route) {
-        System.out.println("trying to delete route: "+route.getName());
+        logger.debug("trying to delete route: "+route.getName());
         routeDao.delete(route);
     }
 
     @Override
     public void updateWhenDeletingMember(int id) {
-        System.out.println("trying to update member routes before deleting");
+        logger.debug("trying to update member routes before deleting");
         routeDao.updateWhenDeletingMember(1, id);
     }
 

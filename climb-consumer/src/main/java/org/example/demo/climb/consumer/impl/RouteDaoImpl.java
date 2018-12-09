@@ -1,4 +1,5 @@
 package org.example.demo.climb.consumer.impl;
+import org.apache.log4j.Logger;
 import org.example.demo.climb.consumer.contract.MemberDao;
 import org.example.demo.climb.consumer.contract.RouteDao;
 import org.example.demo.climb.model.ClimbingType;
@@ -18,7 +19,7 @@ import java.util.List;
 
 @Named
 public class RouteDaoImpl implements RouteDao {
-
+    private Logger logger = Logger.getLogger(this.getClass().getName());
     private Class cl = Route.class;
     @Inject
     private SessionFactory sessionFactory;
@@ -58,7 +59,7 @@ public class RouteDaoImpl implements RouteDao {
         query.setParameter("member1", m);
         query.setParameter("member2", id2);
         int result = query.executeUpdate();
-        System.out.println("updated list?");
+        logger.debug("updated list?");
     }
 
     @Override

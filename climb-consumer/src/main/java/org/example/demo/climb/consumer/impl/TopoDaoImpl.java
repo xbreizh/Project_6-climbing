@@ -1,5 +1,6 @@
 package org.example.demo.climb.consumer.impl;
 
+import org.apache.log4j.Logger;
 import org.example.demo.climb.consumer.contract.MemberDao;
 import org.example.demo.climb.consumer.contract.TopoDao;
 import org.example.demo.climb.model.bean.Topo;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Named
 public class TopoDaoImpl implements TopoDao {
-
+    private Logger logger = Logger.getLogger(this.getClass().getName());
     private Class cl = Topo.class;
     @Inject
     private SessionFactory sessionFactory;
@@ -50,8 +51,8 @@ public class TopoDaoImpl implements TopoDao {
 
     @Override
     public void update(Topo topo) {
-        System.out.println("trying to update: "+topo.getName());
-        System.out.println("list: "+topo.getSpots().size());
+        logger.debug("trying to update: "+topo.getName());
+        logger.debug("list: "+topo.getSpots().size());
         sessionFactory.getCurrentSession().update(cl.getName(), topo);
     }
 

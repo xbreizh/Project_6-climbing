@@ -1,5 +1,6 @@
 package org.example.demo.climb.business.impl;
 import net.bytebuddy.utility.RandomString;
+import org.apache.log4j.Logger;
 import org.example.demo.climb.business.contract.MemberManager;
 import org.example.demo.climb.business.contract.SpotManager;
 import org.example.demo.climb.consumer.contract.MemberDao;
@@ -17,8 +18,7 @@ import java.util.List;
 @Named("memberManager")
 public class MemberManagerImpl  implements MemberManager {
 
-   /* private Member member;*/
-    /*private final String tok = RandomString.hashOf(3232323);*/
+    private Logger logger = Logger.getLogger(this.getClass().getName());
     private final String pepper ="Tipiak";
     private Class cl=Member.class;
     @Inject
@@ -39,12 +39,12 @@ public class MemberManagerImpl  implements MemberManager {
         member.setLogin2(member.getLogin().toUpperCase());//setting backup login
         member.setLogin(member.getLogin().toUpperCase());//setting upper case login
         member.setPassword( encryptPassword(member.getPassword())); // encrypting password
-        System.out.println("password crypted");
+        logger.debug("password crypted");
         member.setDatejoin(new Date());
         member.setRole("admin");
-        System.out.println("Member to be added: "+member);
+        logger.debug("Member to be added: "+member);
         memberDao.add(member);
-        System.out.println("Checking if member is added: "+getMemberById(member.getId()));
+        logger.debug("Checking if member is added: "+getMemberById(member.getId()));
     }
 
 
@@ -86,7 +86,7 @@ public class MemberManagerImpl  implements MemberManager {
             m.setActive(true);
             m.setDescription(member.getDescription());
         }
-        System.out.println("member from manager: "+m);
+        logger.debug("member from manager: "+m);
         memberDao.update(m);
 
     }
@@ -95,7 +95,7 @@ public class MemberManagerImpl  implements MemberManager {
     @Override
     public void disableMember(int id) {
         Member m= (Member) memberDao.getById(id);
-        System.out.println("member received to disable: "+m);
+        logger.debug("member received to disable: "+m);
         m.setActive(false);
         m.setLogin("Inactive User");
 
@@ -106,7 +106,7 @@ public class MemberManagerImpl  implements MemberManager {
     @Override
     public void enableMember(int id) {
         Member m= (Member) memberDao.getById(id);
-        System.out.println("member received to enable: "+m);
+        logger.debug("member received to enable: "+m);
         m.setActive(true);
         m.setLogin(m.getLogin2());
 
@@ -129,7 +129,7 @@ public class MemberManagerImpl  implements MemberManager {
     // Delete Member
     @Override
     public void deleteMember(Member member) {
-        System.out.println("from manager: "+member);
+        logger.debug("from manager: "+member);
         memberDao.delete(member);
     }
 
@@ -158,12 +158,12 @@ public class MemberManagerImpl  implements MemberManager {
             // checking password match
             if (checkPassword(password, m.getPassword())) {
                 if(!m.isActive()){
-                    System.out.println("member exista but inactive: " +m.getLogin());
+                    logger.debug("member exista but inactive: " +m.getLogin());
                 }
                 return m;
             }
         } catch (NoResultException e) {
-            System.out.println("wrong login or pwd");
+            logger.debug("wrong login or pwd");
         }
         return null;
     }
@@ -172,7 +172,7 @@ public class MemberManagerImpl  implements MemberManager {
     public String encryptPassword(String password) {
         BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
         String pwd =bcrypt.encode(password+ pepper);
-        System.out.println("hashed pwd: "+pwd);
+        logger.debug("hashed pwd: "+pwd);
         return pwd;
     }
 
@@ -195,20 +195,20 @@ public class MemberManagerImpl  implements MemberManager {
     // Update Password
     @Override
     public boolean updatePassword(String login, String email, String password){
-        System.out.println("member received: "+login);
-        System.out.println("email received: "+email);
-        System.out.println("pwd received: "+password);
+        logger.debug("member received: "+login);
+        logger.debug("email received: "+email);
+        logger.debug("pwd received: "+password);
 
         if(exists(login.toUpperCase())){
             Member m = getMemberByLogin(login.toUpperCase());
             if(m.getEmail().equals(email)) {
-                System.out.println("email passed");
+                logger.debug("email passed");
                 m.setPassword(encryptPassword(password));
                 memberDao.update(m);
                 return true;
             }
         }else{
-            System.out.println("member couldn't be found");
+            logger.debug("member couldn't be found");
         }
         return false;
     }

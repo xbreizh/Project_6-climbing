@@ -4,7 +4,6 @@ import org.example.demo.climb.business.contract.BookingManager;
 import org.example.demo.climb.consumer.contract.BookingDao;
 import org.example.demo.climb.model.bean.Booking;
 import org.springframework.transaction.annotation.Transactional;
-
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
@@ -23,9 +22,9 @@ public class BookingManagerImpl implements BookingManager {
     public List<Booking> addBooking(Booking booking) {
         List<Booking> bookingList = bookingDao.getListBookingByTopo(booking.getTopo().getId());
         if(bookingList.size() == 0){
-            System.out.println("bookingList is empty");
+            logger.debug("bookingList is empty");
         }else{
-            System.out.println("bookingList is not empty: "+bookingList.get(0));
+            logger.debug("bookingList is not empty: "+bookingList.get(0));
         }
         List<Booking> conflictList=new ArrayList<>();
         for (Booking b: bookingList
@@ -47,8 +46,8 @@ public class BookingManagerImpl implements BookingManager {
             bookingDao.add(booking);
         }
         if(conflictList.size() > 0) {
-            System.out.println("cl list manager fin: " + conflictList.get(0));
-            System.out.println("cl list manager fin size: " + conflictList.size());
+            logger.debug("cl list manager fin: " + conflictList.get(0));
+            logger.debug("cl list manager fin size: " + conflictList.size());
         }
 
        return conflictList;

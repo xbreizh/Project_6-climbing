@@ -1,6 +1,7 @@
 package org.example.demo.climb.business.impl;
 
 
+import org.apache.log4j.Logger;
 import org.example.demo.climb.business.contract.CountryManager;
 import org.example.demo.climb.business.contract.MemberManager;
 import org.example.demo.climb.business.contract.SpotManager;
@@ -19,7 +20,7 @@ import java.util.List;
 @Transactional
 @Named("spotManager")
 public class SpotManagerImpl  implements SpotManager {
-
+    private Logger logger = Logger.getLogger(this.getClass().getName());
     private Class cl=Spot.class;
     @Inject
     private SpotDao spotDao;
@@ -42,11 +43,7 @@ public class SpotManagerImpl  implements SpotManager {
     public Spot getSpotById(Integer id) {
         return spotDao.getById(id);
     }
-
-   /* @Override
-    public Spot getSpotByName(String login) {
-        return spotDao.getSpotByName(login);
-    }*/
+    
 
     // Get List
     @Override
@@ -58,7 +55,7 @@ public class SpotManagerImpl  implements SpotManager {
                 ct = clt.getName().toUpperCase();
             }
         }
-        System.out.println("Has topo: "+hasTopo);
+        logger.debug("Has topo: "+hasTopo);
         if(hasTopo!=null) {
             if (hasTopo.equals("true")) {
                 htopo = "is not null";
@@ -66,12 +63,12 @@ public class SpotManagerImpl  implements SpotManager {
         }
         str = str.toUpperCase();
         if(str == null){
-            System.out.println("str was null");
+            logger.debug("str was null");
             str="";
         }
         if(levelMin == 0){levelMin=1;}
         if(levelMax == 0){levelMax=32;}
-        System.out.println("str: "+str+" climb: "+ct+" topo: "+htopo);
+        logger.debug("str: "+str+" climb: "+ct+" topo: "+htopo);
        return spotDao.ListSpotByCriterias(str, ct, htopo, levelMin, levelMax);
     }
 
@@ -79,54 +76,19 @@ public class SpotManagerImpl  implements SpotManager {
     public List<Spot> getListSpot() {
         return spotDao.getAll();
     }
-   /* @Override
-    public List<String> getListCityByCountry(Country country) {
-        List<String> cityList = new ArrayList<>();
-        for (Spot spot:spotDao.ListSpotByCountry(country)
-             ) {
-            cityList.add(spot.getCity());
-        }
-        return cityList;
-    }
-
-    @Override
-    public List<String> getListCity() {
-        return spotDao.ListCity();
-    }
-
-    @Override
-    public List<String> getListCityByContinent(String continent) {
-        return null;
-    }
-
-    @Override
-    public List<Spot> getListSpotByContinent(String continent) {
-        return spotDao.ListSpotByContinent(continent);
-    }
-
-    @Override
-    public List<Spot> getListSpotByCountry(Country country) {
-        return spotDao.ListSpotByCountry(country);
-    }
-
-*/
+  
     // Update
     @Override
     public void updateSpot(Spot spot) {
-        System.out.println("spot received: "+spot);
+        logger.debug("spot received: "+spot);
      try{spotDao.update(spot);}
      catch(NullPointerException e){
-         System.out.println("spot couldn t be found: "+spot.getName());
+         logger.debug("spot couldn t be found: "+spot.getName());
      }
 
 
     }
 
-   /* @Override
-    public void updateWhenDeletingMember(int id) {
-        System.out.println("trying to update member spots before deleting");
-        spotDao.updateWhenDeletingMember(1, id);
-    }*/
 
     // Delete
 
@@ -135,7 +97,7 @@ public class SpotManagerImpl  implements SpotManager {
         try{
             spotDao.delete(spot);}
         catch(NullPointerException e){
-            System.out.println("spot couldn t be deleted: ");
+            logger.debug("spot couldn t be deleted: ");
         }
     }
     public static String toCamelCase(final String init) {

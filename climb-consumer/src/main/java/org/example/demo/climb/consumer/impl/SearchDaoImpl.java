@@ -1,5 +1,6 @@
 package org.example.demo.climb.consumer.impl;
 
+import org.apache.log4j.Logger;
 import org.example.demo.climb.consumer.contract.SearchDao;
 import org.example.demo.climb.model.bean.Country;
 import org.example.demo.climb.model.bean.Spot;
@@ -14,7 +15,7 @@ import java.util.List;
 
 @Named
 public class SearchDaoImpl implements SearchDao {
-
+    private Logger logger = Logger.getLogger(this.getClass().getName());
     @Inject
     private SessionFactory sessionFactory;
     @Override
@@ -23,7 +24,7 @@ public class SearchDaoImpl implements SearchDao {
                 "From Spot where lower(name) like :n or lower(city) like :n or lower(description) like :n " +
                         "or lower(country.name) like :n or lower(country.continent) like :n");
         query.setParameter("n", "%"+str+"%".toLowerCase());
-        System.out.println(str);
+        logger.debug(str);
         return query.getResultList();
 }
 
@@ -33,8 +34,8 @@ public class SearchDaoImpl implements SearchDao {
                 "From Topo where lower(name) like :n or lower(author) like :n or lower(description) like :n " +
                         "or lower(description) like :n or lower(keywords) like :n ");
         query.setParameter("n", "%"+str+"%".toLowerCase());
-        System.out.println("string passed: "+str);
-        System.out.println("search from dao: "+query.getParameter("n").toString());
+        logger.debug("string passed: "+str);
+        logger.debug("search from dao: "+query.getParameter("n").toString());
         return query.getResultList();
     }
 

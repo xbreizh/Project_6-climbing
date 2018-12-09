@@ -1,4 +1,5 @@
 package org.example.demo.climb.business.impl;
+import org.apache.log4j.Logger;
 import org.example.demo.climb.business.contract.CountryManager;
 import org.example.demo.climb.consumer.contract.CountryDao;
 import org.example.demo.climb.model.bean.Country;
@@ -13,7 +14,7 @@ import java.util.List;
 @Named("countryManager")
 public class CountryManagerImpl implements CountryManager {
 
-
+    private Logger logger = Logger.getLogger(this.getClass().getName());
     private Class cl= Country.class;
 
     @Inject
@@ -48,7 +49,7 @@ public class CountryManagerImpl implements CountryManager {
         ) {
             countryList.add(country.getName());
         }
-        System.out.println("Country List by continent: "+countryList);
+        logger.debug("Country List by continent: "+countryList);
         return countryList;
     }
 

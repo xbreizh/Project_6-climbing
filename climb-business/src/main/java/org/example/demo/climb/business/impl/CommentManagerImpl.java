@@ -1,5 +1,6 @@
 package org.example.demo.climb.business.impl;
 
+import org.apache.log4j.Logger;
 import org.example.demo.climb.business.contract.CommentManager;
 import org.example.demo.climb.consumer.contract.CommentDao;
 import org.example.demo.climb.model.bean.Comment;
@@ -12,7 +13,7 @@ import java.util.List;
 @Transactional
 @Named("commentManager")
 public class CommentManagerImpl  implements CommentManager {
-
+    private Logger logger = Logger.getLogger(this.getClass().getName());
 
 
 
@@ -23,7 +24,7 @@ public class CommentManagerImpl  implements CommentManager {
     @Override
     public void addComment(Comment comment) {
 
-        System.out.println("date: "+comment.getDate());
+        logger.debug("date: "+comment.getDate());
         commentDao.add(comment);
     }
 
@@ -64,7 +65,7 @@ public class CommentManagerImpl  implements CommentManager {
 
     @Override
     public void deleteComment(Comment comment) {
-        System.out.println("comment received in manager: "+comment);
+        logger.debug("comment received in manager: "+comment);
         commentDao.delete(comment);
     }
 }
