@@ -10,18 +10,18 @@
                 <span class="icon-bar"></span>
             </button>
             <div class="navbar-brand">
-                <s:a  action="index">
+                <s:a action="index">
                     <s:text name="home.welcome"/>
                 </s:a>
             </div>
         </div>
 
-            <r:if test="#session.user">
-                <%@include file="navbar_admin.jsp"%>
-            </r:if>
-            <r:else>
-                <%@include file="navbar_visitor.jsp"%>
-            </r:else>
+        <r:if test="#session.user">
+            <%@include file="navbar_admin.jsp" %>
+        </r:if>
+        <r:else>
+            <%@include file="navbar_visitor.jsp" %>
+        </r:else>
     </div>
 
 </nav>

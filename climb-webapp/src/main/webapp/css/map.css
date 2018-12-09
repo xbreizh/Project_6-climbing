@@ -1,15 +1,17 @@
-.mapContainer, #myMap{
-    position:relative;
-    height:650px;
-}
-.panButtonPanel{
-    border: black double;
-    position:fixed;
-    background-color:#ffede3;
-    top:10%;
-    left:10%;
+.mapContainer, #myMap {
+    position: relative;
+    height: 650px;
 }
 
-.legend img{
-    height:30px; width:30px;
+.panButtonPanel {
+    border: black double;
+    position: fixed;
+    background-color: #ffede3;
+    top: 10%;
+    left: 10%;
+}
+
+.legend img {
+    height: 30px;
+    width: 30px;
 }

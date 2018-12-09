@@ -7,6 +7,7 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -20,7 +21,7 @@ public class HibernateConf {
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan("org.example.demo.climb.consumer");
         sessionFactory.setPackagesToScan("org.example.demo.climb.model");
-       /* sessionFactory.setPackagesToScan("org.example.demo.climb.webapp");*/
+        /* sessionFactory.setPackagesToScan("org.example.demo.climb.webapp");*/
         Properties hProperties = hibernateProperties();
         hProperties.setProperty("show_sql", "true");
         sessionFactory.setHibernateProperties(hProperties);

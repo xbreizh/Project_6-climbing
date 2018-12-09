@@ -11,7 +11,7 @@ import java.util.List;
 public class Country {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO )
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
 
@@ -23,11 +23,11 @@ public class Country {
     @Size(min = 1, max = 100)
     private String name;
 
-    @OneToMany(mappedBy = "country", fetch=FetchType.EAGER)
-    private List<Spot> spotList= new ArrayList<>();
+    @OneToMany(mappedBy = "country", fetch = FetchType.EAGER)
+    private List<Spot> spotList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "country", fetch=FetchType.EAGER)
-    private List<Topo> topoList= new ArrayList<>();
+    @OneToMany(mappedBy = "country", fetch = FetchType.EAGER)
+    private List<Topo> topoList = new ArrayList<>();
 
     public Country() {
     }

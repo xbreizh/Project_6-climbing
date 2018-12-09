@@ -11,14 +11,15 @@ var color = (toStr.replace('\/g', '|')).substring(1);
 var colors = color.split("|");
 
 if (colors.indexOf(word) > -1) {
-    str = str.replace(reg, '<span style="color:red;">'+word+'</span>');
+    str = str.replace(reg, '<span style="color:red;">' + word + '</span>');
 }
 
 
 document.getElementById("content").innerHTML = str;
 
 var toto
-    function init( toto) {
-        opener.location = toto;
-        this.close();
-    }
+
+function init(toto) {
+    opener.location = toto;
+    this.close();
+}

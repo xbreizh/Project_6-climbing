@@ -12,14 +12,13 @@
         <action name="topo_new"
                 class="org.example.demo.climb.webapp.action.CreationTopoAction"
                 method="doCreateTopo">
-            <result name="input" >/jsp/topo/form/newTopo.jsp</result>
+            <result name="input">/jsp/topo/form/newTopo.jsp</result>
             <result name="success" type="redirectAction">
                 <param name="actionName">topo_detail</param>
                 <param name="id">${topo.id}</param>
             </result>
             <result name="error">/jsp/member/login/login.jsp</result>
         </action>
-
 
 
         <!-- READ ALL -->
@@ -109,17 +108,17 @@
         </action>
 
 
-<!--
-        &lt;!&ndash; EDIT &ndash;&gt;
-        <action name="topo_edit"
-                class="org.example.demo.climb.webapp.action.CreationTopoAction"
-                method="doEditTopo">
-            <interceptor-ref name="store">
-                <param name="operationMode">RETRIEVE</param>
-            </interceptor-ref>
-            <interceptor-ref name="defaultStack"/>
-            <result name="success">/jsp/topo/form/updateTopo.jsp</result>
-        </action>-->
+        <!--
+                &lt;!&ndash; EDIT &ndash;&gt;
+                <action name="topo_edit"
+                        class="org.example.demo.climb.webapp.action.CreationTopoAction"
+                        method="doEditTopo">
+                    <interceptor-ref name="store">
+                        <param name="operationMode">RETRIEVE</param>
+                    </interceptor-ref>
+                    <interceptor-ref name="defaultStack"/>
+                    <result name="success">/jsp/topo/form/updateTopo.jsp</result>
+                </action>-->
 
         <!-- UPDATE-->
         <action name="topo_update"

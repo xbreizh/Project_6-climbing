@@ -1,4 +1,3 @@
-
 </div>
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
     <div class="container">
@@ -10,11 +9,11 @@
                 <span class="icon-bar"></span>
             </button>
             <div class="navbar-brand">
-                <s:a  action="index">
-                    <s:text name="home.welcome"/>  </s:a> ---
-                    <a href="mail:<s:text name="contact.email"/>"><s:text name="contact.email"/></a>
-                    ---  <s:a  action="index">
-                <s:text name="home.welcome"/>  </s:a>
+                <s:a action="index">
+                    <s:text name="home.welcome"/> </s:a> ---
+                <a href="mail:<s:text name="contact.email"/>"><s:text name="contact.email"/></a>
+                --- <s:a action="index">
+                <s:text name="home.welcome"/> </s:a>
 
             </div>
         </div>

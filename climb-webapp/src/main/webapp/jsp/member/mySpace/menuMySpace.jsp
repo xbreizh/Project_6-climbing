@@ -1,4 +1,4 @@
-<table  style="border:none">
+<table style="border:none">
     <tr>
 
         <th>

@@ -7,10 +7,15 @@ import java.util.List;
 public interface CommentDao {
 
     List<Comment> getListCommentByRoute(int id);
+
     List<Comment> getListCommentBySpot(int id);
+
     void add(Comment comment);
+
     void update(Comment comment);
+
     void delete(Comment comment);
+
     Comment getCommentById(int id);
 
 

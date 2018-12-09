@@ -11,13 +11,14 @@ import javax.inject.Inject;
 import java.util.Map;
 
 public class MemberConverter extends StrutsTypeConverter {
-    private Logger logger = Logger.getLogger(this.getClass().getName());
     @Inject
     MemberManager memberManager;
+    private Logger logger = Logger.getLogger(this.getClass().getName());
+
     @Override
     public Object convertFromString(Map pContext, String[] pValues, Class pToClass) {
         Object vRetour = null;
-        logger.debug("trying to convert: "+pValues[0]);
+        logger.info("trying to convert: " + pValues[0]);
         if (pValues != null) {
             if (pValues.length == 1) {
                 String vValue = pValues[0];
@@ -27,11 +28,11 @@ public class MemberConverter extends StrutsTypeConverter {
                 } catch (NumberFormatException pEx) {
                     logger.error("Format de fraction invalide", pEx);
                 } catch (NotFoundException e) {
-                    logger.error("Format de fraction invalide"+ e.getMessage());
+                    logger.error("Format de fraction invalide" + e.getMessage());
                 }
             } else {
                 vRetour = performFallbackConversion(pContext, pValues, pToClass);
-                logger.debug(vRetour.toString());
+                logger.info(vRetour.toString());
             }
         }
 
@@ -41,12 +42,12 @@ public class MemberConverter extends StrutsTypeConverter {
 
     @Override
     public String convertToString(Map pContext, Object pObject) {
-        logger.debug("trying to convert into string");
+        logger.info("trying to convert into string");
         String vString;
         if (pObject instanceof Member) {
             Member vFraction = (Member) pObject;
             Member member = (Member) pObject;
-            vString=member.getLogin();
+            vString = member.getLogin();
         } else {
             vString = "";
         }

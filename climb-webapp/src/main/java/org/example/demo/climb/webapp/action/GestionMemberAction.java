@@ -1,6 +1,5 @@
 package org.example.demo.climb.webapp.action;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.log4j.Logger;
 import org.example.demo.climb.business.contract.BookingManager;
@@ -10,7 +9,6 @@ import org.example.demo.climb.model.exception.NotFoundException;
 
 import javax.inject.Inject;
 import java.util.List;
-import java.util.Map;
 
 
 public class GestionMemberAction extends LoginAction {
@@ -21,8 +19,8 @@ public class GestionMemberAction extends LoginAction {
     private String login;
     private String email;
     private String emailCheck;
-    private String password="";
-    private String passwordCheck="";
+    private String password = "";
+    private String passwordCheck = "";
     private List<Member> listMember;
     private String description;
     private boolean active;
@@ -31,12 +29,11 @@ public class GestionMemberAction extends LoginAction {
     private List<Route> routeList;
     private List<Booking> bookingList;
     private List<Booking> bookedList;
-    private  boolean submit = false;
+    private boolean submit = false;
     @Inject
     private MemberManager memberManager;
     @Inject
     private BookingManager bookingManager;
-
 
 
     // CREATE
@@ -50,14 +47,14 @@ public class GestionMemberAction extends LoginAction {
         return vResult;
     }
 
-    public String doUpdateRole(){
+    public String doUpdateRole() {
         String vResult = ActionSupport.SUCCESS;
         memberManager.updateRole(id);
         return vResult;
     }
 
-    public String doShowMySpace(){
-        logger.debug("id passed: "+id);
+    public String doShowMySpace() {
+        logger.info("id passed: " + id);
         try {
             member = memberManager.getMemberById(id);
             spotList = member.getSpotList();
@@ -65,7 +62,7 @@ public class GestionMemberAction extends LoginAction {
             routeList = member.getRouteList();
             bookingList = member.getBookingList();
             bookedList = bookingManager.getBookedListByBooker(member.getId());
-            logger.debug(spotList.size());
+            logger.info(spotList.size());
         } catch (NotFoundException e) {
             return ActionSupport.ERROR;
         }
@@ -76,9 +73,9 @@ public class GestionMemberAction extends LoginAction {
 
     /*READ ALL*/
 
-    public String doList(){
+    public String doList() {
         listMember = memberManager.getListMember();
-        logger.debug("list size: "+listMember.size());
+        logger.info("list size: " + listMember.size());
         return ActionSupport.SUCCESS;
     }
 
@@ -96,14 +93,14 @@ public class GestionMemberAction extends LoginAction {
 
     /*EDIT*/
     public String doEdit() {
-        logger.debug("id: "+id);
+        logger.info("id: " + id);
         try {
             member = memberManager.getMemberById(id);
         } catch (NotFoundException e) {
             e.printStackTrace();
         }
-        logger.debug("doedit id: "+member);
-        logger.debug("active: "+member.isActive());
+        logger.info("doedit id: " + member);
+        logger.info("active: " + member.isActive());
         return ActionSupport.SUCCESS;
     }
 
@@ -111,53 +108,53 @@ public class GestionMemberAction extends LoginAction {
     /*UPDATE*/
     public String doUpdate() throws NotFoundException {
         String vResult = ActionSupport.INPUT;
-        if(submit) {
+        if (submit) {
             if (this.member != null) {
-                logger.debug("member received: " + member);
+                logger.info("member received: " + member);
                 /*Member m = memberManager.getMemberById(member.getId());*/
                 if (member.getLogin() != null || password != null || passwordCheck != null ||
                         member.getEmail() != null || member.getDescription() != null) {
                     if (member.getLogin().equals("") || member.getLogin().length() < 3 || member.getLogin().length() > 20) {
-                        logger.debug("login length should between 3 and 20 characters");
+                        logger.info("login length should between 3 and 20 characters");
                         this.addFieldError("member.login", "login length should be at least 3 characters");
                         return vResult;
                     } else if (password.length() < 3 || password.length() > 10) {
-                        logger.debug("Password must be between 3 and 10 characters");
+                        logger.info("Password must be between 3 and 10 characters");
                         this.addFieldError("password", "Password must be between 3 and 8 characters");
                         return vResult;
                     } else if (!password.equals(passwordCheck)) {
-                        logger.debug("password mismatch");
-                        logger.debug("password: " + password + " check: " + passwordCheck);
+                        logger.info("password mismatch");
+                        logger.info("password: " + password + " check: " + passwordCheck);
                         this.addFieldError("password", "password mismatch");
                         return vResult;
                     } else if (member.getEmail().length() == 0) {
-                        logger.debug("No email passed");
+                        logger.info("No email passed");
                         this.addFieldError("member.email", "You must type an email");
                         return vResult;
                     } else if (member.getDescription().length() > 255) {
-                        logger.debug("description max: 255 characters");
+                        logger.info("description max: 255 characters");
                         this.addFieldError("description", "description max: 255 characters");
                         return vResult;
                     }
 
                 } else {
-                    logger.debug("something is missing in the form");
+                    logger.info("something is missing in the form");
                 }
-                logger.debug("member before trying to update: " + member);
+                logger.info("member before trying to update: " + member);
                 if (!password.equals("******")) {
-                    logger.debug("pwd unchanged");
+                    logger.info("pwd unchanged");
                     /*password = member.getPassword();*/
                     member.setPassword(password);
                 }
                 member.setActive(true);
                 memberManager.updateMember(member);
-                logger.debug("Member: " + member);
+                logger.info("Member: " + member);
                 this.addActionMessage("Profile has been updated");
-                logger.debug("id session: "+idSession);
-                logger.debug("member id: "+member.getId());
-                if(member.getId()==idSession) {
+                logger.info("id session: " + idSession);
+                logger.info("member id: " + member.getId());
+                if (member.getId() == idSession) {
                     vResult = ActionSupport.SUCCESS;
-                }else{
+                } else {
                     vResult = "member";
                 }
 
@@ -174,7 +171,7 @@ public class GestionMemberAction extends LoginAction {
     /*DELETE*/
     public String doDelete() {
         String vResult = ActionSupport.SUCCESS;
-        logger.debug("member received from action to be deleted: "+member);
+        logger.info("member received from action to be deleted: " + member);
         memberManager.deleteMember(member);
 
         return vResult;
@@ -195,33 +192,27 @@ public class GestionMemberAction extends LoginAction {
     }
 
 
-
     private String validDoCreate(String vResult) {
 
         // checking if existing member with the proposed login
         if (this.member != null) {
-            boolean exist= memberManager.exists(this.member.getLogin());
+            boolean exist = memberManager.exists(this.member.getLogin());
             if (this.member.getLogin().equals("")) {
                 this.addFieldError("member.login", "is empty");
-            }else if (this.member.getLogin().length() < 3 || this.member.getLogin().length() > 10) {
+            } else if (this.member.getLogin().length() < 3 || this.member.getLogin().length() > 10) {
                 this.addFieldError("member.login", "Login must be between 3and 10 characters");
-            }
-            else if(exist){
-                logger.debug("Login1: "+member.getLogin()+ "exists: "+exist);
+            } else if (exist) {
+                logger.info("Login1: " + member.getLogin() + "exists: " + exist);
                 this.addFieldError("member.login", "Login already exists! Pick another one!");
-            }
-            else if (this.member.getPassword().length() < 3 || this.member.getPassword().length() > 8) {
+            } else if (this.member.getPassword().length() < 3 || this.member.getPassword().length() > 8) {
                 this.addFieldError("member.password", "must be between 3 and 8 characters");
-            }
-            else if(!this.member.getPassword().equals(passwordCheck)){
+            } else if (!this.member.getPassword().equals(passwordCheck)) {
                 this.addFieldError("member.password", "password mismatch");
-            }
-            else if(this.member.getEmail().equals("")){
+            } else if (this.member.getEmail().equals("")) {
                 this.addFieldError("member.email", "You must type an email");
-            }
-            else if(!this.member.getEmail().equals(emailCheck)){
+            } else if (!this.member.getEmail().equals(emailCheck)) {
                 this.addFieldError("member.email", "email mismatch");
-            }else {
+            } else {
                 try {
                     memberManager.addMember(member);
                     vResult = ActionSupport.SUCCESS;
@@ -230,12 +221,11 @@ public class GestionMemberAction extends LoginAction {
                     this.addActionError(e.getMessage());
                 }
             }
-        }else{
+        } else {
             vResult = ActionSupport.INPUT;
         }
         return vResult;
     }
-
 
 
     /***********************************************************************/
@@ -246,11 +236,24 @@ public class GestionMemberAction extends LoginAction {
         return member;
     }
 
+    public void setMember(Member member) {
+        this.member = member;
+    }
+
     public String getDescription() {
         return description;
     }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public boolean isActive() {
         return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public String getEmail() {
@@ -267,14 +270,6 @@ public class GestionMemberAction extends LoginAction {
 
     public void setEmailCheck(String emailCheck) {
         this.emailCheck = emailCheck;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getLogin() {
@@ -295,10 +290,6 @@ public class GestionMemberAction extends LoginAction {
 
     public void setPasswordCheck(String passwordCheck) {
         this.passwordCheck = passwordCheck;
-    }
-
-    public void setMember(Member member) {
-        this.member = member;
     }
 
     public int getId() {

@@ -1,13 +1,13 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <div style="display: block" id="Route-Comment">
     <br><br><br><br><br><br><br><br><br><br>
-<h3>Comments Route (<s:property value="%{commentListRoute.size()}"/>)</h3><br><br>
-<s:if test="%{commentListRoute.size()>0}">
-    <table class="table  table-hover" >
+    <h3>Comments Route (<s:property value="%{commentListRoute.size()}"/>)</h3><br><br>
+    <s:if test="%{commentListRoute.size()>0}">
+    <table class="table  table-hover">
         <thead>
         <tr>
-            <th>Date </th>
-            <th>Member </th>
+            <th>Date</th>
+            <th>Member</th>
             <th>Route name</th>
             <th>Route id</th>
             <th>Comment</th>
@@ -24,23 +24,23 @@
                 <td>
                     <s:if test="#session.user.id == route.memberroute.id">
                         <s:a action="member_detail">
-                            <s:param name="id" value="route.memberroute.id" />
+                            <s:param name="id" value="route.memberroute.id"/>
                             <span style=" font-weight: bold;color: #ffae6e">You</span>
                         </s:a>
                     </s:if>
                     <s:else>
                         <s:a action="member_detail">
-                            <s:param name="id" value="route.memberroute.id" />
+                            <s:param name="id" value="route.memberroute.id"/>
                             <s:property value="route.memberroute.login"/>
                         </s:a>
                     </s:else>
                 </td>
-                <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
+                <td><s:a action="route_detail" style="display:block;text-decoration:none;">
                     <s:property value="route.name" escapeHtml="false"/>
                     <s:param name="id" value="id"/>
                 </s:a>
                 </td>
-                <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
+                <td><s:a action="route_detail" style="display:block;text-decoration:none;">
                     <s:property value="route.id" escapeHtml="false"/>
                     <s:param name="id" value="id"/>
                 </s:a>
@@ -49,7 +49,7 @@
                     <s:property value="text" escapeHtml="false"/>
                 </td>
                 <td>
-                    <s:a action="comment_delete" style="display:block;text-decoration:none;" >
+                    <s:a action="comment_delete" style="display:block;text-decoration:none;">
                         Remove
                         <s:param name="id" value="id"/>
                         <s:param name="spot.id" value="spot.id"/>
@@ -59,6 +59,7 @@
         </s:iterator>
         </tbody>
     </table>
-</s:if><s:else>
+    </s:if>
+    <s:else>
     No Message on routes yet!
-</s:else>
+    </s:else>

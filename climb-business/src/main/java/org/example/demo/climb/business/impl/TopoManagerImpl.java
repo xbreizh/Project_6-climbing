@@ -1,4 +1,5 @@
 package org.example.demo.climb.business.impl;
+
 import org.apache.log4j.Logger;
 import org.example.demo.climb.business.contract.TopoManager;
 import org.example.demo.climb.consumer.contract.SpotDao;
@@ -20,7 +21,7 @@ import java.util.List;
 public class TopoManagerImpl implements TopoManager {
 
     private Logger logger = Logger.getLogger(this.getClass().getName());
-    private Class cl= Topo.class;
+    private Class cl = Topo.class;
 
     @Inject
     private SessionFactory sessionFactory;
@@ -42,11 +43,11 @@ public class TopoManagerImpl implements TopoManager {
 
     private void updateTopoAvailabilityToday() {
         Date today = new Date();
-        for (Topo topo: topoDao.getAll()
-             ) {
-            for (Booking b: topo.getBookingList()
-                 ) {
-                if(b.getBookingDate().before(today)&& b.getReturnDate()==null){
+        for (Topo topo : topoDao.getAll()
+        ) {
+            for (Booking b : topo.getBookingList()
+            ) {
+                if (b.getBookingDate().before(today) && b.getReturnDate() == null) {
                     topo.setAvailable(false);
                 }
             }
@@ -79,26 +80,26 @@ public class TopoManagerImpl implements TopoManager {
 
     @Override
     public void deleteTopo(Topo topo) {
-        logger.debug("topo received from manager: "+topo);
-        logger.debug("removing spots and bookings");
-        if(topo.getSpots().size() >0) {
-            logger.debug("size before: " + topo.getSpots().size());
+        logger.info("topo received from manager: " + topo);
+        logger.info("removing spots and bookings");
+        if (topo.getSpots().size() > 0) {
+            logger.info("size before: " + topo.getSpots().size());
             for (Spot s : topo.getSpots()
             ) {
                 removeSpotFromTopo(s, topo);
-                logger.debug("spot id: " + s.getId() + "  topo id: " + topo.getId());
+                logger.info("spot id: " + s.getId() + "  topo id: " + topo.getId());
             }
-            logger.debug("size after: " + topo.getSpots().size());
+            logger.info("size after: " + topo.getSpots().size());
         }
-        logger.debug("trying to delete");
+        logger.info("trying to delete");
         topoDao.delete(topo);
     }
 
     @Override
     public boolean addSpotToTopo(Spot spot, Topo topo) {
-        for ( Spot s: topo.getSpots()
-             ) {
-            if(s.getId() == spot.getId()){
+        for (Spot s : topo.getSpots()
+        ) {
+            if (s.getId() == spot.getId()) {
                 return false;
             }
         }
@@ -113,21 +114,21 @@ public class TopoManagerImpl implements TopoManager {
     public boolean removeSpotFromTopo(Spot spot, Topo topo) {
         List<Spot> spotList = topo.getSpots();
         topo.setSpots(new ArrayList<>());
-        logger.debug("list spots mgr: "+spot.getTopos().size());
-        logger.debug("list: topos mgr: "+topo.getSpots().size());
+        logger.info("list spots mgr: " + spot.getTopos().size());
+        logger.info("list: topos mgr: " + topo.getSpots().size());
 
-        for (Spot s: spotList
-             ) {
-            if(s.getId() != spot.getId()){
+        for (Spot s : spotList
+        ) {
+            if (s.getId() != spot.getId()) {
                 topo.getSpots().add(s);
             }
         }
 
         List<Topo> topoList = spot.getTopos();
         spot.setTopos(new ArrayList<>());
-        for (Topo t: topoList
+        for (Topo t : topoList
         ) {
-            if(t.getId() != topo.getId()){
+            if (t.getId() != topo.getId()) {
                 spot.getTopos().add(t);
             }
         }

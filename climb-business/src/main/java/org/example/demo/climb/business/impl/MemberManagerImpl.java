@@ -1,5 +1,5 @@
 package org.example.demo.climb.business.impl;
-import net.bytebuddy.utility.RandomString;
+
 import org.apache.log4j.Logger;
 import org.example.demo.climb.business.contract.MemberManager;
 import org.example.demo.climb.business.contract.SpotManager;
@@ -8,24 +8,23 @@ import org.example.demo.climb.model.bean.Member;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.NoResultException;
 import java.util.Date;
 import java.util.List;
+
 @Transactional
 @Named("memberManager")
-public class MemberManagerImpl  implements MemberManager {
+public class MemberManagerImpl implements MemberManager {
 
+    private final String pepper = "Tipiak";
     private Logger logger = Logger.getLogger(this.getClass().getName());
-    private final String pepper ="Tipiak";
-    private Class cl=Member.class;
+    private Class cl = Member.class;
     @Inject
     private MemberDao memberDao;
     @Inject
     private SpotManager spotManager;
-
 
 
     /***************************************************************************/
@@ -38,13 +37,13 @@ public class MemberManagerImpl  implements MemberManager {
         member.setActive(true);//activating user
         member.setLogin2(member.getLogin().toUpperCase());//setting backup login
         member.setLogin(member.getLogin().toUpperCase());//setting upper case login
-        member.setPassword( encryptPassword(member.getPassword())); // encrypting password
-        logger.debug("password crypted");
+        member.setPassword(encryptPassword(member.getPassword())); // encrypting password
+        logger.info("password crypted");
         member.setDatejoin(new Date());
         member.setRole("admin");
-        logger.debug("Member to be added: "+member);
+        logger.info("Member to be added: " + member);
         memberDao.add(member);
-        logger.debug("Checking if member is added: "+getMemberById(member.getId()));
+        logger.info("Checking if member is added: " + getMemberById(member.getId()));
     }
 
 
@@ -73,11 +72,11 @@ public class MemberManagerImpl  implements MemberManager {
     public void updateMember(Member member) {
         int id = member.getId();
         Member m = (Member) memberDao.getById(id);
-        if(!member.isActive()){
+        if (!member.isActive()) {
             m.setLogin("Inactive Member");
             m.setActive(false);
-        }else{
-            if(member.getPassword()!= null) { // checks if any password passed
+        } else {
+            if (member.getPassword() != null) { // checks if any password passed
 
                 m.setPassword(encryptPassword(member.getPassword()));
             }
@@ -86,7 +85,7 @@ public class MemberManagerImpl  implements MemberManager {
             m.setActive(true);
             m.setDescription(member.getDescription());
         }
-        logger.debug("member from manager: "+m);
+        logger.info("member from manager: " + m);
         memberDao.update(m);
 
     }
@@ -94,8 +93,8 @@ public class MemberManagerImpl  implements MemberManager {
     // Disable Member
     @Override
     public void disableMember(int id) {
-        Member m= (Member) memberDao.getById(id);
-        logger.debug("member received to disable: "+m);
+        Member m = (Member) memberDao.getById(id);
+        logger.info("member received to disable: " + m);
         m.setActive(false);
         m.setLogin("Inactive User");
 
@@ -105,8 +104,8 @@ public class MemberManagerImpl  implements MemberManager {
     // Enable Member
     @Override
     public void enableMember(int id) {
-        Member m= (Member) memberDao.getById(id);
-        logger.debug("member received to enable: "+m);
+        Member m = (Member) memberDao.getById(id);
+        logger.info("member received to enable: " + m);
         m.setActive(true);
         m.setLogin(m.getLogin2());
 
@@ -116,12 +115,12 @@ public class MemberManagerImpl  implements MemberManager {
     // switch role admin <--> superadmin
     @Override
     public void updateRole(int id) {
-        Member m= (Member) memberDao.getById(id);
-       if(m.getRole().equals("admin")){
-           m.setRole("superadmin");
-       }else{
-           m.setRole("admin");
-       }
+        Member m = (Member) memberDao.getById(id);
+        if (m.getRole().equals("admin")) {
+            m.setRole("superadmin");
+        } else {
+            m.setRole("admin");
+        }
 
         memberDao.update(m);
     }
@@ -129,7 +128,7 @@ public class MemberManagerImpl  implements MemberManager {
     // Delete Member
     @Override
     public void deleteMember(Member member) {
-        logger.debug("from manager: "+member);
+        logger.info("from manager: " + member);
         memberDao.delete(member);
     }
 
@@ -157,13 +156,13 @@ public class MemberManagerImpl  implements MemberManager {
             m = getMemberByLogin(login.toUpperCase());
             // checking password match
             if (checkPassword(password, m.getPassword())) {
-                if(!m.isActive()){
-                    logger.debug("member exista but inactive: " +m.getLogin());
+                if (!m.isActive()) {
+                    logger.info("member exista but inactive: " + m.getLogin());
                 }
                 return m;
             }
         } catch (NoResultException e) {
-            logger.debug("wrong login or pwd");
+            logger.info("wrong login or pwd");
         }
         return null;
     }
@@ -171,8 +170,8 @@ public class MemberManagerImpl  implements MemberManager {
     @Override
     public String encryptPassword(String password) {
         BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
-        String pwd =bcrypt.encode(password+ pepper);
-        logger.debug("hashed pwd: "+pwd);
+        String pwd = bcrypt.encode(password + pepper);
+        logger.info("hashed pwd: " + pwd);
         return pwd;
     }
 
@@ -180,35 +179,35 @@ public class MemberManagerImpl  implements MemberManager {
     public boolean checkPassword(String pwd1, String pwd2) {
         BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
 
-        return bcrypt.matches(pwd1+ pepper, pwd2);
+        return bcrypt.matches(pwd1 + pepper, pwd2);
     }
 
     // Logout
     @Override
     public void disconnect(String login) {
         Member m;
-        if(((m=getMemberByLogin(login.toUpperCase()))!=null)){
+        if (((m = getMemberByLogin(login.toUpperCase())) != null)) {
             m.setDateLastConnect(new Date());
         }
     }
 
     // Update Password
     @Override
-    public boolean updatePassword(String login, String email, String password){
-        logger.debug("member received: "+login);
-        logger.debug("email received: "+email);
-        logger.debug("pwd received: "+password);
+    public boolean updatePassword(String login, String email, String password) {
+        logger.info("member received: " + login);
+        logger.info("email received: " + email);
+        logger.info("pwd received: " + password);
 
-        if(exists(login.toUpperCase())){
+        if (exists(login.toUpperCase())) {
             Member m = getMemberByLogin(login.toUpperCase());
-            if(m.getEmail().equals(email)) {
-                logger.debug("email passed");
+            if (m.getEmail().equals(email)) {
+                logger.info("email passed");
                 m.setPassword(encryptPassword(password));
                 memberDao.update(m);
                 return true;
             }
-        }else{
-            logger.debug("member couldn't be found");
+        } else {
+            logger.info("member couldn't be found");
         }
         return false;
     }

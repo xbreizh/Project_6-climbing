@@ -1,17 +1,18 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<div id="Comments" ></div>
+<div id="Comments"></div>
 <br><br><br><br><br><br><br><br><br><br><br><br>
 <h2>Comments</h2>
+<s:if test="#session.user">
+    <s:form action="createCommentSpot" method="POST">
+        <s:hidden name="comment.spot.id" value="%{spot.id}"/>
+        <s:hidden name="comment.memberComment.id" value="%{session.user.id}" label="Member:"/>
+        <s:textarea name="comment.text" placeholder="New Comment" requiredLabel="true" onclick=""/>
+        <s:submit class="btn btn-success" value="Comment"/>
 
-<s:form action="createCommentSpot" method="POST">
-    <s:hidden name="comment.spot.id" value="%{spot.id}"/>
-    <s:hidden name="comment.memberComment.id" value="%{session.user.id}" label="Member:"/>
-    <s:textarea name="comment.text" placeholder="New Comment"  requiredLabel="true" onclick=""/>
-    <s:submit class="btn btn-success" value="Comment"/>
-
-</s:form>
-
+    </s:form>
+</s:if>
+<s:property value="spot.commentList.size()"/>
 <s:if test="spot.commentList.size() > 0">
 
 
@@ -26,13 +27,13 @@
                     <s:property value="date"/>
                 </th>
                 <th>
-                    <s:a action="member_detail" style="display:block;text-decoration:none;" >
+                    <s:a action="member_detail" style="display:block;text-decoration:none;">
                         <s:property value="memberComment.login" escapeHtml="false"/>
                         <s:param name="id" value="spot.memberSpot.id"/>
                     </s:a>
                 </th>
                 <th>
-                    <s:a action="spot_comment_delete" style="display:block;text-decoration:none;" >
+                    <s:a action="spot_comment_delete" style="display:block;text-decoration:none;">
                         Remove
                         <s:param name="id" value="id"/>
                         <s:param name="spot.id" value="spot.id"/>

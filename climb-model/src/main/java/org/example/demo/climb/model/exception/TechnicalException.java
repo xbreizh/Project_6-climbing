@@ -21,7 +21,7 @@ public class TechnicalException extends Exception {
      * Constructeur.
      *
      * @param pMessage -
-     * @param pCause -
+     * @param pCause   -
      */
     public TechnicalException(String pMessage, Throwable pCause) {
         super(pMessage, pCause);

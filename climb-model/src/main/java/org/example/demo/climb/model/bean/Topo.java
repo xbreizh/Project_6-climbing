@@ -4,13 +4,14 @@ package org.example.demo.climb.model.bean;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-    @Entity
-    public class Topo {
+@Entity
+public class Topo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO )
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
 
@@ -45,7 +46,7 @@ import java.util.*;
     @ManyToOne
     private Member owner;
 
-    @OneToMany(mappedBy = "topo",  fetch = FetchType.EAGER, cascade = {CascadeType.REMOVE})
+    @OneToMany(mappedBy = "topo", fetch = FetchType.EAGER, cascade = {CascadeType.REMOVE})
     private List<Booking> listBookings = new ArrayList<>();
 
     @ManyToMany(
@@ -75,10 +76,6 @@ import java.util.*;
         this.description = description;
     }
 
-    public void setEdition(String edition) {
-        this.edition = edition;
-    }
-
     public int getPublishedYear() {
         return publishedYear;
     }
@@ -105,6 +102,10 @@ import java.util.*;
 
     public String getEdition() {
         return edition;
+    }
+
+    public void setEdition(String edition) {
+        this.edition = edition;
     }
 
     public Country getCountry() {
@@ -147,25 +148,28 @@ import java.util.*;
         this.available = available;
     }
 
-        public List<Spot> getSpots() {
-            return spots;
-        }
+    public List<Spot> getSpots() {
+        return spots;
+    }
 
-        public void setSpots(List<Spot> spots) {
-            this.spots = spots;
-        }
+    public void setSpots(List<Spot> spots) {
+        this.spots = spots;
+    }
 
-        @Override
+    @Override
     public String toString() {
         return "Topo{" +
                 "id=" + id +
+                ", country=" + country.getName() +
                 ", name='" + name + '\'' +
                 ", edition='" + edition + '\'' +
                 ", author='" + author + '\'' +
                 ", publishedYear=" + publishedYear +
-                ", description=" + description +
+                ", description='" + description + '\'' +
                 ", keywords='" + keywords + '\'' +
-                ", owner=" + owner +
+                ", owner=" + owner.getLogin() +
+                ", listBookings=" + listBookings.size() +
+                ", spots=" + spots.size() +
                 ", available=" + available +
                 '}';
     }

@@ -2,7 +2,6 @@ package org.example.demo.climb.webapp.action;
 
 
 import com.opensymphony.xwork2.ActionSupport;
-import org.apache.commons.lang3.EnumUtils;
 import org.apache.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 import org.example.demo.climb.business.contract.RouteManager;
@@ -16,8 +15,6 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class CreationRouteAction extends LoginAction implements SessionAware {
     private Logger logger = Logger.getLogger(this.getClass().getName());
@@ -25,11 +22,11 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
     private int id;
     private int spotId;
     private String country;
-    private List<Route> routeList=new ArrayList<>();
-    private HashMap<Integer, String> gradeList= new HashMap<>();
-    private HashMap<Integer, Integer> heightList= new HashMap<>();
+    private List<Route> routeList = new ArrayList<>();
+    private HashMap<Integer, String> gradeList = new HashMap<>();
+    private HashMap<Integer, Integer> heightList = new HashMap<>();
     private Spot spot;
-    private boolean submit =false;
+    private boolean submit = false;
 
     @Inject
     private SpotManager spotManager;
@@ -38,40 +35,40 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
 
     // METHODS
 
-    public  void initGradeList() {
-        int index=0;
+    public void initGradeList() {
+        int index = 0;
         //adding default condition
         gradeList.put(index, "0");
-        for(Grade g: Grade.values()){
+        for (Grade g : Grade.values()) {
             index++;
-            gradeList.put(index,g.getValue());
+            gradeList.put(index, g.getValue());
         }
 
     }
 
-    private void initHeightList(){
-        int index=0;
+    private void initHeightList() {
+        int index = 0;
         //adding default condition
-        for(int i=0; i <50; i++){
+        for (int i = 0; i < 50; i++) {
             i++;
             heightList.put(i, i);
         }
-        logger.debug("size heightlist: "+heightList.size());
+        logger.info("size heightlist: " + heightList.size());
     }
 
     /*EDIT*/
     public String doUpdate() {
         String vResult = ActionSupport.INPUT;
         initGradeList();
-        logger.debug("grade list init: "+gradeList.size());
+        logger.info("grade list init: " + gradeList.size());
         initHeightList();
-        logger.debug("height list init: "+heightList.size());
-        if(submit) {
+        logger.info("height list init: " + heightList.size());
+        if (submit) {
             if (this.route != null) {
-                if(checkRouteForm(route)) {
-                    logger.debug(route.getId());
+                if (checkRouteForm(route)) {
+                    logger.info(route.getId());
                     routeManager.updateRoute(route);
-                    logger.debug("Route: " + route);
+                    logger.info("Route: " + route);
                     vResult = ActionSupport.SUCCESS;
                 }
             }
@@ -81,77 +78,77 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
 
     private boolean checkRouteForm(Route route) {
         int error = 0;
-       if(route.getName().length() < 1 || route.getName().length() > 50){
-           this.addFieldError("route.name", "name should have between 3 and 50 characters");
-           logger.debug("name should have between 3 and 50 characters");
-           error++;
-       }
-        if(route.getHeight() < 1 || route.getHeight() > 50){
+        if (route.getName().length() < 1 || route.getName().length() > 50) {
+            this.addFieldError("route.name", "name should have between 3 and 50 characters");
+            logger.info("name should have between 3 and 50 characters");
+            error++;
+        }
+        if (route.getHeight() < 1 || route.getHeight() > 50) {
             this.addFieldError("route.height", "height should be between 1 and 50, please select from the list");
-            logger.debug("height should be between 1 and 50, please select from the list");
+            logger.info("height should be between 1 and 50, please select from the list");
             error++;
         }
-        logger.debug("grade: "+route.getGrade());
-        if(route.getGrade() < 1 || route.getGrade() > Grade.values().length){
-        this.addFieldError("route.grade", "grade should be between "+Grade.G1.getValue()+" and "+Grade.G32.getValue()
-                +", please select from the list");
-            logger.debug("grade should be between 1 and "+Grade.values().length
-                    +", please select from the list");
+        logger.info("grade: " + route.getGrade());
+        if (route.getGrade() < 1 || route.getGrade() > Grade.values().length) {
+            this.addFieldError("route.grade", "grade should be between " + Grade.G1.getValue() + " and " + Grade.G32.getValue()
+                    + ", please select from the list");
+            logger.info("grade should be between 1 and " + Grade.values().length
+                    + ", please select from the list");
             error++;
         }
-        if(route.getDescription().length() < 3 || route.getDescription().length() > 250){
+        if (route.getDescription().length() < 3 || route.getDescription().length() > 250) {
             this.addFieldError("route.description", "description should be between 3 and 250 characters");
-            logger.debug("description should be between 3 and 250 characters");
+            logger.info("description should be between 3 and 250 characters");
             error++;
         }
-        if(route.getMemberRoute() == null){
+        if (route.getMemberRoute() == null) {
             this.addFieldError("route.memberRoute", "there a problem with your session. Please relog then try again");
-            logger.debug("there a problem with your session. Please relog then try again");
+            logger.info("there a problem with your session. Please relog then try again");
             error++;
         }
-        if(route.getSpot() == null){
+        if (route.getSpot() == null) {
             this.addFieldError("route.spot", "there's no spot selected, please get back to the spot detail and try re-adding the route");
-            logger.debug("there's no spot selected, please get back to the spot detail and try re-adding the route");
+            logger.info("there's no spot selected, please get back to the spot detail and try re-adding the route");
             error++;
         }
-        if(error != 0){
-            logger.debug("errors found: "+error);
+        if (error != 0) {
+            logger.info("errors found: " + error);
             return false;
         }
-return true;
+        return true;
     }
 
     /*CREATE*/
     public String doCreateRoute() throws NotFoundException {
-        String vResult= ActionSupport.INPUT;
-        if(spot!=null){
-            logger.debug("spot received");
+        String vResult = ActionSupport.INPUT;
+        if (spot != null) {
+            logger.info("spot received");
         }
 
         initGradeList();
-        logger.debug("init grade list");
+        logger.info("init grade list");
         initHeightList();
-        logger.debug("init height list");
-        if(route!=null){
+        logger.info("init height list");
+        if (route != null) {
             spot = spotManager.getSpotById(route.getSpot().getId());
-            id=route.getSpot().getId();
-            logger.debug("route received: "+route);
-                if (checkRouteForm(route)) {
-                    logger.debug("trying to add route: "+route);
-                    routeManager.addRoute(route);
-                    return ActionSupport.SUCCESS;
+            id = route.getSpot().getId();
+            logger.info("route received: " + route);
+            if (checkRouteForm(route)) {
+                logger.info("trying to add route: " + route);
+                routeManager.addRoute(route);
+                return ActionSupport.SUCCESS;
             }
-        }else{
-            logger.debug("route is null");
+        } else {
+            logger.info("route is null");
             spot = spotManager.getSpotById(id);
         }
         return vResult;
     }
 
     /*READ ALL*/
-    public String doList() throws  NotFoundException{
+    public String doList() throws NotFoundException {
         routeList = routeManager.getListRoute();
-        logger.debug("tried to get the route liste");
+        logger.info("tried to get the route liste");
         return ActionSupport.SUCCESS;
     }
 
@@ -161,8 +158,8 @@ return true;
         String vResult = ActionSupport.SUCCESS;
         try {
             route = routeManager.getRouteById(id);
-        }catch(NotFoundException e){
-            System.err.println("Route not found: "+e.getMessage());
+        } catch (NotFoundException e) {
+            System.err.println("Route not found: " + e.getMessage());
         }
         if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;
@@ -172,11 +169,11 @@ return true;
 
 
     /*DELETE*/
-    public String doDelete() throws  NotFoundException{
-        if(route!=null) {
+    public String doDelete() throws NotFoundException {
+        if (route != null) {
             routeManager.deleteRoute(route);
-        }else{
-            logger.debug("no route received");
+        } else {
+            logger.info("no route received");
         }
         return ActionSupport.SUCCESS;
     }
@@ -193,6 +190,7 @@ return true;
     public void setRouteList(List<Route> routeList) {
         this.routeList = routeList;
     }
+
     public Spot getSpot() {
         return spot;
     }
@@ -232,6 +230,7 @@ return true;
     public void setId(int id) {
         this.id = id;
     }
+
     public String getCountry() {
         return country;
     }

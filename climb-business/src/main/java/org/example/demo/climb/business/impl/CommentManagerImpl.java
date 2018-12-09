@@ -12,9 +12,8 @@ import java.util.List;
 
 @Transactional
 @Named("commentManager")
-public class CommentManagerImpl  implements CommentManager {
+public class CommentManagerImpl implements CommentManager {
     private Logger logger = Logger.getLogger(this.getClass().getName());
-
 
 
     @Inject
@@ -24,7 +23,7 @@ public class CommentManagerImpl  implements CommentManager {
     @Override
     public void addComment(Comment comment) {
 
-        logger.debug("date: "+comment.getDate());
+        logger.info("date: " + comment.getDate());
         commentDao.add(comment);
     }
 
@@ -65,7 +64,7 @@ public class CommentManagerImpl  implements CommentManager {
 
     @Override
     public void deleteComment(Comment comment) {
-        logger.debug("comment received in manager: "+comment);
+        logger.info("comment received in manager: " + comment);
         commentDao.delete(comment);
     }
 }

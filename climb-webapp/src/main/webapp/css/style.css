@@ -5,11 +5,13 @@
         width: 750px;
     }
 }
+
 @media (min-width: 992px) {
     .container {
         width: 970px;
     }
 }
+
 @media (min-width: 1200px) {
     .container {
         width: 1170px;
@@ -19,37 +21,45 @@
 /**************************************************************/
 /**************************************************************/
 
-html{
+html {
     background: #d1e0d2;
 }
-form{
-    position:center;
-    border:aliceblue;
+
+form {
+    position: center;
+    border: aliceblue;
     background-color: #dfd3cc;
 }
-table, th, td{
-    align:center;
+
+table, th, td {
+    align: center;
 }
-.form-result{
-    position:fixed;
+
+.form-result {
+    position: fixed;
 }
-.container{
-    justify-content:center;
+
+.container {
+    justify-content: center;
 
 }
-.main-container{
-    margin:3%;
+
+.main-container {
+    margin: 3%;
     padding: 3%;
     background: #d1e0d2;
 }
-.index-container{
-    margin-top:3%;
-    margin-bottom:0%;
+
+.index-container {
+    margin-top: 3%;
+    margin-bottom: 0%;
     background: #d1e0d2;
 }
-.navbar, .footer{
+
+.navbar, .footer {
     height: 7%;
 }
+
 #wrapper {
     position: relative;
     width: 100%;
@@ -57,9 +67,11 @@ table, th, td{
     margin: auto;
     padding: 0;
 }
-.menu2{
+
+.menu2 {
     position: fixed;
 }
+
 #leftmenu {
     position: fixed;
     top: 0;
@@ -69,9 +81,10 @@ table, th, td{
     background-color: red;
 }
 
-.index_result{
+.index_result {
     background-color: #e6f9e4;
 }
+
 #maincontent {
     /*float: right;*/
     left: 30%;
@@ -80,18 +93,25 @@ table, th, td{
     background-color: blue;
 }
 
-.index-content{
+.index-content {
     top: 10px;
 }
+
 .vertical-btn {
     -ms-transform: rotate(270deg); /* IE 9 */
     -webkit-transform: rotate(270deg); /* Chrome, Safari, Opera */
     transform: rotate(270deg);
     /*position: relative;*/
-    top:30px;
+    top: 30px;
     font-size: 20px;
 
 }
-input:hover{box-shadow:0px 0px 4px #fff;}
-input:active{top:1px;}
+
+input:hover {
+    box-shadow: 0px 0px 4px #fff;
+}
+
+input:active {
+    top: 1px;
+}
 

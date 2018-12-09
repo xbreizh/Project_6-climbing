@@ -1,13 +1,12 @@
-
 <s:if test="%{listMember.size()>0}">
     <table class="table table-hover">
         <thead>
         <tr>
             <th></th>
-            <th>Id </th>
-            <th>Role </th>
+            <th>Id</th>
+            <th>Role</th>
             <th>Login</th>
-            <th>Email </th>
+            <th>Email</th>
             <th>Active</th>
         </tr>
         </thead>
@@ -17,7 +16,7 @@
             <tr>
                 <td>
 
-                    <s:a action="member_detail" style="display:block;text-decoration:none;" >
+                    <s:a action="member_detail" style="display:block;text-decoration:none;">
                         <button type="button" class="btn btn-light">Details</button>
                         <s:param name="id" value="id"/>
                     </s:a>
@@ -51,19 +50,19 @@
                 </td>
                 <td>
                     <s:form action="member_update" method="POST">
-                        <s:hidden name="member" value="%{id}"  requiredLabel="true"/>
+                        <s:hidden name="member" value="%{id}" requiredLabel="true"/>
                         <s:submit class="btn btn-warning" value="Edit"/>
                     </s:form>
                 </td>
                 <td>
                     <s:if test="role == 'admin'">
-                        <s:a action="member_updateRole" style="display:block;text-decoration:none;" >
+                        <s:a action="member_updateRole" style="display:block;text-decoration:none;">
                             <button type="button" class="btn btn-success">make SuperAdmin</button>
                             <s:param name="id" value="id"/>
                         </s:a>
                     </s:if>
                     <s:else>
-                        <s:a action="member_updateRole" style="display:block;text-decoration:none;" >
+                        <s:a action="member_updateRole" style="display:block;text-decoration:none;">
                             <button type="button" class="btn btn-primary">make Admin</button>
                             <s:param name="id" value="id"/>
                         </s:a>
@@ -71,13 +70,13 @@
                 </td>
                 <td>
                     <s:if test="active == true">
-                        <s:a action="member_disable" style="display:block;text-decoration:none;" >
+                        <s:a action="member_disable" style="display:block;text-decoration:none;">
                             <button type="button" class="btn btn-danger">Disable</button>
                             <s:param name="id" value="id"/>
                         </s:a>
                     </s:if>
                     <s:else>
-                        <s:a action="member_enable" style="display:block;text-decoration:none;" >
+                        <s:a action="member_enable" style="display:block;text-decoration:none;">
                             <button type="button" class="btn btn-success">Enable</button>
                             <s:param name="id" value="id"/>
                         </s:a>
@@ -85,7 +84,7 @@
                 </td>
                 <td>
                     <s:form action="member_delete" method="POST">
-                        <s:hidden name="member" value="%{id}"  requiredLabel="true"/>
+                        <s:hidden name="member" value="%{id}" requiredLabel="true"/>
                         <s:submit class="btn btn-danger" value="Delete"/>
                     </s:form>
                 </td>

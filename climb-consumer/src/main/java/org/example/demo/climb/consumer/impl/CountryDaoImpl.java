@@ -11,9 +11,9 @@ import javax.inject.Named;
 import java.util.List;
 
 @Named
-public class CountryDaoImpl  implements CountryDao {
+public class CountryDaoImpl implements CountryDao {
     private Logger logger = Logger.getLogger(this.getClass().getName());
-    private Class cl= Country.class;
+    private Class cl = Country.class;
 
     @Inject
     private SessionFactory sessionFactory;
@@ -24,8 +24,8 @@ public class CountryDaoImpl  implements CountryDao {
         Query query = sessionFactory.getCurrentSession().createQuery(
                 "From Country where name=:n");
         query.setParameter("n", name);
-        logger.debug("result from dao: "+query.uniqueResult());
-       return (Country) query.uniqueResult();
+        logger.info("result from dao: " + query.uniqueResult());
+        return (Country) query.uniqueResult();
     }
 
     @Override
@@ -55,8 +55,6 @@ public class CountryDaoImpl  implements CountryDao {
 
         return query.getResultList();
     }
-
-
 
 
 }

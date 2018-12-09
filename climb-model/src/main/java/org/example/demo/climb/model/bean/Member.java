@@ -4,14 +4,16 @@ package org.example.demo.climb.model.bean;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Member {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
 
@@ -49,13 +51,13 @@ public class Member {
     @OneToMany(mappedBy = "memberRoute", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<Route> routeList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "memberComment", fetch = FetchType.EAGER, cascade = {CascadeType.REMOVE })
+    @OneToMany(mappedBy = "memberComment", fetch = FetchType.EAGER, cascade = {CascadeType.REMOVE})
     private List<Comment> commentList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "owner",  fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<Topo> topoListOwned = new ArrayList<>();
 
-    @OneToMany(mappedBy = "booker",  fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "booker", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<Booking> listBookings = new ArrayList<>();
 
     public Member() {
@@ -194,7 +196,11 @@ public class Member {
                 ", datejoin=" + datejoin +
                 ", dateLastConnect=" + dateLastConnect +
                 ", email='" + email + '\'' +
-
+                ", spotList=" + spotList.size() +
+                ", routeList=" + routeList.size() +
+                ", commentList=" + commentList.size() +
+                ", topoListOwned=" + topoListOwned.size() +
+                ", listBookings=" + listBookings.size() +
                 '}';
     }
 }

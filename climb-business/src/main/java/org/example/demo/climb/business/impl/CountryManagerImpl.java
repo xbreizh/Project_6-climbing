@@ -1,4 +1,5 @@
 package org.example.demo.climb.business.impl;
+
 import org.apache.log4j.Logger;
 import org.example.demo.climb.business.contract.CountryManager;
 import org.example.demo.climb.consumer.contract.CountryDao;
@@ -10,12 +11,13 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
+
 @Transactional
 @Named("countryManager")
 public class CountryManagerImpl implements CountryManager {
 
     private Logger logger = Logger.getLogger(this.getClass().getName());
-    private Class cl= Country.class;
+    private Class cl = Country.class;
 
     @Inject
     private SessionFactory sessionFactory;
@@ -32,10 +34,11 @@ public class CountryManagerImpl implements CountryManager {
         return countryDao.getAll();
 
     }
+
     @Override
-    public List<String> getListCountryStrings(){
+    public List<String> getListCountryStrings() {
         List<String> countryList = new ArrayList<>();
-        for (Country country: countryDao.getAll()
+        for (Country country : countryDao.getAll()
         ) {
             countryList.add(country.getName());
         }
@@ -45,11 +48,11 @@ public class CountryManagerImpl implements CountryManager {
     @Override
     public List<String> getListCountryByContinent(String continent) {
         List<String> countryList = new ArrayList<>();
-        for (Country country: countryDao.getAllByContinent(continent)
+        for (Country country : countryDao.getAllByContinent(continent)
         ) {
             countryList.add(country.getName());
         }
-        logger.debug("Country List by continent: "+countryList);
+        logger.info("Country List by continent: " + countryList);
         return countryList;
     }
 

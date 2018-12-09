@@ -4,7 +4,7 @@ import javax.inject.Named;
 import java.util.List;
 
 @Named
-public interface Dao  {
+public interface Dao {
 
     // Create
     void add(Object o);

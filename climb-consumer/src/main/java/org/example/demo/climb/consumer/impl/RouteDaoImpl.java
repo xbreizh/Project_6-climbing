@@ -1,11 +1,12 @@
 package org.example.demo.climb.consumer.impl;
+
 import org.apache.log4j.Logger;
 import org.example.demo.climb.consumer.contract.MemberDao;
 import org.example.demo.climb.consumer.contract.RouteDao;
 import org.example.demo.climb.model.ClimbingType;
 import org.example.demo.climb.model.Grade;
-import org.example.demo.climb.model.bean.Route;
 import org.example.demo.climb.model.bean.Member;
+import org.example.demo.climb.model.bean.Route;
 import org.example.demo.climb.model.bean.Spot;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -38,7 +39,7 @@ public class RouteDaoImpl implements RouteDao {
 
     @Override
     public Object getById(int id) {
-        return(Route) sessionFactory.getCurrentSession().get(cl, id);
+        return (Route) sessionFactory.getCurrentSession().get(cl, id);
     }
 
     @Override
@@ -53,13 +54,13 @@ public class RouteDaoImpl implements RouteDao {
 
 
     @Override
-    public void updateWhenDeletingMember(int id1, int id2){
+    public void updateWhenDeletingMember(int id1, int id2) {
         Member m = (Member) memberDao.getById(id1);
-        Query query=sessionFactory.getCurrentSession().createQuery("update Route set memberRoute= :member1 where memberRoute.id=:member2");
+        Query query = sessionFactory.getCurrentSession().createQuery("update Route set memberRoute= :member1 where memberRoute.id=:member2");
         query.setParameter("member1", m);
         query.setParameter("member2", id2);
         int result = query.executeUpdate();
-        logger.debug("updated list?");
+        logger.info("updated list?");
     }
 
     @Override
@@ -71,18 +72,18 @@ public class RouteDaoImpl implements RouteDao {
     public List<String> ListGrade() {
         List<Grade> listGrade = Arrays.asList(Grade.values());
         List<String> listGradeString = new ArrayList<>();
-        for (Grade grade:listGrade
-             ) {
+        for (Grade grade : listGrade
+        ) {
             listGradeString.add(grade.getValue());
         }
         return listGradeString;
     }
 
     @Override
-    public List<String> ListClimbingType(){
+    public List<String> ListClimbingType() {
         List<ClimbingType> listClimbingType = Arrays.asList(ClimbingType.values());
         List<String> listClimbingTypeString = new ArrayList<>();
-        for (ClimbingType ct:listClimbingType
+        for (ClimbingType ct : listClimbingType
         ) {
             listClimbingTypeString.add(ct.getName());
         }
@@ -91,25 +92,25 @@ public class RouteDaoImpl implements RouteDao {
 
     @Override
     public Route getRouteByName(String name) {
-        try{
-        Query query=sessionFactory.getCurrentSession().createQuery(
-                "From Route where name=:name");
-        query.setParameter("name", name);
+        try {
+            Query query = sessionFactory.getCurrentSession().createQuery(
+                    "From Route where name=:name");
+            query.setParameter("name", name);
             return (Route) query.getSingleResult();
-        }catch(NoResultException e){
+        } catch (NoResultException e) {
             return null;
         }
     }
 
     @Override
     public Route getRouteById(int id) {
-        try{
-        Query query=sessionFactory.getCurrentSession().createQuery(
-                "From Route where id=:id");
-        query.setParameter("id", id);
-        return (Route) query.getSingleResult();
-        }catch(NoResultException e){
-        return null;
+        try {
+            Query query = sessionFactory.getCurrentSession().createQuery(
+                    "From Route where id=:id");
+            query.setParameter("id", id);
+            return (Route) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
         }
     }
 

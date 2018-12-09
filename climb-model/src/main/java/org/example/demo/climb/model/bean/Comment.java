@@ -5,11 +5,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
-    @Entity
-    public class Comment {
+@Entity
+public class Comment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO )
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
 
@@ -82,4 +82,15 @@ import java.util.Date;
         this.spot = spot;
     }
 
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", text='" + text + '\'' +
+                ", date=" + date +
+                ", memberComment=" + memberComment.getLogin() +
+                ", route=" + route.getId() +
+                ", spot=" + spot.getId() +
+                '}';
+    }
 }

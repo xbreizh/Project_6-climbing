@@ -2,7 +2,7 @@
 
     <li>
         <s:a class="active" action="createSpot">
-             New Spot
+            New Spot
         </s:a>
     </li>
     <li>
@@ -16,12 +16,12 @@
         </s:a>
     </li>
     <r:if test="#session.user.role=='superadmin'">
-        <%@include file="navbar_superAdmin.jsp"%>
+        <%@include file="navbar_superAdmin.jsp" %>
     </r:if>
     <li>
         <s:a class="active" action="mySpace">
             My Space
-            <s:param name="id" >${session.user.id}</s:param>
+            <s:param name="id">${session.user.id}</s:param>
         </s:a>
     </li>
     <%--<li>
@@ -35,15 +35,15 @@
 
 <ul class="nav navbar-nav navbar-right">
 
-        <ul>
-            <li>
+    <ul>
+        <li>
             <span style="color:white;">Connected: <r:property value="#session.user.login"/>!</span>
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <a href="javascript: popupLogout()"><span class="glyphicon glyphicon-log-out"></span>Logout</a>
-            </li>
-        </ul>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="javascript: popupLogout()"><span class="glyphicon glyphicon-log-out"></span>Logout</a>
+        </li>
+    </ul>
 </ul>
 

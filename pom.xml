@@ -261,76 +261,76 @@
     <reporting>
         <plugins>
             <!-- ===== Rapport d'information général sur le projet ===== -->
-           <!-- <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>2.7</version>
-            </plugin>-->
+            <!-- <plugin>
+                 <groupId>org.apache.maven.plugins</groupId>
+                 <artifactId>maven-project-info-reports-plugin</artifactId>
+                 <version>2.7</version>
+             </plugin>-->
 
             <!-- ===== Rapport sur les tests ===== -->
-          <!--  <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.20</version>
-                <configuration>
-                    <linkXRef>false</linkXRef>
-                </configuration>
-                <reportSets>
+            <!--  <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-surefire-report-plugin</artifactId>
+                  <version>2.20</version>
+                  <configuration>
+                      <linkXRef>false</linkXRef>
+                  </configuration>
+                  <reportSets>
 
-                    &lt;!&ndash; reportSet d'agrégation des rapports des sous-projets (modules) &ndash;&gt;
-                    <reportSet>
-                        <reports>
-                            <report>report</report>
-                        </reports>
-                        &lt;!&ndash; ne pas exécuter ce sous-rapport dans les sous-projets &ndash;&gt;
-                        <inherited>false</inherited>
-                        <configuration>
-                            <aggregate>true</aggregate>
-                        </configuration>
-                    </reportSet>
+                      &lt;!&ndash; reportSet d'agrégation des rapports des sous-projets (modules) &ndash;&gt;
+                      <reportSet>
+                          <reports>
+                              <report>report</report>
+                          </reports>
+                          &lt;!&ndash; ne pas exécuter ce sous-rapport dans les sous-projets &ndash;&gt;
+                          <inherited>false</inherited>
+                          <configuration>
+                              <aggregate>true</aggregate>
+                          </configuration>
+                      </reportSet>
 
-                    &lt;!&ndash; reportSet non agrégé, exécuté dans tous les sous-projets (modules) &ndash;&gt;
-                    <reportSet>
-                        <id>modules</id>
-                        &lt;!&ndash; exécuter ce sous-rapport dans les sous-projets &ndash;&gt;
-                        <inherited>true</inherited>
-                        <reports>
-                            <report>report</report>
-                        </reports>
-                        <configuration>
-                            <aggregate>false</aggregate>
-                        </configuration>
-                    </reportSet>
-                </reportSets>
-            </plugin>-->
+                      &lt;!&ndash; reportSet non agrégé, exécuté dans tous les sous-projets (modules) &ndash;&gt;
+                      <reportSet>
+                          <id>modules</id>
+                          &lt;!&ndash; exécuter ce sous-rapport dans les sous-projets &ndash;&gt;
+                          <inherited>true</inherited>
+                          <reports>
+                              <report>report</report>
+                          </reports>
+                          <configuration>
+                              <aggregate>false</aggregate>
+                          </configuration>
+                      </reportSet>
+                  </reportSets>
+              </plugin>-->
 
             <!-- ===== Génération de la Javadoc ===== -->
-          <!--  <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.9</version>
-                <configuration>
-                    <quiet>true</quiet>
-                    <locale>fr</locale>
-                    <skip>true</skip>
-                </configuration>
-                <reportSets>
-                    &lt;!&ndash; reportSet exécuté dans tous les modules &ndash;&gt;
-                    <reportSet>
-                        <reports>
-                            <report>javadoc</report>
-                        </reports>
-                    </reportSet>
-                    &lt;!&ndash; reportSet d'agrégation des rapports des sous-modules &ndash;&gt;
-                    <reportSet>
-                        <id>aggregate</id>
-                        <inherited>false</inherited>
-                        <reports>
-                            <report>aggregate</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>-->
+            <!--  <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-javadoc-plugin</artifactId>
+                  <version>2.9</version>
+                  <configuration>
+                      <quiet>true</quiet>
+                      <locale>fr</locale>
+                      <skip>true</skip>
+                  </configuration>
+                  <reportSets>
+                      &lt;!&ndash; reportSet exécuté dans tous les modules &ndash;&gt;
+                      <reportSet>
+                          <reports>
+                              <report>javadoc</report>
+                          </reports>
+                      </reportSet>
+                      &lt;!&ndash; reportSet d'agrégation des rapports des sous-modules &ndash;&gt;
+                      <reportSet>
+                          <id>aggregate</id>
+                          <inherited>false</inherited>
+                          <reports>
+                              <report>aggregate</report>
+                          </reports>
+                      </reportSet>
+                  </reportSets>
+              </plugin>-->
 
             <!-- ===== Rapport d'analyse du code par Checkstyle ===== -->
             <plugin>

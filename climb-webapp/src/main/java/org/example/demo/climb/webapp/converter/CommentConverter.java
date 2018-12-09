@@ -10,14 +10,14 @@ import javax.inject.Inject;
 import java.util.Map;
 
 public class CommentConverter extends StrutsTypeConverter {
-    private Logger logger = Logger.getLogger(this.getClass().getName());
-
     @Inject
     CommentManager CommentManager;
+    private Logger logger = Logger.getLogger(this.getClass().getName());
+
     @Override
     public Object convertFromString(Map pContext, String[] pValues, Class pToClass) {
         Object vRetour = null;
-        logger.debug("trying to convert: "+pValues[0]);
+        logger.info("trying to convert: " + pValues[0]);
         if (pValues != null) {
             if (pValues.length == 1) {
                 String vValue = pValues[0];
@@ -40,12 +40,12 @@ public class CommentConverter extends StrutsTypeConverter {
 
     @Override
     public String convertToString(Map pContext, Object pObject) {
-        logger.debug("trying to convert into string");
+        logger.info("trying to convert into string");
         String vString;
         if (pObject instanceof Comment) {
             Comment vFraction = (Comment) pObject;
             Comment Comment = (Comment) pObject;
-            vString=Comment.getText();
+            vString = Comment.getText();
         } else {
             vString = "";
         }

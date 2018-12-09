@@ -2,21 +2,21 @@
 
 <s:if test="#session.user.id">
     <td style="border: none;">
-    <s:if test="#session.user.id == owner.id">
+        <s:if test="#session.user.id == owner.id">
 
-            <s:a action="topo_update" style="display:block;text-decoration:none;" >
+            <s:a action="topo_update" style="display:block;text-decoration:none;">
                 <button type="button" class="btn btn-info">Edit</button>
                 <s:param name="id" value="id"/>
             </s:a>
 
-    </s:if>
-    <s:else>
+        </s:if>
+        <s:else>
 
-            <s:a action="topo_booking" style="display:block;text-decoration:none;" >
+            <s:a action="topo_booking" style="display:block;text-decoration:none;">
                 <button type="button" class="btn btn-success">Book it!</button>
                 <s:param name="id" value="id"/>
             </s:a>
-    </s:else>
+        </s:else>
     </td>
 </s:if>
 <s:else>

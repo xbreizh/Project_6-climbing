@@ -18,7 +18,7 @@ import java.util.List;
 @Named("routeManager")
 public class RouteManagerImpl implements RouteManager {
     private Logger logger = Logger.getLogger(this.getClass().getName());
-    private Class cl= Route.class;
+    private Class cl = Route.class;
     @Inject
     private RouteDao routeDao;
     @Inject
@@ -47,6 +47,7 @@ public class RouteManagerImpl implements RouteManager {
         return routeDao.getAll();
 
     }
+
     @Override
     public List<String> getListGrade() {
         return routeDao.ListGrade();
@@ -58,6 +59,7 @@ public class RouteManagerImpl implements RouteManager {
         return routeDao.ListClimbingType();
 
     }
+
     @Override
     public List<Route> getListRoute(Spot spot, String grade, String type, int height) {
         return routeDao.ListByCriterias(spot, grade, type, height);
@@ -66,34 +68,34 @@ public class RouteManagerImpl implements RouteManager {
 
     @Override
     public void updateRoute(Route route) {
-        logger.debug("id from route: "+route.getId());
+        logger.info("id from route: " + route.getId());
         int id = route.getId();
         try {
             Route s = (Route) routeDao.getById(id);
-            if(!(route.getName()==null)){
+            if (!(route.getName() == null)) {
                 s.setName(route.getName());
                 s.setDescription(route.getDescription());
                 s.setHeight(route.getHeight());
                 routeDao.update(s);
-            }else{
-                logger.debug("route is null");
+            } else {
+                logger.info("route is null");
 
             }
-        }catch(NullPointerException e){
-            System.err.println("route couldn't be found: "+id);
+        } catch (NullPointerException e) {
+            System.err.println("route couldn't be found: " + id);
         }
 
     }
 
     @Override
     public void deleteRoute(Route route) {
-        logger.debug("trying to delete route: "+route.getName());
+        logger.info("trying to delete route: " + route.getName());
         routeDao.delete(route);
     }
 
     @Override
     public void updateWhenDeletingMember(int id) {
-        logger.debug("trying to update member routes before deleting");
+        logger.info("trying to update member routes before deleting");
         routeDao.updateWhenDeletingMember(1, id);
     }
 

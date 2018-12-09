@@ -1,13 +1,12 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 
-
 <%@include file="../_include/header.jsp" %>
 
 <s:if test="#session.user.role == 'superadmin'">
 
 
-<%@include file="bookingTable.jsp" %>
+    <%@include file="bookingTable.jsp" %>
 
 </s:if>
 <s:else>

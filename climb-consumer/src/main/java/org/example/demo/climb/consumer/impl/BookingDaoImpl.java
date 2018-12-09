@@ -1,4 +1,5 @@
 package org.example.demo.climb.consumer.impl;
+
 import org.apache.log4j.Logger;
 import org.example.demo.climb.consumer.contract.BookingDao;
 import org.example.demo.climb.model.bean.Booking;
@@ -13,7 +14,7 @@ import java.util.List;
 @Named
 public class BookingDaoImpl implements BookingDao {
     private Logger logger = Logger.getLogger(this.getClass().getName());
-    private Class cl= Booking.class;
+    private Class cl = Booking.class;
 
     @Inject
     private SessionFactory sessionFactory;
@@ -74,9 +75,9 @@ public class BookingDaoImpl implements BookingDao {
                 "From Booking where topo.id = :topoId and returnDate is not null");
         int topoId = topo.getId();
         query.setParameter("topoId", topoId);
-        if(query.getSingleResult()!=null){
+        if (query.getSingleResult() != null) {
             return false;
-        }else{
+        } else {
             return true;
         }
     }

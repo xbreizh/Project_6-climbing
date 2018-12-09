@@ -15,12 +15,12 @@
          <result>/jsp/spot/choseCountry.jsp</result>
         </action>-->
 
-       <!-- &lt;!&ndash;SELECT CITY&ndash;&gt;
-        <action name="choseCity"
-                class="org.example.demo.climb.webapp.action.CreationSpotAction"
-                method="doListCity">
-            <result>/jsp/spot/choseCity.jsp</result>
-        </action>-->
+        <!-- &lt;!&ndash;SELECT CITY&ndash;&gt;
+         <action name="choseCity"
+                 class="org.example.demo.climb.webapp.action.CreationSpotAction"
+                 method="doListCity">
+             <result>/jsp/spot/choseCity.jsp</result>
+         </action>-->
 
         <!-- CREATE SPOT-->
         <action name="createSpot"
@@ -33,15 +33,15 @@
             </result>
         </action>
 
-       <!-- &lt;!&ndash; CREATE SPOT AND CITY&ndash;&gt;
-        <action name="createSpotAndCity"
-                         class="org.example.demo.climb.webapp.action.CreationSpotAction"
-                         method="doCreateSpot">
-            <result name="input">/jsp/spot/newSpotAndCity.jsp</result>
-            <result name="success" type="redirectAction">
-                <param name="actionName">createRoute</param>
-            </result>
-         </action>-->
+        <!-- &lt;!&ndash; CREATE SPOT AND CITY&ndash;&gt;
+         <action name="createSpotAndCity"
+                          class="org.example.demo.climb.webapp.action.CreationSpotAction"
+                          method="doCreateSpot">
+             <result name="input">/jsp/spot/newSpotAndCity.jsp</result>
+             <result name="success" type="redirectAction">
+                 <param name="actionName">createRoute</param>
+             </result>
+          </action>-->
 
         <!--READ ONE -->
         <action name="spot_detail"
@@ -62,16 +62,16 @@
             <result>/jsp/spot/spotSpace.jsp</result>
         </action>
 
-       <!-- &lt;!&ndash; EDIT &ndash;&gt;
-        <action name="spot_edit"
-                class="org.example.demo.climb.webapp.action.CreationSpotAction"
-                method="doEdit">
-            <interceptor-ref name="store">
-                <param name="operationMode">RETRIEVE</param>
-            </interceptor-ref>
-            <interceptor-ref name="defaultStack"/>
-            <result name="success">/jsp/spot/form/spot_update.jsp</result>
-        </action>-->
+        <!-- &lt;!&ndash; EDIT &ndash;&gt;
+         <action name="spot_edit"
+                 class="org.example.demo.climb.webapp.action.CreationSpotAction"
+                 method="doEdit">
+             <interceptor-ref name="store">
+                 <param name="operationMode">RETRIEVE</param>
+             </interceptor-ref>
+             <interceptor-ref name="defaultStack"/>
+             <result name="success">/jsp/spot/form/spot_update.jsp</result>
+         </action>-->
         <!-- UPDATE -->
         <action name="spot_update"
                 class="org.example.demo.climb.webapp.action.CreationSpotAction"

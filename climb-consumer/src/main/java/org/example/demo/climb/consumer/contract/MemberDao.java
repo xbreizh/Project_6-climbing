@@ -8,6 +8,4 @@ public interface MemberDao extends Dao {
     Member getMemberByLogin(String name);
 
 
-
-
 }

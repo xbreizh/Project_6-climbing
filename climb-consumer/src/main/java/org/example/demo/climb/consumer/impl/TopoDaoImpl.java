@@ -28,7 +28,7 @@ public class TopoDaoImpl implements TopoDao {
 
     @Override
     public Topo getTopoByName(String name) {
-        Query query=sessionFactory.getCurrentSession().createQuery(
+        Query query = sessionFactory.getCurrentSession().createQuery(
                 "From Topo where name=:name");
         query.setParameter("name", name);
         return (Topo) query.getResultList();
@@ -36,7 +36,7 @@ public class TopoDaoImpl implements TopoDao {
 
     @Override
     public List<Topo> ListTopoByOwner(String name) {
-        Query query=sessionFactory.getCurrentSession().createQuery(
+        Query query = sessionFactory.getCurrentSession().createQuery(
                 "From Topo where owner.login=:name order by available, name, publishedYear");
         query.setParameter("login", name);
         return query.getResultList();
@@ -44,15 +44,15 @@ public class TopoDaoImpl implements TopoDao {
 
     @Override
     public List<String> ListTopoNames() {
-        Query query=sessionFactory.getCurrentSession().createQuery(
+        Query query = sessionFactory.getCurrentSession().createQuery(
                 "select distinct(name) From Topo");
         return query.getResultList();
     }
 
     @Override
     public void update(Topo topo) {
-        logger.debug("trying to update: "+topo.getName());
-        logger.debug("list: "+topo.getSpots().size());
+        logger.info("trying to update: " + topo.getName());
+        logger.info("list: " + topo.getSpots().size());
         sessionFactory.getCurrentSession().update(cl.getName(), topo);
     }
 

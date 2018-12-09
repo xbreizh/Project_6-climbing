@@ -10,13 +10,14 @@ import javax.inject.Inject;
 import java.util.Map;
 
 public class CountryConverter extends StrutsTypeConverter {
-    private Logger logger = Logger.getLogger(this.getClass().getName());
     @Inject
     CountryManager countryManager;
+    private Logger logger = Logger.getLogger(this.getClass().getName());
+
     @Override
     public Object convertFromString(Map pContext, String[] pValues, Class pToClass) {
         Object vRetour = null;
-        logger.debug("trying to convert: "+pValues[0]);
+        logger.info("trying to convert: " + pValues[0]);
         if (pValues != null) {
             if (pValues.length == 1) {
                 String vValue = pValues[0];
@@ -25,7 +26,7 @@ public class CountryConverter extends StrutsTypeConverter {
 
                 } catch (NumberFormatException pEx) {
                     logger.error("Format de fraction invalide", pEx);
-                    logger.debug(vRetour.toString());
+                    logger.info(vRetour.toString());
                 }
             } else {
                 vRetour = performFallbackConversion(pContext, pValues, pToClass);
@@ -38,12 +39,12 @@ public class CountryConverter extends StrutsTypeConverter {
 
     @Override
     public String convertToString(Map pContext, Object pObject) {
-        logger.debug("trying to convert into string");
+        logger.info("trying to convert into string");
         String vString;
         if (pObject instanceof Country) {
             Country vFraction = (Country) pObject;
             Country country = (Country) pObject;
-            vString=country.getName();
+            vString = country.getName();
         } else {
             vString = "";
         }

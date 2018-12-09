@@ -16,6 +16,7 @@ import org.example.demo.climb.model.bean.Route;
 import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.bean.Topo;
 import org.example.demo.climb.model.exception.NotFoundException;
+
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,41 +24,33 @@ import java.util.List;
 
 public class CreationSpotAction extends LoginAction implements SessionAware {
 
+    private final String token = "AlcwuVaVbdcepPJ0gbZ0Nd5prdkYHYS1LEEFEbUm2l0CfEe4XLUeDArvlkrXHcg2";
+    public List<String> climbingList = new ArrayList<>();
     private Logger logger = Logger.getLogger(this.getClass().getName());
-    private List<String> cityList=new ArrayList<>();
+    private List<String> cityList = new ArrayList<>();
     private List<Spot> spotList = new ArrayList<>();
     private List<Topo> topoList = new ArrayList<>();
     private List<Route> routeList = new ArrayList<>();
-    private String continent="";
-    private String country="";
-    private String city="";
+    private String continent = "";
+    private String country = "";
+    private String city = "";
     private Spot spot;
     private Country c;
     private int id;
-    private String str="";
-    private String climbingType="";
-    private List<String> typeList=new ArrayList<>();
+    private String str = "";
+    private String climbingType = "";
+    private List<String> typeList = new ArrayList<>();
     private String hasTopo;
-    public List<String> climbingList = new ArrayList<>();
     private double latitude;
     private double longitude;
-    private final String token= "AlcwuVaVbdcepPJ0gbZ0Nd5prdkYHYS1LEEFEbUm2l0CfEe4XLUeDArvlkrXHcg2";
-    public JsonArray getListo() {
-        return listo;
-    }
-    public void setListo(JsonArray listo) {
-        this.listo = listo;
-    }
     private JsonArray listo = new JsonArray();
-    private String[][] spotArray ;
-    private HashMap<Integer, String> levelList= new HashMap<>();
-    private HashMap<Integer, String> countryList= new HashMap<>();
+    private String[][] spotArray;
+    private HashMap<Integer, String> levelList = new HashMap<>();
+    private HashMap<Integer, String> countryList = new HashMap<>();
     private int levelMin;
     private int levelMax;
-    private boolean submit =false;
-    private HashMap<Integer, String> gradeList= new HashMap<>();
-
-
+    private boolean submit = false;
+    private HashMap<Integer, String> gradeList = new HashMap<>();
     @Inject
     private CountryManager countryManager;
     @Inject
@@ -65,42 +58,49 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     @Inject
     private CommentManager commentManager;
 
+    public JsonArray getListo() {
+        return listo;
+    }
+
+    public void setListo(JsonArray listo) {
+        this.listo = listo;
+    }
+
     // METHODS
-
-
-
 
     public String doIndex() throws NotFoundException {
         initClimbingTypeList();
-        int index=0;
+        int index = 0;
         //adding default condition
         gradeList.put(index, "0");
-        for(Grade g: Grade.values()){
+        for (Grade g : Grade.values()) {
             index++;
-            gradeList.put(index,g.getValue());
+            gradeList.put(index, g.getValue());
         }
 
-        String vResult= ActionSupport.SUCCESS;
-        logger.debug("climbing list: "+climbingList);
-        if(climbingType.equals("")){climbingType="ALL";}
-        if(levelMin > levelMax){
+        String vResult = ActionSupport.SUCCESS;
+        logger.info("climbing list: " + climbingList);
+        if (climbingType.equals("")) {
+            climbingType = "ALL";
+        }
+        if (levelMin > levelMax) {
             this.addFieldError("levelMin", "Min Level should be lower than Max");
         }
-        if(str==null && climbingType==null && hasTopo == null && !this.hasActionErrors()) {
+        if (str == null && climbingType == null && hasTopo == null && !this.hasActionErrors()) {
             spotList = spotManager.getListSpot();
-        }else{
-            logger.debug("trying to get a list with keyword: "+str);
-            logger.debug("climbing type passed: "+climbingType);
-            logger.debug("has topo passed: "+hasTopo);
+        } else {
+            logger.info("trying to get a list with keyword: " + str);
+            logger.info("climbing type passed: " + climbingType);
+            logger.info("has topo passed: " + hasTopo);
             spotList = spotManager.getListSpot(str, climbingType, hasTopo, levelMin, levelMax);
         }
 
-        logger.debug("level min: "+levelMin);
-        logger.debug("level max: "+levelMax);
+        logger.info("level min: " + levelMin);
+        logger.info("level max: " + levelMax);
         generateRouteListFromSpotList(spotList);
         generateTopoListFromSpotList(spotList);
-        int i=0;
-        if(spotList!=null) {
+        int i = 0;
+        if (spotList != null) {
             for (Spot s : spotList
             ) {
                 String lat = Double.toString(spotList.get(i).getLatitude());
@@ -127,20 +127,21 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         }
         return vResult;
     }
+
     // generates routeList for map result table
-    private void generateRouteListFromSpotList(List<Spot> spotList){
+    private void generateRouteListFromSpotList(List<Spot> spotList) {
         logger.info("generating routeList");
         routeList.clear();
-        if(spotList.size() >0) {
-            for (Spot s : spotList){
-                if(s.getRouteList().size() >0){
-                    for (Route r: s.getRouteList()){
+        if (spotList.size() > 0) {
+            for (Spot s : spotList) {
+                if (s.getRouteList().size() > 0) {
+                    for (Route r : s.getRouteList()) {
                         routeList.add(r);
                     }
                 }
             }
-        }else{
-            logger.debug("spotList empty");
+        } else {
+            logger.info("spotList empty");
         }
     }
 
@@ -148,29 +149,29 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     private void generateTopoListFromSpotList(List<Spot> spotList) {
         logger.info("generating topoList");
         topoList.clear();
-        if(spotList.size() >0){
-            for(Spot s:spotList){
-                if(s.getTopos().size() > 0){
-                    for (Topo t: s.getTopos()){
+        if (spotList.size() > 0) {
+            for (Spot s : spotList) {
+                if (s.getTopos().size() > 0) {
+                    for (Topo t : s.getTopos()) {
                         topoList.add(t);
                     }
                 }
             }
-        }else{
-            logger.debug("spotList empty");
+        } else {
+            logger.info("spotList empty");
         }
     }
 
 
     /*CREATE*/
     public String doCreateSpot() throws NotFoundException {
-        String vResult= ActionSupport.INPUT;
+        String vResult = ActionSupport.INPUT;
         initCountryList();
         initClimbingTypeList();
-        logger.debug("spot country id: "+spot);
+        logger.info("spot country id: " + spot);
 
-        if(spot!=null) {
-            if (checkSpotForm(spot)){
+        if (spot != null) {
+            if (checkSpotForm(spot)) {
                 spotManager.addSpot(spot);
                 vResult = ActionSupport.SUCCESS;
             }
@@ -182,62 +183,63 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     private void initClimbingTypeList() {
         // adding condition for All
         climbingList.add("ALL");
-        for(ClimbingType ct: ClimbingType.values()){
+        for (ClimbingType ct : ClimbingType.values()) {
             climbingList.add(ct.getName());
         }
     }
 
 
-
-
-
     //Check submitted form
-    public boolean checkSpotForm(Spot spot){
-        int i=0;
+    public boolean checkSpotForm(Spot spot) {
+        int i = 0;
         // check Country
-        if(countryManager.getCountry(spot.getCountry().getId())==null){
+        if (countryManager.getCountry(spot.getCountry().getId()) == null) {
             this.addFieldError("spot.country.id", "invalid country passed");
             i++;
         }
         // check ClimbingType
-        int found=0;
-        logger.debug("climbing list: "+climbingList);
-        for (String type:climbingList
-             ) {
-            if(type.equals(spot.getType())){
-                found=1;
+        int found = 0;
+        logger.info("climbing list: " + climbingList);
+        for (String type : climbingList
+        ) {
+            if (type.equals(spot.getType())) {
+                found = 1;
             }
         }
-        if(found!=1){
+        if (found != 1) {
             this.addFieldError("spot.type", "Incorrect type");
             i++;
         }
 
         // Checks that coordinates aren't 0 / 0
-        if(spot.getLatitude()==0 && spot.getLongitude()==0){
+        if (spot.getLatitude() == 0 && spot.getLongitude() == 0) {
             this.addFieldError("spot.latitude", "Underwater spot really?!!;)");
             this.addFieldError("spot.longitude", "You may want to recheck ");
             i++;
         }
 
         // Check Latitude
-        try{Double.valueOf(spot.getLatitude());}catch(Exception e
-        ){
+        try {
+            Double.valueOf(spot.getLatitude());
+        } catch (Exception e
+        ) {
             this.addFieldError("spot.latitude", "Latitude must be a number");
             i++;
         }
-        if(spot.getLongitude() < -90 || spot.getLatitude() > 90){
+        if (spot.getLongitude() < -90 || spot.getLatitude() > 90) {
             this.addFieldError("spot.latitude", "Latitude should be between -90 and 90");
             i++;
         }
 
         // Check Longitude
-        try{Double.valueOf(spot.getLongitude());}catch(Exception e
-        ){
+        try {
+            Double.valueOf(spot.getLongitude());
+        } catch (Exception e
+        ) {
             this.addFieldError("spot.longitude", "Longitude must be a number");
             i++;
         }
-        if(spot.getLongitude() < -90 || spot.getLongitude() > 90){
+        if (spot.getLongitude() < -90 || spot.getLongitude() > 90) {
             this.addFieldError("spot.longitude", "Longitude should be between -90 and 90");
             i++;
         }
@@ -245,39 +247,39 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         // check City
         if (spot.getCity() == null || spot.getCity().length() < 3 || spot.getCity().length() > 50) {
             this.addFieldError("spot.city", "City should have 3-50 characters ("
-                    +spot.getCity().length()+")");
+                    + spot.getCity().length() + ")");
             i++;
         }
         // check Name
         if (spot.getName() == null || spot.getName().length() < 3 || spot.getName().length() > 50) {
             this.addFieldError("spot.name", "Name should have 3-50 characters ("
-                    +spot.getName().length()+")");
+                    + spot.getName().length() + ")");
             i++;
         }
         // check description
-        if (spot.getDescription()== null || spot.getDescription().length() < 3 || spot.getDescription().length() > 250) {
-            this.addFieldError("spot.description","Description should have 3-250 characters ("
-                            +spot.getDescription().length()+")");
+        if (spot.getDescription() == null || spot.getDescription().length() < 3 || spot.getDescription().length() > 250) {
+            this.addFieldError("spot.description", "Description should have 3-250 characters ("
+                    + spot.getDescription().length() + ")");
             i++;
         }
-        if(i==0){
+        if (i == 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
 
     public String doList() {
-        spotList=spotManager.getListSpot();
-        logger.debug("trying to get topoList");
-        logger.debug("size: " + spotList.size());
+        spotList = spotManager.getListSpot();
+        logger.info("trying to get topoList");
+        logger.info("size: " + spotList.size());
         return ActionSupport.SUCCESS;
     }
 
     private void initCountryList() {
-        for (Country c: countryManager.getListCountry()
-             ) {
+        for (Country c : countryManager.getListCountry()
+        ) {
             countryList.put(c.getId(), c.getName());
         }
     }
@@ -286,15 +288,15 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     /*READ ONE*/
     public String doDetail() throws NotFoundException {
         String vResult = ActionSupport.SUCCESS;
-        logger.debug("tentative de recuperation de l'id: "+id);
+        logger.info("tentative de recuperation de l'id: " + id);
         spot = spotManager.getSpotById(id);
-        /*logger.debug(spot);*/
+        logger.info(spot);
         routeList = spot.getRouteList();
-        logger.debug("size routeList: "+routeList.size());
+        logger.info("size routeList: " + routeList.size());
         if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;
         }
-        logger.debug("vresult: "+vResult.toString());
+        logger.info("vresult: " + vResult.toString());
         return vResult;
     }
 
@@ -302,10 +304,10 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     /*EDIT*/
     public String doEdit() {
         String vResult = ActionSupport.SUCCESS;
-        logger.debug("tentative de recuperation de l'id from doEdit: "+id);
+        logger.info("tentative de recuperation de l'id from doEdit: " + id);
         try {
             spot = spotManager.getSpotById(id);
-            logger.debug("doedit: " + id);
+            logger.info("doedit: " + id);
         } catch (NotFoundException e) {
             this.addActionError(e.toString());
         }
@@ -319,19 +321,19 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     public String doUpdate() {
         String vResult = ActionSupport.INPUT;
         initCountryList();
-        for(ClimbingType ct: ClimbingType.values()){
+        for (ClimbingType ct : ClimbingType.values()) {
             climbingList.add(ct.getName());
         }
-        logger.debug("from action spot");
-        if(submit) {
+        logger.info("from action spot");
+        if (submit) {
             if (spot != null) {
-                if(checkSpotForm(spot)) {
+                if (checkSpotForm(spot)) {
                     spotManager.updateSpot(spot);
                     vResult = ActionSupport.SUCCESS;
                 }
 
             } else {
-                logger.debug("spot is null");
+                logger.info("spot is null");
             }
         }
         return vResult;
@@ -341,12 +343,12 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     /*DELETE*/
     public String doDelete() {
         String vResult = ActionSupport.SUCCESS;
-        logger.debug("received: "+spot);
+        logger.info("received: " + spot);
 
-        if(spot !=null) {
-            logger.debug("received: "+spot);
+        if (spot != null) {
+            logger.info("received: " + spot);
             spotManager.deleteSpot(spot);
-        }else{
+        } else {
             this.addActionError("Issue while trying to delete, no Id found");
         }
         return vResult;
@@ -373,6 +375,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     public void setLevelMax(int levelMax) {
         this.levelMax = levelMax;
     }
+
     public List<String> getTypeList() {
         return typeList;
     }
@@ -392,9 +395,11 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     public List<Route> getRouteList() {
         return routeList;
     }
+
     public void setRouteList(List<Route> routeList) {
         this.routeList = routeList;
     }
+
     public List<Spot> getSpotList() {
         return spotList;
     }
@@ -402,6 +407,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     public void setSpotList(List<Spot> spotList) {
         this.spotList = spotList;
     }
+
     public int getId() {
         return id;
     }
@@ -417,6 +423,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     public void setC(Country c) {
         this.c = c;
     }
+
     public Spot getSpot() {
         return spot;
     }
@@ -468,6 +475,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     public void setCity(String city) {
         this.city = city;
     }
+
     public String getToken() {
         return token;
     }
@@ -479,6 +487,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     public void setSpotArray(String[][] spotArray) {
         this.spotArray = spotArray;
     }
+
     public String getStr() {
         return str;
     }
@@ -510,6 +519,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     public void setClimbingList(List<String> climbingList) {
         this.climbingList = climbingList;
     }
+
     public double getLatitude() {
         return latitude;
     }

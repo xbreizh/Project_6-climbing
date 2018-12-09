@@ -30,10 +30,10 @@
         <action name="pwd_reset"
                 class="org.example.demo.climb.webapp.action.LoginAction"
                 method="doReset">
-           <!-- <interceptor-ref name="store">
-                <param name="operationMode">RETRIEVE</param>
-            </interceptor-ref>
-            <interceptor-ref name="defaultStack"/>-->
+            <!-- <interceptor-ref name="store">
+                 <param name="operationMode">RETRIEVE</param>
+             </interceptor-ref>
+             <interceptor-ref name="defaultStack"/>-->
             <result name="input">/jsp/member/login/password_reset.jsp</result>
             <result name="success">/jsp/member/login/resetOk.jsp</result>
         </action>
