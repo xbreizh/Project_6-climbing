@@ -230,7 +230,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
             this.addFieldError("spot.latitude", "Latitude must be a number");
             i++;
         }
-        if (spot.getLongitude() < -90 || spot.getLatitude() > 90) {
+        if (spot.getLatitude() < -90 || spot.getLatitude() > 90) {
             this.addFieldError("spot.latitude", "Latitude should be between -90 and 90");
             i++;
         }
@@ -243,8 +243,8 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
             this.addFieldError("spot.longitude", "Longitude must be a number");
             i++;
         }
-        if (spot.getLongitude() < -90 || spot.getLongitude() > 90) {
-            this.addFieldError("spot.longitude", "Longitude should be between -90 and 90");
+        if (spot.getLongitude() < -180 || spot.getLongitude() > 180) {
+            this.addFieldError("spot.longitude", "Longitude should be between -180 and 180");
             i++;
         }
 
