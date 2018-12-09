@@ -44,8 +44,9 @@
                         <%@include file="/jsp/map/menu_index_result.jsp" %>
                 <div>
                         <%@include file="spot/spotMapTable.jsp" %>
-                <div></div>
+                <%--<div></div>--%>
                         <%@include file="topo/topoMapTable.jsp" %>
+                    <%@include file="route/routeMapTable.jsp" %>
             </div>
 
             </div>

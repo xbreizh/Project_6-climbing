@@ -1,4 +1,5 @@
-<%--<h2>Routes</h2>--%>
+<div style="display: block" id="menu-routes-result">
+<h2>Routes</h2>
 <s:if test="%{routeList.size()>0}">
     <table class="table  table-hover">
         <thead>
@@ -35,16 +36,16 @@
                 </s:a>
                 </td>
                 <td><s:a action="route_detail" style="display:block;text-decoration:none;" >
-                    <s:property value="description" escapeHtml="false"/>
-                    <s:param name="id" value="id"/>
-                </s:a>
-                <td>
-                <s:if test="#session.user.id == memberRoute.id">
-                    <s:a action="member_detail">
-                        <s:param name="id" value="memberRoute.id" />
-                        <span style=" font-weight: bold;color: #ffae6e">You</span>
+                        <s:property value="description" escapeHtml="false"/>
+                        <s:param name="id" value="id"/>
                     </s:a>
-                </s:if>
+                <td>
+                    <s:if test="#session.user.id == memberRoute.id">
+                        <s:a action="member_detail">
+                            <s:param name="id" value="memberRoute.id" />
+                            <span style=" font-weight: bold;color: #ffae6e">You</span>
+                        </s:a>
+                    </s:if>
                     <s:else>
                         <s:a action="member_detail">
                             <s:param name="id" value="memberRoute.id" />
@@ -59,14 +60,14 @@
                             <s:submit class="btn btn-warning" value="Edit"/>
                         </s:form>
                     </td>
-                <s:if test="session.user.role == 'superadmin'">
-                    <td>
-                        <s:form action="route_delete" method="POST">
-                            <s:hidden name="route" value="%{id}"  requiredLabel="true"/>
-                            <s:submit class="btn btn-danger" value="Delete"/>
-                        </s:form>
-                    </td>
-                </s:if>
+                    <s:if test="session.user.role == 'superadmin'">
+                        <td>
+                            <s:form action="route_delete" method="POST">
+                                <s:hidden name="route" value="%{id}"  requiredLabel="true"/>
+                                <s:submit class="btn btn-danger" value="Delete"/>
+                            </s:form>
+                        </td>
+                    </s:if>
                 </s:if>
             </tr>
         </s:iterator>
@@ -75,3 +76,4 @@
 </s:if><s:else>
     No Route Found!
 </s:else>
+</div>

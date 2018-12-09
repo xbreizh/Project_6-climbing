@@ -1,6 +1,7 @@
 package org.example.demo.climb.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import org.apache.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 import org.example.demo.climb.business.contract.CommentManager;
 import org.example.demo.climb.business.contract.RouteManager;
@@ -16,7 +17,7 @@ import java.util.Date;
 import java.util.List;
 
 public class CreationCommentAction extends LoginAction implements SessionAware {
-
+    private Logger logger = Logger.getLogger(this.getClass().getName());
     private Comment comment;
     private int id;
     private List<Comment> commentListRoute=new ArrayList<>();
@@ -37,10 +38,10 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
     //CREATE COMMENT ROUTE
     public String doCreateCommentRoute() throws NotFoundException {
         String vResult= ActionSupport.INPUT;
-        System.out.println("je suis suppose etre la");
+        logger.debug("je suis suppose etre la");
 
         if(comment!=null){
-            System.out.println("comment received: "+comment.getText());
+            logger.debug("comment received: "+comment.getText());
             if(comment.getText().length() > 0 && comment.getText().length() <100) {
                 comment.setDate(new Date());
                 commentManager.addComment(comment);
@@ -72,7 +73,7 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
                 this.addFieldError("text","you must type something");
             }
         }
-        System.out.println("result from comment: "+vResult);
+        logger.debug("result from comment: "+vResult);
         /*vResult = ActionSupport.SUCCESS;*/
 
         return vResult;
@@ -82,12 +83,12 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
     public String doListCommentRoute() throws  NotFoundException{
         route = routeManager.getRouteById(id);
         if(route!=null){
-            System.out.println("tried to get the comment liste");
+            logger.debug("tried to get the comment liste");
             commentListRoute = commentManager.getListCommentFromRoute(route.getId());
-            System.out.println(route.getName());
+            logger.debug(route.getName());
         }
         if(commentListRoute.size() > 0) {
-            System.out.println("text from comment: " + commentListRoute.get(0).getText());
+            logger.debug("text from comment: " + commentListRoute.get(0).getText());
         }
         return ActionSupport.SUCCESS;
     }
@@ -95,20 +96,20 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
     public String doListCommentSpot() throws  NotFoundException{
         spot = spotManager.getSpotById(id);
         if(spot!=null){
-            System.out.println("tried to get the comment liste");
+            logger.debug("tried to get the comment liste");
             commentListSpot = commentManager.getListCommentFromSpot(spot.getId());
-            System.out.println(spot.getName());
+            logger.debug(spot.getName());
         }
         if(commentListSpot.size() > 0) {
-            System.out.println("text from comment: " + commentListSpot.get(0).getText());
+            logger.debug("text from comment: " + commentListSpot.get(0).getText());
         }
         return ActionSupport.SUCCESS;
     }
     public String doListComments() throws Exception {
         commentListSpot = commentManager.getListCommentsSpot();
-        System.out.println("trying to get comment spots: "+commentListSpot.size());
+        logger.debug("trying to get comment spots: "+commentListSpot.size());
         commentListRoute = commentManager.getListCommentsRoute();
-        System.out.println("trying to get comment routes: "+commentListRoute.size());
+        logger.debug("trying to get comment routes: "+commentListRoute.size());
         return "success";
     }
 
@@ -117,7 +118,7 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
         String vResult = ActionSupport.SUCCESS;
         try {
             route = routeManager.getRouteById(id);
-            System.out.println("getting route: " + route.getName());
+            logger.debug("getting route: " + route.getName());
         }catch(NotFoundException e){
             System.err.println("Route not found: "+e.getMessage());
         }
@@ -141,7 +142,7 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
     public String doUpdate() {
         String vResult = ActionSupport.INPUT;
         if (this.hasErrors()) {
-            System.out.println("Spot is null");
+            logger.debug("Spot is null");
             vResult = ActionSupport.ERROR;
         }
         return vResult;
@@ -149,7 +150,7 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
 
     /*DELETE*/
     public String doDelete() throws  NotFoundException{
-        System.out.println("id received in action: "+id);
+        logger.debug("id received in action: "+id);
         comment = commentManager.getComment(id);
         commentManager.deleteComment(comment);
         return ActionSupport.SUCCESS;

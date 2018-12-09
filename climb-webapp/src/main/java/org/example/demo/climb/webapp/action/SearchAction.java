@@ -2,6 +2,7 @@ package org.example.demo.climb.webapp.action;
 
 
 import com.opensymphony.xwork2.ActionSupport;
+import org.apache.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 import org.example.demo.climb.business.contract.*;
 import org.example.demo.climb.model.bean.*;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchAction extends LoginAction implements SessionAware {
-
+    private Logger logger = Logger.getLogger(this.getClass().getName());
     private int id;
     private List<Spot> spotList=new ArrayList<>();
     private List<Topo> topoList=new ArrayList<>();
@@ -34,7 +35,7 @@ public class SearchAction extends LoginAction implements SessionAware {
             if (str.equals("")) {
                 this.addActionError("you must enter a keyword");
             } else {
-                System.out.println("keyword valid: "+str);
+                logger.debug("keyword valid: "+str);
                 spotList=searchManager.findSpotByString(str);
                 topoList=searchManager.findTopoByString(str);
                 return ActionSupport.SUCCESS;
@@ -44,13 +45,13 @@ public class SearchAction extends LoginAction implements SessionAware {
     }
     public String doListTopo() throws  NotFoundException{
         String vResult= ActionSupport.SUCCESS;
-        System.out.println("trying to get a list with keyword: "+str);
-        System.out.println("climbing type passed: "+climbingType);
-        System.out.println("has topo passed: "+hasTopo);
+        logger.debug("trying to get a list with keyword: "+str);
+        logger.debug("climbing type passed: "+climbingType);
+        logger.debug("has topo passed: "+hasTopo);
         spotList=searchManager.findSpotByString(str);
         topoList=searchManager.findTopoByString(str);
-        System.out.println("size spot: "+spotList.size());
-        System.out.println("size topo: "+topoList.size());
+        logger.debug("size spot: "+spotList.size());
+        logger.debug("size topo: "+topoList.size());
         return ActionSupport.SUCCESS;
     }
 

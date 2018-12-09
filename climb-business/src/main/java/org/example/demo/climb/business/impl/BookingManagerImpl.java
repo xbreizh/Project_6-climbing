@@ -10,10 +10,12 @@ import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.apache.log4j.Logger;
 
 @Transactional
 @Named
 public class BookingManagerImpl implements BookingManager {
+    private Logger logger = Logger.getLogger(this.getClass().getName());
 
     @Inject
     BookingDao bookingDao;

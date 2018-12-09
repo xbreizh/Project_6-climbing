@@ -3,13 +3,10 @@ package org.example.demo.climb.business.impl;
 import org.example.demo.climb.business.contract.CommentManager;
 import org.example.demo.climb.consumer.contract.CommentDao;
 import org.example.demo.climb.model.bean.Comment;
-import org.example.demo.climb.model.bean.__to_delete.Zone;
-import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.Date;
 import java.util.List;
 
 @Transactional
@@ -17,10 +14,8 @@ import java.util.List;
 public class CommentManagerImpl  implements CommentManager {
 
 
-    private Class cl= Zone.class;
 
-   /* @Inject
-    private SessionFactory sessionFactory;*/
+
     @Inject
     private CommentDao commentDao;
 

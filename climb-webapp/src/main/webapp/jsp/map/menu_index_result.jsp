@@ -16,6 +16,11 @@
                         type="button" class="btn btn-info">Topos</button>
             </s:a>
         </th>
-
+        <th>
+            <s:a href="#Routes" rel="Routes">
+                <button onclick="toggle_display('menu-routes-result')"
+                        type="button" class="btn btn-info">Routes</button>
+            </s:a>
+        </th>
     </tr>
 </table>

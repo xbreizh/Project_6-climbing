@@ -4,6 +4,7 @@ package org.example.demo.climb.webapp.action;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.opensymphony.xwork2.ActionSupport;
+import org.apache.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 import org.example.demo.climb.business.contract.CommentManager;
 import org.example.demo.climb.business.contract.CountryManager;
@@ -22,7 +23,7 @@ import java.util.List;
 
 public class CreationSpotAction extends LoginAction implements SessionAware {
 
-
+    private Logger logger = Logger.getLogger(this.getClass().getName());
     private List<String> cityList=new ArrayList<>();
     private List<Spot> spotList = new ArrayList<>();
     private List<Topo> topoList = new ArrayList<>();
@@ -56,6 +57,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     private boolean submit =false;
     private HashMap<Integer, String> gradeList= new HashMap<>();
 
+
     @Inject
     private CountryManager countryManager;
     @Inject
@@ -79,7 +81,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         }
 
         String vResult= ActionSupport.SUCCESS;
-        System.out.println("climbing list: "+climbingList);
+        logger.debug("climbing list: "+climbingList);
         if(climbingType.equals("")){climbingType="ALL";}
         if(levelMin > levelMax){
             this.addFieldError("levelMin", "Min Level should be lower than Max");
@@ -87,14 +89,16 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         if(str==null && climbingType==null && hasTopo == null && !this.hasActionErrors()) {
             spotList = spotManager.getListSpot();
         }else{
-            System.out.println("trying to get a list with keyword: "+str);
-            System.out.println("climbing type passed: "+climbingType);
-            System.out.println("has topo passed: "+hasTopo);
+            logger.debug("trying to get a list with keyword: "+str);
+            logger.debug("climbing type passed: "+climbingType);
+            logger.debug("has topo passed: "+hasTopo);
             spotList = spotManager.getListSpot(str, climbingType, hasTopo, levelMin, levelMax);
         }
-        topoList = generateTopoListFromSpotList(spotList);
-        System.out.println("level min: "+levelMin);
-        System.out.println("level max: "+levelMax);
+
+        logger.debug("level min: "+levelMin);
+        logger.debug("level max: "+levelMax);
+        generateRouteListFromSpotList(spotList);
+        generateTopoListFromSpotList(spotList);
         int i=0;
         if(spotList!=null) {
             for (Spot s : spotList
@@ -123,20 +127,38 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         }
         return vResult;
     }
+    // generates routeList for map result table
+    private void generateRouteListFromSpotList(List<Spot> spotList){
+        logger.info("generating routeList");
+        routeList.clear();
+        if(spotList.size() >0) {
+            for (Spot s : spotList){
+                if(s.getRouteList().size() >0){
+                    for (Route r: s.getRouteList()){
+                        routeList.add(r);
+                    }
+                }
+            }
+        }else{
+            logger.debug("spotList empty");
+        }
+    }
 
-    private List<Topo> generateTopoListFromSpotList(List<Spot> spotList) {
-        ArrayList<Topo> tList = new ArrayList<>();
-        for(Spot s: spotList){
-            for(Topo t: s.getTopos()){
-                tList.add(t);
+    // generates topoList for map result table
+    private void generateTopoListFromSpotList(List<Spot> spotList) {
+        logger.info("generating topoList");
+        topoList.clear();
+        if(spotList.size() >0){
+            for(Spot s:spotList){
+                if(s.getTopos().size() > 0){
+                    for (Topo t: s.getTopos()){
+                        topoList.add(t);
+                    }
+                }
             }
+        }else{
+            logger.debug("spotList empty");
         }
-        for(Topo t:tList){
-            if(!topoList.contains(t)){
-                topoList.add(t);
-            }
-        }
-        return topoList;
     }
 
 
@@ -145,7 +167,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         String vResult= ActionSupport.INPUT;
         initCountryList();
         initClimbingTypeList();
-        System.out.println("spot country id: "+spot);
+        logger.debug("spot country id: "+spot);
 
         if(spot!=null) {
             if (checkSpotForm(spot)){
@@ -179,7 +201,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         }
         // check ClimbingType
         int found=0;
-        System.out.println("climbing list: "+climbingList);
+        logger.debug("climbing list: "+climbingList);
         for (String type:climbingList
              ) {
             if(type.equals(spot.getType())){
@@ -248,8 +270,8 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
 
     public String doList() {
         spotList=spotManager.getListSpot();
-        System.out.println("trying to get topoList");
-        System.out.println("size: " + spotList.size());
+        logger.debug("trying to get topoList");
+        logger.debug("size: " + spotList.size());
         return ActionSupport.SUCCESS;
     }
 
@@ -264,15 +286,15 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     /*READ ONE*/
     public String doDetail() throws NotFoundException {
         String vResult = ActionSupport.SUCCESS;
-        System.out.println("tentative de recuperation de l'id: "+id);
+        logger.debug("tentative de recuperation de l'id: "+id);
         spot = spotManager.getSpotById(id);
-        /*System.out.println(spot);*/
+        /*logger.debug(spot);*/
         routeList = spot.getRouteList();
-        System.out.println("size routeList: "+routeList.size());
+        logger.debug("size routeList: "+routeList.size());
         if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;
         }
-        System.out.println("vresult: "+vResult.toString());
+        logger.debug("vresult: "+vResult.toString());
         return vResult;
     }
 
@@ -280,10 +302,10 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     /*EDIT*/
     public String doEdit() {
         String vResult = ActionSupport.SUCCESS;
-        System.out.println("tentative de recuperation de l'id from doEdit: "+id);
+        logger.debug("tentative de recuperation de l'id from doEdit: "+id);
         try {
             spot = spotManager.getSpotById(id);
-            System.out.println("doedit: " + id);
+            logger.debug("doedit: " + id);
         } catch (NotFoundException e) {
             this.addActionError(e.toString());
         }
@@ -300,7 +322,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         for(ClimbingType ct: ClimbingType.values()){
             climbingList.add(ct.getName());
         }
-        System.out.println("from action spot");
+        logger.debug("from action spot");
         if(submit) {
             if (spot != null) {
                 if(checkSpotForm(spot)) {
@@ -309,7 +331,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
                 }
 
             } else {
-                System.out.println("spot is null");
+                logger.debug("spot is null");
             }
         }
         return vResult;
@@ -319,10 +341,10 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     /*DELETE*/
     public String doDelete() {
         String vResult = ActionSupport.SUCCESS;
-        System.out.println("received: "+spot);
+        logger.debug("received: "+spot);
 
         if(spot !=null) {
-            System.out.println("received: "+spot);
+            logger.debug("received: "+spot);
             spotManager.deleteSpot(spot);
         }else{
             this.addActionError("Issue while trying to delete, no Id found");

@@ -32,7 +32,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
     // LOGIN
     public String doLogin(){
         String vResult= ActionSupport.INPUT;
-        System.out.println("logger level: "+logger.getLevel());
+        logger.debug("logger level: "+logger.getLevel());
         if (!StringUtils.isAllEmpty(login, password)) {
            Member member = memberManager.connect(login,password);
 

@@ -3,6 +3,7 @@ package org.example.demo.climb.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.commons.lang3.EnumUtils;
+import org.apache.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 import org.example.demo.climb.business.contract.RouteManager;
 import org.example.demo.climb.business.contract.SpotManager;
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class CreationRouteAction extends LoginAction implements SessionAware {
-
+    private Logger logger = Logger.getLogger(this.getClass().getName());
     private Route route;
     private int id;
     private int spotId;
@@ -55,22 +56,22 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
             i++;
             heightList.put(i, i);
         }
-        System.out.println("size heightlist: "+heightList.size());
+        logger.debug("size heightlist: "+heightList.size());
     }
 
     /*EDIT*/
     public String doUpdate() {
         String vResult = ActionSupport.INPUT;
         initGradeList();
-        System.out.println("grade list init: "+gradeList.size());
+        logger.debug("grade list init: "+gradeList.size());
         initHeightList();
-        System.out.println("height list init: "+heightList.size());
+        logger.debug("height list init: "+heightList.size());
         if(submit) {
             if (this.route != null) {
                 if(checkRouteForm(route)) {
-                    System.out.println(route.getId());
+                    logger.debug(route.getId());
                     routeManager.updateRoute(route);
-                    System.out.println("Route: " + route);
+                    logger.debug("Route: " + route);
                     vResult = ActionSupport.SUCCESS;
                 }
             }
@@ -82,39 +83,39 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
         int error = 0;
        if(route.getName().length() < 1 || route.getName().length() > 50){
            this.addFieldError("route.name", "name should have between 3 and 50 characters");
-           System.out.println("name should have between 3 and 50 characters");
+           logger.debug("name should have between 3 and 50 characters");
            error++;
        }
         if(route.getHeight() < 1 || route.getHeight() > 50){
             this.addFieldError("route.height", "height should be between 1 and 50, please select from the list");
-            System.out.println("height should be between 1 and 50, please select from the list");
+            logger.debug("height should be between 1 and 50, please select from the list");
             error++;
         }
-        System.out.println("grade: "+route.getGrade());
+        logger.debug("grade: "+route.getGrade());
         if(route.getGrade() < 1 || route.getGrade() > Grade.values().length){
         this.addFieldError("route.grade", "grade should be between "+Grade.G1.getValue()+" and "+Grade.G32.getValue()
                 +", please select from the list");
-            System.out.println("grade should be between 1 and "+Grade.values().length
+            logger.debug("grade should be between 1 and "+Grade.values().length
                     +", please select from the list");
             error++;
         }
         if(route.getDescription().length() < 3 || route.getDescription().length() > 250){
             this.addFieldError("route.description", "description should be between 3 and 250 characters");
-            System.out.println("description should be between 3 and 250 characters");
+            logger.debug("description should be between 3 and 250 characters");
             error++;
         }
         if(route.getMemberRoute() == null){
             this.addFieldError("route.memberRoute", "there a problem with your session. Please relog then try again");
-            System.out.println("there a problem with your session. Please relog then try again");
+            logger.debug("there a problem with your session. Please relog then try again");
             error++;
         }
         if(route.getSpot() == null){
             this.addFieldError("route.spot", "there's no spot selected, please get back to the spot detail and try re-adding the route");
-            System.out.println("there's no spot selected, please get back to the spot detail and try re-adding the route");
+            logger.debug("there's no spot selected, please get back to the spot detail and try re-adding the route");
             error++;
         }
         if(error != 0){
-            System.out.println("errors found: "+error);
+            logger.debug("errors found: "+error);
             return false;
         }
 return true;
@@ -124,24 +125,24 @@ return true;
     public String doCreateRoute() throws NotFoundException {
         String vResult= ActionSupport.INPUT;
         if(spot!=null){
-            System.out.println("spot received");
+            logger.debug("spot received");
         }
 
         initGradeList();
-        System.out.println("init grade list");
+        logger.debug("init grade list");
         initHeightList();
-        System.out.println("init height list");
+        logger.debug("init height list");
         if(route!=null){
             spot = spotManager.getSpotById(route.getSpot().getId());
             id=route.getSpot().getId();
-            System.out.println("route received: "+route);
+            logger.debug("route received: "+route);
                 if (checkRouteForm(route)) {
-                    System.out.println("trying to add route: "+route);
+                    logger.debug("trying to add route: "+route);
                     routeManager.addRoute(route);
                     return ActionSupport.SUCCESS;
             }
         }else{
-            System.out.println("route is null");
+            logger.debug("route is null");
             spot = spotManager.getSpotById(id);
         }
         return vResult;
@@ -150,7 +151,7 @@ return true;
     /*READ ALL*/
     public String doList() throws  NotFoundException{
         routeList = routeManager.getListRoute();
-        System.out.println("tried to get the route liste");
+        logger.debug("tried to get the route liste");
         return ActionSupport.SUCCESS;
     }
 
@@ -175,7 +176,7 @@ return true;
         if(route!=null) {
             routeManager.deleteRoute(route);
         }else{
-            System.out.println("no route received");
+            logger.debug("no route received");
         }
         return ActionSupport.SUCCESS;
     }

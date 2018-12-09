@@ -4,6 +4,7 @@ package org.example.demo.climb.webapp.action;
 import com.opensymphony.xwork2.ActionSupport;
 import freemarker.template.utility.DateUtil;
 import org.apache.commons.lang3.time.DateUtils;
+import org.apache.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 import org.example.demo.climb.business.contract.*;
 import org.example.demo.climb.model.bean.Booking;
@@ -20,7 +21,7 @@ import java.util.*;
 
 public class CreationTopoAction extends LoginAction implements SessionAware {
 
-
+    private Logger logger = Logger.getLogger(this.getClass().getName());
     private Topo topo;
     private boolean submit;
     private Spot spot;
@@ -54,13 +55,13 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
 
     // CREATE
     public String doCreateTopo() {
-        System.out.println("trying to create a topo");
+        logger.debug("trying to create a topo");
         String vResult= ActionSupport.INPUT;
         initCountryList();
         initYearlist();
         if(topo!=null){
             if(checkTopoForm(topo)){
-                System.out.println("topo as such: "+topo);
+                logger.debug("topo as such: "+topo);
                 topoManager.addTopo(topo);
                 vResult = ActionSupport.SUCCESS;
             }
@@ -70,15 +71,15 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
 
     public void initYearlist(){
         int year = Calendar.getInstance().get(Calendar.YEAR);
-        System.out.println("year found: "+year);
+        logger.debug("year found: "+year);
         for(int i = year; i>1900;i--){
             yearList.add(i);
         }
-        System.out.println("yearList size: "+yearList.size());
+        logger.debug("yearList size: "+yearList.size());
     }
     public String doEndBooking(){
         String vResult = ActionSupport.SUCCESS;
-        System.out.println("hello here: "+id);
+        logger.debug("hello here: "+id);
         bookingManager.endBooking(id);
         return vResult;
     }
@@ -113,7 +114,7 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
     /*Add Spot to Topo*/
     public String addSpotToTopo() throws NotFoundException {
         String vResult = ActionSupport.SUCCESS;
-        System.out.println("topo id: "+id+"  spot id: "+spotId);
+        logger.debug("topo id: "+id+"  spot id: "+spotId);
         spot = spotManager.getSpotById(spotId);
         topo = topoManager.getTopo(id);
         topoManager.addSpotToTopo(spot, topo);
@@ -124,10 +125,10 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
     public String removeSpotFromTopo() throws NotFoundException {
         String vResult = ActionSupport.SUCCESS;
         topoId = topo.getId();
-        System.out.println("spot id: "+id+"  topo id: "+topoId);
+        logger.debug("spot id: "+id+"  topo id: "+topoId);
         spot = spotManager.getSpotById(id);
         topo = topoManager.getTopo(topoId);
-        System.out.println("result: "+topoManager.removeSpotFromTopo(spot, topo));
+        logger.debug("result: "+topoManager.removeSpotFromTopo(spot, topo));
 
         return vResult;
     }
@@ -181,8 +182,8 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
 
     public String doList() {
         topoList=topoManager.getListTopo();
-        System.out.println("trying to get topoList");
-        System.out.println("size: " + topoList.size());
+        logger.debug("trying to get topoList");
+        logger.debug("size: " + topoList.size());
         return ActionSupport.SUCCESS;
     }
 
@@ -196,11 +197,11 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
                 this.addFieldError("booking.plannedReturnDate","You must fill out both dates to book");
                 return vResult;
             } else {
-                System.out.println("booking beg: "+booking.getBookingDate());
-                System.out.println("booking end: "+booking.getPlannedReturnDate());
+                logger.debug("booking beg: "+booking.getBookingDate());
+                logger.debug("booking end: "+booking.getPlannedReturnDate());
                 if (booking.getBookingDate().after(booking.getPlannedReturnDate()) ||
                         booking.getBookingDate().equals(booking.getPlannedReturnDate())) {
-                    System.out.println("end date must be after begin date");
+                    logger.debug("end date must be after begin date");
                     this.addFieldError("booking.plannedReturnDate", "end date must be after begin date");
                     return vResult;
                 }
@@ -210,16 +211,16 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
                 today.set(Calendar.MINUTE, 0);
                 today.set(Calendar.SECOND, 0);
                 today.set(Calendar.MILLISECOND, 0);
-                System.out.println("tomorrow: "+today+1);
-                System.out.println("today: "+today);
+                logger.debug("tomorrow: "+today+1);
+                logger.debug("today: "+today);
                 if (booking.getBookingDate().before(today.getTime())) { // converts calendar into date
                     this.addFieldError("booking.bookingDate", "date can't be in the past");
-                    System.out.println("date can't be in the past");
+                    logger.debug("date can't be in the past");
                     return vResult;
                 }
                 if (booking.getPlannedReturnDate().compareTo(booking.getBookingDate() )>7) {
                     this.addFieldError("booking.plannedReturnDate","You can book for maximum 7 days!");
-                    System.out.println("start date should be at least tomorrow");
+                    logger.debug("start date should be at least tomorrow");
                     return vResult;
                 }
 
@@ -227,10 +228,10 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
                 if (conflictList.size()==0) {
                      return  ActionSupport.SUCCESS;
                 } else {
-                System.out.println(conflictList.size());
+                logger.debug(conflictList.size());
                 for (Booking b : conflictList
                 ) {
-                System.out.println("conflict id: " + b.getId());
+                logger.debug("conflict id: " + b.getId());
                 }
                 this.addFieldError("booking.plannedReturnDate", "there are some booking conflicts");
                       }
@@ -269,14 +270,14 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
         if(topo!=null && submit) {
             id=topo.getId();
             if (checkTopoForm(topo)) {
-                System.out.println("check topo happy");
+                logger.debug("check topo happy");
                 topoManager.updateTopo(topo);
                 vResult = ActionSupport.SUCCESS;
             }else{
-                System.out.println("check topo not happy");
+                logger.debug("check topo not happy");
             }
         }else{
-            System.out.println("getting topo");
+            logger.debug("getting topo");
             topo = topoManager.getTopo(id);
         }
         return vResult;
@@ -286,8 +287,8 @@ public class CreationTopoAction extends LoginAction implements SessionAware {
     public String doDeleteTopo() throws Exception {
         String vResult = ActionSupport.SUCCESS;
         topo = topoManager.getTopo(id);
-        System.out.println("trying to delete topo from action: "+topo);
-        System.out.println("name: "+topo.getName());
+        logger.debug("trying to delete topo from action: "+topo);
+        logger.debug("name: "+topo.getName());
         topoManager.deleteTopo(topo);
         return vResult;
     }
