@@ -34,6 +34,8 @@ public class RouteManagerImpl implements RouteManager {
 
     @Override
     public Route getRouteById(Integer id) {
+        logger.info("getting route (manager) "+routeDao.getRouteById(id));
+        logger.info("getting spot (manager): "+routeDao.getRouteById(id).getSpot());
         return (Route) routeDao.getById(id);
     }
 
@@ -82,7 +84,7 @@ public class RouteManagerImpl implements RouteManager {
 
             }
         } catch (NullPointerException e) {
-            System.err.println("route couldn't be found: " + id);
+            logger.error("route couldn't be found: " + id);
         }
 
     }

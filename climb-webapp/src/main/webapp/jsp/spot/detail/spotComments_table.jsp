@@ -12,7 +12,6 @@
 
     </s:form>
 </s:if>
-<s:property value="spot.commentList.size()"/>
 <s:if test="spot.commentList.size() > 0">
 
 

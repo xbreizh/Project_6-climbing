@@ -167,10 +167,6 @@ public class Topo {
                 ", publishedYear=" + publishedYear +
                 ", description='" + description + '\'' +
                 ", keywords='" + keywords + '\'' +
-                ", owner=" + owner.getLogin() +
-                ", listBookings=" + listBookings.size() +
-                ", spots=" + spots.size() +
-                ", available=" + available +
                 '}';
     }
 }

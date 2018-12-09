@@ -186,11 +186,6 @@ public class Spot {
                 ", longitude=" + longitude +
                 ", rateMore=" + rateMore +
                 ", rateLess=" + rateLess +
-                ", country=" + country.getName() +
-                ", memberSpot=" + memberSpot.getLogin() +
-                ", topos=" + topos.size() +
-                ", routeList=" + routeList.size() +
-                ", commentList=" + commentList.size() +
                 '}';
     }
 }

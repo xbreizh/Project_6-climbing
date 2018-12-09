@@ -6,7 +6,7 @@
         <s:iterator value="route.commentList">
 
             <td>
-                <s:property value="date" escapeHtml="false"/>
+                <s:date name="date" format="dd/MM/yyyy hh:mm"/>
             </td>
             <td>
                 <s:if test="#session.user.id == memberRoute.id">

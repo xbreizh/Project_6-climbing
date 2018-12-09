@@ -84,13 +84,21 @@ public class Comment {
 
     @Override
     public String toString() {
+        String origin;
+        if(route!=null){
+            origin=", route=" + route.getId();
+        }
+        else if(spot!=null){
+            origin=", spot=" + spot.getId();
+        }else{
+            origin="comment linked to nothing";
+        }
         return "Comment{" +
                 "id=" + id +
                 ", text='" + text + '\'' +
                 ", date=" + date +
                 ", memberComment=" + memberComment.getLogin() +
-                ", route=" + route.getId() +
-                ", spot=" + spot.getId() +
+                origin+
                 '}';
     }
 }

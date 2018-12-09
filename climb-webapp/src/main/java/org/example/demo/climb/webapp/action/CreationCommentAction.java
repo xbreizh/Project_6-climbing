@@ -41,9 +41,10 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
         logger.info("je suis suppose etre la");
 
         if (comment != null) {
-            logger.info("comment received: " + comment.getText());
+            logger.info("comment received: " + comment);
             if (comment.getText().length() > 0 && comment.getText().length() < 100) {
                 comment.setDate(new Date());
+                /*logger.info("comment route: "+comment.getRoute());*/
                 commentManager.addComment(comment);
                 vResult = ActionSupport.SUCCESS;
             } else {
@@ -62,6 +63,8 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
                     if (comment.getMemberComment() != null) {
                         comment.setDate(new Date());
                         commentManager.addComment(comment);
+                        logger.info("comment spot: "+comment.getSpot());
+                        logger.info("comment to be added: "+comment);
                         return ActionSupport.SUCCESS;
                     } else {
                         this.addActionError("you must login to comment");
@@ -122,7 +125,7 @@ public class CreationCommentAction extends LoginAction implements SessionAware {
             route = routeManager.getRouteById(id);
             logger.info("getting route: " + route.getName());
         } catch (NotFoundException e) {
-            System.err.println("Route not found: " + e.getMessage());
+            logger.error("Route not found: " + e.getMessage());
         }
         if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;

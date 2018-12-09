@@ -19,9 +19,9 @@
                           headerKey="-1" headerValue="-- Grade --"/>
                 <s:textarea label="Description" type="text" name="route.description" placeholder="Description"
                             requiredLabel="true"/>
-                <s:hidden name="route.memberRoute.id" placeholder="Member" value="%{session.user.id}"
+                <s:hidden label="Member " name="route.memberRoute.id" placeholder="Member" value="%{session.user.id}"
                           requiredLabel="true"/>
-                <s:hidden name="route.spot.id" value="%{id}"/>
+                <s:hidden label="Spot " name="route.spot.id" value="%{id}"/>
                 <s:submit class="btn btn-success" value="Create"/>
             </s:form>
 

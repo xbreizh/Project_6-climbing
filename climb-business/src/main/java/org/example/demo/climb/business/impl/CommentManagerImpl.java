@@ -2,8 +2,10 @@ package org.example.demo.climb.business.impl;
 
 import org.apache.log4j.Logger;
 import org.example.demo.climb.business.contract.CommentManager;
+import org.example.demo.climb.business.contract.RouteManager;
 import org.example.demo.climb.consumer.contract.CommentDao;
 import org.example.demo.climb.model.bean.Comment;
+import org.example.demo.climb.model.exception.NotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
@@ -18,13 +20,18 @@ public class CommentManagerImpl implements CommentManager {
 
     @Inject
     private CommentDao commentDao;
+    @Inject
+    private RouteManager routeManager;
 
 
     @Override
     public void addComment(Comment comment) {
 
-        logger.info("date: " + comment.getDate());
+        logger.info("comment  to be added(manager): "+comment);
+
+
         commentDao.add(comment);
+
     }
 
     @Override

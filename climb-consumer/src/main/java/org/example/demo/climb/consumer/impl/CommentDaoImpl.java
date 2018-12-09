@@ -1,5 +1,6 @@
 package org.example.demo.climb.consumer.impl;
 
+import org.apache.log4j.Logger;
 import org.example.demo.climb.consumer.contract.CommentDao;
 import org.example.demo.climb.consumer.contract.MemberDao;
 import org.example.demo.climb.model.bean.Comment;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Named
 public class CommentDaoImpl implements CommentDao {
-
+    private Logger logger = Logger.getLogger(this.getClass().getName());
     private Class cl = Comment.class;
     @Inject
     private SessionFactory sessionFactory;
@@ -35,8 +36,7 @@ public class CommentDaoImpl implements CommentDao {
 
     @Override
     public void add(Comment comment) {
-        System.out.println("comment is in DAO: " + comment.getText());
-        System.out.println("date: " + comment.getDate());
+        logger.info(comment);
         sessionFactory.getCurrentSession().persist(comment);
     }
 

@@ -22,7 +22,8 @@
                         display:block; align-self:center; "
                          class="btn-menu1 justify-content-center col-lg-2 col-md-2">
                         <button type="button" class=" btn-primary"
-                                onclick="resizeElement()">Show <s:property value="%{spotList.size()}"/> Result<br>
+                                onclick="resizeElement()">Show <s:property value="%{spotList.size()}"/> Spot<s:if
+                                test="spotList.size() >1">s</s:if> <br>
 
                         </button>
                     </div>

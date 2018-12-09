@@ -53,7 +53,7 @@
                 </td>
                 <td>
                     <s:a action="route_detail" style="display:block;text-decoration:none;">
-                        <button type="button" class="btn btn-primary">Comments</button>
+                        <button type="button" class="btn btn-primary">Comments(<s:property value="commentList.size"/>)</button>
                         <s:param name="id" value="id"/>
                     </s:a>
                 </td>

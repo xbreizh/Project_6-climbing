@@ -77,8 +77,9 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
     }
 
     private boolean checkRouteForm(Route route) {
+        logger.info("checking route");
         int error = 0;
-        if (route.getName().length() < 1 || route.getName().length() > 50) {
+        if (route.getName().length() < 3 || route.getName().length() > 50) {
             this.addFieldError("route.name", "name should have between 3 and 50 characters");
             logger.info("name should have between 3 and 50 characters");
             error++;
@@ -111,7 +112,7 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
             logger.info("there's no spot selected, please get back to the spot detail and try re-adding the route");
             error++;
         }
-        if (error != 0) {
+        if (error > 0) {
             logger.info("errors found: " + error);
             return false;
         }
@@ -133,7 +134,7 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
             spot = spotManager.getSpotById(route.getSpot().getId());
             id = route.getSpot().getId();
             logger.info("route received: " + route);
-            if (checkRouteForm(route)) {
+            if (checkRouteForm(route)!=false) {
                 logger.info("trying to add route: " + route);
                 routeManager.addRoute(route);
                 return ActionSupport.SUCCESS;
@@ -158,8 +159,10 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
         String vResult = ActionSupport.SUCCESS;
         try {
             route = routeManager.getRouteById(id);
+            logger.info(route);
+            logger.info("Number of comments: "+route.getCommentList().size());
         } catch (NotFoundException e) {
-            System.err.println("Route not found: " + e.getMessage());
+            logger.error("Route not found: " + e.getMessage());
         }
         if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;

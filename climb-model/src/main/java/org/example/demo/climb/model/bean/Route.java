@@ -115,9 +115,6 @@ public class Route {
                 ", height=" + height +
                 ", grade=" + grade +
                 ", description='" + description + '\'' +
-                ", memberRoute=" + memberRoute.getLogin() +
-                ", spot=" + spot.getId() +
-                ", commentList=" + commentList.size() +
                 '}';
     }
 }

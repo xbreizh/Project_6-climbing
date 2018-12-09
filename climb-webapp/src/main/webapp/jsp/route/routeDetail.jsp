@@ -5,6 +5,10 @@
 <s:a action="spot_detail">
     <s:param name="id" value="route.spot.id"/>
     Back to Route list
+</s:a><br><br>
+<s:a action="createRoute">
+    <s:param name="id" value="route.spot.id"/>
+    <button type="button" class="btn btn-warning">New Route</button>
 </s:a>
 <table class="table table-hover">
     <thead>
@@ -68,6 +72,7 @@
     </tr>
     <tr>
         <s:if test="session.user">
+
             <td colspan="8">
 
                 <s:form style="display: inline;" action="createCommentRoute" method="POST">

@@ -132,16 +132,18 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     private void generateRouteListFromSpotList(List<Spot> spotList) {
         logger.info("generating routeList");
         routeList.clear();
-        if (spotList.size() > 0) {
-            for (Spot s : spotList) {
-                if (s.getRouteList().size() > 0) {
-                    for (Route r : s.getRouteList()) {
-                        routeList.add(r);
+        if(spotList!=null) {
+            if (spotList.size() > 0) {
+                for (Spot s : spotList) {
+                    if (s.getRouteList().size() > 0) {
+                        for (Route r : s.getRouteList()) {
+                            routeList.add(r);
+                        }
                     }
                 }
+            } else {
+                logger.info("spotList empty");
             }
-        } else {
-            logger.info("spotList empty");
         }
     }
 
@@ -149,16 +151,18 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     private void generateTopoListFromSpotList(List<Spot> spotList) {
         logger.info("generating topoList");
         topoList.clear();
-        if (spotList.size() > 0) {
-            for (Spot s : spotList) {
-                if (s.getTopos().size() > 0) {
-                    for (Topo t : s.getTopos()) {
-                        topoList.add(t);
+        if(spotList!=null) {
+            if (spotList.size() > 0) {
+                for (Spot s : spotList) {
+                    if (s.getTopos().size() > 0) {
+                        for (Topo t : s.getTopos()) {
+                            topoList.add(t);
+                        }
                     }
                 }
+            } else {
+                logger.info("spotList empty");
             }
-        } else {
-            logger.info("spotList empty");
         }
     }
 
@@ -293,6 +297,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         logger.info(spot);
         routeList = spot.getRouteList();
         logger.info("size routeList: " + routeList.size());
+        logger.info("size commentList: " + spot.getCommentList().size());
         if (this.hasErrors()) {
             vResult = ActionSupport.ERROR;
         }

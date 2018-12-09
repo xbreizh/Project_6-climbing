@@ -196,11 +196,7 @@ public class Member {
                 ", datejoin=" + datejoin +
                 ", dateLastConnect=" + dateLastConnect +
                 ", email='" + email + '\'' +
-                ", spotList=" + spotList.size() +
-                ", routeList=" + routeList.size() +
-                ", commentList=" + commentList.size() +
-                ", topoListOwned=" + topoListOwned.size() +
-                ", listBookings=" + listBookings.size() +
+
                 '}';
     }
 }
