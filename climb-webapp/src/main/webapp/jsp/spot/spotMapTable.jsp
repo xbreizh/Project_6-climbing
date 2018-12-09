@@ -44,5 +44,8 @@
         </tbody>
     </table>
 </s:if>
+    <s:else>
+        No Spot found!
+    </s:else>
 </div>
 

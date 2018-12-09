@@ -30,6 +30,9 @@ form{
 table, th, td{
     align:center;
 }
+.form-result{
+    position:fixed;
+}
 .container{
     justify-content:center;
 

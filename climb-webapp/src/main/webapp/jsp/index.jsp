@@ -10,9 +10,10 @@
 
                 <div class="row mapContainer">
                     <%@include file="/jsp/map/map_index.jsp" %>
-                    <%@include file="/jsp/map/index_map_legend.jsp" %>
+
                 </div>
-                <div  class="container ">
+                <div  class="container-fluid ">
+                    <%@include file="/jsp/map/index_map_legend.jsp" %>
                     <div  class="row">
                         <div class="col-lg-6 col-centered">
                              <%@include file="search/searchForm.jsp" %>
@@ -21,8 +22,8 @@
                         display:block; align-self:center; "
                              class="btn-menu1 justify-content-center col-lg-2 col-md-2">
                             <button type="button" class=" btn-primary"
-                                    onclick="resizeElement()">Show Result<br>
-                                (<s:property value="%{spotList.size()}"/>)
+                                    onclick="resizeElement()">Show <s:property value="%{spotList.size()}"/> Result<br>
+
                             </button>
                         </div>
                         <div id="btn-menu2" style="display:none; font-size: 30px;

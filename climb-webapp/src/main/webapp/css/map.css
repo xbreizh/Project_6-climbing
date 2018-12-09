@@ -4,7 +4,7 @@
 }
 .panButtonPanel{
     border: black double;
-    position:absolute;
+    position:fixed;
     background-color:#ffede3;
     top:10%;
     left:10%;
