@@ -7,11 +7,11 @@
     <thead>
     <tr>
         <th>Name</th>
-        <th>Continent</th>
         <th>Country</th>
         <th>City</th>
         <th>Type</th>
         <th>Description</th>
+        <th>Coordinates</th>
         <th>Creator</th>
     </tr>
     </thead>
@@ -21,12 +21,7 @@
         <td>
             <s:property value="spot.name" escapeHtml="false"/>
         </td>
-        <td>
-            <a style="text-decoration: none; color: inherit;" target="_blank"
-               href="https://en.wikipedia.org/wiki/<s:property value="spot.country.continent" escapeHtml="false"/>">
-                <s:property value="spot.country.continent" escapeHtml="false"/>
-            </a>
-        </td>
+
         <td>
             <a style="text-decoration: none; color: inherit;" target="_blank"
                href="https://en.wikipedia.org/wiki/<s:property value="spot.country.name" escapeHtml="false"/>">
@@ -44,6 +39,10 @@
         </td>
         <td>
             <s:property value="spot.description" escapeHtml="false"/>
+        </td>
+        <td>
+            <s:property value="spot.latitude" escapeHtml="false"/> /
+            <s:property value="spot.longitude" escapeHtml="false"/>
         </td>
         <td>
             <s:if test="#session.user.id == spot.memberSpot.id">
