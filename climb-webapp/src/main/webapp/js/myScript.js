@@ -27,7 +27,10 @@ function toggle_display(id) {
 }
 
 function resizeElement() {
-    let element1 = document.getElementById('skra');
+    toggle_display('index_result');
+    toggle_display('btn-menu1');
+    toggle_display('btn-menu2');
+    /*let element1 = document.getElementById('skra');
     let element2 = document.getElementById('index_result');
     console.log(element1.classList);
 
@@ -36,10 +39,12 @@ function resizeElement() {
         element1.classList.remove("col-md-12");
         toggle_display('btn-menu1');
         toggle_display('btn-menu2');
+        toggle_display('index_result');
         element1.classList.toggle("col-lg-6");
         element1.classList.toggle("col-md-6");
         element2.classList.remove("hidden");
     } else {
+        toggle_display('index_result');
         toggle_display('btn-menu1');
         toggle_display('btn-menu2');
         element1.classList.remove("col-lg-6");
@@ -48,6 +53,6 @@ function resizeElement() {
         element1.classList.toggle("col-md-12");
         element2.classList.toggle("hidden");
     }
-
-
+*/
+    /*toggle_display('index_result');*/
 }

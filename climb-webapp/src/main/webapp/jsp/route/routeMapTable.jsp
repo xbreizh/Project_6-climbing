@@ -4,8 +4,8 @@
         <table class="table  table-hover">
             <thead>
             <tr>
-                <th>Name</th>
                 <th>Spot</th>
+                <th>Name</th>
                 <th>Grade</th>
                 <th>Height</th>
                 <th>Description</th>
@@ -15,14 +15,14 @@
             <tbody>
             <s:iterator value="routeList">
                 <tr>
-                    <td><s:a action="route_detail" style="display:block;text-decoration:none;">
-                        <s:property value="name" escapeHtml="false"/>
-                        <s:param name="id" value="id"/>
-                    </s:a>
-                    </td>
                     <td><s:a action="spot_detail" style="display:block;text-decoration:none;">
                         <s:property value="spot.name"/>
                         <s:param name="id" value="spot.id"/>
+                    </s:a>
+                    </td>
+                    <td><s:a action="route_detail" style="display:block;text-decoration:none;">
+                        <s:property value="name" escapeHtml="false"/>
+                        <s:param name="id" value="id"/>
                     </s:a>
                     </td>
                     <td><s:a action="route_detail" style="display:block;text-decoration:none;">

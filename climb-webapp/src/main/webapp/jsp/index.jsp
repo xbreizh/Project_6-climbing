@@ -15,11 +15,11 @@
             <div class="container-fluid ">
                 <%@include file="/jsp/map/index_map_legend.jsp" %>
                 <div class="row">
-                    <div class="col-lg-6  col-centered">
+                    <div class="col-lg-4  col-centered">
                         <%@include file="search/searchForm.jsp" %>
                     </div>
-                    <div class="col-lg-6 ">
-                        <div id="btn-menu1" style="font-size: 30px;justify-content:center;
+                    <div class="col-lg-4 ">
+                        <div id="btn-menu1" style="font-size: 40px;justify-content:center;
                             display:block; align-self:center; "
                              class="btn-menu1 justify-content-center col-lg-2 col-md-2">
                             <button type="button" class=" btn-primary"
@@ -28,7 +28,7 @@
 
                             </button>
                         </div>
-                        <div id="btn-menu2" style="display:none; font-size: 30px;
+                        <div id="btn-menu2" style="display:none; font-size: 40px;
                             justify-content:center; align-self:center; "
                              class=" justify-content-center col-lg-2 col-md-2">
                             <button type="button" class="btn-warning"
@@ -36,15 +36,12 @@
                             </button>
                         </div>
                     </div>
-                    <%--<div class="col-lg-2 visible-lg">
-
-                    </div>--%>
                 </div>
             </div>
 
 
         </div>
-        <div class="hidden col-lg-6 col-md-12 col-sm-12 pull-right jumbotron" id="index_result">
+        <div style="display:none;" class=" col-lg-6 col-md-6 col-sm-12 pull-right jumbotron" id="index_result">
             <%@include file="/jsp/map/menu_index_result.jsp" %>
             <div>
                 <%@include file="spot/spotMapTable.jsp" %>
