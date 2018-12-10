@@ -85,6 +85,8 @@ public class SpotDaoImpl implements SpotDao {
         } else {
             // Getting list of Spot ids based on route grade criterias
             ArrayList<String> gradeList= new ArrayList<>();
+            if(levelMin.equals(""))levelMin = "0";
+            if(levelMax.equals(""))levelMax = "0";
             if(levelMin.equals("0") && levelMax.equals("0")){
                 for(Grade g:Grade.values()){
                     gradeList.add(g.getValue());
@@ -95,6 +97,7 @@ public class SpotDaoImpl implements SpotDao {
                     gradeList.add(grade.getValue());
                 }
             }
+
             }
             logger.info("gradeList initiated: "+gradeList);
             q = sessionFactory.getCurrentSession().createQuery(
