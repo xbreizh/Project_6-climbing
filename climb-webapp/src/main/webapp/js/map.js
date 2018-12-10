@@ -1,4 +1,3 @@
-/*
 
 
 
@@ -12,4 +11,4 @@ function pushpinClicked(e) {
         visible: true
     });
     infobox.setLocation(e.target.getLocation());
-}*/
+}

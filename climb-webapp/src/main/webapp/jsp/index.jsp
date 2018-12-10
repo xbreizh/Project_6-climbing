@@ -19,7 +19,7 @@
                         <%@include file="search/searchForm.jsp" %>
                     </div>
                     <div class="col-lg-4 ">
-                        <div id="btn-menu1" style="font-size: 40px;justify-content:center;
+                        <div id="btn-menu1" style="font-size: 30px;justify-content:center;
                             display:block; align-self:center; "
                              class="btn-menu1 justify-content-center col-lg-2 col-md-2">
                             <button type="button" class=" btn-primary"
@@ -28,7 +28,7 @@
 
                             </button>
                         </div>
-                        <div id="btn-menu2" style="display:none; font-size: 40px;
+                        <div id="btn-menu2" style="display:none; font-size: 30px;
                             justify-content:center; align-self:center; "
                              class=" justify-content-center col-lg-2 col-md-2">
                             <button type="button" class="btn-warning"
@@ -59,6 +59,8 @@
             $("#" + target).show().siblings("div").hide();
         });
     </script>
-
+    <script type='text/javascript'
+            src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap'
+            async defer></script>
 
     <%@include file="_include/footer.jsp" %>

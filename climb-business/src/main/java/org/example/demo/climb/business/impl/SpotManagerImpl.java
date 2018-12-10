@@ -1,12 +1,14 @@
 package org.example.demo.climb.business.impl;
 
 
+import org.apache.commons.lang3.EnumUtils;
 import org.apache.log4j.Logger;
 import org.example.demo.climb.business.contract.CountryManager;
 import org.example.demo.climb.business.contract.MemberManager;
 import org.example.demo.climb.business.contract.SpotManager;
 import org.example.demo.climb.consumer.contract.SpotDao;
 import org.example.demo.climb.model.ClimbingType;
+import org.example.demo.climb.model.Grade;
 import org.example.demo.climb.model.bean.Spot;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -61,7 +63,7 @@ public class SpotManagerImpl implements SpotManager {
 
     // Get List
     @Override
-    public List<Spot> getListSpot(String str, String climbingType, String hasTopo, int levelMin, int levelMax) {
+    public List<Spot> getListSpot(String str, String climbingType, String hasTopo, String levelMin, String levelMax) {
         String ct = "ALL";
         String htopo = "";
         for (ClimbingType clt : ClimbingType.values()) {
@@ -80,14 +82,27 @@ public class SpotManagerImpl implements SpotManager {
             logger.info("str was null");
             str = "";
         }
-        if (levelMin == 0) {
-            levelMin = 1;
-        }
-        if (levelMax == 0) {
-            levelMax = 32;
-        }
-        logger.info("str: " + str + " climb: " + ct + " topo: " + htopo);
+        logger.info("data passed: Str: "+str+ "\n ClimbingType: "+climbingType+"\n hasTopo: "+hasTopo+"\nlevelMin: "+levelMin+"\n levelMax: "+levelMax);
+        /*boolean validGrade= EnumUtils.isValidEnum(Grade.class, levelMin) && EnumUtils.isValidEnum(Grade.class, levelMax);
+        if(validGrade) {
+            if (Grade.valueOf(levelMin).ordinal() == 0) {
+                levelMin = Grade.values()[1].getValue();
+                logger.info("levelMin: "+levelMin);
+            }
+            if (Grade.valueOf(levelMax).ordinal() == 0) {
+                levelMax = Grade.values()[32].getValue();
+                logger.info("levelMax: "+levelMax);
+            }
+            logger.info("str: " + str + " climb: " + ct + " topo: " + htopo);
+            return spotDao.ListSpotByCriterias(str, ct, htopo, levelMin, levelMax);
+        }else{
+            logger.info("data search invalid, returning null");
+            return null;
+        }*/
+
+
         return spotDao.ListSpotByCriterias(str, ct, htopo, levelMin, levelMax);
+
     }
 
     @Override

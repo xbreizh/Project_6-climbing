@@ -24,7 +24,7 @@ import java.util.List;
 
 public class CreationSpotAction extends LoginAction implements SessionAware {
 
-    private final String token = "AlcwuVaVbdcepPJ0gbZ0Nd5prdkYHYS1LEEFEbUm2l0CfEe4XLUeDArvlkrXHcg2";
+    private final String token = "AlcwuVaVbdcepPJ0gbZ0Nd5prdkYHYS1LEEFEbUm2l0CfEe4XLUeDArvlkrXHcg2 ";
     public List<String> climbingList = new ArrayList<>();
     private Logger logger = Logger.getLogger(this.getClass().getName());
     private List<String> cityList = new ArrayList<>();
@@ -47,8 +47,8 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
     private String[][] spotArray;
     private HashMap<Integer, String> levelList = new HashMap<>();
     private HashMap<Integer, String> countryList = new HashMap<>();
-    private int levelMin;
-    private int levelMax;
+    private String levelMin="";
+    private String levelMax="";
     private boolean submit = false;
     private HashMap<Integer, String> gradeList = new HashMap<>();
     @Inject
@@ -83,8 +83,11 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         if (climbingType.equals("")) {
             climbingType = "ALL";
         }
-        if (levelMin > levelMax) {
-            this.addFieldError("levelMin", "Min Level should be lower than Max");
+
+        if(levelMin.equals("") && !levelMax.equals("")) {
+            if (Grade.valueOf(levelMin).ordinal() > Grade.valueOf(levelMax).ordinal()) {
+                this.addFieldError("levelMin", "Min Level should be lower than Max");
+            }
         }
         if (str == null && climbingType == null && hasTopo == null && !this.hasActionErrors()) {
             spotList = spotManager.getListSpot();
@@ -103,6 +106,8 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
         if (spotList != null) {
             for (Spot s : spotList
             ) {
+                logger.info("logList contains: "+spotList.size()+" items");
+                logger.info("first item list received: "+spotList.get(0));
                 String lat = Double.toString(spotList.get(i).getLatitude());
                 String lon = Double.toString(spotList.get(i).getLongitude());
                 String name = spotList.get(i).getName();
@@ -118,6 +123,7 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
                 obj.addProperty("description", desc);
                 obj.addProperty("cType", type);
                 obj.addProperty("city", city);
+                logger.info("object created: "+obj);
                 listo.add(obj);
                 i++;
             }
@@ -363,23 +369,25 @@ public class CreationSpotAction extends LoginAction implements SessionAware {
 
     /***********************************************************************/
     /************************ GETTERS - SETTERS ***************************/
-    /***********************************************************************/
-
-    public int getLevelMin() {
+    public String getLevelMin() {
         return levelMin;
     }
 
-    public void setLevelMin(int levelMin) {
+    public void setLevelMin(String levelMin) {
         this.levelMin = levelMin;
     }
 
-    public int getLevelMax() {
+    public String getLevelMax() {
         return levelMax;
     }
 
-    public void setLevelMax(int levelMax) {
+    public void setLevelMax(String levelMax) {
         this.levelMax = levelMax;
     }
+
+    /***********************************************************************/
+
+
 
     public List<String> getTypeList() {
         return typeList;

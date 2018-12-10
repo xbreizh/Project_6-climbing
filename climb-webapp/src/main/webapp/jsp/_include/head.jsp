@@ -12,9 +12,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src='<s:url value="/js/myScript.js"/>'></script>
     <script type="text/javascript" src='<s:url value="/js/map.js"/>'></script>
-    <script type='text/javascript'
-            src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap'
-            async defer></script>
 
     <title>Climb</title>
 

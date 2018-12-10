@@ -3,6 +3,7 @@ package org.example.demo.climb.consumer.impl;
 import org.apache.log4j.Logger;
 import org.example.demo.climb.consumer.contract.MemberDao;
 import org.example.demo.climb.consumer.contract.SpotDao;
+import org.example.demo.climb.model.Grade;
 import org.example.demo.climb.model.bean.Country;
 import org.example.demo.climb.model.bean.Spot;
 import org.hibernate.SessionFactory;
@@ -10,6 +11,7 @@ import org.hibernate.query.Query;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.ArrayList;
 import java.util.List;
 
 @Named
@@ -67,7 +69,7 @@ public class SpotDaoImpl implements SpotDao {
     }
 
     @Override
-    public List<Spot> ListSpotByCriterias(String str, String climbingType, String hasTopo, int levelMin, int levelMax) {
+    public List<Spot> ListSpotByCriterias(String str, String climbingType, String hasTopo, String levelMin, String levelMax) {
         Query q;
         if (!hasTopo.equals("")) {
             Query TopoQuery = sessionFactory.getCurrentSession().createQuery(
@@ -82,11 +84,22 @@ public class SpotDaoImpl implements SpotDao {
             q.setParameter("topoList", idList);
         } else {
             // Getting list of Spot ids based on route grade criterias
-
+            ArrayList<String> gradeList= new ArrayList<>();
+            if(levelMin.equals("") && levelMax.equals("")){
+                for(Grade g:Grade.values()){
+                    gradeList.add(g.getValue());
+                }
+            }else{
+            for(Grade grade: Grade.values()) {
+                if (grade.ordinal()+1 >= Integer.parseInt(levelMin) && grade.ordinal()+1 <= Integer.parseInt(levelMax)) {
+                    gradeList.add(grade.getValue());
+                }
+            }
+            }
+            logger.info("gradeList initiated: "+gradeList);
             q = sessionFactory.getCurrentSession().createQuery(
-                    "select spot.id from Route where grade >= :min and grade <= :max");
-            q.setParameter("min", levelMin);
-            q.setParameter("max", levelMax);
+                    "select spot.id from Route where grade in :gradeList");
+            q.setParameter("gradeList", gradeList);
         }
 
         List<String> idList = q.getResultList();

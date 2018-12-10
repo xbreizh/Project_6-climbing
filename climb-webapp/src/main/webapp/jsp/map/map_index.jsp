@@ -3,7 +3,6 @@
         async defer></script>
 <script type='text/javascript'>
     var map, infobox;
-
     function GetMap() {
         var pushpinInfos = [];
         //json array
@@ -13,7 +12,6 @@
         for (var i = 0; i < result.length; i++) {
             pushpinInfos[i] = result[i];
         }
-
         var pinLayer = new Microsoft.Maps.EntityCollection();
         var locs = [];
         /* var myStyle = {
@@ -28,25 +26,18 @@
         map = new Microsoft.Maps.Map('#myMap', {
             credentials: '${token}'/*,
                 customMapStyle: myStyle*/
-
         });
-
         map.setView({
             /* mapTypeId: Microsoft.Maps.MapTypeId.aerial,*/
             zoom: 2.7
         });
-
-
         //Create an infobox at the center of the map but don't show it.
         infobox = new Microsoft.Maps.Infobox(map.getCenter(), {
             visible: false
         });
-
         //Assign the infobox to a map instance.
         infobox.setMap(map);
-
         /*  //Create random locations in the map bounds.*/
-
         for (var i = 0; i < pushpinInfos.length; i++) {
             locs[i] = new Microsoft.Maps.Location(pushpinInfos[i].lat, pushpinInfos[i].lon);
             var pin;
@@ -60,20 +51,16 @@
             pin.Title = pushpinInfos[i].title;
             pin.Description = pushpinInfos[i].description;
             pin.City = pushpinInfos[i].city;
-
             //Add a click event handler to the pushpin.
             Microsoft.Maps.Events.addHandler(pin, 'click', pushpinClicked);
-
             //Add pushpin to the map.
             map.entities.push(pin);
         }
-
     }
-
-
     function pushpinClicked(e) {
         //Make sure the infobox has metadata to display.
         //Set the infobox options with the metadata of the pushpin.
+        console.log('pin to be pushed: '+e);
         infobox.setOptions({
             title: e.target.City,
             description: '<a href="spot_detail.action?id=' + e.target.Ref + '" >' + e.target.Title.toUpperCase() + '</a>',
@@ -81,8 +68,6 @@
         });
         infobox.setLocation(e.target.getLocation());
     }
-
-
 </script>
 
 <div id="myMap">

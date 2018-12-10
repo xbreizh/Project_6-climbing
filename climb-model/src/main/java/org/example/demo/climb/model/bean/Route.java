@@ -23,7 +23,7 @@ public class Route {
 
 
     @NotNull
-    private int grade;
+    private String grade;
 
     @NotNull
     @Size(min = 3, max = 250)
@@ -83,11 +83,11 @@ public class Route {
         this.height = height;
     }
 
-    public int getGrade() {
+    public String getGrade() {
         return grade;
     }
 
-    public void setGrade(int grade) {
+    public void setGrade(String grade) {
         this.grade = grade;
     }
 

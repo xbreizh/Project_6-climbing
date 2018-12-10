@@ -14,7 +14,7 @@
                 <s:textfield label="Name" type="text" name="route.name" placeholder="Name" requiredLabel="true"/>
                 <s:select label="Height" list="heightList" name="route.height" placeholder="Height" requiredLabel="true"
                           headerKey="-1" headerValue="-- Height --"/>
-                <s:select label="Grade" list="%{gradeList}" name="route.grade" listKey="key" placeholder="Grade"
+                <s:select label="Grade" list="%{gradeList}" name="route.grade" value="value" placeholder="Grade"
                           requiredLabel="true"
                           headerKey="-1" headerValue="-- Grade --"/>
                 <s:textarea label="Description" type="text" name="route.description" placeholder="Description"

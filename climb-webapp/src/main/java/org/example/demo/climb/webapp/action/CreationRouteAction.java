@@ -2,6 +2,7 @@ package org.example.demo.climb.webapp.action;
 
 
 import com.opensymphony.xwork2.ActionSupport;
+import org.apache.commons.lang3.EnumUtils;
 import org.apache.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 import org.example.demo.climb.business.contract.RouteManager;
@@ -12,9 +13,7 @@ import org.example.demo.climb.model.bean.Spot;
 import org.example.demo.climb.model.exception.NotFoundException;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class CreationRouteAction extends LoginAction implements SessionAware {
     private Logger logger = Logger.getLogger(this.getClass().getName());
@@ -23,8 +22,8 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
     private int spotId;
     private String country;
     private List<Route> routeList = new ArrayList<>();
-    private HashMap<Integer, String> gradeList = new HashMap<>();
     private HashMap<Integer, Integer> heightList = new HashMap<>();
+    private ArrayList<String> gradeList = new ArrayList<>();
     private Spot spot;
     private boolean submit = false;
 
@@ -38,12 +37,13 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
     public void initGradeList() {
         int index = 0;
         //adding default condition
-        gradeList.put(index, "0");
-        for (Grade g : Grade.values()) {
-            index++;
-            gradeList.put(index, g.getValue());
+        for(Grade g: Grade.values()){
+            gradeList.add(g.getValue());
         }
 
+
+/*Arrays.asList(Grade.values());*/
+        logger.info("Init gradelist. Size: "+gradeList.size());
     }
 
     private void initHeightList() {
@@ -65,6 +65,7 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
         logger.info("height list init: " + heightList.size());
         if (submit) {
             if (this.route != null) {
+                logger.info("route received: "+route);
                 if (checkRouteForm(route)) {
                     logger.info(route.getId());
                     routeManager.updateRoute(route);
@@ -90,13 +91,17 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
             error++;
         }
         logger.info("grade: " + route.getGrade());
-        if (route.getGrade() < 1 || route.getGrade() > Grade.values().length) {
+        if(!checkValidGrade(route.getGrade())){
+            this.addFieldError("route.grade", "invalid grade: "+route.getGrade());
+            error++;
+        }
+/*        else if (Grade.valueOf(route.getGrade()).ordinal() < 1 || Grade.valueOf(route.getGrade()).ordinal() > Grade.values().length) {
             this.addFieldError("route.grade", "grade should be between " + Grade.G1.getValue() + " and " + Grade.G32.getValue()
                     + ", please select from the list");
             logger.info("grade should be between 1 and " + Grade.values().length
                     + ", please select from the list");
             error++;
-        }
+        }*/
         if (route.getDescription().length() < 3 || route.getDescription().length() > 250) {
             this.addFieldError("route.description", "description should be between 3 and 250 characters");
             logger.info("description should be between 3 and 250 characters");
@@ -117,6 +122,16 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
             return false;
         }
         return true;
+    }
+
+    private boolean checkValidGrade(String grade) {
+            for(Grade g:Grade.values()) {
+                if (g.getValue().equals(grade)) {
+                    return true;
+
+                }
+            }
+            return false;
     }
 
     /*CREATE*/
@@ -210,13 +225,7 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
         this.heightList = heightList;
     }
 
-    public HashMap<Integer, String> getGradeList() {
-        return gradeList;
-    }
 
-    public void setGradeList(HashMap<Integer, String> gradeList) {
-        this.gradeList = gradeList;
-    }
 
     public Route getRoute() {
         return route;
@@ -256,5 +265,13 @@ public class CreationRouteAction extends LoginAction implements SessionAware {
 
     public void setSpotId(int spotId) {
         this.spotId = spotId;
+    }
+
+    public ArrayList<String> getGradeList() {
+        return gradeList;
+    }
+
+    public void setGradeList(ArrayList<String> gradeList) {
+        this.gradeList = gradeList;
     }
 }
